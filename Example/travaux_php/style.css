@@ -1,0 +1,104 @@
+
+*{
+    text-align: center;
+    font-size: 1.2rem;
+}
+form{
+    margin-left: auto;
+    margin-right: auto; 
+}
+.error {color: #FF0000;}
+
+i#hidden {
+  color:white;
+    transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15 ease-in-out;
+}
+i#hidden:hover{
+    color:grey;
+}
+.form{
+    width:40%
+}
+.styled {
+    border: 0;
+    padding: 12px 20px ;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2) 30%, rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6), inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6), inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+  }
+table.listing{
+    width:100%;
+}
+  td, th {
+    border: 3px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+
+input{
+    padding: 5px;
+}
+
+button.styled a{
+    font-size: 1rem;
+    text-decoration: none;
+    color:#ffffff;
+}
+span.success{
+    color: green;
+}
+
+
+.right{
+    position:absolute;
+    height: auto;
+    right: 150px;
+    top:125px;
+}
+img {
+    width: 100px;
+    height:100px;
+}
+marquee.warning{
+    background-color: #FF0000;
+    color: aliceblue;
+    width: 100%;
+    text-align: left;
+}
+
+.little{
+    width: 70px;
+}
+
+.linklisted{
+    color:#000;
+
+}
+.linklisted:hover{
+    color:red;
+    text-decoration: overline underline;
+}
+
+header.listing{
+    padding: auto;
+}
