@@ -63,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //post
         $password="";
     }
     if (!empty($name) && !empty($lastname) && !empty($login) && !empty($password) && !empty($gender)){
-         if (array_key_exists($login, $tableau)) {
-             $loginErr="Erreur : cet utilisateur existe déjà";
+        if (array_key_exists($login, $tableau)) {
+            $loginErr="Erreur : cet utilisateur existe déjà";
         }else { 
             
             $tableau[$login]= array('name'=> $name, 'lastname'=> $lastname, 'password'=> $password,'gender'=> $gender, 'rights' => 0);
