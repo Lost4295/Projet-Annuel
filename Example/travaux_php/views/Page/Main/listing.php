@@ -25,7 +25,7 @@ function base64_encode_image ($filename,$filetype) {
         <meta name="Page" content="Quelle page magnifique">
         <meta charset="UTF-8">
         <title>Liste des utilisateurs </title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="/../style.css">
     </head>
     <body>
         <header class="listing">
@@ -42,7 +42,7 @@ function base64_encode_image ($filename,$filetype) {
                 $res = array("Pseudo","Nom", "Prenom","mot de passe","genre","image", "droits");
                 echo "<tr>";
                 foreach($res as $cle => $valeur) { 
-                     echo "<th>$valeur</th>";
+                    echo "<th>$valeur</th>";
                 }
                 echo "</tr>"; 
                 

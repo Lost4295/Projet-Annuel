@@ -10,7 +10,7 @@ form{
 .error {color: #FF0000;}
 
 i#hidden {
-  color:white;
+    color:white;
     transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15 ease-in-out;
 }
 i#hidden:hover{
@@ -45,15 +45,15 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 75%;
-  }
+}
 table.listing{
     width:100%;
 }
-  td, th {
+td, th {
     border: 3px solid black;
     text-align: left;
     padding: 8px;
-  }
+}
 
 input{
     padding: 5px;

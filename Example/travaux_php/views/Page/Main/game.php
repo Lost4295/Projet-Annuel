@@ -18,12 +18,10 @@ $_SESSION['randop']="";
 if($_SESSION['randopc'] == 1){
     $_SESSION['randop']="+";
     $_SESSION['randres']=$_SESSION['rand1']+$_SESSION['rand2'];
-   
     }
 else if ($_SESSION['randopc']==2){
         $_SESSION['randop']="-";
         $_SESSION['randres']=$_SESSION['rand1']-$_SESSION['rand2'];
-
     }
 else{
     $_SESSION['randop']="*";
@@ -92,8 +90,7 @@ if ($_SESSION['vie']<=0){
         <?php 
             echo "|| reponse : " . $reponse;
             echo " reponse attendue :" . $_SESSION['randres'];
-           
-       ?>
+    ?>
     </div>
     </body>
 </html>

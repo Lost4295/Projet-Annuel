@@ -1,3 +1,6 @@
+<!-- Cette page est dépréciée, il faut la remplacer par l'autre register.php sur le repo -->
+
+
 <?php 
 session_start();
 unset($_SESSION ['username']);
