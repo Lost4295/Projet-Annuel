@@ -2,17 +2,8 @@
     $requis="";
     $loginErr="";
     require 'verif.php';
+    require '../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../style.css">
-        <title>Formulaire </title>
-    </head>
-    <body>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
                 <fieldset>
@@ -34,5 +25,4 @@
         <div>
         <button class='styled'><a href='../index.php'> index </a></button><br><br>
         </div>
-    </body>
-</html>
+        <?php require '../../core/template/footer.php';

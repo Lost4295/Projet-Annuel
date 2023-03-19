@@ -8,17 +8,9 @@ $loginErr="";
 $nameErr="";
 $lastnameErr=""; 
 $passwordErr="";
-require 'veriffirst.php'; ?>
-<!DOCTYPE HTML>
-
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../style.css">
-        <title>Formulaire d'inscription </title>
-    </head>
-    <body>
+require 'veriffirst.php';
+require '../../core/template/header.php';
+?>
         <button class='styled'><a href='../index.php'> index </a></button><br><br>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
@@ -45,5 +37,4 @@ require 'veriffirst.php'; ?>
                 <input type="reset">
             </form>
         </div>
-    </body>
-</html>
+        <?php require '../../core/template/header.php';

@@ -12,33 +12,21 @@ if (!isset($_SESSION['listeuser'])){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-$username=$_POST['username'];
-
-
-if ($username == $_SESSION['username'] && !empty($username)) {
-    $_SESSION['count']++;
-} else if (!empty($username)){ 
-    $_SESSION['count']=1;
-    $_SESSION['username']=$username;
-    $_SESSION['userlist'][$username]=""; 
-    $_SESSION["nbcalcul"]=0;
-    $_SESSION["vie"]=3;
-}  else { 
-    $_SESSION['count'] = 0;
-  } 
-  }
-
+    $username=$_POST['username'];
+    if ($username == $_SESSION['username'] && !empty($username)) {
+        $_SESSION['count']++;
+    } else if (!empty($username)){ 
+        $_SESSION['count']=1;
+        $_SESSION['username']=$username;
+        $_SESSION['userlist'][$username]=""; 
+        $_SESSION["nbcalcul"]=0;
+        $_SESSION["vie"]=3;
+    }  else { 
+        $_SESSION['count'] = 0;
+    } 
+}
+require '../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <title>Nom de page </title>
-        
-    </head>
-    <body>
         <form method="post" action="register.php">
             <label for="username">Nom d'utilisateur:</label><br>
             <input list="username" id="username" name="username">
@@ -61,8 +49,4 @@ if ($username == $_SESSION['username'] && !empty($username)) {
 
     <button class='styled'><a href='index.php'> index </a></button><br><br>
     <button class="styled"> <a href="game.php"> Aller au jeu </a></button>
-
-    
-   
-    </body>
-</html>
+<?php require '../../core/template/header.php';

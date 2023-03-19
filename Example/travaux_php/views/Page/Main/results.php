@@ -7,16 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $_SESSION['username']=$_POST['username'];
     $_SESSION['nbcalcul']=$_POST['nbcalcul'];
 }
+require '../../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title>Nom de page </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+
         <!-- Tout est fait pour copier coller ensuite -->
         <button class='styled'><a href='index.php'> index </a></button> &emsp; 
         <button class="styled"> <a href="register.php"> Recommencer </a></button> &emsp; &emsp;
@@ -47,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 
             ?>
         </div>
-    </body>
-</html>
+
+<?php require '../../../core/template/header.php'; ?>
 
 
 <!-- if ($username == $_SESSION['username'] && !empty($username)) {

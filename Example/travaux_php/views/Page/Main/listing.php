@@ -17,17 +17,9 @@ function base64_encode_image ($filename,$filetype) {
         return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
     }
 }
+require '../../../core/template/header.php';
 
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title>Liste des utilisateurs </title>
-        <link rel="stylesheet" href="/../style.css">
-    </head>
-    <body>
         <header class="listing">
             
             <button class='styled'><a href='../index.php'> index </a></button>
@@ -76,5 +68,5 @@ function base64_encode_image ($filename,$filetype) {
                 
             
         </table><br><br><br>
-    </body>
-</html>
+
+<?php require '../../../core/template/footer.php';

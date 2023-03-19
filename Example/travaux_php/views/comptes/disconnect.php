@@ -23,16 +23,8 @@ function base64_encode_image ($filename,$filetype) {
             return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
         }
     }
+    require '../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title>Nom de page </title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
         <button class='styled'><a href='../index.php'> index </a></button><br><br>
         <h2><u>Voulez-vous vraiment vous déconnecter, <?php echo $_SESSION['users'] . " ? <br>"?></u></h2>
         <?php
@@ -46,5 +38,4 @@ function base64_encode_image ($filename,$filetype) {
             </fieldset>
         </form>
         
-    </body>
-</html>
+<?php require '../../core/template/footer.php';

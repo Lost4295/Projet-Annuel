@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //post
         }
         calcul();
     }
-           
 } else { calcul();
 }
 if ($_SESSION['vie']<=0){
@@ -58,17 +57,9 @@ if ($_SESSION['vie']<=0){
     
 
 }
-
+require '../../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-<html lang="fr">
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title>Nom de page </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+
     <div><?php echo "<button class='styled'><a href='index.php'> index </a></button><br><br>"; ?></div>
     <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -92,5 +83,4 @@ if ($_SESSION['vie']<=0){
             echo " reponse attendue :" . $_SESSION['randres'];
     ?>
     </div>
-    </body>
-</html>
+<?php require '../../../core/template/footer.php'; 

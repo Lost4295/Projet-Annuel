@@ -30,17 +30,10 @@ if(array_key_exists('button3', $_POST)) {
     header('Location:disconnect.php');
 }
 
+require '../../../core/template/header.php';
+
 ?>
 
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title> Page utilisateur </title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
     <button class='styled'><a href='../index.php'> index </a></button></br></br>
     <?php 
         echo "Bonjour, " . $_SESSION['login']['lastname'] ." ". $_SESSION['login']['name'] . "</br></br></br></br></br>";
@@ -64,5 +57,4 @@ if(array_key_exists('button3', $_POST)) {
             </form>
         </div>
 
-    </body>
-</html> 
+<?php require '../../../core/template/footer.php';

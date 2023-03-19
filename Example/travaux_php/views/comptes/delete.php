@@ -17,17 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
 } 
-
+require '../../core/template/header.php';
 ?>
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta name="Page" content="Quelle page magnifique">
-        <meta charset="UTF-8">
-        <title>Nom de page </title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
+
         <button class='styled'><a href='../index.php'> index </a></button><br><br>
         <h2><u>Voulez-vous vraiment effacer votre compte ?</u></h2>
         <marquee class="warning" truespeed="10" scrolldelay="30">⚠Ces données seront perdues pour toujours !⚠</marquee>
@@ -45,5 +37,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             </fieldset>
         </form>
         <marquee class="warning" truespeed="50" scrollamount="10" scrolldelay="30"> ⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;</marquee>
-    </body>
-</html>
+        <?php require '../../core/template/header.php';
