@@ -17,12 +17,12 @@ function base64_encode_image ($filename,$filetype) {
         return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
     }
 }
-require '../../../core/template/header.php';
+require 'header.php';
 
 ?>
         <header class="listing">
             
-            <button class='styled'><a href='../index.php'> index </a></button>
+            <button class='styled'><a href='index.php'> index </a></button>
             <button class='styled'><a href='userpage.php'> Retour </a></button>
             <?php if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}  echo "<img src= '" . $tableau[$_SESSION['users']]['image'] . "'class='little'/>";?>
             <a class="linklisted" href="userpage.php"><?php echo  $_SESSION['users'] ?></a>
@@ -69,4 +69,4 @@ require '../../../core/template/header.php';
             
         </table><br><br><br>
 
-<?php require '../../../core/template/footer.php';
+<?php require 'footer.php';

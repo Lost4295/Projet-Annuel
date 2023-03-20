@@ -1,8 +1,8 @@
 <?php 
     $requis="";
     $loginErr="";
-    require '../../core/verif.php';
-    require '../../core/template/header.php';
+    require 'verif.php';
+    require 'header.php';
 ?>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
@@ -23,6 +23,6 @@
             </form>
         </div>
         <div>
-        <button class='styled'><a href='../index.php'> index </a></button><br><br>
+        <button class='styled'><a href='index.php'> index </a></button><br><br>
         </div>
-        <?php require '../../core/template/footer.php';
+        <?php require 'footer.php';

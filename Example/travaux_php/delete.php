@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
 } 
-require '../../core/template/header.php';
+require 'header.php';
 ?>
 
-        <button class='styled'><a href='../index.php'> index </a></button><br><br>
+        <button class='styled'><a href='index.php'> index </a></button><br><br>
         <h2><u>Voulez-vous vraiment effacer votre compte ?</u></h2>
         <marquee class="warning" truespeed="10" scrolldelay="30">⚠Ces données seront perdues pour toujours !⚠</marquee>
         <div><?php
@@ -37,4 +37,4 @@ require '../../core/template/header.php';
             </fieldset>
         </form>
         <marquee class="warning" truespeed="50" scrollamount="10" scrolldelay="30"> ⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;</marquee>
-        <?php require '../../core/template/header.php';
+        <?php require 'header.php';

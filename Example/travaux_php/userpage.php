@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['login'])){
     $_SESSION['login']['lastname']= "Erreur ! Veuillez vous connecter.";
 }
-$tableau = unserialize(file_get_contents('../../comptes/users.dat'));
+$tableau = unserialize(file_get_contents('users.dat'));
 
 if(array_key_exists('button1', $_POST)) {
     if(isset($_FILES['image'])){
@@ -12,7 +12,7 @@ if(array_key_exists('button1', $_POST)) {
         $size = $_FILES['image']['size'];
         $error = $_FILES['image']['error'];
         $tableau[$_SESSION['users']]['image'] = base64_encode_image($tmpName, $type);
-        file_put_contents('../../comptes/users.dat', serialize($tableau));
+        file_put_contents('users.dat', serialize($tableau));
     }
 }
 
@@ -24,17 +24,17 @@ function base64_encode_image ($filename,$filetype) {
 }
 
 if(array_key_exists('button2', $_POST)) {
-    header('Location: ../comptes/delete.php');
+    header('Location: delete.php');
 }
 if(array_key_exists('button3', $_POST)) {
-    header('Location: ../comptes/disconnect.php');
+    header('Location: disconnect.php');
 }
 
-require '../../../core/template/header.php';
+require 'header.php';
 
 ?>
 
-    <button class='styled'><a href='../index.php'> index </a></button></br></br>
+    <button class='styled'><a href='index.php'> index </a></button></br></br>
     <?php 
         echo "Bonjour, " . $_SESSION['login']['lastname'] ." ". $_SESSION['login']['name'] . "</br></br></br></br></br>";
         if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}
@@ -57,4 +57,4 @@ require '../../../core/template/header.php';
             </form>
         </div>
 
-<?php require '../../../core/template/footer.php';
+<?php require 'footer.php';

@@ -56,7 +56,7 @@ if ($_SESSION['vie']<=0){
     
 
 }
-require '../../../core/template/header.php';
+require 'header.php';
 ?>
 
     <div><button class='styled'><a href='index.php'> index </a></button><br><br></div>
@@ -82,4 +82,4 @@ require '../../../core/template/header.php';
             echo " reponse attendue :" . $_SESSION['randres'];
     ?>
     </div>
-<?php require '../../../core/template/footer.php'; 
+<?php require 'footer.php'; 

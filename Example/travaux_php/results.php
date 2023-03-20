@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $_SESSION['username']=$_POST['username'];
     $_SESSION['nbcalcul']=$_POST['nbcalcul'];
 }
-require '../../../core/template/header.php';
+require 'header.php';
 ?>
 
         <!-- Tout est fait pour copier coller ensuite -->
@@ -41,7 +41,7 @@ require '../../../core/template/header.php';
             ?>
         </div>
 
-<?php require '../../../core/template/header.php'; ?>
+<?php require 'header.php'; ?>
 
 
 <!-- if ($username == $_SESSION['username'] && !empty($username)) {

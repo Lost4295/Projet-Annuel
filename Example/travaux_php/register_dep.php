@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['count'] = 0;
     } 
 }
-require '../../core/template/header.php';
+require 'header.php';
 ?>
         <form method="post" action="register.php">
             <label for="username">Nom d'utilisateur:</label><br>
@@ -49,4 +49,4 @@ require '../../core/template/header.php';
 
     <button class='styled'><a href='index.php'> index </a></button><br><br>
     <button class="styled"> <a href="game.php"> Aller au jeu </a></button>
-<?php require '../../core/template/header.php';
+<?php require 'header.php';

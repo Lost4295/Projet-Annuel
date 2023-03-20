@@ -8,10 +8,10 @@ $loginErr="";
 $nameErr="";
 $lastnameErr=""; 
 $passwordErr="";
-require '../../core/veriffirst.php';
-require '../../core/template/header.php';
+require 'veriffirst.php';
+require 'header.php';
 ?>
-        <button class='styled'><a href='../index.php'> index </a></button><br><br>
+        <button class='styled'><a href='index.php'> index </a></button><br><br>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
                 <fieldset>
@@ -37,4 +37,4 @@ require '../../core/template/header.php';
                 <input type="reset">
             </form>
         </div>
-        <?php require '../../core/template/header.php';
+        <?php require 'header.php';
