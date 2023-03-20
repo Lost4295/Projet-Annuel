@@ -8,7 +8,6 @@ if(file_exists('users.dat')){
 }
 else {
     $tableau=array();
-    
 }
 
 
@@ -71,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //post
             file_put_contents('users.dat', serialize($tableau));
             $_SESSION['login'] = $tableau[$login];
             $_SESSION['users'] = $login;
-            header('Location: userpage.php');
+            header('Location: ../Page/Main/userpage.php');
             exit();
         }
     }

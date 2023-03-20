@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //post
         }
         calcul();
     }
-} else { calcul();
 }
 if ($_SESSION['vie']<=0){
     echo "<script>alert('La partie est terminée !'); window.location.href='results.php';</script>";
@@ -60,7 +59,7 @@ if ($_SESSION['vie']<=0){
 require '../../../core/template/header.php';
 ?>
 
-    <div><?php echo "<button class='styled'><a href='index.php'> index </a></button><br><br>"; ?></div>
+    <div><button class='styled'><a href='index.php'> index </a></button><br><br></div>
     <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <fieldset>

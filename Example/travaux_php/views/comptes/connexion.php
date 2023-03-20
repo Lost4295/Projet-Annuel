@@ -1,7 +1,7 @@
 <?php 
     $requis="";
     $loginErr="";
-    require 'verif.php';
+    require '../../core/verif.php';
     require '../../core/template/header.php';
 ?>
         <div>

@@ -8,7 +8,7 @@ $loginErr="";
 $nameErr="";
 $lastnameErr=""; 
 $passwordErr="";
-require 'veriffirst.php';
+require '../../core/veriffirst.php';
 require '../../core/template/header.php';
 ?>
         <button class='styled'><a href='../index.php'> index </a></button><br><br>

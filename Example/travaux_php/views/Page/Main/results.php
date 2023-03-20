@@ -45,10 +45,10 @@ require '../../../core/template/header.php';
 
 
 <!-- if ($username == $_SESSION['username'] && !empty($username)) {
-  $count++;
+    $count++;
 } else { 
     $count = 1;
     $_SESSION['username'] = $username ;
 } 
-$_SESSION['count']=$count;
+    $_SESSION['count']=$count;
 } -->
