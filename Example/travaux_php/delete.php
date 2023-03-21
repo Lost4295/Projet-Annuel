@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 require 'header.php';
 ?>
 
-        <button class='styled'><a href='index.php'> index </a></button><br><br>
+        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         <h2><u>Voulez-vous vraiment effacer votre compte ?</u></h2>
         <marquee class="warning" truespeed="10" scrolldelay="30">⚠Ces données seront perdues pour toujours !⚠</marquee>
         <div><?php
@@ -32,9 +32,9 @@ require 'header.php';
         ?></div>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
             <fieldset>
-                <input type="submit" name="Oui"value="Oui" class="button styled"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <input type="submit" name="Non" value="Non" class="button styled">
+                <input type="submit" name="Oui"value="Oui" class="button  btn btn-warning"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <input type="submit" name="Non" value="Non" class="button btn btn-outline-info">
             </fieldset>
         </form>
         <marquee class="warning" truespeed="50" scrollamount="10" scrolldelay="30"> ⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;⚠&emsp;</marquee>
-        <?php require 'header.php';
+        <?php require 'footer.php';

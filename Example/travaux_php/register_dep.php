@@ -47,6 +47,6 @@ require 'header.php';
         </form>
     <p>Bonjour <?php echo $username;?>, vous avez vu cette page <?php echo $_SESSION['count']; ?> fois d'afilée.</p><br>
 
-    <button class='styled'><a href='index.php'> index </a></button><br><br>
-    <button class="styled"> <a href="game.php"> Aller au jeu </a></button>
-<?php require 'header.php';
+    <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
+    <button class=" btn btn-primary"> <a href="game.php"> Aller au jeu </a></button>
+<?php require 'footer.php';

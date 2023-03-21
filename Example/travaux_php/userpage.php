@@ -34,7 +34,7 @@ require 'header.php';
 
 ?>
 
-    <button class='styled'><a href='index.php'> index </a></button></br></br>
+    <a href='index.php' class=' btn btn-primary'> index </a></br></br>
     <?php 
         echo "Bonjour, " . $_SESSION['login']['lastname'] ." ". $_SESSION['login']['name'] . "</br></br></br></br></br>";
         if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}
@@ -43,18 +43,22 @@ require 'header.php';
         <div>
         <div><img src= "<?php echo $tableau[$_SESSION['users']]['image'] ?>"/></div> </br></br></br>
     </br></br></br> 
-    </br></br><a class='styled' href='game.php'> Jeu </a><br><br>
+    </br></br><a class=' btn btn-primary' href='game.php'> Jeu </a><br><br>
         </div>
         <div>
-        <button class='styled'><a href='listing.php'> Listing des users </a></button>
+            <a class=' btn btn-primary' href='listing.php'> Listing des users </a>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype= "multipart/form-data">
-                <input type="file" name="image" class="button styled" value="Modifier l'image" />
-                <input type="submit" name="button1" class="button styled" value="envoyer l'image" />
-                <input type="submit" name="button3" class="button styled" value="Se déconnecter" />
-                </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-                <input type="submit" name="button2" class="button styled" value="Effacer le compte" />
-                
+                <input type="file" name="image" class="form-control" value="Modifier l'image" />
+                <input type="submit" name="button1" class="button btn btn-primary" value="envoyer l'image" />
+                <input type="submit" name="button3" class="button btn btn-primary" value="Se déconnecter" />
             </form>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-warning" href="delete.php"> Supprimer le compte </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
 <?php require 'footer.php';

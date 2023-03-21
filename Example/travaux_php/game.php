@@ -59,7 +59,7 @@ if ($_SESSION['vie']<=0){
 require 'header.php';
 ?>
 
-    <div><button class='styled'><a href='index.php'> index </a></button><br><br></div>
+    <div><button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br></div>
     <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <fieldset>
@@ -72,8 +72,8 @@ require 'header.php';
                 <label for="formule"><?php echo $_SESSION['rand1'] . $_SESSION['randop'] . $_SESSION['rand2']?></label><br>
                 <input type="text" id="reponse" name="reponse"> <br>
                 <span class="error"><?php echo $reponseErr;?></span><span class="success"><?php echo $reponseBien;?></span><br>
-                <input type="submit" value="Vérifier" class="styled"><input type="submit" formaction="results.php" value="Terminer la partie" class="styled">
-                <button class="styled"><a href="register.php"> Changer d'utilisateur</a></button>
+                <input type="submit" value="Vérifier" class="styled"><input type="submit" formaction="results.php" value="Terminer la partie" class=" btn btn-primary">
+                <button class=" btn btn-primary"><a href="register.php"> Changer d'utilisateur</a></button>
             </fieldset>
         </form> 
         

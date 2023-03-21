@@ -11,10 +11,10 @@ require 'header.php';
 ?>
 
         <!-- Tout est fait pour copier coller ensuite -->
-        <button class='styled'><a href='index.php'> index </a></button> &emsp; 
-        <button class="styled"> <a href="register.php"> Recommencer </a></button> &emsp; &emsp;
+        <button class=' btn btn-primary'><a href='index.php'> index </a></button> &emsp; 
+        <button class=" btn btn-primary"> <a href="register.php"> Recommencer </a></button> &emsp; &emsp;
         <form method="post">
-        <input type="submit" name="button1" class="button styled" value="Rénitialiser le tableau" />
+        <input type="submit" name="button1" class="button btn btn-primary" value="Rénitialiser le tableau" />
         </form><br><br>
         <p><b><u>Résultats :</u></b></p><br><br>
         <div>
@@ -41,14 +41,5 @@ require 'header.php';
             ?>
         </div>
 
-<?php require 'header.php'; ?>
+<?php require 'footer.php'; ?>
 
-
-<!-- if ($username == $_SESSION['username'] && !empty($username)) {
-    $count++;
-} else { 
-    $count = 1;
-    $_SESSION['username'] = $username ;
-} 
-    $_SESSION['count']=$count;
-} -->

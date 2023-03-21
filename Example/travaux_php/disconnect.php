@@ -25,7 +25,7 @@ function base64_encode_image ($filename,$filetype) {
     }
     require 'header.php';
 ?>
-        <button class='styled'><a href='index.php'> index </a></button><br><br>
+        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         <h2><u>Voulez-vous vraiment vous déconnecter, <?php echo $_SESSION['users'] . " ? <br>"?></u></h2>
         <?php
             if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');} 

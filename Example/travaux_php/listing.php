@@ -22,8 +22,8 @@ require 'header.php';
 ?>
         <header class="listing">
             
-            <button class='styled'><a href='index.php'> index </a></button>
-            <button class='styled'><a href='userpage.php'> Retour </a></button>
+            <button class=' btn btn-primary'><a href='index.php'> index </a></button>
+            <button class=' btn btn-primary'><a href='userpage.php'> Retour </a></button>
             <?php if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}  echo "<img src= '" . $tableau[$_SESSION['users']]['image'] . "'class='little'/>";?>
             <a class="linklisted" href="userpage.php"><?php echo  $_SESSION['users'] ?></a>
         </header>
@@ -56,7 +56,7 @@ require 'header.php';
                     if( $tableau[$_SESSION['users']]['rights'] == 1)
                         {?>
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype= "multipart/form-data">
-                            <input type="submit" name="modify" class="button styled" value="Modifier" />
+                            <input type="submit" name="modify" class="button btn btn-primary" value="Modifier" />
                             <input type="hidden" name="login" value=<?php echo "'" . $cle . "'";?>/>
                         </form>
                     <?php }

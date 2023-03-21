@@ -23,6 +23,6 @@
             </form>
         </div>
         <div>
-        <button class='styled'><a href='index.php'> index </a></button><br><br>
+        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         </div>
         <?php require 'footer.php';

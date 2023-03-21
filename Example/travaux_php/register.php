@@ -11,7 +11,7 @@ $passwordErr="";
 require 'veriffirst.php';
 require 'header.php';
 ?>
-        <button class='styled'><a href='index.php'> index </a></button><br><br>
+        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
                 <fieldset>
@@ -33,8 +33,8 @@ require 'header.php';
                     <input type="radio" name="gender" value="F" required >&nbsp;Femme&nbsp;</input>
                     <input type="radio" name="gender" value="M"required>&nbsp;Homme&nbsp;</input><br>
                 </fieldset>
-                <input type="submit" value="Envoyer le formulaire">
-                <input type="reset">
+                <input type="submit" value="Envoyer le formulaire" class="btn btn-primary">
+                <input type="reset" class="btn btn-primary">
             </form>
         </div>
-        <?php require 'header.php';
+        <?php require 'footer.php';
