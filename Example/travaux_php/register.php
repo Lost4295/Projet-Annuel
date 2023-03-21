@@ -1,4 +1,5 @@
 <?php
+session_reset();
 session_start();
 $login="";
 $name="";
@@ -9,9 +10,24 @@ $nameErr="";
 $lastnameErr=""; 
 $passwordErr="";
 require 'veriffirst.php';
+
+unset($_SESSION ['username']);
+if (!isset($_SESSION['listeuser'])){
+    $_SESSION['listeuser']=[];
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $username=$_POST['login'];
+    if (!empty($username)){ 
+        $_SESSION['username']=$username;
+        $_SESSION['userlist'][$username]=""; 
+        $_SESSION["nbcalcul"]=0;
+        $_SESSION["vie"]=3;
+    }  
+}
+
 require 'header.php';
 ?>
-        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
                 <fieldset>
@@ -34,7 +50,6 @@ require 'header.php';
                     <input type="radio" name="gender" value="M"required>&nbsp;Homme&nbsp;</input><br>
                 </fieldset>
                 <input type="submit" value="Envoyer le formulaire" class="btn btn-primary">
-                <input type="reset" class="btn btn-primary">
             </form>
         </div>
         <?php require 'footer.php';

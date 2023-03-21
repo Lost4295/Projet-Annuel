@@ -24,7 +24,7 @@ require 'header.php';
             
             <button class=' btn btn-primary'><a href='index.php'> index </a></button>
             <button class=' btn btn-primary'><a href='userpage.php'> Retour </a></button>
-            <?php if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}  echo "<img src= '" . $tableau[$_SESSION['users']]['image'] . "'class='little'/>";?>
+            <?php if(!isset($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}  echo "<img src= '" . $tableau[$_SESSION['users']]['image'] . "'class='little'/>";?>
             <a class="linklisted" href="userpage.php"><?php echo  $_SESSION['users'] ?></a>
         </header>
     <br><br>
@@ -62,11 +62,7 @@ require 'header.php';
                     <?php }
                     echo "</td>";
                     echo"</tr>"; 
-                    
-                    
                 }?>
-                
-            
         </table><br><br><br>
 
 <?php require 'footer.php';

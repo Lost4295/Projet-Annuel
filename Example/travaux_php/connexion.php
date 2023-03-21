@@ -16,7 +16,6 @@
                     <label for="password">Mot de passe :</label><br>
                     <input type="password" name="password" placeholder="****************" value="<?php echo $password; ?>"required>
                     <span class="error">* <?php echo $passwordErr;?></span><br><br>
-                
                     <input type="submit" value="Envoyer le formulaire">
                     <input type="reset">
                 </fieldset>

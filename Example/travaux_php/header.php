@@ -10,10 +10,10 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col px-0">
+        <div class="col px-0 pb-4 mb-5">
             <nav class="navbar bg-body-secondary">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/">
                         <img src="bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-center">
                         Bootstrap
                     </a>
@@ -21,4 +21,3 @@
             </nav>
         </div>
     </div>
-</div>

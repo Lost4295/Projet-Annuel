@@ -11,8 +11,7 @@ require 'header.php';
 ?>
 
         <!-- Tout est fait pour copier coller ensuite -->
-        <button class=' btn btn-primary'><a href='index.php'> index </a></button> &emsp; 
-        <button class=" btn btn-primary"> <a href="register.php"> Recommencer </a></button> &emsp; &emsp;
+        <a href="register.php"class=" btn btn-primary"> Recommencer </a> &emsp; &emsp;
         <form method="post">
         <input type="submit" name="button1" class="button btn btn-primary" value="Rénitialiser le tableau" />
         </form><br><br>

@@ -57,9 +57,13 @@ if ($_SESSION['vie']<=0){
 
 }
 require 'header.php';
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
+die();
 ?>
 
-    <div><button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br></div>
     <div>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <fieldset>
@@ -80,6 +84,7 @@ require 'header.php';
         <?php 
             echo "|| reponse : " . $reponse;
             echo " reponse attendue :" . $_SESSION['randres'];
+
     ?>
     </div>
 <?php require 'footer.php'; 
