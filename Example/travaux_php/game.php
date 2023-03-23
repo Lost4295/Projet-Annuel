@@ -1,6 +1,5 @@
 
 <?php 
-session_start();
 $username = $_SESSION['username'];
 $reponseErr="";
 $reponseBien="";
@@ -9,7 +8,7 @@ if(!isset($_SESSION['vie'])){$_SESSION['vie']=3;}
 if(!isset($_SESSION['nbcalcul'])){$_SESSION['nbcalcul']=0;}  
 
 function calcul(){
-$_SESSION['rand1']=rand(0, 20);
+$_SESSION['rand1']=rand(0,20);
 $_SESSION['rand2']=rand(0,20);
 $_SESSION['randopc']=rand(1,3);
 $_SESSION['randop']=""; 
@@ -52,11 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //post
 }
 if ($_SESSION['vie']<=0){
     echo "<script>alert('La partie est terminée !'); window.location.href='results.php';</script>";
-    
-    
-
 }
-require 'header.php';
+
 ?>
 
     <div>
@@ -82,4 +78,3 @@ require 'header.php';
 
     ?>
     </div>
-<?php require 'footer.php'; 
