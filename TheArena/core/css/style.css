@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+* {
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: dotted;
+}
