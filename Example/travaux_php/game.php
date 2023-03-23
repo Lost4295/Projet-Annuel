@@ -57,11 +57,6 @@ if ($_SESSION['vie']<=0){
 
 }
 require 'header.php';
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-
-die();
 ?>
 
     <div>
