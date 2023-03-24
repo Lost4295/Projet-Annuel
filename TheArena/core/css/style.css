@@ -1,14 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
 
-.footer {
+footer {
     position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: red;
     color: white;
-    text-align: center;
 }
 * {
     font-family: 'Kanit', sans-serif;
@@ -18,8 +17,8 @@
 
 .messages{
     position: relative;
-    bottom: 300px;
-    right:-555px;
+    bottom: 120px;
+    right:50px;
 }
 
 #logo{
