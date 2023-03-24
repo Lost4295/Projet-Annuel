@@ -12,11 +12,10 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col px-0 mb-5">
+        <div class="col px-0">
             <nav class="navbar bg-body-secondary">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between">
-                        <div>
+                <div class="container-fluid d-flex">
+                        <div class="mr-auto">
                             <a class="navbar-brand" href="/">
                                 <img src="logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center" id="logo">
                                 <img src="thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center" id="textlogo">
