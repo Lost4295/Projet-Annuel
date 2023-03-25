@@ -1,6 +1,6 @@
-<footer class="footer bg-danger py-4">
+<footer class="footer bar py-4">
     <div class="d-flex justify-content-between">
-    <img style="position: relative; width:200px; height:200px;" src="#"/>
+    <img src="logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center logo">
     <div>
     <button class="btn btn-warning messages">Messagerie</button>
     </div>

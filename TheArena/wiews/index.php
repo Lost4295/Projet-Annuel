@@ -2,12 +2,12 @@
 
 <div class="container-fluid ">
     <div class="row">
-        <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-white"><!--notre sidebar-->
+        <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary"><!--notre sidebar-->
             <div class="w-100 d-flex flex-column justify-content-between">
-                <a href="#" class="my-3 w-100 btn btn-outline-warning">Accueil</a>
-                <a href="#" class="my-3 w-100 btn btn-outline-warning">Événements</a>
-                <a href="#" class="my-3 w-100 btn btn-outline-warning">Power Ranking</a>
-                <a href="#" class="my-3 w-100 btn btn-outline-warning">Forum</a>
+                <a href="#" class="my-3 w-100 btn btn-warning">Accueil</a>
+                <a href="#" class="my-3 w-100 btn btn-warning">Événements</a>
+                <a href="#" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                <a href="#" class="my-3 w-100 btn btn-warning">Forum</a>
             </div>
         <p>Pages récentes:</p>
         <div class="w-75 justify-content-center d-flex">

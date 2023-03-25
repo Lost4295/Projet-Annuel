@@ -6,29 +6,39 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: red;
-    color: white;
+    background-color: #FEEBD5;
 }
 * {
     font-family: 'Kanit', sans-serif;
     font-family: 'Poppins', sans-serif;
     text-decoration: dotted;
 }
-
+.bar{
+    background-color:#FEEBD5;
+}
 .messages{
     position: relative;
     bottom: 120px;
     right:50px;
 }
 
-#logo{
+.logo{
     width: 65px;
     height: auto;
 }
-#textlogo{
-    width: 65px;
+.textlogo{
+    width: 130px;
     height: auto;
 }
+
+
+
+
+
+
+
+
+
 
 [data-bs-theme="blue"] {
     --bs-body-color: var(--bs-white);
