@@ -26,10 +26,6 @@ require 'header.php';
                     echo $key . " : " . $value . "<br>";  
                 }
                 unset($value);
-                
-                if(array_key_exists('button1', $_POST)) {
-                    button1();
-                }
                 if(array_key_exists('button2', $_POST)) {
                     $_SESSION['nbcalcul']=1;
                     $_SESSION['vie']=3;
