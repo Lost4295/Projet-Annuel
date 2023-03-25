@@ -16,7 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         header('Location:userpage.php');
         exit();
     }
-} 
+}
+function base64_encode_image ($filename,$filetype) {
+    if ($filename){
+        $imgbinary = fread(fopen($filename, "r"), filesize($filename));
+        return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+    }
+}
 require 'header.php';
 ?>
 
@@ -28,6 +34,7 @@ require 'header.php';
             echo "Prénom : " . $_SESSION['login']['lastname'] . "<br>"; 
             echo "Pseudonyme : " . $_SESSION['users'] . "<br>"; 
             echo "genre : " . $_SESSION['login']['gender'] . "<br>";
+            if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');} 
             echo "Image de profil :<br> <img src='" . $tableau[$_SESSION['users']]['image'] . "'/><br>"; 
         ?></div>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">

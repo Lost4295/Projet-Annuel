@@ -30,10 +30,9 @@ if(array_key_exists('button3', $_POST)) {
     header('Location: disconnect.php');
 }
 require 'header.php';
-include 'game.php';
-?>
-    <?php 
-        if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}
+require 'game.php';
+
+if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}
     ?>
         <div>
         <div><img src= "<?php echo $tableau[$_SESSION['users']]['image'] ?>"/></div></br></br></br>

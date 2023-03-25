@@ -43,6 +43,9 @@ if (!empty($login) && !empty($password)){
     if (array_key_exists($login, $tableau) && $tableau[$login]['password'] == hash("md5",$password)){
         $_SESSION['login'] = $tableau[$login];
         $_SESSION['users'] = $login;
+        $_SESSION['vie']=3; 
+        $_SESSION['streak']=1;
+        $_SESSION['nbcalcul']=1;  
         header('Location: userpage.php');
         exit();
     } else {

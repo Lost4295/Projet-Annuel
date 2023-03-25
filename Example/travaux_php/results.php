@@ -4,24 +4,34 @@ if (!isset($_SESSION['leaderboard'])){
     $_SESSION['leaderboard']=array();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $_SESSION['username']=$_POST['username'];
-    $_SESSION['nbcalcul']=$_POST['nbcalcul'];
+    if(!isset($_SESSION['users'])){
+        $_SESSION['users']='undefined';
+    } else if($_SESSION['users']='undefined'){
+        $_SESSION['users']='undefined';
+    } else {
+        $_SESSION['users']=$_POST['users'];
+    }
+    if(!isset($_SESSION['nbcalcul'])){
+        $_SESSION['nbcalcul']='0';
+    } elseif ($_SESSION['nbcalcul']='0') {
+        $_SESSION['nbcalcul']='0';
+    } else{
+        $_SESSION['nbcalcul']=$_POST['nbcalcul'];
+    }
 }
 require 'header.php';
 ?>
 
         <!-- Tout est fait pour copier coller ensuite -->
-        <a href="register.php"class=" btn btn-primary"> Recommencer </a> &emsp; &emsp;
         <form method="post">
-        <input type="submit" name="button1" class="button btn btn-primary" value="Rénitialiser le tableau" />
+        <input type="submit" name="button2" class="button btn btn-primary" value="Recommencer" />
         </form><br><br>
         <p><b><u>Résultats :</u></b></p><br><br>
         <div>
             <?php
-                //faire un foreach pour afficher les gens au fur et à mesure
-
-                $_SESSION['leaderboard'][$_SESSION['username']]=$_SESSION['nbcalcul'];
-                echo $_SESSION['username'] . " a fait " . $_SESSION['nbcalcul'] . " calculs.";
+            //faire un foreach pour afficher les gens au fur et à mesure
+                $_SESSION['leaderboard'][$_SESSION['users']]=$_SESSION['nbcalcul'];
+                echo $_SESSION['users'] . " a fait " . $_SESSION['nbcalcul'] . " calculs.";
                 echo "<br><br>";
                 arsort($_SESSION['leaderboard']);
                 foreach ($_SESSION['leaderboard'] as $key => $value) {
@@ -32,8 +42,10 @@ require 'header.php';
                 if(array_key_exists('button1', $_POST)) {
                     button1();
                 }
-                function button1() {
-                    unset($_SESSION['leaderboard']);
+                if(array_key_exists('button2', $_POST)) {
+                    $_SESSION['nbcalcul']=1;
+                    $_SESSION['vie']=3;
+                    header('Location: userpage.php');
                 }
                 
                 

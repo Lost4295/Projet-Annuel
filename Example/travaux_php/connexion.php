@@ -4,24 +4,24 @@
     require 'verif.php';
     require 'header.php';
 ?>
-        <div>
+        <div class="d-flex justify-content-center">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" autocomplete="on" method="post"> 
-                <fieldset>
                     <legend> Se connecter</legend>
+                    
                     <p><span class="error"> * Champ requis.  </span></p>
                     <span class="error"><?php echo $requis; ?></span><br>
-                    <label for="login"> Pseudonyme : </label><br>
-                    <input type="text" name="login" placeholder="utilisateur" value="<?php echo $login; ?>" required>
+                    <div class="mb-3">
+                        <label class="form-label" for="login"> Pseudonyme : </label>
+                        <input type="text" name="login" class="form-control" placeholder="utilisateur" value="<?php echo $login; ?>" required>
+                    </div>
                     <span class="error">* <?php echo $loginErr;?></span><br><br><br>
-                    <label for="password">Mot de passe :</label><br>
-                    <input type="password" name="password" placeholder="****************" value="<?php echo $password; ?>"required>
-                    <span class="error">* <?php echo $passwordErr;?></span><br><br>
-                    <input type="submit" value="Envoyer le formulaire">
-                    <input type="reset">
-                </fieldset>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Mot de passe :</label><br>
+                        <input type="password" name="password" class="form-control" placeholder="****************" value="<?php echo $password; ?>"required>
+                    </div>
+                        <span class="error">* <?php echo $passwordErr;?></span><br><br>
+                    <input type="submit" value="Envoyer le formulaire" class="btn btn-primary">
+                    <input type="reset" class="btn btn-primary">
             </form>
-        </div>
-        <div>
-        <button class=' btn btn-primary'><a href='index.php'> index </a></button><br><br>
         </div>
         <?php require 'footer.php';

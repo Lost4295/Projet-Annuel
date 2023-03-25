@@ -22,8 +22,8 @@ require 'header.php';
 ?>
         <header class="listing">
             
-            <button class=' btn btn-primary'><a href='index.php'> index </a></button>
-            <button class=' btn btn-primary'><a href='userpage.php'> Retour </a></button>
+            <a class=' btn btn-primary' href='index.php'> index </a>
+            <a class=' btn btn-primary' href='userpage.php'> Retour </a>
             <?php if(!isset($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}  echo "<img src= '" . $tableau[$_SESSION['users']]['image'] . "'class='little'/>";?>
             <a class="linklisted" href="userpage.php"><?php echo  $_SESSION['users'] ?></a>
         </header>
@@ -44,6 +44,9 @@ require 'header.php';
                     }
                     if($valeurs['rights'] == 1){
                         $valeurs['rights']="superuser";
+                    }
+                    if(!isset($valeurs['image'])){
+                        $valeurs['image']= base64_encode_image('placeholder user.png', 'png');
                     }
                     echo "<tr>"; 
                     echo "<td>" . $cle . "</td>";
