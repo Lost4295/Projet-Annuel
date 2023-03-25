@@ -35,9 +35,7 @@ require 'game.php';
 if(empty($tableau[$_SESSION['users']]['image'])){$tableau[$_SESSION['users']]['image']= base64_encode_image('placeholder user.png', 'png');}
     ?>
         <div>
-        <div><img src= "<?php echo $tableau[$_SESSION['users']]['image'] ?>"/></div></br></br></br>
-    </br></br></br> 
-    </br></br>
+        <div></br></br><img src= "<?php echo $tableau[$_SESSION['users']]['image'] ?>"/></div></br></br></br>
         </div>
         <div>
             <a class=' btn btn-primary' href='listing.php'> Listing des users </a>

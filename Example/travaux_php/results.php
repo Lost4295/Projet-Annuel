@@ -4,20 +4,8 @@ if (!isset($_SESSION['leaderboard'])){
     $_SESSION['leaderboard']=array();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(!isset($_SESSION['users'])){
-        $_SESSION['users']='undefined';
-    } else if($_SESSION['users']='undefined'){
-        $_SESSION['users']='undefined';
-    } else {
-        $_SESSION['users']=$_POST['users'];
-    }
-    if(!isset($_SESSION['nbcalcul'])){
-        $_SESSION['nbcalcul']='0';
-    } elseif ($_SESSION['nbcalcul']='0') {
-        $_SESSION['nbcalcul']='0';
-    } else{
-        $_SESSION['nbcalcul']=$_POST['nbcalcul'];
-    }
+    $_SESSION['users'];
+    $_SESSION['nbcalcul']=$_POST['nbcalcul'];
 }
 require 'header.php';
 ?>
@@ -31,7 +19,7 @@ require 'header.php';
             <?php
             //faire un foreach pour afficher les gens au fur et à mesure
                 $_SESSION['leaderboard'][$_SESSION['users']]=$_SESSION['nbcalcul'];
-                echo $_SESSION['users'] . " a fait " . $_SESSION['nbcalcul'] . " calculs.";
+                echo $_SESSION['users'] . " a fait " . $_SESSION['nbcalcul'] . ($_SESSION['nbcalcul']==1?" calcul.":" calculs.") . " Félicitations !";
                 echo "<br><br>";
                 arsort($_SESSION['leaderboard']);
                 foreach ($_SESSION['leaderboard'] as $key => $value) {
@@ -47,7 +35,6 @@ require 'header.php';
                     $_SESSION['vie']=3;
                     header('Location: userpage.php');
                 }
-                
                 
             ?>
         </div>

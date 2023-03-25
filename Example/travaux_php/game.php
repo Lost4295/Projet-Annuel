@@ -74,7 +74,7 @@ if ($_SESSION['vie']<=0){
                 <input type="text" id="reponse" name="reponse"> <br>
                 <span class="error"><?php echo $reponseErr;?></span><span class="success"><?php echo $reponseBien;?></span><br>
                 <input type="submit" value="Vérifier" class=" btn btn-primary"><input type="submit" formaction="results.php" value="Terminer la partie" class=" btn btn-primary">
-                <a class=" btn btn-primary" href="register.php"> Changer d'utilisateur</a>
+                <a class=" btn btn-primary" href="connexion.php"> Changer d'utilisateur</a>
             </fieldset>
         </form> 
         
