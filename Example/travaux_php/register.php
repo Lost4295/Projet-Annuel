@@ -43,7 +43,7 @@ require 'header.php';
                     <input type="text" name="login" placeholder="utilisateur" value="<?php echo $login; ?>" required>
                     <span class="error">* <br><?php echo $loginErr;?></span><br><br>
                     <label for="password">Mot de passe :</label><br>
-                    <input type="password" name="password" placeholder="****************" required><br>
+                    <input type="password" name="password" placeholder="****************" required>
                     <span class="error">* <?php echo $passwordErr;?></span><br><br>
                     <label for="gender"> Identité de genre :</label><br>
                     <input type="radio" name="gender" value="F" required >&nbsp;Femme&nbsp;</input>
