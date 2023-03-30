@@ -22,10 +22,10 @@
             </div>
         </div>
         <div class="row mr-5 mt-3">
-            <div class="col-3 d-flex flex-column mt-5 align-items-between">
-                <div><span>ROOOND</span><p>Informations personnelles<p></div> 
-                <div><span>ROOOND</span><p>Informations relatives au site<p></div> 
-                <div><span>ROOOND</span><p>Confirmation<p></div> 
+            <div class="col-3 d-flex flex-column mt-5 justify-content-between">
+                <div><p><i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site<p></div> 
+                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles<p></div> 
+                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Confirmation<p></div> 
             </div>
             <div class="col-7">
                 <div class="row">
@@ -46,15 +46,15 @@
                             </div>
                             <div class=" row mt-5 mb-3 pr-5" >
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Prénom</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John">
+                                    <label for="exampleFormControlInput1" class="form-label">Date de naissance</label>
+                                    <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="John">
                                 </div>
                                 <div class="col">
                                     <input type="hidden" class="form-control">
                                 </div>
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Doe">
+                                    <label for="exampleFormControlInput1" class="form-label">Numéro de téléphone</label>
+                                    <input type="tel" class="form-control" id="exampleFormControlInput2" placeholder="Doe">
                                 </div>
                             </div>
                             <div class=" row mt-5 mb-3 pr-5" >

@@ -22,80 +22,62 @@
             </div>
         </div>
         <div class="row mr-5 mt-3">
-            <div class="col-3 d-flex flex-column mt-5 align-items-between">
-                <div><i class="bi bi-check-circle-fill text-info"></i><p>Informations personnelles<p></div> 
-                <div><i class="bi bi-check-circle-fill text-info"></i><p>Informations relatives au site<p></div> 
-                <div><span>ROOOND</span><p>Confirmation<p></div> 
+            <div class="col-3 d-flex flex-column mt-5 justify-content-between">
+                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p></div> 
+                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p></div> 
+                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p></div> 
             </div>
             <div class="col-7">
                 <div class="row">
                     <div class="col pr-5 mr-5">
-                        <form formaction="" method="post">
+                        <form action="../core/verify1.php" method="post">
                             <div class="row mt-5 mb-3 pr-5">
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Type</label>
+                                    <label for="type" class="form-label">Type</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
+                                        <input class="form-check-input" type="radio" name="type" value="0" id="player" checked>
+                                        <label class="form-check-label" for="player">
                                             Joueur
                                         </label>
                                         <div class="form-check-inline form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
+                                            <input class="form-check-input" type="radio" name="type" value="1" id="organizer">
+                                            <label class="form-check-label" for="organizer">
                                             Organisateur
                                             </label>
                                         </div>
+                                        <span id="passwordHelpInline" class="form-text">
+                                            Vous pourrez toujours ajouter, changer ou supprimer ce rôle plus tard.
+                                        </span>
                                     </div>
                                 </div>
+                                <div class="invalid"> <?php session_start(); if(isset($_SESSION["errortype"]))echo $_SESSION['errortype'];?></div>
                             </div>
                             <div class=" row mt-5 mb-3 pr-5">
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Nom d'utilisateur</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1">
+                                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                                    <input type="text" name="username" class="form-control" id="username" required>
+                                    <div class="invalid"> <?php if(isset($_SESSION["errorusername"]))echo $_SESSION['errorusername'];?></div>
                                 </div>
                             </div>
                             <div class=" row mt-5 mb-3 pr-5">
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="1 Rue de Paris">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="john@doe.com" required>
+                                    <div class="invalid"> <?php if(isset($_SESSION["erroremail"]))echo $_SESSION['erroremail'];?></div>
                                 </div>
                             </div>
                             <div class=" row mt-5 mb-3 pr-5">
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Confiramation de l'email</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="1 Rue de Paris">
+                                    <label for="password" class="form-label">Mot de passe</label>
+                                    <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                    <div class="invalid"> <?php if(isset($_SESSION["errorpwd"]))echo $_SESSION['errorpwd'];?></div>
                                 </div>
                             </div>
                             <div class=" row mt-5 mb-3 pr-5">
                                 <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="1 Rue de Paris">
-                                </div>
-                            </div>
-                            <div class=" row mt-5 mb-3 pr-5">
-                                <div class="col">
-                                    <label for="exampleFormControlInput1" class="form-label">Confirmation du mot de passe</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="1 Rue de Paris">
-                                </div>
-                            </div>
-                            <div class=" row mt-5 mb-3 pr-5">
-                                <div class="col">
-                                    <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    J'accepte les CGU de The Arena
-                                    </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" row mt-5 mb-3 pr-5">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        Je m'abonne à la newsletter
-                                        </label>
-                                    </div>
+                                    <label for="confirmPwd" class="form-label">Confirmation du mot de passe</label>
+                                    <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                    <div class="invalid"> <?php if(isset($_SESSION["errorpwdconfirm"]))echo $_SESSION['errorpwdconfirm'];?></div>
                                 </div>
                             </div>
                             <div class="col-12">

@@ -47,6 +47,10 @@ footer {
 
 }
 
+.invalid{
+    color:red;
+    font-size:small;
+}
 
 
 
