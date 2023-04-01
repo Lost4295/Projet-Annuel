@@ -40,15 +40,15 @@ if(strlen($username)>30){
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     $erroremail = "L'email est incorrect.";
 }else{
-    // $connection = connectDB();
-    // $queryPrepared = $connection->prepare(" SELECT id FROM "table name" WHERE email=:email");
-    // $queryPrepared->execute([
-    //     "email"=>$email
-    // ]);
-    // $result=$queryPrepared->fetch();
-    // if(!empty($result)){
-    //     $erroremail="L'email est déjà utilisé.";
-    // }
+    $db = connectToDB();
+    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE email=:email");
+    $queryPrepared->execute([
+        "email"=>$email
+    ]);
+    $result=$queryPrepared->fetch();
+    if(!empty($result)){
+        $erroremail="L'email est déjà utilisé.";
+    }
 }
 
 if(strlen($pwd)< 8 || !preg_match("#[a-z]#", $pwd)|| !preg_match("#[A-Z]#", $pwd) || !preg_match("#[0-9]#", $pwd)){

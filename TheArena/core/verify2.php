@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require('pdo.php');
 
 if(
     count($_POST)!=8
@@ -60,6 +61,16 @@ $errorbirthdate= "Format de date incorrect";
 
 if (!preg_match("/^0[1-9](?:[ .-]?[0-9]{2}){4}/",$phonenumber)){
     $errorphonenumber="Le numéro est invalide.";
+} else {
+    $db = connectToDB();
+    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE phone=:phone");
+    $queryPrepared->execute([
+        "phone"=>$phonenumber
+    ]);
+    $result=$queryPrepared->fetch();
+    if(!empty($result)){
+        $errorphonenumber="Le numéro de téléphone est déjà utilisé.";
+    }
 }
 
 if (strlen($address) > 100) {
@@ -85,7 +96,6 @@ if(!empty($errorfirstname)||!empty($errorlastname)||!empty($errorbirthdate)||!em
 if(!$error){
     $_SESSION['errorfirstname']= $errorfirstname;
     $_SESSION['errorlastname']= $errorlastname;
-    $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorbirthdate']= $errorbirthdate;
     $_SESSION['errorphonenumber']= $errorphonenumber;
     $_SESSION['erroraddress']= $erroraddress;
@@ -96,7 +106,6 @@ if(!$error){
 } else {
     $_SESSION['firstname']= $firstname;
     $_SESSION['lastname']= $lastname;
-    $_SESSION['email']= $email;
     $_SESSION['birthdate']= $birthdate;
     $_SESSION['phonenumber']= $phonenumber;
     $_SESSION['address']= $address;
