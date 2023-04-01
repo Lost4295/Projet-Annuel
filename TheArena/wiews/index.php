@@ -1,6 +1,4 @@
 <?php require '../core/header.php' ?>
-
-        <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
             <div class="row my-3">
                 <div class="col my-3"> <!--Caroussel-->
                     <img style="position: relative; left:0; width:500px; height:200px;" src="#">
@@ -17,8 +15,6 @@
                     <img style="position: relative; left:0; width:200px; height:200px;" src="#">
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+
 
 <?php require '../core/footer.php' ?>

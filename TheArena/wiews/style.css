@@ -20,6 +20,7 @@ footer {
     position: relative;
     bottom: 120px;
     right:50px;
+    z-index: 12;
 }
 
 .logo{
@@ -29,6 +30,15 @@ footer {
 .textlogo{
     width: 130px;
     height: auto;
+}
+
+.forumbtn{
+    height:75px;
+}
+.forummore{
+    font-size:40px; 
+    text-decoration:none; 
+    color:black;
 }
 
 
