@@ -33,7 +33,7 @@ if (!in_array($type, $types)){
 if(strlen($username)<3){
     $errorusername="Ce nom d'utilisateur est trop court.";
 }
-if(strlen($username)<30){
+if(strlen($username)>30){
     $errorusername="Ce nom d'utilisateur est trop long.";
 }
 
@@ -78,5 +78,5 @@ if(!$error){
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= $pwd;
-    header("Location: ../wiews/suiteconnexion.php");
+    header("Location: ../wiews/suiteinscription.php");
 }

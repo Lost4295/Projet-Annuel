@@ -31,25 +31,27 @@
                 <div class="row">
                     <div class="col pr-5 mr-5">
                         <div class=" row mt-5 mb-3 pr-5">
-                            <div class="col">
-                                <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                J'accepte les CGU de The Arena
-                                </label>
-                                </div>
-                            </div>
-                            <div class=" row mt-5 mb-3 pr-5">
+                            <form action="" method="post">
                                 <div class="col">
-                                
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                        Je m'abonne à la newsletter
-                                        </label>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    J'accepte les CGU de The Arena
+                                    </label>
                                     </div>
                                 </div>
-                            </div>
+                                <div class=" row mt-5 mb-3 pr-5">
+                                    <div class="col">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                            Je m'abonne à la newsletter
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="row mt-5 mb-3 pr-5">
                             <div class="col d-flex justify-content-center">
