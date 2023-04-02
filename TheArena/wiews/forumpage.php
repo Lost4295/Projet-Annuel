@@ -11,7 +11,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
             <h5 class="mb-1">Ici, on aura l'username de la personne qui envoie le mess</h5>
-            <a class="forummore" href="#">···</a>
+            <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small class="text-body-secondary">Date du dernier mess</small>
@@ -21,7 +21,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -31,7 +31,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -41,7 +41,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -51,7 +51,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -61,7 +61,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -71,7 +71,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -81,7 +81,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>
@@ -91,7 +91,7 @@ foreach ($_SESSION["forum"] as $element){};}
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                 <h5 class="mb-1">List group item heading</h5>
-                <a class="forummore" href="#">···</a>
+                <a class="more" href="#">···</a>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small>3 days ago</small>

@@ -35,7 +35,7 @@ footer {
 .forumbtn{
     height:75px;
 }
-.forummore{
+.more{
     font-size:40px; 
     text-decoration:none; 
     color:black;
@@ -55,6 +55,10 @@ footer {
     display: none;
 }
 
+}
+
+#image{
+    display: none;
 }
 
 .invalid{
