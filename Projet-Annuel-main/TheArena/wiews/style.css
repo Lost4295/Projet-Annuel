@@ -1,0 +1,107 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FEEBD5;
+}
+* {
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: dotted;
+}
+.bar{
+    background-color:#FEEBD5;
+}
+.messages{
+    position: relative;
+    bottom: 120px;
+    right:50px;
+    z-index: 12;
+}
+
+.logo{
+    width: 65px;
+    height: auto;
+}
+.textlogo{
+    width: 130px;
+    height: auto;
+}
+
+.forumbtn{
+    height:75px;
+}
+.forummore{
+    font-size:40px; 
+    text-decoration:none; 
+    color:black;
+}
+
+
+@media (min-width: 1284px) { 
+
+
+    .title{
+        position:relative; 
+        right:215px;
+    }
+}
+@media (max-width: 685px) { 
+*{
+    display: none;
+}
+
+}
+
+.invalid{
+    color:red;
+    font-size:small;
+}
+
+
+
+
+
+
+[data-bs-theme="blue"] {
+    --bs-body-color: var(--bs-white);
+    --bs-body-color-rgb: #{to-rgb($white)};
+    --bs-body-bg: var(--bs-blue);
+    --bs-body-bg-rgb: #{to-rgb($blue)};
+    --bs-tertiary-bg: #{$blue-600};
+
+    .dropdown-menu {
+        --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
+        --bs-dropdown-link-active-bg: #{$blue-700};
+    }
+
+    .btn-secondary {
+        --bs-btn-bg: #{mix($gray-600, $blue-400, .5)};
+        --bs-btn-border-color: #{rgba($white, .25)};
+        --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5), 5%)};
+        --bs-btn-hover-border-color: #{rgba($white, .25)};
+        --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
+        --bs-btn-active-border-color: #{rgba($white, .5)};
+        --bs-btn-focus-border-color: #{rgba($white, .5)};
+        --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+    }
+}
+
+.navbarSecondaryBtn{
+    text-decoration: none;
+    color: black;
+    
+}
+
+.navbarSecondaryBtn:hover{
+    
+    background-color: #ffcd39;
+    padding: 5px;
+}
+.navbarBorder{
+    border: none !important;
+}
