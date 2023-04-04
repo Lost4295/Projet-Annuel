@@ -1,9 +1,9 @@
 <?php require '../core/header.php' ?>
     <div class="row border">
-        <h2>Classement Counter Strike : Global Offensive  par équipes</h2>
+        <h2>Classement Counter Strike : Global Offensive par équipes</h2>
     </div>
     <div class="row border">
-    <nav class="navbar navbar-expand-lg navbarBorder  ">
+    <nav class="navbar navbar-expand-lg navbarBorder">
     <div class="container-fluid d-flex justify-content-center">
       <ul class="navbar-nav">
         <li class="nav-item border">
@@ -39,7 +39,7 @@
             </div>
     </div>
     <div class="row d-flex justify-content-center border col-12">
-            <img style="position: relative; left:0; width: 15px; height:15px;" src="../core/img/evenement1.jpg">
+            <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
         <div class="row d-flex justify-content-center"> 
             <h4>Falcons</h4>
         </div>
