@@ -1,3 +1,18 @@
+<?php   
+  // session_start();
+  // require "../../core/pdo.php";
+  // $connection = connectToDB();
+  // $_SESSION['email']=$email;
+  // $_SESSION['login']=true;
+  // $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
+  // $queryPrepared->execute([
+  //     "email"=>$email
+  // ]);
+  // $scope=$queryPrepared->fetch();
+  // if($scope != 550620){
+  //   header("location:indexSuperAdmin.php");
+  // }
+?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">
 <head>
@@ -43,31 +58,31 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="#" class="nav-link aaaa" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Accueil
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="#" class="nav-link link-dark aaaa">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Tableau de bord
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="#" class="nav-link link-dark aaaa">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Notifications
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="#" class="nav-link link-dark aaaa">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Utilisateurs
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="#" class="nav-link link-dark aaaa">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Paramètres du site
         </a>

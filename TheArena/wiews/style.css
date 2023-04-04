@@ -41,6 +41,10 @@ footer {
     color:black;
 }
 
+.aaaa:hover{
+    background-color: #edad0b;
+    color:white;
+}
 
 @media (min-width: 1284px) { 
 
