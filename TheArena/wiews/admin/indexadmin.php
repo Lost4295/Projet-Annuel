@@ -1,134 +1,28 @@
-<?php   
-  // session_start();
-  // require "../../core/pdo.php";
-  // $connection = connectToDB();
-  // $_SESSION['email']=$email;
-  // $_SESSION['login']=true;
-  // $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
-  // $queryPrepared->execute([
-  //     "email"=>$email
-  // ]);
-  // $scope=$queryPrepared->fetch();
-  // if($scope != 550620){
-  //   header("location:indexSuperAdmin.php");
-  // }
-?>
-<!DOCTYPE html>
-<html lang="fr" data-bs-theme="">
-<head>
-    <meta charset="UTF-8">
-    <meta name="Ma duper super page" content="Page HTML">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Arena</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../bootstrap.css">
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col px-0">
-                <nav class="navbar bar">
-                    <div class="container-fluid d-flex">
-                        <div class="mr-auto">
-                            <a class="navbar-brand" href="/wiews">
-                                <img src="../logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center logo">
-                                <img src="../thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center textlogo">
-                            </a>
-                        </div>
-                    </div>
-                </nav>
+<?php require 'header.php' ?>
+<div class="row">
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Notifications</h5>
+                <a href="#" class="text-decoration-none"><p class=" link-dark fs-1 text-center">Nombre de notifs</p></a>
             </div>
         </div>
     </div>
-    <div class="container-fluid px-0">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:88vh;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-                    <span class="fs-4">Page administration</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li>
-                    <a href="#" class="nav-link aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                        Tableau de bord
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                        Notifications
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                        Sigalements
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                        Événements
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-                        Utilisateurs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                        Forums
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark aaaa">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                        Paramètres du site
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Signalements</h5>
+                <a href="#" class="text-decoration-none"><p class="link-dark fs-1 text-center">Nombre de signalements</p></a>
             </div>
         </div>
-            <!-- <div class="row">
-                <div class="col-6">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div><div class="col-6">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                </div>
-            </div> -->
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title placeholder-glow"><span class="placeholder col-9"></span></h5>
+                <a href="#" class="text-decoration-none"><p class="card-text fs-1 placeholder-glow d-flex justify-content-center"><span class="placeholder col-4"></span></p></a>
+            </div>
         </div>
     </div>
-</body>
+</div>
+<?php include 'footer.php'?>
