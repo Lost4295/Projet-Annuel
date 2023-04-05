@@ -1,4 +1,5 @@
 <?php require 'header.php' ?>
+<h1>Notifications</h1>
 <table class="table table-hover table-borderless">
 <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">

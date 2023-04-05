@@ -1,5 +1,6 @@
 <?php require 'header.php' ?>
 <div class="row">
+    <h1>Tableau de bord</h1>
     <div class="col-4">
         <div class="card" style="width: 18rem;">
             <div class="card-body">

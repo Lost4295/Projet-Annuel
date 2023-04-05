@@ -1,4 +1,5 @@
 <?php require 'header.php' ?>
+<h1>Utilisateurs</h1>
 <table class="table table-hover table-bordered w-100">
     <thead>
         <th>Pseudo</th>
@@ -27,5 +28,4 @@
         </tr>
     </tbody>
 </table>
-
 <?php include 'footer.php'?>
