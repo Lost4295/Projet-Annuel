@@ -39,7 +39,7 @@ require "pdo.php";
                                                         header("location:../wiews/index.php");
                                                     case 824520 : //joueur/organisateur
                                                         header("location:../wiews/index.php");
-                                                    case default : //Joueur
+                                                    default : //Joueur
                                                         header("location:../wiews/index.php");
                                                 }
 
