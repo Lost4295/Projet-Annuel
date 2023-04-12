@@ -1,4 +1,4 @@
-<?php require '../core/header.php' ?>
+<?php require 'core/header.php' ?>
 
 <div class="w-100">
     <h1> Modifier ma page </h1>
@@ -59,4 +59,4 @@
 </div>
 
 
-<?php require '../core/footer.php' ?>
+<?php require '/core/footer.php' ?>

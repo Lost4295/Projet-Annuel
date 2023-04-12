@@ -45,14 +45,6 @@ footer {
     color:white;
 }
 
-@media (min-width: 1284px) { 
-
-
-    .title{
-        position:relative; 
-        right:215px;
-    }
-}
 @media (max-width: 685px) { 
 *{
     display: none;

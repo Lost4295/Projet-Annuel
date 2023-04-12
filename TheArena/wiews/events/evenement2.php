@@ -1,4 +1,4 @@
-<?php require '../core/header.php' ?>
+<?php require 'core/header.php' ?>
     <div class="row col-12">
         <nav class="navbar bar">
             <a class="btn btn-primary active btn-warning" href="evenement2.php">Accueil</a>
@@ -22,4 +22,4 @@
     <div class="col-12 d-flex align-content-center flex-column flex-wrap">
         <a class="btn btn-primary  btn-warning" href="inscriptionEvenement.php">S'inscrire</a>
     </div>
-<?php require '../core/footer.php' ?>
+<?php require '/core/footer.php' ?>

@@ -50,8 +50,7 @@ require "pdo.php";
                                                 $_SESSION["error"]="Erreur : mot de passe incorrect.";
                                             }
                                         }
-?>
-                                    <?php if(isset($_SESSION['error'])){
+                                    if(isset($_SESSION['error'])){
                                                 echo "<div class='alert alert-danger' role='alert'><ul>"; //On peut tout mettre à la suite, mais je trouve ça plus compréhensible
                                                 echo "<li>". $_SESSION['error'] . "</li>";
                                                 echo "</ul></div>";

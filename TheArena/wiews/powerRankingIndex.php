@@ -1,4 +1,4 @@
-<?php require '../core/header.php' ?>
+<?php require 'core/header.php' ?>
     <div class="row border">
         <h2>Classement Counter Strike : Global Offensive par équipes</h2>
     </div>
@@ -45,4 +45,4 @@
         </div>
             
     </div>
-<?php require '../core/footer.php' ?>
+<?php require '/core/footer.php' ?>
