@@ -1,5 +1,5 @@
 <?php require 'core/header.php'?>
-<div class="w-100 mb-5">
+
 <h1>Créer un événement</h1>
 <form action="" method="post" class="mb-5 row-cols-lg-auto">
 <div class="mb-3">
@@ -58,4 +58,4 @@
 </form>
 </div>
 
-<?php require '/core/footer.php' ?>
+<?php require 'core/footer.php' ?>

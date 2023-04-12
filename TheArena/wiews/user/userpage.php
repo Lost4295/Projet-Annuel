@@ -15,4 +15,4 @@
     </div>
 </div>
 
-<?php require '/core/footer.php' ?>
+<?php require 'core/footer.php' ?>

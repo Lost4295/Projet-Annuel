@@ -103,4 +103,4 @@ foreach ($_SESSION["forum"] as $element){};}
         <textarea type="textarea" id="message" name="message" placeholder="Entrez un message ici.." rows="5" class="form-control mb-5 pb-5"></textarea>
     </form>
 </div>
-<?php require '/core/footer.php' ?>
+<?php require 'core/footer.php' ?>

@@ -1,5 +1,5 @@
 <?php require 'core/header.php' ?>
-<div class="w-100 mb-5">
+
 <h1>Inscription à <?php echo "\"the evennnt\"" ?></h1>
 <div class= "row">
     <div class= "col-7">
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-<?php require '/core/footer.php' ?>
+<?php require 'core/footer.php' ?>

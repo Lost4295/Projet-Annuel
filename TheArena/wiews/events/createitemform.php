@@ -1,5 +1,5 @@
 <?php require 'core/header.php' ?>
-<div class="w-100 mb-5">
+
     <h1>Créer un article</h1>
     <form action="" method="post" class="mb-5 row-cols-lg-auto">
         <div class="mb-3">
@@ -23,4 +23,4 @@
         </div>
     </form>
 
-<?php require '/core/footer.php' ?>
+<?php require 'core/footer.php' ?>
