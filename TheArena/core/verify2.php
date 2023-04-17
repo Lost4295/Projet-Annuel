@@ -1,8 +1,8 @@
-<?php 
+<?php
 session_start();
 require('pdo.php');
 
-if(
+if (
     count($_POST)!=8
     ||empty($_POST["firstname"])
     ||empty($_POST["lastname"])
@@ -12,9 +12,13 @@ if(
     ||empty($_POST["cp"])
     ||empty($_POST["city"])
     ||empty($_POST["country"])
-)
-{print_r($_POST);
-    die("Il ne vous est pas possible de terminer l'action. Merci de réessayer. Si cette page se réaffiche apèrs plusieurs essais, merci de vérifier vos informations, puis de contacter un administrateur.");
+) {
+    print_r($_POST);
+    die("
+        Il ne vous est pas possible de terminer l'action. Merci de réessayer.
+         Si cette page se réaffiche apèrs plusieurs essais,
+         merci de vérifier vos informations, puis de contacter un administrateur.
+        ");
 }
 
 
@@ -35,31 +39,31 @@ $errorcp="";
 $errorcity="";
 $errorcountry="";
 
-if(strlen($lastname)<2){
+if (strlen($lastname)<2) {
     $errorlastname= "Le nom doit faire plus de 2 caractères.";
 }
 
-if(strlen($firstname)<2){
+if (strlen($firstname)<2) {
     $errorfirstname= "Le prénom doit faire plus de 2 caractères.";
 }
 
 
-$birthdateExploded=explode("-",$birthdate);
-if (!checkdate($birthdateExploded[1], $birthdateExploded[2], $birthdateExploded[0])){
+$birthdateExploded=explode("-", $birthdate);
+if (!checkdate($birthdateExploded[1], $birthdateExploded[2], $birthdateExploded[0])) {
 $errorbirthdate= "Format de date incorrect";
-}else{
+} else {
     $todaySeconds= time();
     $birthdateSeconds = strtotime($birthdate);
     $ageSeconds= $todaySeconds - $birthdateSeconds;
     $age = $ageSeconds/60/60/24/365.25;
-    if ($age < 16 || $age > 80){
+    if ($age < 16 || $age > 80) {
         $errorbirthdate = "Vous n'avez pas l'âge requis.";
     }
 }
 
 
 
-if (!preg_match("/^0[1-9](?:[ .-]?[0-9]{2}){4}/",$phonenumber)){
+if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}/", $phonenumber)) {
     $errorphonenumber="Le numéro est invalide.";
 } else {
     $db = connectToDB();
@@ -68,7 +72,7 @@ if (!preg_match("/^0[1-9](?:[ .-]?[0-9]{2}){4}/",$phonenumber)){
         "phone"=>$phonenumber
     ]);
     $result=$queryPrepared->fetch();
-    if(!empty($result)){
+    if (!empty($result)) {
         $errorphonenumber="Le numéro de téléphone est déjà utilisé.";
     }
 }
@@ -81,19 +85,28 @@ if (strlen($address) > 100) {
         $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace';
     }
 
-if (!preg_match("/^[\d]{5}$/",$cp)){
+if (!preg_match("/^[\d]{5}$/", $cp)) {
     $errorcp="Le code postal est invalide.";
 }
 
 
-if(!empty($errorfirstname)||!empty($errorlastname)||!empty($errorbirthdate)||!empty($errorphonenumber)||!empty($erroremail)||!empty($errorcountry)||!empty($errorcity)||!empty($errorcp)||!empty($erroraddress)){
+if (
+    !empty($errorfirstname)
+    ||!empty($errorlastname)
+    ||!empty($errorbirthdate)
+    ||!empty($errorphonenumber)
+    ||!empty($erroremail)
+    ||!empty($errorcountry)
+    ||!empty($errorcity)
+    ||!empty($errorcp)
+    ||!empty($erroraddress)) {
     $error=false;
 } else {
     $error=true;
 }
 
 
-if(!$error){
+if (!$error) {
     $_SESSION['errorfirstname']= $errorfirstname;
     $_SESSION['errorlastname']= $errorlastname;
     $_SESSION['errorbirthdate']= $errorbirthdate;

@@ -1,4 +1,4 @@
-<?php require 'core/header.php' ?>
+<?php require '../../core/header.php' ?>
 
 <h1>Inscription à <?php echo "\"the evennnt\"" ?></h1>
 <div class= "row">
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-<?php require 'core/footer.php' ?>
+<?php require '../../core/footer.php' ?>

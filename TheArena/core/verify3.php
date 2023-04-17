@@ -1,32 +1,37 @@
-<?php 
+<?php
 session_start();
 
-if(
+if (
     count($_POST)!=3
     ||empty($_POST["cgu"])
     ||empty($_POST["newsletter"])
     ||empty($_POST["ok"])
-)
-{print_r($_POST);
-    die("Il ne vous est pas possible de terminer l'action. Merci de réessayer. Si cette page se réaffiche apèrs plusieurs essais, merci de vérifier vos informations, puis de contacter un administrateur.");
+) {
+    print_r($_POST);
+    die("
+    Il ne vous est pas possible de terminer l'action. Merci de réessayer.
+     Si cette page se réaffiche apèrs plusieurs essais, merci de vérifier vos informations,
+     puis de contacter un administrateur.");
 }
 
 $newsletterNotProcessed = $_POST["newsletter"];
 $errornewsletter="";
 
-if ($newsletterNotProcessed== 1 ) {
+if ($newsletterNotProcessed== 1) {
     $newsletter=true;
-} else if ($newsletterNotProcessed == 0) {
+} elseif ($newsletterNotProcessed == 0) {
     $newsletter = false;
 } else {
     $errornewsletter = "Format de données invalide.";
 }
 
-if(!empty($errornewsletter)){
+if (!empty($errornewsletter)) {
     $_SESSION['errornewsletter']= $errornewsletter;
     header("Location: ../wiews/fininscription.php");
 } else {
-    $query=$connection->prepare("INSERT INTO zeya_users (type,username,email,pwd,firstname,lastname,birthdate,phonenumber,address,cp,country) VALUES (:type,:username,:email,:pwd,:firstname,:lastname,:email,:birthdate,:phonenumber,:address,:cp,:country)");
+    $query=$connection->prepare("INSERT INTO zeya_users
+    (type,username,email,pwd,firstname,lastname,birthdate,phonenumber,address,cp,country) VALUES
+    (:type,:username,:email,:pwd,:firstname,:lastname,:email,:birthdate,:phonenumber,:address,:cp,:country)");
     $query->execute([
         "type" =>$_SESSION['type'],
         "username"=>$_SESSION['username'],

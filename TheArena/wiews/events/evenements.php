@@ -1,4 +1,4 @@
-<?php require 'core/header.php' ?>
+<?php require '../../core/header.php' ?>
 
         <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
             <div class="row my-3">
@@ -44,4 +44,4 @@
                 <a>
             </div>
         </div>
-<?php require 'core/footer.php' ?>
+<?php require '../../core/footer.php' ?>

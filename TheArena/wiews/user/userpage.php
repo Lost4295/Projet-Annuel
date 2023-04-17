@@ -1,4 +1,4 @@
-<?php require 'core/header.php' ?>
+<?php require '../../core/header.php' ?>
 
 <div class="w-100">
     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -15,4 +15,4 @@
     </div>
 </div>
 
-<?php require 'core/footer.php' ?>
+<?php require '../../core/footer.php' ?>
