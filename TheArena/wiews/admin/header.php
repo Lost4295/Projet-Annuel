@@ -1,4 +1,4 @@
-<?php   
+<?php
   // session_start();
   // require "../../core/pdo.php";
   // $connection = connectToDB();
@@ -32,8 +32,13 @@
                     <div class="container-fluid d-flex">
                         <div class="mr-auto">
                             <a class="navbar-brand" href="/wiews">
-                                <img src="../logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center logo">
-                                <img src="../thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center textlogo">
+                                <img src="../logothearena-removebg.png"
+                                alt="Logo"
+                                class="d-inline-block align-text-center logo">
+
+                                <img src="../thearenatext-removebg.png"
+                                alt="The Arena"
+                                class="d-inline-block align-text-center textlogo">
                             </a>
                         </div>
                     </div>
@@ -44,7 +49,9 @@
         <div class="row">
             <div class="col-3">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:86vh;">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <a
+                        href="/"
+                        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
                             <span class="fs-4">Page administration</span>
                     </a>
@@ -95,9 +102,19 @@
                     </ul>
                     <hr>
                     <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong>mdo</strong>
+                        <a
+                            href="#"
+                            class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                            id="dropdownUser2"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                                <img
+                                    src="https://github.com/mdo.png"
+                                    alt=""
+                                    width="32"
+                                    height="32"
+                                    class="rounded-circle me-2">
+                                <strong>mdo</strong>
                         </a>
                         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                             <li><a class="dropdown-item" href="#">New project...</a></li>

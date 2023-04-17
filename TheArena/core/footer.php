@@ -10,7 +10,9 @@
     <button class="btn btn-warning messages">Messagerie</button>
     </div>
     </div>
-    <p class="text-center text-muted">&copy; <?php echo date("Y");?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger</p>
+    <p class="text-center text-muted">
+        &copy; <?php echo date("Y");?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger
+    </p>
 </footer>
 </div></div>
 </div>

@@ -1,6 +1,6 @@
 <?php require 'header.php' ?>
 <h1>Utilisateurs</h1>
-<table class="table table-hover table-bordered w-100">
+<table class="table table-hover table-bordered w-100" aria-describedby="users-list">
     <thead>
         <th>Pseudo</th>
         <th>Email</th>
