@@ -20,7 +20,7 @@
                             <a class="navbar-brand" href="/">
                                 <img src="/img/logothearena-removebg.png"
                                 alt="Logo"
-                                class="d-inline-block align-text-center logo">
+                                class="d-inline-block align-text-center logo">""
                                 <img src="/img/thearenatext-removebg.png"
                                 alt="The Arena"
                                 class="d-inline-block align-text-center textlogo">

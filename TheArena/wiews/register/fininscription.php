@@ -23,9 +23,21 @@
         </div>
         <div class="row mr-5 mt-3">
             <div class="col-3 d-flex flex-column mt-5 justify-content-between">
-                <div><p><i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site<p></div> 
-                <div><p><i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations personnelles<p></div> 
-                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Confirmation<p></div> 
+                <div>
+                    <p>
+                        <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site
+                    </p>
+                </div> 
+                <div>
+                    <p>
+                        <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations personnelles
+                    </p>
+                </div> 
+                <div>
+                    <p>
+                        <i class="bi bi-circle"></i>&emsp;&emsp;Confirmation
+                    </p>
+                </div> 
             </div>
             <div class="col-7">
                 <div class="row">
@@ -40,10 +52,8 @@
                                     </label>
                                     </div>
                                 </div>
-                                <?php echo getcwd(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -54,11 +64,10 @@
                                 </div>
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                    <img src="captcha.php" width="100%">
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
-						</div>
+                                        <img src="captcha.php" width="100%">
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
+                                </div>
                                     </div>
                             </form>
                         </div>
