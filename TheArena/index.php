@@ -30,4 +30,3 @@ $routes = array(
 $destination = (array_key_exists($origine, $routes) ? $routes[$origine] : "wiews/index") . '.php';
 /*** Appel du bon fichier ***/
 require $destination;
-

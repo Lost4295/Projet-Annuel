@@ -1,6 +1,6 @@
 <?php
   // session_start();
-  // require "../../core/pdo.php";
+  // require "../../core/functions.php";
   // $connection = connectToDB();
   // $_SESSION['email']=$email;
   // $_SESSION['login']=true;

@@ -5,7 +5,7 @@ if (
     count($_POST)!=3
     ||empty($_POST["cgu"])
     ||empty($_POST["newsletter"])
-    ||empty($_POST["ok"])
+    ||empty($_POST["captcha"])
 ) {
     print_r($_POST);
     die("
@@ -16,6 +16,8 @@ if (
 
 $newsletterNotProcessed = $_POST["newsletter"];
 $errornewsletter="";
+$errorcaptcha="";
+
 
 if ($newsletterNotProcessed== 1) {
     $newsletter=true;
@@ -25,8 +27,15 @@ if ($newsletterNotProcessed== 1) {
     $errornewsletter = "Format de données invalide.";
 }
 
-if (!empty($errornewsletter)) {
+if ($captcha != $_SESSION['captcha']) {
+    $errorcaptcha="Le captcha est incorrect.";
+}
+
+if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=false;}else{$error=true;}
+
+    if ($error) {
     $_SESSION['errornewsletter']= $errornewsletter;
+    $_SESSION['errorcaptcha']= $errorcaptcha;
     header("Location: ../wiews/fininscription.php");
 } else {
     $query=$connection->prepare("INSERT INTO zeya_users

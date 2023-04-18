@@ -21,7 +21,6 @@
                                 <img src="/img/logothearena-removebg.png"
                                 alt="Logo"
                                 class="d-inline-block align-text-center logo">
-
                                 <img src="/img/thearenatext-removebg.png"
                                 alt="The Arena"
                                 class="d-inline-block align-text-center textlogo">
@@ -29,7 +28,7 @@
                         </div>
                         <div>
                             <a class="btn btn-warning" href="connexion.php">Se connecter</a>
-                            <a class="btn btn-warning" href="inscription.php">S'inscrire</a>
+                            <a class="btn btn-warning" href="/wiews/register/inscription.php">S'inscrire</a>
 <?php
 // session_start();
 // if($_POST){
@@ -101,9 +100,9 @@
         <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
             <div class="w-100 d-flex flex-column justify-content-between">
                 <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
-                <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
-                <a href="powerRankingIndex.php" class="my-3 w-100 btn btn-warning">Power Ranking</a>
-                <a href="forumindex.php" class="my-3 w-100 btn btn-warning">Forum</a>
+                <a href="/wiews/events/evenements.php" class="my-3 w-100 btn btn-warning">Événements</a>
+                <a href="/wiews/powerranking/powerRankingIndex.php" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                <a href="/wiews/forum/forumindex.php" class="my-3 w-100 btn btn-warning">Forum</a>
             </div>
         <p>Pages récentes:</p>
         <div class="w-75 justify-content-center d-flex">

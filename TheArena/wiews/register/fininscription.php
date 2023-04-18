@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Arena-Connexion</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/core/css/bootstrap.css">
+    <link rel="stylesheet" href="/core/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -15,8 +15,8 @@
             <div class="col">
                 <div class="mx-3 my-2">
                     <a class="navbar-brand" href="/">
-                        <img src="logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center">
-                        <img src="thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center">
+                        <img src="/img/logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center">
+                        <img src="/img/thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center">
                     </a>
                 </div>
             </div>
@@ -40,6 +40,7 @@
                                     </label>
                                     </div>
                                 </div>
+                                <?php echo getcwd(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
 
@@ -51,11 +52,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mt-5 mb-3 pr-5">
+                                    <div class="col">
+                                    <img src="captcha.php" width="100%">
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
+						</div>
+                                    </div>
                             </form>
-                        </div>
-                        <div class="row mt-5 mb-3 pr-5">
-                            <div class="col d-flex justify-content-center">
-                                <img src="#" width=500 height=500/>
                         </div>
                     </div>
                 </div>

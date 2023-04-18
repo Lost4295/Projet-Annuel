@@ -1,7 +1,8 @@
 <?php
+define('INDEX', 'location:../wiews/index.php');
 require "header.php";
 session_start();
-require "pdo.php";
+require "functions.php";
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
             die("Valeurs manquantes ou modifiées.");
@@ -33,13 +34,13 @@ if (isset($email)) {
                     header("location:../wiews/admin/indexadmin.php");
                     break;
                 case 245769 : //organisateur
-                    header("location:../wiews/index.php");
+                    header(INDEX);
                     break;
                 case 824520 : //joueur/organisateur
-                    header("location:../wiews/index.php");
+                    header(INDEX);
                     break;
                 default : //Joueur
-                    header("location:../wiews/index.php");
+                    header(INDEX);
                     break;
             }
         } else {
