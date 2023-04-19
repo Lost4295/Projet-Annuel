@@ -1,8 +1,8 @@
 <?php
 session_start();
-header("Content-type: image/png");
+header("Content-Type: image/png");
 
-gd_info();
+
 
 $image = imagecreate(400, 200);
 

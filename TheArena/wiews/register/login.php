@@ -1,32 +1,32 @@
 <?php
 define('INDEX', 'location:../wiews/index.php');
-require "header.php";
+require "../../core/header.php";
 session_start();
-require "functions.php";
+require "../../core/functions.php";
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
-            die("Valeurs manquantes ou modifiées.");
-        }
+        die("Valeurs manquantes ou modifiées.");
+    }
     $email=$_POST["email"];
     $password=$_POST["pwd"];
 }
 if (isset($email)) {
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare(" SELECT pwd FROM zeya_users WHERE email=:email");
+    $queryPrepared = $connection->prepare(" SELECT password FROM zeya_users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
-        if (password_verify($password, $result['pwd'])) {
+        if (password_verify($password, $result['password'])) {
             $_SESSION['email']=$email;
-            $_SESSION['login']=true;
+            $_SESSION['logged']=true;
             $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
             $queryPrepared->execute([
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
-            switch ($scope) {
+            switch ($scope["scope"]) {
                 case 105188 : //super-admin
                     header("location:../wiews/admin/indexadmin.php");
                     break;
@@ -46,10 +46,10 @@ if (isset($email)) {
         } else {
             $_SESSION["error"]="Erreur : mot de passe incorrect.";
         }
-        } else {
-            $_SESSION["error"]="Erreur : mot de passe incorrect.";
-        }
+    } else {
+        $_SESSION["error"]="Erreur : Pas d'utilisateur avec cet email.";
     }
+}
 if (isset($_SESSION['error'])) {
     echo "<div class='alert alert-danger' role='alert'><ul>";
     //On peut tout mettre à la suite, mais je trouve ça plus compréhensible
@@ -57,8 +57,8 @@ if (isset($_SESSION['error'])) {
     echo "</ul></div>";
     }
 ?>
-<form method="post">
-    <div class="mb-3">
+<form method="post" class="m-5">
+    <div class="mb-4">
         <label for="email" class="form-label">Email</label>
         <input
             type="email"
@@ -67,12 +67,12 @@ if (isset($_SESSION['error'])) {
             placeholder="name@example.com"
             required />
     </div>
-    <div class="mb-3">
+    <div class="mb-4">
         <label for="pwd" class="form-label">Mot de passe</label>
         <input type="password" class="form-control" id="pwd" name="pwd" required>
     </div>
     <div>
-        <input type="submit" class="form-control btn btn-primary" value="Se connecter">
+        <input type="submit" class="form-control btn btn-primary mb-5" value="Se connecter">
     </div>
 </form>
-<?php require "footer.php"?>
+<?php require "../../core/footer.php"?>

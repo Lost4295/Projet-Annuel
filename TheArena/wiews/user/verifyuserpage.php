@@ -2,12 +2,13 @@
 session_start();
 require('functions.php');
 if (
-    count($_POST)!=5
-    ||!isset($_POST["type"])
-    ||empty($_POST["username"])
+    count($_POST)!=6
+    ||empty($_POST["image"])
+    ||empty($_POST["pseudo"])
     ||empty($_POST["email"])
     ||empty($_POST["pwd"])
     ||empty($_POST["confirmpwd"])
+    ||empty($_POST["about"])
 ) { print_r($_POST);
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
@@ -15,39 +16,26 @@ if (
          puis de contacter un administrateur.");
 }
 
-$type=$_POST["type"];
-$username=$_POST["username"];
+$image=$_POST["image"];
+$pseudo=$_POST["pseudo"];
 $email=strtolower(trim($_POST["email"]));
 $pwd=$_POST["pwd"];
 $confirmpwd=$_POST["confirmpwd"];
-$errortype="";
-$errorusername="";
+$about=$_POST["about"];
+$errorimage="";
+$errorabout="";
+$errorpseudo="";
 $erroremail="";
 $errorpwd="";
 $errorpwdconfirm="";
 
-$types=[0,1];
 
-if (!in_array($type, $types)) {
-    $errortype="Ce rôle n'existe pas.";
-} else {
-    switch ($type) {
-        case 0:
-            $type=824520;
-            break;
-        case 1:
-        default:
-            $type=245769;
-            break;
-        
-    }
-}
 
-if (strlen($username)<3) {
-    $errorusername="Ce nom d'utilisateur est trop court.";
+if (strlen($pseudo)<3) {
+    $errorpseudo="Ce nom d'utilisateur est trop court.";
 }
-if (strlen($username)>30) {
-    $errorusername="Ce nom d'utilisateur est trop long.";
+if (strlen($pseudo)>30) {
+    $errorpseudo="Ce nom d'utilisateur est trop long.";
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -74,24 +62,26 @@ if ($pwd != $confirmpwd) {
     $errorpwdconfirm="Le mot de passe n'est pas bien copié.";
 }
 
-if (!empty($errortype)||!empty($errorusername)||!empty($errorpwd)||!empty($errorpwdconfirm)||!empty($erroremail)) {
-    $error=true;
-} else {
+if (!empty($errorimage)||!empty($errorpseudo)||!empty($errorpwd)||!empty($errorpwdconfirm)||!empty($erroremail)) {
     $error=false;
+} else {
+    $error=true;
 }
 
 
-if ($error) {
-    $_SESSION['errortype']= $errortype;
-    $_SESSION['errorusername']= $errorusername;
+if (!$error) {
+    $_SESSION['errorimage']= $errorimage;
+    $_SESSION['errorpseudo']= $errorpseudo;
     $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorpwd']= $errorpwd;
+    $_SESSION['errorabout']= $errorabout;
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location: ../wiews/register/inscription.php");
+    header("");
 } else {
-    $_SESSION['type']= $type;
-    $_SESSION['username']= $username;
+    $_SESSION['image']= $image;
+    $_SESSION['pseudo']= $pseudo;
     $_SESSION['email']= $email;
-    $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
-    header("Location: ../wiews/register/suiteinscription.php");
+    $_SESSION['pwd']= $pwd;
+    $_SESSION['about']= $about;
+    header("");
 }

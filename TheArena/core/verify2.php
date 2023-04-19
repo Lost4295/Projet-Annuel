@@ -29,7 +29,7 @@ $phonenumber=$_POST["phonenumber"];
 $address=$_POST["address"];
 $cp=$_POST["cp"];
 $city=$_POST["city"];
-$country=$_POST["country"];
+$country=substr($_POST["country"], 0, 1);
 $errorfirstname="";
 $errorlastname="";
 $errorbirthdate="";
@@ -77,8 +77,8 @@ if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}/", $phonenumber)) {
     }
 }
 
-if (strlen($address) > 100) {
-        $erroraddress= '100 carctères maximum.';
+if (strlen($address) > 200) {
+        $erroraddress= '200 carctères maximum.';
     } elseif (strlen($address) < 5) {
         $erroraddress= 'Il faut au moins 5 carctères.';
     } elseif (!preg_match("/^[A-z0-9 ]+$/", $address)) {
@@ -100,13 +100,13 @@ if (
     ||!empty($errorcity)
     ||!empty($errorcp)
     ||!empty($erroraddress)) {
-    $error=false;
-} else {
     $error=true;
+} else {
+    $error=false;
 }
 
 
-if (!$error) {
+if ($error) {
     $_SESSION['errorfirstname']= $errorfirstname;
     $_SESSION['errorlastname']= $errorlastname;
     $_SESSION['errorbirthdate']= $errorbirthdate;
@@ -115,7 +115,7 @@ if (!$error) {
     $_SESSION['errorcp']= $errorcp;
     $_SESSION['errorcity']= $errorcity;
     $_SESSION['errorcountry']= $errorcountry;
-    header("Location: ../wiews/suiteinscription.php");
+    header("Location: ../wiews/register/suiteinscription.php");
 } else {
     $_SESSION['firstname']= $firstname;
     $_SESSION['lastname']= $lastname;
@@ -125,5 +125,5 @@ if (!$error) {
     $_SESSION['cp']= $cp;
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
-    header("Location: ../wiews/fininscription.php");
+    header("Location: ../wiews/register/fininscription.php");
 }
