@@ -10,9 +10,9 @@ function connectToDB():PDO
 }
 function isConnected()
 {
-    if (!empty($_SESSION["email"])&& (!empty($_SESSION["logged"]))) {
+    if (!empty($_SESSION["email"]) && (!empty($_SESSION["logged"]))) {
         $connect = connectToDB();
-        $queryPrepared = $connect->prepare("SELECT id FROM esgi_user WHERE email=:email");
+        $queryPrepared = $connect->prepare("SELECT id FROM zeya_users WHERE email=:email");
         $queryPrepared->execute(["email"=>$_SESSION["email"]]);
         $result = $queryPrepared->fetch();
         if (!empty($result)) {
