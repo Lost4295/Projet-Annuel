@@ -1,8 +1,7 @@
 <?php
-define('INDEX', 'location:../wiews/index.php');
+define('INDEX', 'location:../index.php');
 require "../../core/header.php";
 session_start();
-require "../../core/functions.php";
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
         die("Valeurs manquantes ou modifiées.");
@@ -47,7 +46,7 @@ if (isset($email)) {
             $_SESSION["error"]="Erreur : mot de passe incorrect.";
         }
     } else {
-        $_SESSION["error"]="Erreur : Pas d'utilisateur avec cet email.";
+        $_SESSION["error"]="Erreur : mot de passe incorrect.";
     }
 }
 if (isset($_SESSION['error'])) {
