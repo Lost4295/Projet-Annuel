@@ -4,11 +4,11 @@
 <form action="" method="post">
 <div class="mb-3">
   <label for="blogname" class="form-label">Nom du blog</label>
-  <input type="text" class="form-control" id="blogname" required>
+  <input type="text" class="form-control" id="blogname" name="blogname" required>
 </div>
 <div class="mb-3">
   <label for="blogdesc" class="form-label">Description</label>
-  <textarea class="form-control" id="blogdesc" rows="7"></textarea>
+  <textarea class="form-control" id="blogdesc" name="blogdesc" rows="7"></textarea>
 </div>
 </form>
 <?php require_once '../../core/footer.php' ?>

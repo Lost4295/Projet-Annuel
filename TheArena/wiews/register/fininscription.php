@@ -23,30 +23,40 @@
         </div>
         <div class="row mr-5 mt-3">
             <div class="col-3 d-flex flex-column mt-5 justify-content-between">
-                <div><p><i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site<p></div> 
-                <div><p><i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations personnelles<p></div> 
-                <div><p><i class="bi bi-circle"></i>&emsp;&emsp;Confirmation<p></div> 
+                <div>
+                    <p>
+                        <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site
+                    </p>
+                </div> 
+                <div>
+                    <p>
+                        <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations personnelles
+                    </p>
+                </div> 
+                <div>
+                    <p>
+                        <i class="bi bi-circle"></i>&emsp;&emsp;Confirmation
+                    </p>
+                </div> 
             </div>
             <div class="col-7">
                 <div class="row">
                     <div class="col pr-5 mr-5">
                         <div class=" row mt-5 mb-3 pr-5">
-                            <form action="" method="post">
+                            <form action="../../core/verify3.php" method="post">
                                 <div class="col">
                                     <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="1" id="cgu" name="cgu" required>
+                                    <label class="form-check-label" for="cgu">
                                     J'accepte les CGU de The Arena
                                     </label>
                                     </div>
                                 </div>
-                                <?php echo getcwd(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="1" id="newsletter" name="newsletter">
+                                            <label class="form-check-label" for="newsletter">
                                             Je m'abonne à la newsletter
                                             </label>
                                         </div>
@@ -54,11 +64,16 @@
                                 </div>
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                    <img src="captcha.php" width="100%">
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
-						</div>
+                                        <img src="captcha.php" width="100%">
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
+                                    <div class="invalid">
+                                    <?php session_start(); if(isset($_SESSION['errorcaptcha'])) { echo $_SESSION['errorcaptcha']; } ?>
+                                </div>
+                                </div>
+                                <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Continuer</button>
+                                    </div>
                                     </div>
                             </form>
                         </div>

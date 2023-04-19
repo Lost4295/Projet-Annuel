@@ -15,12 +15,17 @@
         <label for="image" class="d-flex justify-content-center">
             <div class=" my-5"><img src="#" width="150" height="150"/></div>
         </label>
-        <input type="file" id="image" accept="image/png, image/jpeg">
+        <input type="file" id="image" name="image" accept="image/png, image/jpeg">
 
         <div class="mb-5">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description"></textarea>
+            <textarea class="form-control" id="description" name="description"></textarea>
         </div>
+        <div class="row d-flex justify-content-center">
+		<div class="col-2">
+		<button class="btn-primary btn btn-lg">Enregistrer l'article</button>
+	</div>
+	</div>
     </form>
 
 <?php require '../../core/footer.php' ?>

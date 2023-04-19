@@ -27,7 +27,7 @@
                             </a>
                         </div>
                         <div>
-                            <a class="btn btn-warning" href="connexion.php">Se connecter</a>
+                            <a class="btn btn-warning" href="login.php">Se connecter</a>
                             <a class="btn btn-warning" href="/wiews/register/inscription.php">S'inscrire</a>
 <?php
 // session_start();

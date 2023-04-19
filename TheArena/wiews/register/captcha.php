@@ -1,6 +1,8 @@
 <?php
 session_start();
-header("Content-type: image/png");
+header("Content-Type: image/png");
+
+
 
 $image = imagecreate(400, 200);
 
@@ -11,11 +13,6 @@ $listOfChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 $listOfChars  = str_shuffle($listOfChars);
 $captcha = substr($listOfChars, 0, rand(6, 8));
 $_SESSION['captcha'] = $captcha;
-
-
-
-
-//imagestring($image, 5, 20, 100, $captcha, $color);
 
 
 $listOfFonts = glob("fonts/*.ttf");
@@ -74,9 +71,6 @@ for ($i=0; $i<$form; $i++) {
     );
 
 }
-
-
-
 
 
 imagepng($image);

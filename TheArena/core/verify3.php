@@ -1,13 +1,19 @@
 <?php
 session_start();
-
+include 'functions.php';
+if (!isset($_POST['newsletter'])) {
+    $_SESSION['newsletter']=0;
+    $_POST['newsletter']=0;
+}
 if (
     count($_POST)!=3
     ||empty($_POST["cgu"])
-    ||empty($_POST["newsletter"])
+    ||!isset($_POST["newsletter"])
     ||empty($_POST["captcha"])
 ) {
+    echo "<pre>";
     print_r($_POST);
+    echo "</pre>";
     die("
     Il ne vous est pas possible de terminer l'action. Merci de réessayer.
      Si cette page se réaffiche apèrs plusieurs essais, merci de vérifier vos informations,
@@ -15,14 +21,15 @@ if (
 }
 
 $newsletterNotProcessed = $_POST["newsletter"];
+$captcha = $_POST["captcha"];
 $errornewsletter="";
 $errorcaptcha="";
 
 
 if ($newsletterNotProcessed== 1) {
-    $newsletter=true;
+    $newsletter=1;
 } elseif ($newsletterNotProcessed == 0) {
-    $newsletter = false;
+    $newsletter = 0;
 } else {
     $errornewsletter = "Format de données invalide.";
 }
@@ -31,27 +38,32 @@ if ($captcha != $_SESSION['captcha']) {
     $errorcaptcha="Le captcha est incorrect.";
 }
 
-if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=false;}else{$error=true;}
+if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$error=false;}
 
     if ($error) {
     $_SESSION['errornewsletter']= $errornewsletter;
     $_SESSION['errorcaptcha']= $errorcaptcha;
-    header("Location: ../wiews/fininscription.php");
+    header("Location: ../wiews/register/fininscription.php");
 } else {
+    $connection = connectToDB();
     $query=$connection->prepare("INSERT INTO zeya_users
-    (type,username,email,pwd,firstname,lastname,birthdate,phonenumber,address,cp,country) VALUES
-    (:type,:username,:email,:pwd,:firstname,:lastname,:email,:birthdate,:phonenumber,:address,:cp,:country)");
+    (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country, newsletter)
+    VALUES
+    (
+        :scope,:username,:email,:password,:first_name,:last_name,:birthdate,
+        :phone,:address,:postal_code,:country,:newsletter
+    )");
     $query->execute([
-        "type" =>$_SESSION['type'],
+        "scope" =>$_SESSION['type'],
         "username"=>$_SESSION['username'],
         "email"=>$_SESSION['email'],
-        "pwd"=>$_SESSION['pwd'],
-        "firstname"=>$_SESSION['firstname'],
-        "lastname"=>$_SESSION['lastname'],
+        "password"=>$_SESSION['pwd'],
+        "first_name"=>$_SESSION['firstname'],
+        "last_name"=>$_SESSION['lastname'],
         "birthdate"=>$_SESSION['birthdate'],
-        "phonenumber"=>$_SESSION['phonenumber'],
+        "phone"=>$_SESSION['phonenumber'],
         "address"=>$_SESSION['address'] . ", ". $_SESSION['city'],
-        "cp"=>$_SESSION['cp'],
+        "postal_code"=>$_SESSION['cp'],
         "country"=>$_SESSION['country'],
         "newsletter"=>$newsletter
     ]);

@@ -1,14 +1,14 @@
 <?php require '../../core/header.php'?>
 
 <h1>Créer un événement</h1>
-    <form action="" method="post" class="mb-5 row-cols-lg-auto">
+    <form action="verifycreateevent.php" method="post" class="mb-5 row-cols-lg-auto">
         <div class="mb-3">
             <label for="eventname" class="form-label">Nom de l'événement</label>
-            <input type="text" class="form-control" id="eventname" placeholder="Tournoi">
+            <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Tournoi">
         </div>
         <div class="mb-3">
             <label for="infos" class="form-label">Informations</label>
-            <textarea class="form-control" id="infos" rows="7"></textarea>
+            <textarea class="form-control" id="infos" name="infos" rows="7"></textarea>
         </div>
         <div class="my-3">
             <div class="col">
@@ -32,8 +32,8 @@
         </div>
 
         <div class="col-2 my-2">
-            <label for="price" class="form-label">Prix</label>
-            <input type="text" class="form-control" id="price">
+            <label for="valueprice" class="form-label">Prix</label>
+            <input type="text" class="form-control" id="valueprice" name="valueprice">
             <div class="form-text mb-4" id="basic-addon2">Le prix de base pour s'inscrire à chaque tournoi créé.</div>
         </div>
         <div class="form-check">
@@ -61,6 +61,11 @@
             <option value="Rainbow Six Siege">
             <option value="Rocket League">
         </datalist>
+        <div class="row d-flex justify-content-center">
+		<div class="col-2">
+		<button class="btn-primary btn btn-lg">Créer l'événement</button>
+	</div>
+	</div>
     </form>
 </div>
 

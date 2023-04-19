@@ -6,17 +6,17 @@
         <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
             <div class="col-4">
                 <label for="firstname" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="firstname" name="firstname"  disabled value="John">
+                <input type="text" class="form-control" id="firstname" disabled value="John">
             </div>
             <div class="col-4">
                 <label for="lastname" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="lastname" name="lastname"  disabled value="Doe">
+                <input type="text" class="form-control" id="lastname" disabled value="Doe">
             </div>
         </div>
         <div class="row d-flex justify-content-between">
             <div class="col-5 mb-3">
                 <label for="birthdate" class="form-label">Date de naissance</label>
-                <input type="date" class="form-control" name="birthdate" id="birthdate" value="2015-01-12" disabled>
+                <input type="date" class="form-control"  id="birthdate" value="2015-01-12" disabled>
             </div>
         </div>
         <p class="text-muted text-center"> Ces informations ne sont pas modifiables.</p>
@@ -50,7 +50,7 @@
         
         <div class="mb-5 pb-5">
             <label for="exampleFormControlTextarea1" class="form-label"><h3>À propos de moi</h3></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="about"></textarea>
         </div>
         <div class="d-flex justify-content-center">
         <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
