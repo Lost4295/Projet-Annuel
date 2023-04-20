@@ -1,7 +1,6 @@
 <?php
 define('INDEX', 'location:../index.php');
-require "../../core/header.php";
-session_start();
+require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
         die("Valeurs manquantes ou modifiées.");
@@ -25,6 +24,7 @@ if (isset($email)) {
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
+            unset($_SESSION['error']);
             switch ($scope["scope"]) {
                 case 105188 : //super-admin
                     header("location:../wiews/admin/indexadmin.php");
@@ -74,4 +74,4 @@ if (isset($_SESSION['error'])) {
         <input type="submit" class="form-control btn btn-primary mb-5" value="Se connecter">
     </div>
 </form>
-<?php require "../../core/footer.php"?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php"?>

@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>  
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>  
     <div class="row col-12">
         <nav class="navbar bar">
             <a class="navbarSecondaryBtn" href="evenement2.php">Accueil</a>
@@ -46,4 +46,4 @@
         </div>
  
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

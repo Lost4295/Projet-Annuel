@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
 <h1>Créer un événement</h1>
 <form action="" method="post">
@@ -26,4 +26,4 @@
 </select>
 </form>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

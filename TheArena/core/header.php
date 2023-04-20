@@ -26,14 +26,19 @@
                                 class="d-inline-block align-text-center textlogo">
                             </a>
                         </div>
-                        <?php session_start(); include 'functions.php';  if (isConnected()) { ?>
-                            <div><a class="btn btn-warning" href="logout.php">Se déconnecter</a></div>
-                            <?php } else { ?>
+                        <?php session_start(); include 'functions.php';  if (isConnected()) {
+                            $attr = whoIsConnected(); if ($attr['0'] == /*le code d'admin*/'') { ?>
+                            <div class="d-flex flex-row"><div class="mx-3"><a class="btn btn-warning " href="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/admin/index.php">Index Admin</a></div>
+                            <?php } echo "Connecté en tant que ".$attr['1'];?>
+                            <div class="d-flex flex-row"><div class="mx-3"><a class="btn btn-warning " href="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/logout.php">Se déconnecter</a></div>
+                            <div class="mx-2"><a class="btn btn-warning" href="user/myuserpage.php">Ma page</a></div>
+                        </div><?php } else { ?>
                         <div>
-                            <a class="btn btn-warning" href="login.php">Se connecter</a>
-                            <a class="btn btn-warning" href="/wiews/register/inscription.php">S'inscrire</a>
+                            <a class="btn btn-warning" href="/login">Se connecter</a>
+                            <a class="btn btn-warning" href="/register/1">S'inscrire</a>
+                            <!-- "<?php //echo $_SERVER['DOCUMENT_ROOT']; ?>/wiews/register/login.php" -->
                         </div>
-                        <?php } ?>
+                        <?php } ?> 
                     </div>
                 </div>
             </nav>

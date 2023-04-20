@@ -21,6 +21,22 @@ function isConnected()
     }
     return false;
 }
+function whoIsConnected() : array
+{
+    if (isConnected()) {
+        $connect = connectToDB();
+        $queryPrepared = $connect->prepare("SELECT scope,username FROM zeya_users WHERE email=:email");
+        $queryPrepared->execute(["email"=>$_SESSION["email"]]);
+        $result = $queryPrepared->fetch();
+        if (!empty($result)) {
+            return [$result["scope"],$result["username"]];
+        }
+    } else {
+        redirectifNotConnected();
+    }
+    redirectifNotConnected();
+    return [];
+}
 
 function redirectIfNotConnected()
 {
@@ -29,7 +45,8 @@ function redirectIfNotConnected()
     }
 }
 
-function unsetRegister() {
+function unsetwhenRegistered()
+{
         if (isset($_SESSION['errorfirstname'])) {
             unset($_SESSION['errorfirstname']);
         }
@@ -66,6 +83,10 @@ function unsetRegister() {
         if (isset($_SESSION['phonenumber'])) {
             unset($_SESSION['phonenumber']);
         }
+        unsetwhenRegistered2();
+    }
+    function unsetwhenRegistered2()
+    {
         if (isset($_SESSION['address'])) {
             unset($_SESSION['address']);
         }
@@ -98,9 +119,6 @@ function unsetRegister() {
         }
         if (isset($_SESSION['username'])) {
             unset($_SESSION['username']);
-        }
-        if (isset($_SESSION['email'])) {
-            unset($_SESSION['email']);
         }
         if (isset($_SESSION['pwd'])) {
             unset($_SESSION['pwd']);

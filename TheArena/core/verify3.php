@@ -67,5 +67,6 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
         "country"=>$_SESSION['country'],
         "newsletter"=>$newsletter
     ]);
+    unsetwhenRegistered();
     header("Location: ../wiews/index.php");
 }

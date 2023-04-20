@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
 <div class="w-100">
     <h1> Ma page </h1>
@@ -9,4 +9,4 @@
 </div>
 
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

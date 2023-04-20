@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
     <h1>Créer un article</h1>
     <form action="" method="post" class="mb-5 row-cols-lg-auto">
@@ -28,4 +28,4 @@
 	</div>
     </form>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

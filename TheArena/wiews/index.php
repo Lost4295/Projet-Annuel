@@ -1,4 +1,4 @@
-<?php require '../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT'].'/core/header.php' ?>
             <div class="row my-3">
                 <div class="col my-3"> <!--Caroussel-->
                     <img style="position: relative; left:0; width:500px; height:200px;" src="#">
@@ -17,4 +17,4 @@
             </div>
 
 
-<?php require '../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT'].'/core/footer.php' ?>

@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
 <h1 class="text-center">Forums</h1>
 
@@ -67,4 +67,4 @@ foreach ($_SESSION["forum"] as $element){};}
     </div>
 </div>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

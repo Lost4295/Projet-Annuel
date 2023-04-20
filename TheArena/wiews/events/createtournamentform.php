@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 <h1>Créer un tournoi</h1>
 <form action="" method="post" class="mb-5">
 <div class="mb-3">
@@ -29,4 +29,4 @@
 
 </form>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

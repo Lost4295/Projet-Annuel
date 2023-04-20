@@ -1,4 +1,4 @@
-<?php require_once '../../core/header.php' ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
 <h1>Création d'un nouveau blog</h1>
 <form action="" method="post">
@@ -11,4 +11,4 @@
   <textarea class="form-control" id="blogdesc" name="blogdesc" rows="7"></textarea>
 </div>
 </form>
-<?php require_once '../../core/footer.php' ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>
