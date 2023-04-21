@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                    <label class="form-check-label" for="cgu">J’ai lu les <a href="#">Termes et Conditions</a> de The Arena</label>
+                    <label class="form-check-label" for="cgu">J’ai lu les <a href="/cgu">Termes et Conditions</a> de The Arena</label>
                 </div>
             </div>
             <div class="mb-3">

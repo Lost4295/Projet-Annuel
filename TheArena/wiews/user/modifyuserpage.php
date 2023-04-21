@@ -2,7 +2,7 @@
 
 redirectIfNotConnected();
 $connection=connectToDB();
-$queryPrepared=$connection->prepare("SELECT * FROM zeya_users WHERE email=:email");
+$queryPrepared=$connection->prepare("SELECT * FROM ".PREFIX."users WHERE email=:email");
 $queryPrepared->execute([
     "email"=>$_SESSION["email"]
 ]);

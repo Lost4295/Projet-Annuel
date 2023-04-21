@@ -67,7 +67,7 @@ if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}/", $phonenumber)) {
     $errorphonenumber="Le numéro est invalide.";
 } else {
     $db = connectToDB();
-    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE phone=:phone");
+    $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE phone=:phone");
     $queryPrepared->execute([
         "phone"=>$phonenumber
     ]);

@@ -4,7 +4,7 @@
   // $connection = connectToDB();
   // $_SESSION['email']=$email;
   // $_SESSION['login']=true;
-  // $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
+  // $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
   // $queryPrepared->execute([
   //     "email"=>$email
   // ]);
@@ -31,7 +31,7 @@
                 <nav class="navbar bar">
                     <div class="container-fluid d-flex">
                         <div class="mr-auto">
-                            <a class="navbar-brand" href="/wiews">
+                            <a class="navbar-brand" href="/">
                                 <img src="../logothearena-removebg.png"
                                 alt="Logo"
                                 class="d-inline-block align-text-center logo">
@@ -50,7 +50,7 @@
             <div class="col-3">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height:86vh;">
                     <a
-                        href="/"
+                        href="/admin"
                         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
                             <span class="fs-4">Page administration</span>
@@ -58,43 +58,43 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
-                            <a href="indexadmin.php" class="nav-link aaaa">
+                            <a href="/" class="nav-link aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                                 Tableau de bord
                             </a>
                         </li>
                         <li>
-                            <a href="notifications.php" class="nav-link link-dark aaaa">
+                            <a href="/admin/notifications" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Notifications
                             </a>
                         </li>
                         <li>
-                            <a href="signalements.php" class="nav-link link-dark aaaa">
+                            <a href="/admin/signalements" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Sigalements
                             </a>
                         </li>
                         <li>
-                            <a href="events.php" class="nav-link link-dark aaaa">
+                            <a href="admin/events" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Événements
                             </a>
                         </li>
                         <li>
-                            <a href="users.php" class="nav-link link-dark aaaa">
+                            <a href="admin/users" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                                 Utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="forums.php" class="nav-link link-dark aaaa">
+                            <a href="admin/forums" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                                 Forums
                             </a>
                         </li>
                         <li>
-                            <a href="settings.php" class="nav-link link-dark aaaa">
+                            <a href="/admin/settings" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
                                 Paramètres du site
                             </a>

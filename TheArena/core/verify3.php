@@ -46,7 +46,7 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
     header("Location: ../wiews/register/fininscription.php");
 } else {
     $connection = connectToDB();
-    $query=$connection->prepare("INSERT INTO zeya_users
+    $query=$connection->prepare("INSERT INTO ".PREFIX."users
     (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country, newsletter)
     VALUES
     (

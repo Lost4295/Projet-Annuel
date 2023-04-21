@@ -3,12 +3,12 @@
 <h1 class="text-center">Forums</h1>
 
 
-<?php session_start(); if (isset($_SESSION["forum"])){
+<?php if (isset($_SESSION["forum"])){
 foreach ($_SESSION["forum"] as $element){};}
 ?>
 <div class="w-100">
     <div class="list-group">
-        <a href="forumpage.php" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="/forum" class="list-group-item list-group-item-action active" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">List group item heading</h5>
                 <small>3 days ago</small>

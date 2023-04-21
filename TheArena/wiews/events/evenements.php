@@ -6,7 +6,7 @@
             </div>
             <div class="row my-3">
                 <div class="col"> 
-                    <a href="evenement2.php"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg" ></a>
+                    <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg" ></a>
                 </div>
                 <div class="col"> 
                     <img style="position: relative; left:0; width: 250px; height:250px;" src="#">

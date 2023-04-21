@@ -1,10 +1,10 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>  
     <div class="row col-12">
         <nav class="navbar bar">
-            <a class="navbarSecondaryBtn" href="evenement2.php">Accueil</a>
-            <a class="navbarSecondaryBtn" href="participant.php">Participants</a>
-            <a class="navbarSecondaryBtn" href="dashboard.php">Tableau de bord</a>
-            <a class="btn btn-primary active btn-warning " href="shop.php">Shop</a>
+            <a class="navbarSecondaryBtn" href="/event">Accueil</a>
+            <a class="navbarSecondaryBtn" href="/event/participants">Participants</a>
+            <a class="navbarSecondaryBtn" href="/event/dashboard">Tableau de bord</a>
+            <a class="btn btn-primary active btn-warning " href="/event/shop">Shop</a>
         </nav>
     </div> 
     <div class="row">
@@ -12,7 +12,7 @@
     </div>
     <div class="row my-3">
                 <div class="col"> 
-                    <a href="evenement2.php"><img style="position: relative; left:0; width: 250px; height:250px;" src="#" ></a>
+                    <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="#" ></a>
                 </div>
                 <div class="col"> 
                     <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
@@ -39,7 +39,7 @@
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>s
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </nav>
             </div>

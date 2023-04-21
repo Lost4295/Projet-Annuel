@@ -54,7 +54,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $erroremail = "L'email est incorrect.";
 } else {
     $db = connectToDB();
-    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE email=:email");
+    $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);

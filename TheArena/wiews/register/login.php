@@ -10,7 +10,7 @@ if ($_POST) {
 }
 if (isset($email)) {
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare(" SELECT password FROM zeya_users WHERE email=:email");
+    $queryPrepared = $connection->prepare(" SELECT password FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);
@@ -19,7 +19,7 @@ if (isset($email)) {
         if (password_verify($password, $result['password'])) {
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
-            $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
+            $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
             $queryPrepared->execute([
                 "email"=>$email
             ]);

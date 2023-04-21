@@ -1,8 +1,10 @@
 <?php
+
+require 'constantes.php';
 function connectToDB():PDO
 {
     try {
-        $db = new PDO('mysql:host=54.36.180.242;dbname=pj_annuel;charset=utf8;port=3306', 'website', 'ConnardLV1');
+        $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
@@ -12,7 +14,7 @@ function isConnected()
 {
     if (!empty($_SESSION["email"]) && (!empty($_SESSION["logged"]))) {
         $connect = connectToDB();
-        $queryPrepared = $connect->prepare("SELECT id FROM zeya_users WHERE email=:email");
+        $queryPrepared = $connect->prepare("SELECT id FROM ".PREFIX."users WHERE email=:email");
         $queryPrepared->execute(["email"=>$_SESSION["email"]]);
         $result = $queryPrepared->fetch();
         if (!empty($result)) {
@@ -25,7 +27,7 @@ function whoIsConnected() : array
 {
     if (isConnected()) {
         $connect = connectToDB();
-        $queryPrepared = $connect->prepare("SELECT scope,username FROM zeya_users WHERE email=:email");
+        $queryPrepared = $connect->prepare("SELECT scope,username FROM ".PREFIX."users WHERE email=:email");
         $queryPrepared->execute(["email"=>$_SESSION["email"]]);
         $result = $queryPrepared->fetch();
         if (!empty($result)) {
