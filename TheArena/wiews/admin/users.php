@@ -41,8 +41,8 @@
 					echo " <td> ". $user [" visibility "]." </td> " ;
 					echo " <td> ". $user [" status "]." </td> " ;
 					echo " <td><a href='core/removeUser.php?id= ". $user [" id "]." ' class='btn btn-danger'>Supprimer</a></td> ";
-
-					echo " </tr> ";
+					
+                    echo " </tr> ";
 				}
 ?>
     </tbody>
