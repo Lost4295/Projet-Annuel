@@ -38,6 +38,6 @@ $routes = array(
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",
 );
 /*** Création de l'url de destination ***/
-$destination = (array_key_exists($origine, $routes) ? $routes[$origine] : "wiews/index") . '.php';
+$destination = (array_key_exists($origine, $routes) ? $routes[$origine] : "wiews/important/errorpage") . '.php';
 /*** Appel du bon fichier ***/
 require $destination;

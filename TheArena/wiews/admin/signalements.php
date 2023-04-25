@@ -1,11 +1,4 @@
-<?php require 'header.php' ?>
-<?php 
-    session_start();
-    require 'functions.php';
-?>
-<?php 
-    require 'constantes.php';
-    isAdmin();
+<?php require 'header.php'
 ?>
 <h1>Signalements</h1>
 <table class="table table-hover table-bordered w-100" aria-describedby="reports-table">

@@ -12,6 +12,9 @@
   // if($scope != 550620){
   //   header("location:indexSuperAdmin.php");
   // }
+    
+    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+    isAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">
@@ -21,8 +24,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Arena</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../bootstrap.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/core/css/bootstrap.css">
+    <link rel="stylesheet" href="/core/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -32,11 +35,11 @@
                     <div class="container-fluid d-flex">
                         <div class="mr-auto">
                             <a class="navbar-brand" href="/">
-                                <img src="../logothearena-removebg.png"
+                                <img src="/img/logothearena-removebg.png"
                                 alt="Logo"
                                 class="d-inline-block align-text-center logo">
 
-                                <img src="../thearenatext-removebg.png"
+                                <img src="/img/thearenatext-removebg.png"
                                 alt="The Arena"
                                 class="d-inline-block align-text-center textlogo">
                             </a>
@@ -58,7 +61,7 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
-                            <a href="/" class="nav-link aaaa">
+                            <a href="/admin" class="nav-link aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                                 Tableau de bord
                             </a>
@@ -76,19 +79,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admin/events" class="nav-link link-dark aaaa">
+                            <a href="/admin/events" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Événements
                             </a>
                         </li>
                         <li>
-                            <a href="admin/users" class="nav-link link-dark aaaa">
+                            <a href="/admin/users" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                                 Utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin/forums" class="nav-link link-dark aaaa">
+                            <a href="/admin/forums" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                                 Forums
                             </a>

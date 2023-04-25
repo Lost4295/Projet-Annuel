@@ -1,9 +1,4 @@
 <?php require 'header.php' ?>
-<?php 
-    session_start();
-    require 'functions.php';
-?>
-<?php require 'constantes.php'?>
 
 <h1>Utilisateurs</h1>
 <?php
