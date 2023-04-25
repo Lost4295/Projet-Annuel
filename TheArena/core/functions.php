@@ -46,6 +46,13 @@ function redirectIfNotConnected()
         header("Location: login.php");
     }
 }
+function isAdmin(){
+    whoIsConnected();
+    $scope = $result["scope"];
+    if ($scope != 105188 || $scope != 550620){
+        header("location: index.php");
+    }
+}
 
 function unsetwhenRegistered()
 {
