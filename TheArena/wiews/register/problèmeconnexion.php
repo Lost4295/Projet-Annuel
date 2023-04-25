@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Arena-Connexion</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/core/css/bootstrap.css">
+    <link rel="stylesheet" href="/core/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -15,8 +15,8 @@
             <div class="col">
                 <div class="mx-3 my-2">
                     <a class="navbar-brand" href="/">
-                        <img src="logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center">
-                        <img src="thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center">
+                        <img src="/img/logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center">
+                        <img src="/img/thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center">
                     </a>
                 </div>
             </div>

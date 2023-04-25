@@ -10,7 +10,7 @@
     src="/img/vous_etes_ici.png"
     alt="Vous êtes perdu, je crois."
     title="Vous êtes perdu, je crois."
-    width="40"
+    width="80"
     style="position:relative; top:<?php echo rand(10,500)?>px;left:<?php echo rand(10,500)?>px;bottom:<?php echo rand(10,500)?>px;right:<?php echo rand(10,500)?>px;">
 </div>
 </div>

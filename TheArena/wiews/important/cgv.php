@@ -58,7 +58,7 @@
 <h1>ARTICLE 4 - Conditions de paiement</h1>
 <br/>
 <p>Le prix est payé par voie de paiement sécurisé, selon les modalités suivantes :</p>
-<ul style="list-style-type: disc;margin-left:26px;">
+<ul>
     <li>paiement par carte bancaire</li>
     <li>ou paiement par virement bancaire sur le compte bancaire du Vendeur (dont les coordonnées sont communiquées au Client lors de la passation de la commande)</li>
 </ul>
@@ -197,12 +197,7 @@
 <h1>ARTICLE 12 - Litiges</h1>
 <br/>
 <p>Pour toute réclamation merci de contacter le service clientèle à l'adresse postale ou mail du Vendeur indiquée à l'ARTICLE 1 des présentes CGV.</p>
-<p>Le Client est informé qu'il peut en tout état de cause recourir à une médiation conventionnelle, auprès des instances de médiation sectorielles existantes ou à tout mode alternatif de règlement des différends (conciliation, par exemple) en cas de contestation.</p>
-<p>En l'espèce, le médiateur désigné est</p>
-<p>_______________</p>
-<p>_______________</p>
-<p>_______________</p>
-<p>E-mail : _______________.</p>
+<p>Le Client est informé qu'il peut en tout état de cause recourir à une médiation conventionnelle, auprès des instances de médiation sectorielles existantes ou à tout mode alternatif de règlement des différends (conciliation, par exemple) en cas de contestation, sur le site, dans la rubrique de contact.</p>
 <p>Le Client est également informé qu'il peut, également recourir à la plateforme de Règlement en Ligne des Litige (RLL) :https://webgate.ec.europa.eu/odr/main/index.cfm?event=main.home.show</p>
 <p>Tous les litiges auxquels les opérations d'achat et de vente conclues en application des présentes CGV et qui n'auraient pas fait l'objet d'un règlement amiable entre le vendeur ou par médiation, seront soumis aux tribunaux compétents dans les conditions de droit commun.</p>
 <br/>
