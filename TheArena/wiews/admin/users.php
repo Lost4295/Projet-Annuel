@@ -7,7 +7,7 @@
 
 <h1>Utilisateurs</h1>
 <?php
-
+    isAdmin();
 	$connect = connectToDB();
 	$résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
 
@@ -26,21 +26,22 @@
     foreach ( $listOfUsers  as  $user ){
 					echo " <tr> ";
 
-					echo " <td> ". $user [" id "]." </td> " ;
-					echo " <td> ". $user [" scope "]." </td> " ;
-					echo " <td> ". $user [" first_name "]." </td> " ;
-					echo " <td> ". $user [" last_name "]." </td> " ;
-					echo " <td> ". $user [" email "]." </td> " ;
-					echo " <td> ". $user [" phone "]." </td> " ;
-					echo " <td> ". $user [" adress "]." </td> " ;
-					echo " <td> ". $user [" postal_code "]." </td> " ;
-					echo " <td> ". $user [" country "]." </td> " ;
-					echo " <td> ". $user [" creation_date "]." </td> " ;
-					echo " <td> ". $user [" last_access_date "]." </td> " ;
-					echo " <td> ". $user [" update_at "]." </td> " ;
-					echo " <td> ". $user [" visibility "]." </td> " ;
-					echo " <td> ". $user [" status "]." </td> " ;
-					echo " <td><a href='core/removeUser.php?id= ". $user [" id "]." ' class='btn btn-danger'>Supprimer</a></td> ";
+					echo " <td> ". $user ["id"]." </td> " ;
+					echo " <td> ". $user ["scope"]." </td> " ;
+					echo " <td> ". $user ["first_name"]." </td> " ;
+					echo " <td> ". $user ["last_name"]." </td> " ;
+					echo " <td> ". $user ["email"]." </td> " ;
+					echo " <td> ". $user ["phone"]." </td> " ;
+					echo " <td> ". $user ["adress"]." </td> " ;
+					echo " <td> ". $user ["postal_code"]." </td> " ;
+					echo " <td> ". $user ["country"]." </td> " ;
+					echo " <td> ". $user ["creation_date"]." </td> " ;
+					echo " <td> ". $user ["last_access_date"]." </td> " ;
+					echo " <td> ". $user ["update_at"]." </td> " ;
+					echo " <td> ". $user ["visibility"]." </td> " ;
+					echo " <td> ". $user ["status"]." </td> " ;
+					echo " <td><a href='removeUser.php'?id= ". $user["id"]." ' class='btn btn-danger'>Supprimer</a></td> ";
+					
                     echo " </tr> ";
 				}
 ?>

@@ -1,4 +1,12 @@
 <?php require 'header.php' ?>
+<?php 
+    session_start();
+    require 'functions.php';
+?>
+<?php 
+    require 'constantes.php';
+    isAdmin();
+?>
 <div class="row">
     <h1>Tableau de bord</h1>
     <div class="col-4">
