@@ -7,7 +7,7 @@
 
 <h1>Utilisateurs</h1>
 <?php
-
+    isAdmin();
 	$connect = connectToDB();
 	$résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
 

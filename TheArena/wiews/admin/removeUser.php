@@ -4,7 +4,7 @@ require " ../conf.inc.php " ;
 require " fonctions.php ";
 
 
-whoIsConnected();
+isAdmin();
 
 
 $connect = connectToDB();

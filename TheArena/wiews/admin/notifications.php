@@ -1,4 +1,12 @@
 <?php require 'header.php' ?>
+<?php 
+    session_start();
+    require 'functions.php';
+?>
+<?php 
+    require 'constantes.php';
+    isAdmin();
+?>
 <h1>Notifications</h1>
 <table class="table table-hover table-borderless">
 <div class="list-group">
