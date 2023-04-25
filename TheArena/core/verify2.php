@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('functions.php');
-
+if (isset($_POST)) {
 if (
     count($_POST)!=8
     ||empty($_POST["firstname"])
@@ -126,4 +126,5 @@ if ($error) {
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
     header("Location: ../wiews/register/fininscription.php");
+}
 }

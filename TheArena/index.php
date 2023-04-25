@@ -33,6 +33,8 @@ $routes = array(
     "/user" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/userpage",
     "/me/modify" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/modifyuserpage",
     "/cgu" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgu",
+    "/cgv" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgv",
+    "/legal" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/mentionslégales",
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",
 );
 /*** Création de l'url de destination ***/

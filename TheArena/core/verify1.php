@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('functions.php');
+if (isset($_POST)) {
 if (
     count($_POST)!=5
     ||!isset($_POST["type"])
@@ -87,11 +88,12 @@ if ($error) {
     $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorpwd']= $errorpwd;
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location: ../wiews/register/inscription.php");
+    header("Location:". $_SERVER['DOCUMENT_ROOT']."/wiews/register/inscription.php");
 } else {
     $_SESSION['type']= $type;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
-    header("Location: ../wiews/register/suiteinscription.php");
+    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/wiews/register/suiteinscription.php");
+}
 }

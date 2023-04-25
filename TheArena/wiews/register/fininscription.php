@@ -48,7 +48,7 @@
                                     <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" id="cgu" name="cgu" required>
                                     <label class="form-check-label" for="cgu">
-                                    J'accepte les CGU de The Arena
+                                    J'accepte les <a href="/cgu">CGU de The Arena</a>
                                     </label>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <img src="captcha.php" width="100%">
+                                        <img src="/wiews/register/captcha.php" width="100%">
                                 <div class="col-md-6">
                                     <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
                                     <div class="invalid">

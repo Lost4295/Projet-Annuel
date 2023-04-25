@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'functions.php';
+if (isset($_POST)) {
 if (!isset($_POST['newsletter'])) {
     $_SESSION['newsletter']=0;
     $_POST['newsletter']=0;
@@ -69,4 +70,6 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
     ]);
     unsetwhenRegistered();
     header("Location: ../wiews/index.php");
+}
+
 }
