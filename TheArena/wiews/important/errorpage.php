@@ -3,7 +3,7 @@
 <div>
 <div class="card m-3">
 <h1 class="fs-1 text-center">404</h1>
-<h2 class="fs-2 text-center">La page, ou ressource demandée n'existe pas.</h2>
+<h2 class="fs-2 text-center">La page, ou ressource demandée n'existe pas. Peut-être qu'elle a été déplacée, ou biuen que la page a été suprimée ? Qui sait.. The Arena est un grand labyrinthe après tout. </h2>
 <h3 class="fs-3 text-center">Vous pouvez retourner à l'accueil en cliquant <a href="/">ici</a>.</h3>
 </div>
 <img

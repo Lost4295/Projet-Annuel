@@ -2,11 +2,10 @@
 
 <h1>Utilisateurs</h1>
 <?php
-    isAdmin();
-	$connect = connectToDB();
-	$résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
+	// $connect = connectToDB();
+	// $résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
 
-	$listOfUsers = $résultats -> fetchAll();
+	// $listOfUsers = $résultats -> fetchAll();
 
 ?>
 <table class="table table-hover table-bordered w-100" aria-describedby="users-list">
@@ -18,7 +17,7 @@
     </thead>
     <tbody>
 <?php
-    foreach ( $listOfUsers  as  $user ){
+    foreach ( $listOfUsers as  $user ){
 					echo " <tr> ";
 
 					echo " <td> ". $user ["id"]." </td> " ;

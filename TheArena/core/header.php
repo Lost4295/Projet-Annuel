@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr" data-bs-theme="">
 <head>
     <meta charset="UTF-8">
     <meta name="Ma duper super page" content="Page HTML">

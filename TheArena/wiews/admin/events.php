@@ -1,12 +1,4 @@
 <?php require 'header.php' ?>
-<?php 
-    session_start();
-    require 'functions.php';
-?>
-<?php 
-    require 'constantes.php';
-    isAdmin();
-?>
 <h1>Événements</h1>
 <table class="table table-hover table-bordered w-100">
     <thead>

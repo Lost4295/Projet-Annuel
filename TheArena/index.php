@@ -10,7 +10,7 @@ $routes = array(
     "/register/3" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/fininscription",
     "/login" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/login",
     "/logout" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/logout",
-    "/admin" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin",
+    "/admin" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/adminindex",
     "/admin/forums" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums",
     "/admin/notifications" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/notifications",
     "/admin/events" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events",
@@ -34,6 +34,7 @@ $routes = array(
     "/me/modify" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/modifyuserpage",
     "/cgu" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgu",
     "/cgv" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgv",
+    "/contact" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/contact",
     "/legal" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/mentionslégales",
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",
 );

@@ -46,14 +46,20 @@ function redirectIfNotConnected()
         header("Location: login.php");
     }
 }
-function isAdmin() :bool
+function onlyAdmin() :bool
 {
     $scope =whoIsConnected()[0];
     if ($scope != 105188 || $scope != 550620) {
-        header("location: index.php");
         return false;
     } else {
         return true;
+    }
+}
+
+function redirectIfNotAdmin()
+{
+    if (!onlyAdmin()) {
+        header("Location: index.php");
     }
 }
 

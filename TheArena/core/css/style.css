@@ -17,7 +17,7 @@ footer {
 }
 .messages{
     position: relative;
-    bottom: 120px;
+    bottom: 160px;
     right:50px;
     z-index: 12;
 }

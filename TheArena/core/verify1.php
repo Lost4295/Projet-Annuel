@@ -40,7 +40,13 @@ if (!in_array($type, $types)) {
         default:
             $type=245769;
             break;
-        
+    }
+    $dn=connectToDB();
+    $queryPrepared = $db->prepare(" SELECT count(*) FROM ".PREFIX."users");
+    $queryPrepared->execute();
+    $result=$queryPrepared->fetch();
+    if (count($result)<=6) {
+        $type=;// le scope admin
     }
 }
 
@@ -54,7 +60,6 @@ if (strlen($username)>30) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $erroremail = "L'email est incorrect.";
 } else {
-    $db = connectToDB();
     $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
