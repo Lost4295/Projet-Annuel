@@ -1,11 +1,22 @@
 <?php
 
 require 'constantes.php';
-function connectToDB():PDO
+function connectToDB()
 {
+// $connection = ssh2_connect(HOST, 22);
+
+// ssh2_auth_password($connection, VPSUSER, VPSPASSWORD);
+
+// $tunnel = ssh2_tunnel($connection, LOCALHOST, 3306);
+
+// $db = new mysqli(LOCALHOST, DBUSER, DBPASSWORD, DBNAME, 3306);
     try {
+    //     shell_exec('ssh -p '. VPSPASSWORD .' -f -L 127.0.0.1:3307:127.0.0.1:3306  '.VPSUSER.'@'.HOST. ' sleep 60 >> logfile.log');
         $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
     } catch (Exception $e) {
+        // echo "<pre>";
+        // print_r($e->getTrace());
+        // echo "</pre>";
         die('Erreur : ' . $e->getMessage());
     }
     return $db;

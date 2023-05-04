@@ -42,7 +42,37 @@
             <div class="col-7">
                 <div class="row">
                     <div class="col pr-5 mr-5">
-                        <div class=" row mt-5 mb-3 pr-5">
+                        <div class="row mt-5 mb-3 pr-5">
+                            <div class="col">
+                                <h1 class="text-center">Confirmation</h1>
+                                <p>
+                                    Veuillez confirmer votre inscription en cochant les cases ci-dessous.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mt-5 mb-3 pr-5">
+                        <div>
+                            <div>
+                                <div class="fs-3">Type</div>
+                                <div></div>
+                                <div class="fs-3">Nom d'utilisateur</div>
+                                <div></div>
+                                <div class="fs-3">E-mail</div>
+                                <div></div>
+                                <div class="fs-3">Mot de passe</div>
+                                <div></div>
+                                <div class="fs-3">Nom</div>
+                                <div></div>
+                                <div class="fs-3">Prénom</div>
+                                <div></div>
+                                <div class="fs-3">Date de naissance</div>
+                                <div></div>
+                                <div class="fs-3">Numéro de téléphone</div>
+                                <div></div>
+                                <div class="fs-3">Adresse</div>
+                                <div></div>
+                            </div>
+                        </div>
                             <form action="../../core/verify3.php" method="post">
                                 <div class="col">
                                     <div class="form-check">

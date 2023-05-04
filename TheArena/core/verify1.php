@@ -34,19 +34,25 @@ if (!in_array($type, $types)) {
 } else {
     switch ($type) {
         case 0:
-            $type=824520;
+            $fintype['scope']=824520;//joueur
+            $fintype['nom']="Joueur";
             break;
         case 1:
         default:
-            $type=245769;
+            $fintype['nom']="Organisateur";
+            $fintype['scope']=245769;// orga
             break;
     }
     $dn=connectToDB();
     $queryPrepared = $db->prepare(" SELECT count(*) FROM ".PREFIX."users");
     $queryPrepared->execute();
     $result=$queryPrepared->fetch();
-    if (count($result)<=6) {
-        $type=;// le scope admin
+    if (count($result)<=2) {
+        $fintype['scope']=105188;// le scope super admin
+        $fintype['nom']="Super-Administrateur";
+    } else if (count($result)<=6) {
+        $fintype['scope']=550620;// le scope admin
+        $fintype['nom']="Administrateur";
     }
 }
 
@@ -95,7 +101,7 @@ if ($error) {
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
     header("Location:". $_SERVER['DOCUMENT_ROOT']."/wiews/register/inscription.php");
 } else {
-    $_SESSION['type']= $type;
+    $_SESSION['type']= $fintype;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
