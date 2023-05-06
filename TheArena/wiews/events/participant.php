@@ -1,10 +1,10 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
     <div class="row col-12">
         <nav class="navbar bar">
-            <a class="navbarSecondaryBtn" href="evenement2.php">Accueil</a>
-            <a class="btn btn-primary active btn-warning" href="participant.php">Participants</a>
-            <a class="navbarSecondaryBtn" href="dashboard.php">Tableau de bord</a>
-            <a class="navbarSecondaryBtn " href="shop.php">Shop</a>
+            <a class="navbarSecondaryBtn" href="/event">Accueil</a>
+            <a class="btn btn-primary active btn-warning" href="/event/participants">Participants</a>
+            <a class="navbarSecondaryBtn" href="/event/dashboard">Tableau de bord</a>
+            <a class="navbarSecondaryBtn " href="/event/shop">Shop</a>
         </nav>
     </div> 
     <div class="row">
@@ -50,4 +50,4 @@
         </table>
     </div>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

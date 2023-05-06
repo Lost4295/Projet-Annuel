@@ -1,6 +1,6 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
-<h1>Créer un événement</h1>
+<h1>Créer une salle</h1>
 <form action="" method="post">
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">Nom de la salle</label>
@@ -44,4 +44,4 @@
 	</div>
 </form>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

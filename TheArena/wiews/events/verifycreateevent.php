@@ -2,12 +2,11 @@
 session_start();
 require('../../core/functions.php');
 if (
-    count($_POST)!=5
+    count($_POST)!=4
     ||!isset($_POST["type"])
     ||empty($_POST["infos"])
-    ||empty($_POST["valueprice"])
-    ||empty($_POST["price"])
     ||empty($_POST["eventname"])
+    ||empty($_POST["game"])
 ) { print_r($_POST);
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
@@ -17,13 +16,10 @@ if (
 
 $type=$_POST["type"];
 $infos=$_POST["infos"];
-$valueprice=strtolower(trim($_POST["valueprice"]));
-$price=$_POST["price"];
 $eventname=$_POST["eventname"];
+$game=$_POST["game"];
 $errortype="";
 $errorinfos="";
-$errorvalueprice="";
-$errorprice="";
 $erroreventname="";
 
 $types=[0,1];
@@ -33,14 +29,10 @@ if (!in_array($type, $types)) {
 }
 
 if (strlen($infos)<3) {
-    $errorinfos="Ce nom d'utilisateur est trop court.";
-}
-if (strlen($infos)>30) {
-    $errorinfos="Ce nom d'utilisateur est trop long.";
+    $errorinfos="Cette description est trop courte.";
 }
 
-
-if (!empty($erroreventname)||!empty($errorinfos)||!empty($errorprice)||!empty($errortype)||!empty($errorvalueprice)) {
+if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)) {
     $error=false;
 } else {
     $error=true;
@@ -50,14 +42,22 @@ if (!empty($erroreventname)||!empty($errorinfos)||!empty($errorprice)||!empty($e
 if (!$error) {
     $_SESSION['erroreventname']= $erroreventname;
     $_SESSION['errorinfos']= $errorinfos;
-    $_SESSION['errorvalueprice']= $errorvalueprice;
-    $_SESSION['errorprice']= $errorprice;
     $_SESSION['errortype']= $errortype;
-    header("");
+    header("Location:/wiews/events/createeventform.php");
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
-    $_SESSION['valueprice']= $valueprice;
-    $_SESSION['price']= $price;
-    header("");
+    $_SESSION['game']= $game;
+    $_SESSION['type']= $type;
+    $connection=connectToDB();
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description) VALUES (?,?,?,?,?,?)");
+    $queryPrepared->execute([
+        $eventname,
+        $infos,
+        $price,
+        $valueprice,
+        $type,
+        $game
+    ]);
+    header(""); 
 }

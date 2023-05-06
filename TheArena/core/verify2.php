@@ -1,7 +1,7 @@
 <?php
 session_start();
 require('functions.php');
-
+if (isset($_POST)) {
 if (
     count($_POST)!=8
     ||empty($_POST["firstname"])
@@ -67,7 +67,7 @@ if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}/", $phonenumber)) {
     $errorphonenumber="Le numéro est invalide.";
 } else {
     $db = connectToDB();
-    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE phone=:phone");
+    $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE phone=:phone");
     $queryPrepared->execute([
         "phone"=>$phonenumber
     ]);
@@ -81,8 +81,8 @@ if (strlen($address) > 200) {
         $erroraddress= '200 carctères maximum.';
     } elseif (strlen($address) < 5) {
         $erroraddress= 'Il faut au moins 5 carctères.';
-    } elseif (!preg_match("/^[A-z0-9 ]+$/", $address)) {
-        $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace';
+    } elseif (!preg_match("/^[A-z0-9' -]+$/", $address)) {
+        $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace, \' et -';
     }
 
 if (!preg_match("/^[\d]{5}$/", $cp)) {
@@ -126,4 +126,5 @@ if ($error) {
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
     header("Location: ../wiews/register/fininscription.php");
+}
 }

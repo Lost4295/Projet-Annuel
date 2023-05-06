@@ -1,7 +1,6 @@
 <?php
-define('INDEX', 'location:../index.php');
-require "../../core/header.php";
-session_start();
+require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
+noReconnection();
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
         die("Valeurs manquantes ou modifiées.");
@@ -11,7 +10,7 @@ if ($_POST) {
 }
 if (isset($email)) {
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare(" SELECT password FROM zeya_users WHERE email=:email");
+    $queryPrepared = $connection->prepare(" SELECT password FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);
@@ -20,22 +19,23 @@ if (isset($email)) {
         if (password_verify($password, $result['password'])) {
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
-            $queryPrepared = $connection->prepare(" SELECT scope FROM zeya_users WHERE email=:email");
+            $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
             $queryPrepared->execute([
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
+            unset($_SESSION['error']);
             switch ($scope["scope"]) {
-                case 105188 : //super-admin
-                    header("location:../wiews/admin/indexadmin.php");
+                case SUPADMIN : //super-admin
+                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
                     break;
-                case 550620 : //admin
-                    header("location:../wiews/admin/indexadmin.php");
+                case ADMIN : //admin
+                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
                     break;
-                case 245769 : //organisateur
+                case ORGANIZER : //organisateur
                     header(INDEX);
                     break;
-                case 824520 : //joueur/organisateur
+                case ORGANIZER : //joueur/organisateur
                     header(INDEX);
                     break;
                 default : //Joueur
@@ -68,10 +68,11 @@ if (isset($_SESSION['error'])) {
     </div>
     <div class="mb-4">
         <label for="pwd" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="pwd" name="pwd" required>
+        <input type="password" class="form-control mb-3" id="pwd" name="pwd" required>
+        <a href='/login/help'>Un problème pour vous connecter ?</a>
     </div>
     <div>
         <input type="submit" class="form-control btn btn-primary mb-5" value="Se connecter">
     </div>
 </form>
-<?php require "../../core/footer.php"?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php"?>

@@ -1,10 +1,10 @@
-<?php require '../../core/header.php' ?>  
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>  
     <div class="row col-12">
         <nav class="navbar bar">
-            <a class="navbarSecondaryBtn" href="evenement2.php">Accueil</a>
-            <a class="navbarSecondaryBtn" href="participant.php">Participants</a>
-            <a class="btn btn-primary active btn-warning" href="tableauBord.php">Tableau de bord</a>
-            <a class="navbarSecondaryBtn " href="shop.php">Shop</a>
+            <a class="navbarSecondaryBtn" href="/events">Accueil</a>
+            <a class="navbarSecondaryBtn" href="/event/participants">Participants</a>
+            <a class="btn btn-primary active btn-warning" href="/event/dashboard">Tableau de bord</a>
+            <a class="navbarSecondaryBtn " href="/event/shop">Shop</a>
         </nav>
     </div> 
     <div class="row">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="col-12 d-flex align-content-center flex-column flex-wrap">
-        <a class="btn btn-primary  btn-warning" href="#">inscrire les score</a>
+        <a class="btn btn-primary  btn-warning" href="#">Inscrire les scores</a>
     </div>
     <div class="row">
         <div class="border col-6 d-flex align-content-center flex-column flex-wrap">
@@ -39,4 +39,4 @@
         </div>
     </div>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

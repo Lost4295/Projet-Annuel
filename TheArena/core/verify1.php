@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('functions.php');
+if (isset($_POST)) {
 if (
     count($_POST)!=5
     ||!isset($_POST["type"])
@@ -33,13 +34,25 @@ if (!in_array($type, $types)) {
 } else {
     switch ($type) {
         case 0:
-            $type=824520;
+            $fintype['scope']=PLAYER;//joueur
+            $fintype['nom']="Joueur";
             break;
         case 1:
         default:
-            $type=245769;
+            $fintype['nom']="Organisateur";
+            $fintype['scope']=ORGANIZER;// orga
             break;
-        
+    }
+    $db=connectToDB();
+    $queryPrepared = $db->prepare(" SELECT count(*) FROM ".PREFIX."users");
+    $queryPrepared->execute();
+    $result=$queryPrepared->fetch();
+    if (count($result)<=2) {
+        $fintype['scope']=SUPADMIN;// le scope super admin
+        $fintype['nom']="Super-Administrateur";
+    } elseif (count($result)<=6) {
+        $fintype['scope']=ADMIN;// le scope admin
+        $fintype['nom']="Administrateur";
     }
 }
 
@@ -53,8 +66,7 @@ if (strlen($username)>30) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $erroremail = "L'email est incorrect.";
 } else {
-    $db = connectToDB();
-    $queryPrepared = $db->prepare(" SELECT id FROM zeya_users WHERE email=:email");
+    $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);
@@ -87,11 +99,12 @@ if ($error) {
     $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorpwd']= $errorpwd;
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location: ../wiews/register/inscription.php");
+    header("Location:../wiews/register/inscription.php");
 } else {
-    $_SESSION['type']= $type;
+    $_SESSION['type']= $fintype;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
     header("Location: ../wiews/register/suiteinscription.php");
+}
 }

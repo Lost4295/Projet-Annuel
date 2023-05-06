@@ -1,10 +1,13 @@
 <?php
-function connectToDB():PDO
+
+require 'constantes.php';
+function connectToDB()
 {
     try {
-        $db = new PDO('mysql:host=54.36.180.242;dbname=pj_annuel;charset=utf8;port=3306', 'website', 'ConnardLV1');
+        // $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
+        $db = new PDO('mysql:host='.LOCALHOST.';dbname='.DBNAME.';charset=utf8;port=3306', 'root', '');
     } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
+        die('Erreur : ' . $e->getTrace());
     }
     return $db;
 }
@@ -12,7 +15,7 @@ function isConnected()
 {
     if (!empty($_SESSION["email"]) && (!empty($_SESSION["logged"]))) {
         $connect = connectToDB();
-        $queryPrepared = $connect->prepare("SELECT id FROM zeya_users WHERE email=:email");
+        $queryPrepared = $connect->prepare("SELECT id FROM ".PREFIX."users WHERE email=:email");
         $queryPrepared->execute(["email"=>$_SESSION["email"]]);
         $result = $queryPrepared->fetch();
         if (!empty($result)) {
@@ -21,15 +24,48 @@ function isConnected()
     }
     return false;
 }
+function whoIsConnected() : array
+{
+    if (isConnected()) {
+        $connect = connectToDB();
+        $queryPrepared = $connect->prepare("SELECT scope,username FROM ".PREFIX."users WHERE email=:email");
+        $queryPrepared->execute(["email"=>$_SESSION["email"]]);
+        $result = $queryPrepared->fetch();
+        if (!empty($result)) {
+            return [$result["scope"],$result["username"]];
+        }
+    } else {
+        redirectifNotConnected();
+    }
+}
 
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location: login.php");
+        header("Location:../wiews/register/login.php");
     }
 }
+function onlyAdmin():bool
+{
+    $scope =whoIsConnected()[0];
+    print_r($scope);
+    return ($scope == ADMIN || $scope == SUPADMIN)?true:false;
+}
 
-function unsetRegister() {
+function redirectIfNotAdmin()
+{
+    if (!onlyAdmin()) {
+        header("Location:/wiews/index.php");
+    }
+}
+function noReconnection()
+{
+    if (isConnected()) {
+        header("Location:/wiews/index.php");
+    }
+}
+function unsetwhenRegistered()
+{
         if (isset($_SESSION['errorfirstname'])) {
             unset($_SESSION['errorfirstname']);
         }
@@ -66,6 +102,10 @@ function unsetRegister() {
         if (isset($_SESSION['phonenumber'])) {
             unset($_SESSION['phonenumber']);
         }
+        unsetwhenRegistered2();
+    }
+    function unsetwhenRegistered2()
+    {
         if (isset($_SESSION['address'])) {
             unset($_SESSION['address']);
         }
@@ -95,12 +135,6 @@ function unsetRegister() {
         }
         if (isset($_SESSION['type'])) {
             unset($_SESSION['type']);
-        }
-        if (isset($_SESSION['username'])) {
-            unset($_SESSION['username']);
-        }
-        if (isset($_SESSION['email'])) {
-            unset($_SESSION['email']);
         }
         if (isset($_SESSION['pwd'])) {
             unset($_SESSION['pwd']);

@@ -42,13 +42,39 @@
             <div class="col-7">
                 <div class="row">
                     <div class="col pr-5 mr-5">
-                        <div class=" row mt-5 mb-3 pr-5">
+                        <div class="row mt-5 mb-3 pr-5">
+                            <div class="col">
+                                <h1 class="text-center">Confirmation</h1>
+                                <p>
+                                    Veuillez confirmer votre inscription en cochant les cases ci-dessous.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mt-5 mb-5 pr-5">
+                            <div class="row pr-5 mb-5">
+                                <div class="fs-3">Type</div>
+                                <div><?php session_start(); echo $_SESSION['type']['nom']?></div>
+                                <div class="fs-3">Nom d'utilisateur</div>
+                                <div><?php echo $_SESSION['username']?></div>
+                                <div class="fs-3">E-mail</div>
+                                <div><?php echo $_SESSION['email']?></div>
+                                <div class="fs-3">Nom</div>
+                                <div><?php echo $_SESSION['lastname']?></div>
+                                <div class="fs-3">Prénom</div>
+                                <div><?php echo $_SESSION['firstname']?></div>
+                                <div class="fs-3">Date de naissance</div>
+                                <div><?php echo $_SESSION['birthdate']?></div>
+                                <div class="fs-3">Numéro de téléphone</div>
+                                <div><?php echo $_SESSION['phonenumber']?></div>
+                                <div class="fs-3">Adresse</div>
+                                <div><?php echo $_SESSION['address']?></div>
+                            </div>
                             <form action="../../core/verify3.php" method="post">
                                 <div class="col">
                                     <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="1" id="cgu" name="cgu" required>
                                     <label class="form-check-label" for="cgu">
-                                    J'accepte les CGU de The Arena
+                                    J'accepte les <a href="/cgu">CGU de The Arena</a>
                                     </label>
                                     </div>
                                 </div>
@@ -64,11 +90,11 @@
                                 </div>
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <img src="captcha.php" width="100%">
+                                        <img src="/wiews/register/captcha.php" width="100%">
                                 <div class="col-md-6">
                                     <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
                                     <div class="invalid">
-                                    <?php session_start(); if(isset($_SESSION['errorcaptcha'])) { echo $_SESSION['errorcaptcha']; } ?>
+                                    <?php if (isset($_SESSION['errorcaptcha'])) { echo $_SESSION['errorcaptcha']; } ?>
                                 </div>
                                 </div>
                                 <div class="col-12">

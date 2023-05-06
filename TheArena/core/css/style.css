@@ -12,19 +12,59 @@ footer {
     font-family: 'Poppins', sans-serif;
     text-decoration: dotted;
 }
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    bottom: 600px;
+    right:50px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;    bottom: 6px;
+    right:50px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 .bar{
     background-color:#FEEBD5;
 }
 .messages{
-    position: relative;
-    bottom: 120px;
+    position: fixed;
+    bottom: 60px;
     right:50px;
-    z-index: 12;
+    z-index: 2;
 }
 
 .logo{
-    width: 65px;
-    height: auto;
+    width: auto;
+    height: 65px;
 }
 .textlogo{
     width: 130px;
@@ -50,6 +90,11 @@ footer {
     display: none;
 }
 
+}
+.bg-image{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #image{
@@ -86,6 +131,62 @@ footer {
         --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
         --bs-btn-active-border-color: #{rgba($white, .5)};
         --bs-btn-focus-border-color: #{rgba($white, .5)};
-        --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+        --bs-btn-focus-box-shadow: 0 0 0  rgba(255, 255, 255, );
     }
 }
+[data-bs-theme=dark] {
+    --bs-body-color: #adb5bd;
+    --bs-body-color-rgb: 173, 181, 189;
+    --bs-body-bg: #817597 !important;
+    --bs-body-bg-rgb: 33, 37, 41;
+    --bs-emphasis-color: #f8f9fa;
+    --bs-emphasis-color-rgb: 248, 249, 250;
+    --bs-secondary-color: rgba(173, 181, 189, 0.75);
+    --bs-secondary-color-rgb: 173, 181, 189;
+    --bs-secondary-bg: #343a40;
+    --bs-secondary-bg-rgb: 52, 58, 64;
+    --bs-tertiary-color: rgba(173, 181, 189, 0.5);
+    --bs-tertiary-color-rgb: 173, 181, 189;
+    --bs-tertiary-bg: #2b3035;
+    --bs-tertiary-bg-rgb: 43, 48, 53;
+    --bs-emphasis-color: #fff;
+    --bs-primary-text: #6ea8fe;
+    --bs-secondary-text: #dee2e6;
+    --bs-success-text: #75b798;
+    --bs-info-text: #6edff6;
+    --bs-warning-text: #ffda6a;
+    --bs-danger-text: #ea868f;
+    --bs-light-text: #f8f9fa;
+    --bs-dark-text: #dee2e6;
+    --bs-primary-bg-subtle: #031633;
+    --bs-secondary-bg-subtle: #212529;
+    --bs-success-bg-subtle: #051b11;
+    --bs-info-bg-subtle: #032830;
+    --bs-warning-bg-subtle: #332701;
+    --bs-danger-bg-subtle: #2c0b0e;
+    --bs-btn-bg: #3B3259;
+    --bs-light-bg-subtle: #343a40;
+    --bs-dark-bg-subtle: #1a1d20;
+    --bs-primary-border-subtle: #084298;
+    --bs-secondary-border-subtle: #495057;
+    --bs-success-border-subtle: #0f5132;
+    --bs-info-border-subtle: #055160;
+    --bs-warning-border-subtle: #664d03;
+    --bs-danger-border-subtle: #842029;
+    --bs-light-border-subtle: #495057;
+    --bs-dark-border-subtle: #343a40;
+    --bs-heading-color: #fff;
+    --bs-link-color: #6ea8fe;
+    --bs-link-hover-color: #9ec5fe;
+    --bs-link-color-rgb: 110, 168, 254;
+    --bs-link-hover-color-rgb: 158, 197, 254;
+    --bs-code-color: #e685b5;
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    .bar{
+        background-color: #8274B2 !important;
+    }
+    .bg-secondary{
+        background-color: #3B3259 !important;
+    }
+  }

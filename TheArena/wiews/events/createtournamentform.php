@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 <h1>Créer un tournoi</h1>
 <form action="" method="post" class="mb-5">
 <div class="mb-3">
@@ -20,6 +20,25 @@
     Payant
   </label>
 </div>
+                    <div class="invalid"><?php
+                                        if (isset($_SESSION["errorprice"])) {echo $_SESSION['errorprice'];}
+                                    ?></div>
+                    <div class="form-text" id="basic-addon1">
+                        Si l'événement est gratuit, tous les tournois le seront.
+                         Si l'événement est payant, tous les tournois ne le sont pas forcément.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-2 my-2">
+            <label for="valueprice" class="form-label">Prix</label>
+            <input type="text" class="form-control" id="valueprice" name="valueprice" required>
+            <div class="invalid"><?php
+                                        if (isset($_SESSION["errorvalueprice"])) {echo $_SESSION['errorvalueprice'];}
+                                    ?></div>
+            <div class="form-text mb-4" id="basic-addon2">Le prix de base pour s'inscrire à chaque tournoi créé.</div>
+
 
 
 <div class="mt-3 mb-5">
@@ -29,4 +48,4 @@
 
 </form>
 
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

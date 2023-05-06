@@ -1,4 +1,4 @@
-<?php require '../../core/header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
 <h1>Inscription à <?php echo "\"the evennnt\"" ?></h1>
 <div class= "row">
@@ -6,7 +6,7 @@
         <form action="" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom affiché </label>
-                <input type="text" class="form-control" id="name" value="<?php echo "pseudo de baase"?>">
+                <input type="text" class="form-control" id="name" value="<?php echo $_SESSION['username']?>">
                 <div class="form-text"> Ce nom sera affiché pendant le(s) tournoi(s).</div>
             </div>
             <h4>Inscription aux événements</h4>
@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                    <label class="form-check-label" for="cgu">J’ai lu les <a href="#">Termes et Conditions</a> de The Arena</label>
+                    <label class="form-check-label" for="cgu">J’ai lu et accepte les <a href="/cgu">Termes et Conditions</a> de The Arena</label>
                 </div>
             </div>
             <div class="mb-3">
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-<?php require '../../core/footer.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>
