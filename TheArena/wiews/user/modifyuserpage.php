@@ -49,16 +49,20 @@ if (!empty($result)) {
                 <input type="text" class="form-control"  id="phone" value="<?php echo $phone?>" disabled>
             </div>
         </div>
+        <div class="col my-4">
+            <label for="adresss" class="form-label">Adresse</label>
+            <input type="text" class="form-control" id="adresss" name="adresss" value="<?php echo $address; ?>" disabled>
+        </div>
         <p class="text-muted text-center"> Ces informations ne sont pas modifiables. Afin de pouvoir les modifier, merci de contacter un administrateur.</p>
 
         <div class="col-7 my-4">
             <label for="pseudo" class="form-label">Pseudo</label>
-            <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?php echo "le pseudo actuel la tu vois";?>">
+            <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?php echo $username;?>">
         </div>
 
         <div class="col-7 my-4">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email"  value="<?php echo "l'email";?>">
+            <input type="email" class="form-control" id="email" name="email"  value="<?php echo $email;?>">
         </div>
 
         <div class="col-7 my-4">

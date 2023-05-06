@@ -2,7 +2,7 @@
 
         <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
             <div class="row my-3">
-                <h2><u>Evenement<u></h2>
+                <h2>Événements</h2>
             </div>
             <div class="row my-3">
                 <div class="col"> 
@@ -38,10 +38,12 @@
                 </nav>
             </div>
         </div>
-
+<?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)){?>
         <div class="row my-3">
             <div>
-                <a>
+                <a href="/event/create">Créer un événement</a>
             </div>
         </div>
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>
+        <?php
+        }
+require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

@@ -26,10 +26,10 @@
                                 class="d-inline-block align-text-center textlogo">
                             </a>
                         </div>
-                        <?php session_start(); include 'functions.php';  if (isConnected()) {
-                            $attr = whoIsConnected(); if ($attr['0'] == /*le code d'admin*/'') { ?>
+                        <?php session_start(); include 'functions.php'; if (isConnected()) {
+                            $attr = whoIsConnected(); if ($attr[0] == SUPADMIN ||$attr[0] == ADMIN ) { ?>
                             <div class="d-flex flex-row"><div class="mx-3"><a class="btn btn-warning " href="/admin">Index Admin</a></div>
-                            <?php } echo "Connecté en tant que ".$attr['1'];?>
+                            <?php } echo "Connecté en tant que ".$attr['1']; ?>
                             <div class="d-flex flex-row"><div class="mx-3"><a class="btn btn-warning " href="/logout">Se déconnecter</a></div>
                             <div class="mx-2"><a class="btn btn-warning" href="/me">Ma page</a></div>
                         </div><?php } else { ?>
@@ -44,7 +44,7 @@
             </nav>
         </div>
     </div><!--notre sidebar-->
-    <div class="container-fluid ">
+    <div class="container-fluid px-0">
     <div class="row">
         <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
             <div class="w-100 d-flex flex-column justify-content-between">

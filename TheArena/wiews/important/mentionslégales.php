@@ -22,9 +22,6 @@
             <strong>Hébergeur</strong> : ovh – 2 rue Kellermann 59100 Roubaix 1007<br>
                         </p>
 
-            <div ng-bind-html="linkHTML"><p>Ce modèle de mentions légales est proposé par le <a href="https://fr.orson.io/1371/generateur-mentions-legales" title="générateur gratuit offert par Orson.io">générateur gratuit offert par Orson.io</a></p></div>
-
-
 
             <h2>2. Conditions générales d’utilisation du site et des services proposés.</h2>
 
@@ -145,7 +142,6 @@
             <p>
             Dans la limite de leurs attributions respectives et pour les finalités rappelées ci-dessus, les principales personnes susceptibles d’avoir accès aux données des Utilisateurs de <a href="https://thearena.litecloud.com">https://thearena.litecloud.com</a> sont principalement les agents de notre service client.</p>
             
-            <div ng-bind-html="rgpdHTML"></div>
 
 
             <h2>8. Notification d’incident</h2>
@@ -207,6 +203,7 @@
             Tout litige en relation avec l’utilisation du site <a href="https://thearena.litecloud.com">https://thearena.litecloud.com</a> est soumis au droit français. 
             En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.</p>
 
+            <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php"?>
 
 
         

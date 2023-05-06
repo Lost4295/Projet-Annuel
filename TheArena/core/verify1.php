@@ -34,24 +34,24 @@ if (!in_array($type, $types)) {
 } else {
     switch ($type) {
         case 0:
-            $fintype['scope']=824520;//joueur
+            $fintype['scope']=PLAYER;//joueur
             $fintype['nom']="Joueur";
             break;
         case 1:
         default:
             $fintype['nom']="Organisateur";
-            $fintype['scope']=245769;// orga
+            $fintype['scope']=ORGANIZER;// orga
             break;
     }
-    $dn=connectToDB();
+    $db=connectToDB();
     $queryPrepared = $db->prepare(" SELECT count(*) FROM ".PREFIX."users");
     $queryPrepared->execute();
     $result=$queryPrepared->fetch();
     if (count($result)<=2) {
-        $fintype['scope']=105188;// le scope super admin
+        $fintype['scope']=SUPADMIN;// le scope super admin
         $fintype['nom']="Super-Administrateur";
-    } else if (count($result)<=6) {
-        $fintype['scope']=550620;// le scope admin
+    } elseif (count($result)<=6) {
+        $fintype['scope']=ADMIN;// le scope admin
         $fintype['nom']="Administrateur";
     }
 }
@@ -99,12 +99,12 @@ if ($error) {
     $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorpwd']= $errorpwd;
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location:". $_SERVER['DOCUMENT_ROOT']."/wiews/register/inscription.php");
+    header("Location:../wiews/register/inscription.php");
 } else {
     $_SESSION['type']= $fintype;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
-    header("Location: ".$_SERVER['DOCUMENT_ROOT']."/wiews/register/suiteinscription.php");
+    header("Location: ../wiews/register/suiteinscription.php");
 }
 }

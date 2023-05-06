@@ -81,8 +81,8 @@ if (strlen($address) > 200) {
         $erroraddress= '200 carctères maximum.';
     } elseif (strlen($address) < 5) {
         $erroraddress= 'Il faut au moins 5 carctères.';
-    } elseif (!preg_match("/^[A-z0-9 ]+$/", $address)) {
-        $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace';
+    } elseif (!preg_match("/^[A-z0-9' -]+$/", $address)) {
+        $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace, \' et -';
     }
 
 if (!preg_match("/^[\d]{5}$/", $cp)) {

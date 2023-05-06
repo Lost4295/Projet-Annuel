@@ -50,29 +50,25 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row mt-5 mb-3 pr-5">
-                        <div>
-                            <div>
+                        <div class="row mt-5 mb-5 pr-5">
+                            <div class="row pr-5 mb-5">
                                 <div class="fs-3">Type</div>
-                                <div></div>
+                                <div><?php session_start(); echo $_SESSION['type']['nom']?></div>
                                 <div class="fs-3">Nom d'utilisateur</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['username']?></div>
                                 <div class="fs-3">E-mail</div>
-                                <div></div>
-                                <div class="fs-3">Mot de passe</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['email']?></div>
                                 <div class="fs-3">Nom</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['lastname']?></div>
                                 <div class="fs-3">Prénom</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['firstname']?></div>
                                 <div class="fs-3">Date de naissance</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['birthdate']?></div>
                                 <div class="fs-3">Numéro de téléphone</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['phonenumber']?></div>
                                 <div class="fs-3">Adresse</div>
-                                <div></div>
+                                <div><?php echo $_SESSION['address']?></div>
                             </div>
-                        </div>
                             <form action="../../core/verify3.php" method="post">
                                 <div class="col">
                                     <div class="form-check">
@@ -98,7 +94,7 @@
                                 <div class="col-md-6">
                                     <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
                                     <div class="invalid">
-                                    <?php session_start(); if(isset($_SESSION['errorcaptcha'])) { echo $_SESSION['errorcaptcha']; } ?>
+                                    <?php if (isset($_SESSION['errorcaptcha'])) { echo $_SESSION['errorcaptcha']; } ?>
                                 </div>
                                 </div>
                                 <div class="col-12">

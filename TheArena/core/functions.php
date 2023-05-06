@@ -3,21 +3,11 @@
 require 'constantes.php';
 function connectToDB()
 {
-// $connection = ssh2_connect(HOST, 22);
-
-// ssh2_auth_password($connection, VPSUSER, VPSPASSWORD);
-
-// $tunnel = ssh2_tunnel($connection, LOCALHOST, 3306);
-
-// $db = new mysqli(LOCALHOST, DBUSER, DBPASSWORD, DBNAME, 3306);
     try {
-    //     shell_exec('ssh -p '. VPSPASSWORD .' -f -L 127.0.0.1:3307:127.0.0.1:3306  '.VPSUSER.'@'.HOST. ' sleep 60 >> logfile.log');
-        $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
+        // $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
+        $db = new PDO('mysql:host='.LOCALHOST.';dbname='.DBNAME.';charset=utf8;port=3306', 'root', '');
     } catch (Exception $e) {
-        // echo "<pre>";
-        // print_r($e->getTrace());
-        // echo "</pre>";
-        die('Erreur : ' . $e->getMessage());
+        die('Erreur : ' . $e->getTrace());
     }
     return $db;
 }
@@ -47,33 +37,33 @@ function whoIsConnected() : array
     } else {
         redirectifNotConnected();
     }
-    redirectifNotConnected();
-    return [];
 }
 
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location: login.php");
+        header("Location:../wiews/register/login.php");
     }
 }
-function onlyAdmin() :bool
+function onlyAdmin():bool
 {
     $scope =whoIsConnected()[0];
-    if ($scope != 105188 || $scope != 550620) {
-        return false;
-    } else {
-        return true;
-    }
+    print_r($scope);
+    return ($scope == ADMIN || $scope == SUPADMIN)?true:false;
 }
 
 function redirectIfNotAdmin()
 {
     if (!onlyAdmin()) {
-        header("Location: index.php");
+        header("Location:/wiews/index.php");
     }
 }
-
+function noReconnection()
+{
+    if (isConnected()) {
+        header("Location:/wiews/index.php");
+    }
+}
 function unsetwhenRegistered()
 {
         if (isset($_SESSION['errorfirstname'])) {
@@ -145,9 +135,6 @@ function unsetwhenRegistered()
         }
         if (isset($_SESSION['type'])) {
             unset($_SESSION['type']);
-        }
-        if (isset($_SESSION['username'])) {
-            unset($_SESSION['username']);
         }
         if (isset($_SESSION['pwd'])) {
             unset($_SESSION['pwd']);

@@ -28,21 +28,74 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col py-2 my-4">
-                        <button class="btn btn-secondary btn-lg py-4 px-4">J'ai oublié mon mot de passe</button>
+                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b1">J'ai oublié mon mot de passe</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col py-5 my-4">
-                        <button class="btn btn-secondary btn-lg py-4 px-4">J'ai oublié mon email</button>
+                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b2">J'ai oublié mon email</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col py-5 my-4">
-                        <button class="btn btn-secondary btn-lg py-4 px-4">Mon compte est désactivé</button>
+                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b3" >Mon compte est désactivé</button>
                     </div>
+                </div>
+            </div>
+            <div id="mod1" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="s1">&times;</span>
+                    <p>fhgfbhg 111</p>
+                </div>
+            </div>
+            <div id="mod2" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="s2">&times;</span>
+                    <p>csqfvd 22222222</p>
+                </div>
+            </div>
+            <div id="mod3" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="s3">&times;</span>
+                    <p>bgfhgfhcn 3333333333333</p>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        var modal1 = document.getElementById("mod1");
+        var modal2 = document.getElementById("mod2");
+        var modal3 = document.getElementById("mod3");
+
+var btn1 = document.getElementById("b1");
+var btn2 = document.getElementById("b2");
+var btn3 = document.getElementById("b3");
+
+var span1 = document.getElementById("s1");
+var span2 = document.getElementById("s2");
+var span3 = document.getElementById("s3");
+
+
+
+btn1.onclick = function() {
+  modal1.style.display = "block";
+}
+btn2.onclick = function() {
+  modal2.style.display = "block";
+}
+btn3.onclick = function() {
+  modal3.style.display = "block";
+}
+
+span1.onclick = function() {
+  modal1.style.display = "none";
+}
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+span3.onclick = function() {
+  modal3.style.display = "none";
+}
+    </script>
 </body>
 </html>

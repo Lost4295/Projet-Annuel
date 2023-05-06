@@ -6,7 +6,7 @@
         <form action="" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Nom affiché </label>
-                <input type="text" class="form-control" id="name" value="<?php echo "pseudo de baase"?>">
+                <input type="text" class="form-control" id="name" value="<?php echo $_SESSION['username']?>">
                 <div class="form-text"> Ce nom sera affiché pendant le(s) tournoi(s).</div>
             </div>
             <h4>Inscription aux événements</h4>
