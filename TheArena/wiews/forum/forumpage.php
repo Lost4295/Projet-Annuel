@@ -3,7 +3,7 @@
 <h1>Nom du forum du coup</h1>
 
 
-<?php session_start(); if (isset($_SESSION["forum"])){
+<?php  if (isset($_SESSION["forum"])){
 foreach ($_SESSION["forum"] as $element){};}
 ?>
 <div class="w-100">

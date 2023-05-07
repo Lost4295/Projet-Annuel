@@ -45,57 +45,74 @@
             <div id="mod1" class="modal">
                 <div class="modal-content">
                     <span class="close" id="s1">&times;</span>
-                    <p>fhgfbhg 111</p>
+                    <form>
+                        <p> Merci de renseigner votre adresse email. Nous enverrons un mail à cette adresse pour réinitialiser votre mot de passe.</p>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Adresse Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <button type="submit" class="btn btn-primary">Continuer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="mod2" class="modal">
                 <div class="modal-content">
                     <span class="close" id="s2">&times;</span>
-                    <p>csqfvd 22222222</p>
+                    <form>
+                        <p> Merci de renseigner jsp quoi lol</p>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Adresse Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <button type="submit" class="btn btn-primary">Continuer</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div id="mod3" class="modal">
                 <div class="modal-content">
                     <span class="close" id="s3">&times;</span>
-                    <p>bgfhgfhcn 3333333333333</p>
+                    <form>
+                        <p> Merci de renseigner votre adresse email. Nous enverrons un mail à cette adresse pour pouvoir activer votre compte.</p>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Adresse Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <button type="submit" class="btn btn-primary">Continuer</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <script>
+        <script>
         var modal1 = document.getElementById("mod1");
         var modal2 = document.getElementById("mod2");
         var modal3 = document.getElementById("mod3");
 
-var btn1 = document.getElementById("b1");
-var btn2 = document.getElementById("b2");
-var btn3 = document.getElementById("b3");
+        var btn1 = document.getElementById("b1");
+        var btn2 = document.getElementById("b2");
+        var btn3 = document.getElementById("b3");
 
-var span1 = document.getElementById("s1");
-var span2 = document.getElementById("s2");
-var span3 = document.getElementById("s3");
+        var span1 = document.getElementById("s1");
+        var span2 = document.getElementById("s2");
+        var span3 = document.getElementById("s3");
 
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        btn2.onclick = function() {
+            modal2.style.display = "block";
+        }
+        btn3.onclick = function() {
+            modal3.style.display = "block";
+        }
 
-
-btn1.onclick = function() {
-  modal1.style.display = "block";
-}
-btn2.onclick = function() {
-  modal2.style.display = "block";
-}
-btn3.onclick = function() {
-  modal3.style.display = "block";
-}
-
-span1.onclick = function() {
-  modal1.style.display = "none";
-}
-span2.onclick = function() {
-  modal2.style.display = "none";
-}
-span3.onclick = function() {
-  modal3.style.display = "none";
-}
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+        span3.onclick = function() {
+            modal3.style.display = "none";
+        }
     </script>
 </body>
 </html>
