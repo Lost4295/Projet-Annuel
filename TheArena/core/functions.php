@@ -7,7 +7,7 @@ function connectToDB()
         // $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
         $db = new PDO('mysql:host='.LOCALHOST.';dbname='.DBNAME.';charset=utf8;port=3306', 'root', '');
     } catch (Exception $e) {
-        die('Erreur : ' . $e->getTrace());
+        die('Erreur : ' . $e->getMessage());
     }
     return $db;
 }
