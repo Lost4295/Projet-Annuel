@@ -41,7 +41,7 @@
 <?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)){?>
         <div class="row my-3">
             <div>
-                <a href="/event/create">Créer un événement</a>
+                <a href="/event_create">Créer un événement</a>
             </div>
         </div>
         <?php

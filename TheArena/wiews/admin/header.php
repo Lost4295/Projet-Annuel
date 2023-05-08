@@ -53,31 +53,31 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/notifications" class="nav-link link-dark aaaa">
+                            <a href="/admin_notifications" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Notifications
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/signalements" class="nav-link link-dark aaaa">
+                            <a href="/admin_signalements" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Sigalements
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/events" class="nav-link link-dark aaaa">
+                            <a href="/admin_events" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                                 Événements
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/users" class="nav-link link-dark aaaa">
+                            <a href="/admin_users" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                                 Utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/forums" class="nav-link link-dark aaaa">
+                            <a href="/admin_forums" class="nav-link link-dark aaaa">
                                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                                 Forums
                             </a>

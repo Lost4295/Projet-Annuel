@@ -2,9 +2,9 @@
     <div class="row col-12">
         <nav class="navbar bar">
             <a class="navbarSecondaryBtn" href="/event">Accueil</a>
-            <a class="btn btn-primary active btn-warning" href="/event/participants">Participants</a>
-            <a class="navbarSecondaryBtn" href="/event/dashboard">Tableau de bord</a>
-            <a class="navbarSecondaryBtn " href="/event/shop">Shop</a>
+            <a class="btn btn-primary active btn-warning" href="/event_participants">Participants</a>
+            <a class="navbarSecondaryBtn" href="/event_dashboard">Tableau de bord</a>
+            <a class="navbarSecondaryBtn " href="/event_shop">Shop</a>
         </nav>
     </div> 
     <div class="row">
