@@ -99,12 +99,12 @@ if ($error) {
     $_SESSION['erroremail']= $erroremail;
     $_SESSION['errorpwd']= $errorpwd;
     $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location:../wiews/register/inscription.php");
+    header("Location: /register");
 } else {
     $_SESSION['type']= $fintype;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
-    header("Location: ../wiews/register/suiteinscription.php");
+    header("Location: /register_2");
 }
 }

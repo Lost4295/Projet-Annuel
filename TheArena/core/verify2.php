@@ -115,7 +115,7 @@ if ($error) {
     $_SESSION['errorcp']= $errorcp;
     $_SESSION['errorcity']= $errorcity;
     $_SESSION['errorcountry']= $errorcountry;
-    header("Location: ../wiews/register/suiteinscription.php");
+    header("Location: /register_2");
 } else {
     $_SESSION['firstname']= $firstname;
     $_SESSION['lastname']= $lastname;
@@ -125,6 +125,6 @@ if ($error) {
     $_SESSION['cp']= $cp;
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
-    header("Location: ../wiews/register/fininscription.php");
+    header("Location: /register_3");
 }
 }

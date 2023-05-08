@@ -44,9 +44,9 @@ if (!empty($errorname)||!empty($errordesc)) {
 if (!$error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errordesc']= $errordesc;
-    header("Location:/wiews/forum/createblogform.php");
+    header("Location:/forum_create");
 } else {
     $_SESSION['blogname']= $blogname;
     $_SESSION['blogdesc']= $blogdesc;
-    header("Location: ");
+    header("Location: /forum ");
 }

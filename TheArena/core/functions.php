@@ -42,7 +42,7 @@ function whoIsConnected() : array
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location:../wiews/register/login.php");
+        header("Location: /login");
     }
 }
 function onlyAdmin():bool

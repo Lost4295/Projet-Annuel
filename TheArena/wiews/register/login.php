@@ -27,10 +27,10 @@ if (isset($email)) {
             unset($_SESSION['error']);
             switch ($scope["scope"]) {
                 case SUPADMIN : //super-admin
-                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
+                    header("location: /admin");
                     break;
                 case ADMIN : //admin
-                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
+                    header("location: /admin");
                     break;
                 case ORGANIZER : //organisateur
                     header(INDEX);

@@ -43,7 +43,7 @@ if (!$error) {
     $_SESSION['erroreventname']= $erroreventname;
     $_SESSION['errorinfos']= $errorinfos;
     $_SESSION['errortype']= $errortype;
-    header("Location:/wiews/events/createeventform.php");
+    header("Location:/event_create");
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
@@ -59,5 +59,5 @@ if (!$error) {
         $type,
         $game
     ]);
-    header(""); 
+    header("location: /event"); 
 }

@@ -1,18 +1,4 @@
-<?php
-  // session_start();
-  // require "../../core/functions.php";
-  // $connection = connectToDB();
-  // $_SESSION['email']=$email;
-  // $_SESSION['login']=true;
-  // $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
-  // $queryPrepared->execute([
-  //     "email"=>$email
-  // ]);
-  // $scope=$queryPrepared->fetch();
-  // if($scope != 550620){
-  //   header("location:indexSuperAdmin.php");
-  // }
-    
+<?php session_start();
     require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
     redirectIfNotAdmin();
 ?>

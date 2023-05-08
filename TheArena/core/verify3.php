@@ -44,7 +44,7 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
     if ($error) {
     $_SESSION['errornewsletter']= $errornewsletter;
     $_SESSION['errorcaptcha']= $errorcaptcha;
-    header("Location: ../wiews/register/fininscription.php");
+    header("Location: /register_3");
 } else {
     $connection = connectToDB();
     $query=$connection->prepare("INSERT INTO ".PREFIX."users
