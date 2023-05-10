@@ -35,9 +35,6 @@ if (isset($email)) {
                 case ORGANIZER : //organisateur
                     header(INDEX);
                     break;
-                case ORGANIZER : //joueur/organisateur
-                    header(INDEX);
-                    break;
                 default : //Joueur
                     header(INDEX);
                     break;

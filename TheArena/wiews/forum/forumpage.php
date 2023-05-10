@@ -10,8 +10,15 @@ foreach ($_SESSION["forum"] as $element){};}
     <ul class="list-group list-group-flush mb-4" >
         <li href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
-            <h5 class="mb-1">Ici, on aura l'username de la personne qui envoie le mess</h5>
-            <a class="more" href="#">···</a>
+                <h5 class="mb-1">Ici, on aura l'username de la personne qui envoie le mess</h5>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn more">...</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#home">Répondre</a>
+                        <a href="#about">Signaler</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
             </div>
             <div class="d-flex w-100 justify-content-end">
                 <small class="text-body-secondary">Date du dernier mess</small>
@@ -103,4 +110,35 @@ foreach ($_SESSION["forum"] as $element){};}
         <textarea type="textarea" id="message" name="message" placeholder="Entrez un message ici.." rows="5" class="form-control mb-5 pb-5"></textarea>
     </form>
 </div>
+
+<script>
+
+    //TODO Revoir la fonction
+
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+}
+// // Close the dropdown if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches('.dropbtn')) {
+//     var dropdowns = document.getElementsByClassName("dropdown-content");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// }
+</script>
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

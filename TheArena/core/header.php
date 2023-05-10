@@ -11,9 +11,9 @@
     <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col px-0">
+<div class="container-fluid px-0">
+    <div class="row ">
+        <div class="col">
             <nav class="navbar bar">
                 <div class="container-fluid d-flex">
                         <div class="mr-auto">
@@ -36,7 +36,6 @@
                         <div>
                             <a class="btn btn-warning" href="/login">Se connecter</a>
                             <a class="btn btn-warning" href="/register/1">S'inscrire</a>
-                            <!-- "<?php //echo $_SERVER['DOCUMENT_ROOT']; ?>/wiews/register/login.php" -->
                         </div>
                         <?php } ?> 
                     </div>
@@ -45,22 +44,22 @@
         </div>
     </div><!--notre sidebar-->
     <div class="container-fluid px-0">
-    <div class="row">
-        <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
-            <div class="w-100 d-flex flex-column justify-content-between">
-                <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
-                <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
-                <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
-                <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
+        <div class="row px-2">
+            <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
+                <div class="w-100 d-flex flex-column justify-content-between">
+                    <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
+                    <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
+                    <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                    <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
+                </div>
+            <p>Pages récentes:</p><?php //tableau here ?>
+            <div class="w-75 justify-content-center d-flex">
+                <ul>
+                    <li>bla</li>
+                    <li>bla</li>
+                    <li>bli</li>
+                </ul>
             </div>
-        <p>Pages récentes:</p>
-        <div class="w-75 justify-content-center d-flex">
-            <ul>
-                <li>bla</li>
-                <li>bla</li>
-                <li>bli</li>
-            </ul>
         </div>
-    </div>
-    <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
-        <div class="w-100 mb-5">
+        <div class="col-8 my-3 py-4 d-flex align-content-center">
+            <div class="w-100 mb-5">
