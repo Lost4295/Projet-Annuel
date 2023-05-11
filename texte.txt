@@ -1,0 +1,98 @@
+Email vérification:
+
+Vous avez créé votre compte sur The Arena et nous vous en remercions. Cependant, vous ne pourrez pas vous connecter
+sans que votre compte ait été vérifié. Veuillez cliquer sur le lien ci dessous pour pouvoir activer votre compte. 
+
+<lien>
+
+Vous avez reçu cet e-mail parce que vous avez demandé à activer votre compte pour vous connecter à votre compte The Arena.
+Si vous n'avez pas demandé à vous connecter, ignorez cet e-mail.
+
+Merci ! 
+L'équipe The Arena
+
+
+
+-----------------------------------------------------------
+MDP perdu
+
+
+Bonjour,
+Nous avons bien reçu votre demande de nouveau mot de passe. Afin de procéder à la création d’un nouveau mot de passe, nous vous invitons à cliquer sur le lien ci-dessous : 
+
+ 
+<link>DEFINIR UN NOUVEAU MOT DE PASSE
+ 
+
+
+Si vous n’êtes pas à l'origine de cette action,
+ veuillez contacter immédiatement notre centre de relation client au 01.23.45.67.89 
+ (prix d'un appel local) ou par mail à l'adresse suivante : aaaaaaaaaa@thearena.litecloud.com.
+
+
+Nous vous souhaitons de passer une excellente journée.
+L'équipe The Arena
+
+
+
+--------------------------------------------------------------------
+On connect
+
+
+Bonjour <pseudo>,
+Cet e-mail a été créé car une nouvelle connexion au compte <pseudo> a été établie le 19 septembre 2022 04:03:00 PDT (19 septembre 2022 11:03:00 UTC) depuis :
+•	Lieu : Paris, Île-de-France, France
+•	Appareil : Android 12
+•	Navigateur : N/A
+•	Adresse IP : 80.215.8.103
+Si vous êtes à l'origine de cette connexion, pas de problème ! Nous voulions juste vérifier qu'il s'agissait de vous.
+Si vous n'êtes pas à l'origine de cette connexion, vous devez immédiatement changer votre mot de passe sur The Arena pour assurer la sécurité de votre compte.
+
+
+Merci ! 
+L'équipe The Arena
+
+----------------------------------------------------------------------------
+
+Compte verrouillé
+
+
+Bonjour, 
+Nous avons reçu votre demande d'activation de compte. Utilisez le lien ci-dessous afin de pouvoir activer votre compte et pouvoir vous connecter au site.
+
+<link>
+
+Merci, 
+L'équipe The Arena
+
+
+
+-------------------------------------------------------------------------------
+TITRES DE NEWSLETTER 
+
+Events, Friends & Power Ranking: What's New?
+
+Meet New Friends & Stay on Top of Events
+
+Check Out Our Events, New Friends & Poweranking!
+
+Everything You Need to Know About Upcoming Events!
+
+New Events, Potential Friends & Updates - Don't Miss Out!
+
+--------------------------------------------------------------------------
+
+Bienvenue sur The Arena,
+
+Nous sommes ravis de vous présenter notre site dédié aux tournois et événements de jeux vidéo. 
+Que vous soyez un joueur professionnel ou un amateur passionné, The Arena est l'endroit idéal pour vous inscrire à des tournois,
+ participer à des événements et être classé en fonction de vos performances.
+
+Notre site est facile à utiliser et vous permet de trouver rapidement des événements et des tournois qui correspondent à
+ vos intérêts et à votre niveau de compétence. De plus, notre système de classement vous permet de voir où vous vous situez par rapport aux autres joueurs
+ et de suivre votre progression.
+
+Inscrivez-vous dès maintenant pour ne jamais manquer une opportunité de jouer, de vous améliorer et de vous classer parmi les meilleurs joueurs.
+
+Cordialement,
+L'équipe de The Arena

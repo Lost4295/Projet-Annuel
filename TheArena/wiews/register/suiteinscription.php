@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="Ma duper super page" content="Page HTML">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
     <title>The Arena-Connexion</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/core/css/bootstrap.css">
