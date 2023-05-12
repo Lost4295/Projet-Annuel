@@ -63,6 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="invalid">
+
                                     <?php session_start(); if (isset($_SESSION["errortype"])) {
                                         echo $_SESSION['errortype'];
                                     }

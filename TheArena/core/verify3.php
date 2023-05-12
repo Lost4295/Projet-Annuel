@@ -44,15 +44,16 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
     if ($error) {
     $_SESSION['errornewsletter']= $errornewsletter;
     $_SESSION['errorcaptcha']= $errorcaptcha;
-    header("Location: ../wiews/register/fininscription.php");
+    header("Location: ../wiews/register/fininscription.php"); // TODO : Finir pour avoir tout le côté mail
 } else {
     $connection = connectToDB();
     $query=$connection->prepare("INSERT INTO ".PREFIX."users
-    (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country, newsletter)
+    (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country,newsletter
+    ,activation_timeout,activation_code)
     VALUES
     (
         :scope,:username,:email,:password,:first_name,:last_name,:birthdate,
-        :phone,:address,:postal_code,:country,:newsletter
+        :phone,:address,:postal_code,:country,:newsletter,:activation_timeout,:activation_code
     )");
     $query->execute([
         "scope" =>$_SESSION['type'],
@@ -66,7 +67,9 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
         "address"=>$_SESSION['address'] . ", ". $_SESSION['city'],
         "postal_code"=>$_SESSION['cp'],
         "country"=>$_SESSION['country'],
-        "newsletter"=>$newsletter
+        "newsletter"=>$newsletter,
+        "activation_timeout"=> date("Y-m-d H:i:s", strtotime("+1 day")),
+        "activation_code"=>password_hash('', PASSWORD_DEFAULT),
     ]);
     unsetwhenRegistered();
     header("Location: ../wiews/index.php");

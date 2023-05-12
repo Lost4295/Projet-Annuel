@@ -28,17 +28,17 @@
                     <p>
                         <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations relatives au site
                     </p>
-                </div> 
+                </div>
                 <div>
                     <p>
                         <i class="bi bi-check-circle-fill text-info"></i>&emsp;&emsp;Informations personnelles
                     </p>
-                </div> 
+                </div>
                 <div>
                     <p>
                         <i class="bi bi-circle"></i>&emsp;&emsp;Confirmation
                     </p>
-                </div> 
+                </div>
             </div>
             <div class="col-7">
                 <div class="row">

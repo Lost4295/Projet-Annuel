@@ -17,6 +17,7 @@ if (isset($email)) {
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password'])) {
+            session_regenerate_id($delete_old_session=true);
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
             $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
