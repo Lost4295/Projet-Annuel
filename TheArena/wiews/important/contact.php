@@ -32,7 +32,8 @@
     <textarea class="form-control" id="message" rows="5"></textarea>
 </div>
 <span id="passwordHelpInline" class="form-text mb-3">
-En soumettant ce formulaire, vous acceptez que le site The Arena mémorise et utilise vos données personnelles afin de pouvoir vous contacter. L’éditeur du site s’engage à ne pas transmettre vos coordonnées à quelconque tiers ni les utiliser pour de la publicité.
+En soumettant ce formulaire, vous acceptez que le site The Arena mémorise et utilise vos données personnelles afin de pouvoir vous contacter. 
+ L’éditeur du site s’engage à ne pas transmettre vos coordonnées à quelconque tiers ni les utiliser pour de la publicité.
 </span>
 
 <div class="form-check mb-3">

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="Ma duper super page" content="Page HTML">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Arena-Connexion</title>
+    <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
+    <title>The Arena-Problème</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
@@ -81,6 +82,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="alert alert-success" id="alert">
+        <span class="closebtn" onclick="disappear();">&times;</span>
+            Si votre adresse mail est bien enregistrée, un email vous a été envoyé. Si vous ne recevez pas cet email,
+             vérifiez votre dossier de courriers indésirables. Sinon, essayez de recréer un compte.
+        </div>
+    </div>
+
         <script>
         var modal1 = document.getElementById("mod1");
         var modal2 = document.getElementById("mod2");
@@ -112,6 +121,12 @@
         }
         span3.onclick = function() {
             modal3.style.display = "none";
+        }
+
+        function disappear() {
+            var x = document.getElementById("alert");
+            x.style.opacity = "0";
+            setTimeout(function(){ x.style.display = "none"; }, 600);
         }
     </script>
 </body>

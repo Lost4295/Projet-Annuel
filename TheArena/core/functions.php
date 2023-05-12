@@ -146,3 +146,4 @@ function unsetwhenRegistered()
             unset($_SESSION['errorcaptcha']);
         }
     }
+
