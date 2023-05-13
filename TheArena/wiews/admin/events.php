@@ -1,5 +1,6 @@
 <?php require 'header.php' ?>
 <h1>Événements</h1>
+
 <table class="table table-hover table-bordered w-100">
     <thead>
         <th>Nom</th>

@@ -14,6 +14,7 @@ if (isset($email)) {
     $queryPrepared->execute([
         "email"=>$email
     ]);
+    
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password'])) {

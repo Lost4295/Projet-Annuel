@@ -22,4 +22,5 @@
     <div class="col-12 d-flex align-content-center flex-column flex-wrap">
         <a class="btn btn-primary  btn-warning" href="/event/register">S'inscrire</a>
     </div>
+
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

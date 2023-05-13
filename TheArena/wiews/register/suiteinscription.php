@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">

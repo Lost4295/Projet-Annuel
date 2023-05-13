@@ -15,6 +15,7 @@
         <li class="nav-item border">
           <a class="nav-link" href="#">Smash</a>
         </li>
+        
         <li class="nav-item border">
           <a class="nav-link" href="#">SC2</a>
         </li>

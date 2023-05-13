@@ -49,6 +49,7 @@ class DSNConfigurator
         return $configurator->configure(new PHPMailer($exceptions), $dsn);
     }
 
+
     /**
      * Configure PHPMailer instance with DSN string.
      *

@@ -1,5 +1,6 @@
 <?php require 'header.php'
 ?>
+
 <h1>Notifications</h1>
 <table class="table table-hover table-borderless">
 <div class="list-group">

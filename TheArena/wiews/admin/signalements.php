@@ -8,6 +8,7 @@
         <th>Contenu</th>
         <th>Actions</th>
     </thead>
+    
     <tbody>
         <tr>
             <td><span class="placeholder col-10"></span></td>

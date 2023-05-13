@@ -63,3 +63,4 @@ function activateUser($userId): bool
     $query = $db->prepare('UPDATE users SET active = 1, activated_at = CURRENT_TIMESTAMP WHERE id=:id');
     return $query->execute(['id'=> $userId]);
 }
+

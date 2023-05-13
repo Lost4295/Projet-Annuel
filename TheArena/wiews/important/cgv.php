@@ -196,6 +196,7 @@
 <br/>
 <h1>ARTICLE 12 - Litiges</h1>
 <br/>
+
 <p>Pour toute réclamation merci de contacter le service clientèle à l'adresse postale ou mail du Vendeur indiquée à l'ARTICLE 1 des présentes CGV.</p>
 <p>Le Client est informé qu'il peut en tout état de cause recourir à une médiation conventionnelle, auprès des instances de médiation sectorielles existantes ou à tout mode alternatif de règlement des différends (conciliation, par exemple) en cas de contestation, sur le site, dans la rubrique de contact.</p>
 <p>Le Client est également informé qu'il peut, également recourir à la plateforme de Règlement en Ligne des Litige (RLL) :<a>https://webgate.ec.europa.eu/odr/main/index.cfm?event=main.home.show</a></p>

@@ -7,6 +7,7 @@
 
 	// $listOfUsers = $résultats -> fetchAll();
 
+	
 ?>
 <table class="table table-hover table-bordered w-100" aria-describedby="users-list">
     <thead>

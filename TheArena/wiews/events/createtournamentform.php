@@ -20,6 +20,7 @@
     Payant
   </label>
 </div>
+
                     <div class="invalid"><?php
                                         if (isset($_SESSION["errorprice"])) {echo $_SESSION['errorprice'];}
                                     ?></div>

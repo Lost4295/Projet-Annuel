@@ -13,6 +13,7 @@
 <br/>
 <h1>Article 1 : Les mentions légales</h1>
 <br/>
+
 <p>L'édition et la direction de la publication du site <a href= https://thearena.litecloud.fr> https://thearena.litecloud.fr</a> est assurée par Webmaster ZEYA, domicilié 19 Rue Erard, 75012 Paris.</p>
 <p>Numéro de téléphone : 0000000000</p>
 <p>Adresse e-mail : postmaster@thearena.litecloud.fr.</p>

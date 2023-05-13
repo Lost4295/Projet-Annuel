@@ -16,6 +16,7 @@ if (
          puis de contacter un administrateur.");
 }
 
+
 $image=$_POST["image"];
 $pseudo=$_POST["pseudo"];
 $email=strtolower(trim($_POST["email"]));

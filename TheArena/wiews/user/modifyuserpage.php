@@ -7,6 +7,7 @@ $queryPrepared=$connection->prepare("SELECT * FROM ".PREFIX."users WHERE email=:
 $queryPrepared->execute([
     "email"=>$_SESSION["email"]
 ]);
+
 $result=$queryPrepared->fetch();
 if (!empty($result)) {
     print_r($result);

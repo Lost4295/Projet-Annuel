@@ -19,6 +19,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+
 namespace PHPMailer\PHPMailer;
 
 use League\OAuth2\Client\Grant\RefreshToken;

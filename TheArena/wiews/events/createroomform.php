@@ -1,5 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
+
 <h1>Créer une salle</h1>
 <form action="" method="post">
 	<div class="mb-3">

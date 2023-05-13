@@ -4,6 +4,7 @@ require " ../conf.inc.php " ;
 require " fonctions.php ";
 
 
+
 redirectIfNotAdmin();
 
 

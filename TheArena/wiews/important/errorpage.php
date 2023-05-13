@@ -13,5 +13,6 @@
     width="80"
     style="position:relative; top:<?php echo rand(10,500)?>px;left:<?php echo rand(10,500)?>px;bottom:<?php echo rand(10,500)?>px;right:<?php echo rand(10,500)?>px;">
 </div>
+
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

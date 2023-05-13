@@ -1,5 +1,6 @@
 <?php
 
+
 $origine = str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']);
 /*** ROUTES ***/
 $routes = array(

@@ -1,5 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
 
+
     <h1>Créer un article</h1>
     <form action="" method="post" class="mb-5 row-cols-lg-auto">
         <div class="mb-3">

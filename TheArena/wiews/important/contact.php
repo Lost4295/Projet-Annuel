@@ -16,6 +16,7 @@
     <label for="email" class="form-label">Adresse email</label>
     <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
 </div>
+
 <div class="col mb-3">
 <label for="type" class="form-label">Type de demande</label>
 <select class="form-select col mb-3" id="type"aria-label="Type de demande" required>

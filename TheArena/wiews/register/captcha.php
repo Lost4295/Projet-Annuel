@@ -15,6 +15,7 @@ $captcha = substr($listOfChars, 0, rand(6, 8));
 $_SESSION['captcha'] = $captcha;
 
 
+
 $listOfFonts = glob("fonts/*.ttf");
 
 $x = 30;

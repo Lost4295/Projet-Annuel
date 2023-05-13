@@ -12,6 +12,7 @@ if (
          puis de contacter un administrateur.");
 }
 
+
 $blogname= trim($_POST["blogname"]);
 $blogdesc= trim($_POST["blogdesc"]);
 $errorname="";

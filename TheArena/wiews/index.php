@@ -16,5 +16,6 @@
                     <img style="position: relative; left:0; width:200px; height:200px;" src="#">
                 </div>
             </div>
+
 <?php require $_SERVER['DOCUMENT_ROOT'].'/core/footer.php' ?>
 

@@ -1,5 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php"?>
 
+
 <h1>Créer un événement</h1>
     <form action="/wiews/events/verifycreateevent.php" method="post" class="mb-5 row-cols-lg-auto">
         <div class="mb-3">
