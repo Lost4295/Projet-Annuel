@@ -38,7 +38,7 @@ if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)) {
     $error=true;
 }
 
-
+//FIXME: Add the event to the database
 if (!$error) {
     $_SESSION['erroreventname']= $erroreventname;
     $_SESSION['errorinfos']= $errorinfos;
@@ -50,7 +50,7 @@ if (!$error) {
     $_SESSION['game']= $game;
     $_SESSION['type']= $type;
     $connection=connectToDB();
-    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description) VALUES (?,?,?,?,?,?)");
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description) VALUES (:eventname,:infos)");
     $queryPrepared->execute([
         $eventname,
         $infos,

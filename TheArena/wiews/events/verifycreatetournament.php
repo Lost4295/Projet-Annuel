@@ -59,7 +59,7 @@ if (!empty($errorname)||!empty($errorprice)||!empty($errordate)) {
     $error=true;
 }
 
-
+//FIXME: Add the tournament to the database
 if (!$error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errorprice']= $errorprice;

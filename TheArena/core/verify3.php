@@ -41,9 +41,10 @@ if ($captcha != $_SESSION['captcha']) {
 
 if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$error=false;}
 
+$table=[];
     if ($error) {
-    $_SESSION['errornewsletter']= $errornewsletter;
-    $_SESSION['errorcaptcha']= $errorcaptcha;
+    $table['errornewsletter']= $errornewsletter;
+    $table['errorcaptcha']= $errorcaptcha;
     header("Location: ../wiews/register/fininscription.php"); // TODO : Finir pour avoir tout le côté mail
 } else {
     $connection = connectToDB();
@@ -69,10 +70,10 @@ if (!empty($errornewsletter)|| !empty($errorcaptcha)) {$error=true;} else {$erro
         "country"=>$_SESSION['country'],
         "newsletter"=>$newsletter,
         "activation_timeout"=> date("Y-m-d H:i:s", strtotime("+1 day")),
-        "activation_code"=>password_hash('', PASSWORD_DEFAULT),
+        "activation_code"=>password_hash(generateActivationCode(), PASSWORD_DEFAULT),
     ]);
     unsetwhenRegistered();
-    header("Location: ../wiews/index.php");
+    header("Location: /");
 }
-
+return json_encode($table);
 }

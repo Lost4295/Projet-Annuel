@@ -1,5 +1,6 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 
+//FIXME Enregistrer les modifications dans la base de données(voir verifyuserpage.php)
 redirectIfNotConnected();
 $connection=connectToDB();
 $queryPrepared=$connection->prepare("SELECT * FROM ".PREFIX."users WHERE email=:email");

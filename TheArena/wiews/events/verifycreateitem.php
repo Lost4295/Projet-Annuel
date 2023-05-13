@@ -46,7 +46,7 @@ if (!empty($errorname)||!empty($errorprice)||!empty($errordescription)||!empty($
     $error=true;
 }
 
-
+//FIXME: Add the item to the database
 if (!$error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errorprice']= $errorprice;

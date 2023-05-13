@@ -105,17 +105,17 @@ if (
     $error=false;
 }
 
-
+$table =[];
 if ($error) {
-    $_SESSION['errorfirstname']= $errorfirstname;
-    $_SESSION['errorlastname']= $errorlastname;
-    $_SESSION['errorbirthdate']= $errorbirthdate;
-    $_SESSION['errorphonenumber']= $errorphonenumber;
-    $_SESSION['erroraddress']= $erroraddress;
-    $_SESSION['errorcp']= $errorcp;
-    $_SESSION['errorcity']= $errorcity;
-    $_SESSION['errorcountry']= $errorcountry;
-    header("Location: ../wiews/register/suiteinscription.php");
+    $table['errorfirstname']= $errorfirstname;
+    $table['errorlastname']= $errorlastname;
+    $table['errorbirthdate']= $errorbirthdate;
+    $table['errorphonenumber']= $errorphonenumber;
+    $table['erroraddress']= $erroraddress;
+    $table['errorcp']= $errorcp;
+    $table['errorcity']= $errorcity;
+    $table['errorcountry']= $errorcountry;
+    
 } else {
     $_SESSION['firstname']= $firstname;
     $_SESSION['lastname']= $lastname;
@@ -125,6 +125,6 @@ if ($error) {
     $_SESSION['cp']= $cp;
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
-    header("Location: ../wiews/register/fininscription.php");
 }
+return json_encode($table);
 }

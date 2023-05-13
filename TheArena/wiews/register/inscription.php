@@ -62,8 +62,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="invalid">
-
+                                <div class="invalidtype">
                                     <?php session_start(); if (isset($_SESSION["errortype"])) {
                                         echo $_SESSION['errortype'];
                                     }
@@ -79,7 +78,7 @@
                                         class="form-control"
                                         id="username"
                                         required>
-                                    <div class="invalid">
+                                    <div class="invalidusername">
                                         <?php if (isset($_SESSION["errorusername"])) {
                                             echo $_SESSION['errorusername'];
                                         }
@@ -97,7 +96,7 @@
                                         id="email"
                                         placeholder="john@doe.com"
                                         required>
-                                    <div class="invalid">
+                                    <div class="invalidemail">
                                         <?php if (isset($_SESSION["erroremail"])) {
                                             echo $_SESSION['erroremail'];
                                         }
@@ -115,7 +114,7 @@
                                     id="pwd"
             placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)"
                                     required>
-                                    <div class="invalid">
+                                    <div class="invalidpwd">
                                         <?php if (isset($_SESSION["errorpwd"])) {
                                             echo $_SESSION['errorpwd'];
                                         }
@@ -133,7 +132,7 @@
                                     id="confirmpwd"
             placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)"
                                     required>
-                                    <div class="invalid">
+                                    <div class="invalidpwdconfirm">
                                         <?php if (isset($_SESSION["errorpwdconfirm"])) {
                                             echo $_SESSION['errorpwdconfirm'];
                                         }
@@ -150,5 +149,22 @@
             </div>
         </div>
     </div>
+    <script> //TODO : Requête ajax + passage à la page suivante si tout est ok
+        var form1 = document.getElementById("form1");
+        var form2 = document.getElementById("form2");
+        var form3 = document.getElementById("form3");
+        var data =
+        function verify1(data){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                if (this.status == 200) {
+                    console.log(JSON.parse(this.responseText));
+                    window.location.href = "/core/verify2.php";
+                }
+            };
+        xhttp.open("GET", "/core/verify1.php");
+        xhttp.send();
+        }
+    </script>
 </body>
 </html>

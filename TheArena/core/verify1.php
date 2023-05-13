@@ -92,19 +92,21 @@ if (!empty($errortype)||!empty($errorusername)||!empty($errorpwd)||!empty($error
     $error=false;
 }
 
-
+$table= [];
 if ($error) {
-    $_SESSION['errortype']= $errortype;
-    $_SESSION['errorusername']= $errorusername;
-    $_SESSION['erroremail']= $erroremail;
-    $_SESSION['errorpwd']= $errorpwd;
-    $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
-    header("Location:../wiews/register/inscription.php");
+    
+    $table['errortype']= $errortype;
+    $table['errorusername']= $errorusername;
+    $table['erroremail']= $erroremail;
+    $table['errorpwd']= $errorpwd;
+    $table['errorpwdconfirm']= $errorpwdconfirm;
+    
 } else {
     $_SESSION['type']= $fintype;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
-    header("Location: ../wiews/register/suiteinscription.php");
 }
+
+return json_encode($table);
 }
