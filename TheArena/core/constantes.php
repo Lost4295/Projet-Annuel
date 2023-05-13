@@ -17,4 +17,4 @@ const NOREPLY     = "no-reply@thearena.litecloud.fr";
 const APP_URL     = "https://thearena.litecloud.fr";
 const MDP_NOREPLY = "tryryutrjHiYTToHYHm'978p708)70*G/";
 const POSTMASTER  = 'postmaster@thearena.litecloud.fr';
-const SMTP        = 'thearena.litecloud.fr';
+const SMTP        = 'thearena.litecloud.fr'; 
