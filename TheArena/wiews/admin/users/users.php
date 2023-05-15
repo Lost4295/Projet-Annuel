@@ -4,11 +4,12 @@
 <?php
 	// $connect = connectToDB();
 	// $résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
-
-	// $listOfUsers = $résultats -> fetchAll();
-
+	$db= connectToDB();
+	$query = $db->prepare('SELECT * FROM '.PREFIX.'`events`');
+	$query->execute();
+	$result = $query->fetchAll(PDO::FETCH_ASSOC);
+	?>
 	
-?>
 <table class="table table-hover table-bordered w-100" aria-describedby="users-list">
     <thead>
         <th>Pseudo</th>
