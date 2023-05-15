@@ -1,4 +1,4 @@
-<?php require 'header.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php" ?>
 
 <h1>Utilisateurs</h1>
 <?php
@@ -42,4 +42,4 @@
 ?>
     </tbody>
 </table>
-<?php include 'footer.php'?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

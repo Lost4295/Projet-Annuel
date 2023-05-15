@@ -1,5 +1,4 @@
-<?php require 'header.php';
-?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php" ?>
 
 <h1>Forums</h1>
 <table class="table table-hover table-bordered w-100">
@@ -34,4 +33,4 @@
     </tbody>
 </table>
 
-<?php include 'footer.php'?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>
