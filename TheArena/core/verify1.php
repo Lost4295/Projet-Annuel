@@ -92,7 +92,6 @@ if (!empty($errortype)||!empty($errorusername)||!empty($errorpwd)||!empty($error
     $error=false;
 }
 
-$table= [];
 if ($error) {
     
     $table['errortype']= $errortype;

@@ -15,7 +15,7 @@
   // }
     
     require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
-    redirectIfNotAdmin();
+    //redirectIfNotAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">

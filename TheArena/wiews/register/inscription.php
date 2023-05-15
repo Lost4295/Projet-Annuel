@@ -31,7 +31,7 @@
             <div class="col-7">
                 <div class="row">
                     <div class="col pr-5 mr-5">
-                        <form action="/core/verify1.php" method="post">
+                        <form action="/core/verify1.php" method="post" id="form1">
                             <div class="row mt-5 mb-3 pr-5">
                                 <div class="col">
                                     <label for="type" class="form-label">Type</label>
@@ -153,18 +153,72 @@
         var form1 = document.getElementById("form1");
         var form2 = document.getElementById("form2");
         var form3 = document.getElementById("form3");
-        var data =
-        function verify1(data){
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function() {
+        var data ='';
+        form1.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var type = document.querySelector('input[name="type"]:checked').value;
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var pwd = document.getElementById("pwd").value;
+            var confirmpwd = document.getElementById("confirmpwd").value;
+            data = {
+                type: type,
+                username: username,
+                email: email,
+                pwd: pwd,
+                confirmpwd: confirmpwd
+            };
+            console.log(data);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/core/verify1.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(data));
+            xhr.onload = function() {
                 if (this.status == 200) {
                     console.log(JSON.parse(this.responseText));
-                    window.location.href = "/core/verify2.php";
+                    //window.location.href = "/core/verify1.php";
                 }
             };
-        xhttp.open("GET", "/core/verify1.php");
-        xhttp.send();
-        }
+        });
+
+//         var url = 'https://example.com/api/data';
+// var data = { name: 'John', age: 30 };
+
+// fetch(url, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(data)
+// })
+// .then(function(response) {
+//     if (response.ok) {
+//         return response.json();
+//     } else {
+//         throw new Error('Error: ' + response.status);
+//     }
+// })
+// .then(function(data) {
+//     // Handle the response data
+//     console.log(data);
+// })
+// .catch(function(error) {
+//     // Handle any errors
+//     console.log(error);
+// });
+
+
+//         function verify1(data){
+//             const xhttp = new XMLHttpRequest();
+//             xhttp.onload = function() {
+//                 if (this.status == 200) {
+//                     console.log(JSON.parse(this.responseText));
+//                     window.location.href = "/core/verify2.php";
+//                 }
+//             };
+//         xhttp.open("GET", "/core/verify1.php");
+//         xhttp.send();
+//         }
     </script>
 </body>
 </html>

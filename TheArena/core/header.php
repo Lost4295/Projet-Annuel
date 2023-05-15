@@ -11,9 +11,9 @@
     <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
 </head>
 <body>
-<div class="container-fluid px-0">
+<div class="container-fluid pl-0">
     <div class="row ">
-        <div class="col">
+        <div class="col px-0">
             <nav class="navbar bar">
                 <div class="container-fluid d-flex">
                         <div class="mr-auto">
@@ -43,8 +43,8 @@
             </nav>
         </div>
     </div><!--notre sidebar-->
-    <div class="container-fluid px-0">
-        <div class="row px-2">
+    <div class="container-fluid pl-0">
+        <div class="row">
             <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
                 <div class="w-100 d-flex flex-column justify-content-between">
                     <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
