@@ -37,7 +37,7 @@
                             <a class="btn btn-warning" href="/login">Se connecter</a>
                             <a class="btn btn-warning" href="/register/1">S'inscrire</a>
                         </div>
-                        <?php } ?> 
+                        <?php } ?>
                     </div>
                 </div>
             </nav>
@@ -63,5 +63,3 @@
         </div>
         <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
             <div class="w-100 mb-5">
-
-            
