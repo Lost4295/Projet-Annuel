@@ -15,7 +15,7 @@ define("ENDTD", "</td>");?>
 		<th>Scope</th>
 		<th>Pseudo</th>
 		<th>Email</th>
-		<th>visibility</th>
+		<th>Visibilité</th>
 		<th>Statut</th>
 		<th>Actions</th>
     </thead>
@@ -27,17 +27,13 @@ define("ENDTD", "</td>");?>
 					echo TD.$user["scope"].ENDTD ;
 					echo TD.$user["username"].ENDTD ;
 					echo TD.$user["email"].ENDTD ;
-					echo TD.$user["phone"].ENDTD ;
-					echo TD.$user["address"].ENDTD ;
-					echo TD.$user["postal_code"].ENDTD ;
-					echo TD.$user["country"].ENDTD ;
 					echo TD.$user["visibility"].ENDTD ;
 					echo TD.$user["status"].ENDTD ;
-					echo TD."<a href='/admin/users/read?id= ". $user["id"]." ' class='btn btn-info'>Plus d'informations</a>".ENDTD;
-					
+					echo TD."<a href='/admin/users/read?id=". $user["id"]."' class='btn btn-info'>Plus d'informations</a>".ENDTD;
                     echo " </tr> ";
 				}
 ?>
     </tbody>
 </table>
+<a href="/admin/users/create" class="btn-primary btn">Créer un utilisateur</a>
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

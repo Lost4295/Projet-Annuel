@@ -1,9 +1,5 @@
 <?php
 require 'functions.php';
-function generateActivationCode(): string
-{
-    return bin2hex(random_bytes(16));
-}
 function isUserActive($email)
 {
     $connect = connectToDB();

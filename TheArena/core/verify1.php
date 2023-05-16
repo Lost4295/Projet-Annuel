@@ -34,13 +34,13 @@ if (!in_array($type, $types)) {
 } else {
     switch ($type) {
         case 0:
-            $fintype['scope']=PLAYER;//joueur
-            $fintype['nom']="Joueur";
+            $type['scope']=PLAYER;//joueur
+            $type['nom']="Joueur";
             break;
         case 1:
         default:
-            $fintype['nom']="Organisateur";
-            $fintype['scope']=ORGANIZER;// orga
+            $type['nom']="Organisateur";
+            $type['scope']=ORGANIZER;// orga
             break;
     }
     $db=connectToDB();
@@ -48,11 +48,11 @@ if (!in_array($type, $types)) {
     $queryPrepared->execute();
     $result=$queryPrepared->fetch();
     if (count($result)<=2) {
-        $fintype['scope']=SUPADMIN;// le scope super admin
-        $fintype['nom']="Super-Administrateur";
+        $type['scope']=SUPADMIN;// le scope super admin
+        $type['nom']="Super-Administrateur";
     } elseif (count($result)<=6) {
-        $fintype['scope']=ADMIN;// le scope admin
-        $fintype['nom']="Administrateur";
+        $type['scope']=ADMIN;// le scope admin
+        $type['nom']="Administrateur";
     }
 }
 
@@ -101,7 +101,7 @@ if ($error) {
     $table['errorpwdconfirm']= $errorpwdconfirm;
     
 } else {
-    $_SESSION['type']= $fintype;
+    $_SESSION['type']= $type;
     $_SESSION['username']= $username;
     $_SESSION['email']= $email;
     $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);

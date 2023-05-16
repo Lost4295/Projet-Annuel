@@ -3,13 +3,12 @@
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $sql = "DELETE FROM `liste` WHERE `id`=:id;";
 
-    $query = $db->prepare($sql);
+    $query = $db->prepare("UPDATE FROM ".PREFIX."users SET visibility=-1 and status=-1 WHERE `id`=:id;");
 
     $query->execute([':id'=>$id]);
 
     header('Location: index.php');
 }
 
-require_once('close.php');
+

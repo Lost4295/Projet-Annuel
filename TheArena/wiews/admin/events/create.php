@@ -44,4 +44,3 @@ if(isset($_POST)){
         
 }//TODO : Adapter à chaque catégorie
 
-require_once('close.php');

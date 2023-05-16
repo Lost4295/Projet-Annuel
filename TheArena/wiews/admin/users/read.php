@@ -15,7 +15,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header('Location: index.php');
 }
 
-require_once('close.php');
+
 
 //TODO : Adapter à chaque catégorie
 ?>
@@ -36,5 +36,12 @@ require_once('close.php');
 			<p>Visibilité : <?php echo $user["visibility"] ?></p>
 			<p>Statut : <?php echo $user["status"] ?></p>
 
-    <p><a href="update.php?id=<?= $produit['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $produit['id'] ?>">Supprimer</a></p>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>
+    <div>
+    <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données reltives à la personne</a>
+    <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données concernant le compte</a>
+    <a class="btn btn-primary m-2" href="delete.php?id=<?php echo $user['id']?>">Pseudo suppression</a>
+	</div>
+
+
+	<a class="btn btn-primary m-2" href="removeUser.php?id=<?php echo $user['id']?>">Supprimer( Attention, cela supprime totalement !)</a>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ;?>

@@ -27,13 +27,13 @@
         <div class="row mr-5 mt-3">
             <div class="col-3 d-flex flex-column mt-5 justify-content-between">
                 <div>
-                    <p><i class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
+                    <p><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
                 </div>
                 <div>
-                    <p><i class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
+                    <p><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
                 </div>
                 <div>
-                    <p><i class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
+                    <p><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
                 </div>
             </div>
             <div class="col-7">
@@ -294,6 +294,9 @@ let btn = document.getElementById('continue');
 let form1 = document.getElementById("form1");
 let form2 = document.getElementById("form2");
 let form3 = document.getElementById("form3");
+let check1 = document.getElementById("check1");
+let check2 = document.getElementById("check2");
+let check3 = document.getElementById("check3");
 
 form2.setAttribute("hidden","");
 form3.setAttribute("hidden","");
@@ -305,6 +308,7 @@ function clickHandler(event) {
         form1.setAttribute("hidden","");
         form2.removeAttribute("hidden");
         form3.setAttribute("hidden","");
+        check1.setAttribute("class","bi bi-check-circle-fill text-info");
         return;
     }
     
@@ -312,80 +316,11 @@ function clickHandler(event) {
         form1.setAttribute("hidden","");
         form2.setAttribute("hidden","");
         form3.removeAttribute("hidden");
+        check3.setAttribute("class","bi bi-check-circle-fill text-info");
         btn.innerHTML = "M'inscrire";
         return btn.setAttribute("type", "submit");
     }
 }
-
-//      var form1 = document.getElementById("form1");
-//      var form2 = document.getElementById("form2");
-//      var form3 = document.getElementById("form3");
-//      var data ='';
-//      form1.addEventListener('submit', function(e) {
-//          e.preventDefault();
-//          var type = document.querySelector('input[name="type"]:checked').value;
-//          var username = document.getElementById("username").value;
-//          var email = document.getElementById("email").value;
-//          var pwd = document.getElementById("pwd").value;
-//          var confirmpwd = document.getElementById("confirmpwd").value;
-//          data = {
-// type: type,
-// username: username,
-// email: email,
-// pwd: pwd,
-// confirmpwd: confirmpwd
-//          };
-//          console.log(data);
-//          var xhr = new XMLHttpRequest();
-//          xhr.open('POST', '/core/verify1.php', true);
-//          xhr.setRequestHeader('Content-Type', 'application/json');
-//          xhr.send(JSON.stringify(data));
-//          xhr.onload = function() {
-// if (this.status == 200) {
-// console.log(JSON.parse(this.responseText));
-//window.location.href = "/core/verify1.php";
-// }
-//          };
-//      });
-
-//         var url = 'https://example.com/api/data';
-// var data = { name: 'John', age: 30 };
-
-// fetch(url, {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-// })
-// .then(function(response) {
-//     if (response.ok) {
-//         return response.json();
-//     } else {
-//         throw new Error('Error: ' + response.status);
-//     }
-// })
-// .then(function(data) {
-//     // Handle the response data
-//     console.log(data);
-// })
-// .catch(function(error) {
-//     // Handle any errors
-//     console.log(error);
-// });
-
-
-//         function verify1(data){
-//             const xhttp = new XMLHttpRequest();
-//             xhttp.onload = function() {
-//                 if (this.status == 200) {
-//                     console.log(JSON.parse(this.responseText));
-//                     window.location.href = "/core/verify2.php";
-//                 }
-//             };
-//         xhttp.open("GET", "/core/verify1.php");
-//         xhttp.send();
-//         }
 </script>
 </body>
 

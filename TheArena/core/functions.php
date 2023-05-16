@@ -76,6 +76,11 @@ function noReconnection()
         header("Location:/wiews/index.php");
     }
 }
+
+function generateActivationCode(): string
+{
+    return bin2hex(random_bytes(16));
+}
 function unsetwhenRegistered()
 {
         if (isset($_SESSION['errorfirstname'])) {

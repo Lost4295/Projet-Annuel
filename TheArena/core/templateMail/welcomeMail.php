@@ -1,6 +1,6 @@
 <?php require "headerMail.php" ?>
-    <div class="div-container">
-        <div class="row">
+    <div class='div-container'>
+        <div class='row'>
             <p>Bienvenue pseudo,<br></p>
             <p>Nous sommes ravis de vous présenter notre site dédié aux tournois et événements de jeux vidéo. 
 Que vous soyez un joueur professionnel ou un amateur passionné, The Arena est l'endroit idéal pour vous inscrire à des tournois,<br>

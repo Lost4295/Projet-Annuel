@@ -57,7 +57,7 @@ $table=[];
         :phone,:address,:postal_code,:country,:newsletter,:activation_timeout,:activation_code
     )");
     $query->execute([
-        "scope" =>$_SESSION['type'],
+        "scope" =>$_SESSION['type']["scope"],
         "username"=>$_SESSION['username'],
         "email"=>$_SESSION['email'],
         "password"=>$_SESSION['pwd'],

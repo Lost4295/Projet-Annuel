@@ -31,7 +31,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $result = $query->fetch();
 }
 
-require_once('close.php');
+
 //TODO : Adapter à chaque catégorie
 ?>
 

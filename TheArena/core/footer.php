@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div class="col px-0">
-        <footer class="footer bar py-4">
+        <footer class="footer specbar py-4">
             <div class="d-flex justify-content-between align-items-center">
                 <img src="../../img/logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center logo">
                 <div class="d-flex justify-content-between">

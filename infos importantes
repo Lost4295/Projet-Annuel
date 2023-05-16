@@ -1,0 +1,21 @@
+SCOPES :
+
+const ADMIN       = 550620;
+const SUPADMIN    = 105188;
+const PLAYER      = 824520 ;
+const ORGANIZER   = 245769;
+
+
+VISIBILITY EN BASE :
+
+-1 : soft deleted
+0 : non activé
+1 : actif et privé
+2 : actif et public 
+
+STATUS :
+
+-1 : Inactif et invisible (so soft deleted) 
+0 : Créé mais inactif (so visible)
+1 : Actif
+

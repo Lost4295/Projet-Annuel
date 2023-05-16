@@ -15,7 +15,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header('Location: index.php');
 }
 
-require_once('close.php');
+
 //TODO : Adapter à chaque catégorie
 ?>
 <!DOCTYPE html>

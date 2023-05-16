@@ -6,10 +6,10 @@
     padding: 20px;
     transition: opacity 0.6s;
     margin-bottom: 15px;
-  }
-  
-  /* The close button */
-  .closebtn {
+}
+
+/* The close button */
+.closebtn {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -18,12 +18,12 @@
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  /* When moving the mouse over the close button */
-  .closebtn:hover {
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
     color: black;
-  }
+}
 
 footer {
     position: relative;
@@ -32,140 +32,170 @@ footer {
     width: 100%;
     background-color: #FEEBD5;
 }
+
 * {
     font-family: 'Kanit', sans-serif;
     font-family: 'Poppins', sans-serif;
     text-decoration: dotted;
 }
+
 .dropbtn {
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-  }
-  
-  .dropbtn:hover, .dropbtn:focus {
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
     background-color: #f0ede0;
-  }
-  
-  .dropdown {
+}
+
+.dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown a:hover {background-color: #ddd;}
-  
-  .show {display: block;}
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 10; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 10;
+    /* Sit on top */
     left: 0;
     top: 0;
     bottom: 600px;
-    right:50px;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;    bottom: 6px;
-    right:50px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    right: 50px;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
 
-  }
-  
-  /* The Close Button */
-  .close {
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    bottom: 6px;
+    right: 50px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+
+}
+
+/* The Close Button */
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.contented {
+    width: 280px;
+    height: 88vh;
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-
-.bar{
-    background-color:#FEEBD5;
 }
-.messages{
+
+
+.bar {
+    background-color: #FEEBD5;
+    height: 12vh;
+}
+.specbar {
+    background-color: #FEEBD5;
+}
+.messages {
     position: fixed;
     bottom: 60px;
-    right:50px;
+    right: 50px;
     z-index: 2;
 }
 
-.logo{
+.logo {
     width: auto;
     height: 65px;
 }
-.textlogo{
+
+.textlogo {
     width: 130px;
     height: auto;
 }
 
-.forumbtn{
-    height:75px;
-}
-.more{
-    font-size:40px; 
-    text-decoration:none; 
-    color:black;
+.forumbtn {
+    height: 75px;
 }
 
-.aaaa:hover{
+.more {
+    font-size: 40px;
+    text-decoration: none;
+    color: black;
+}
+
+.aaaa:hover {
     background-color: #edad0b;
-    color:white;
+    color: white;
 }
 
-@media (max-width: 685px) { 
-*{
-    display: none;
-}
+@media (max-width: 685px) {
+    * {
+        display: none;
+    }
 
 }
-.bg-image{
+
+.bg-image {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#image{
+#image {
     display: none;
 }
 
-.invalid{
-    color:red;
-    font-size:small;
+.invalid {
+    color: red;
+    font-size: small;
 }
 
 
@@ -190,9 +220,10 @@ footer {
         --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
         --bs-btn-active-border-color: #{rgba($white, .5)};
         --bs-btn-focus-border-color: #{rgba($white, .5)};
-        --bs-btn-focus-box-shadow: 0 0 0  rgba(255, 255, 255, );
+        --bs-btn-focus-box-shadow: 0 0 0 rgba(255, 255, 255, );
     }
 }
+
 [data-bs-theme=dark] {
     --bs-body-color: #adb5bd;
     --bs-body-color-rgb: 173, 181, 189;
@@ -242,10 +273,12 @@ footer {
     --bs-code-color: #e685b5;
     --bs-border-color: #495057;
     --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
-    .bar{
+
+    .bar {
         background-color: #8274B2 !important;
     }
-    .bg-secondary{
+
+    .bg-secondary {
         background-color: #3B3259 !important;
     }
-  }
+}
