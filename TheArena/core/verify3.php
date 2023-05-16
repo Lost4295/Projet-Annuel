@@ -74,9 +74,9 @@ $table=[];
     ]);
     unsetwhenRegistered();
     //TODO: Envoyer un mail de validation, pour de vrai
-    $activationCode = 'caca';
-    $subject='Validation du titre';
-    $email='snzonzi1@myges.fr';
+    $activationCode = generateActivationCode();
+    $subject='Validation du compte The Arena : '.$_SESSION['username'];
+    $email=$_SESSION['email'];
     $url = "http://thearena.litecloud.fr/core/auth.php?email=".$email."&activationCode=".$activationCode;
     $body='Clique sur le lien pour valider le compte ! <a href='.$url.'> Cliquer</a><br><img src=cid:logo>';
     sendEmail($email, $subject, $body);
