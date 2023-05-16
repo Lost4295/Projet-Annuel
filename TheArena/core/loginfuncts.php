@@ -43,17 +43,14 @@ function findUnverifiedUser(string $activationCode, string $email)
     $user = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // already expired, delete the in active user with expired activation code
         if ((int)$user['expired'] === 1) {
             deleteUserById($user['id']);
             return null;
         }
-        // verify the password
         if (password_verify($activationCode, $user['activationCode'])) {
             return $user;
         }
     }
-
     return null;
 }
 

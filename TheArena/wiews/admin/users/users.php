@@ -1,42 +1,39 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
+define("TD", "<td>");
+define("ENDTD", "</td>");?>
 
 <h1>Utilisateurs</h1>
 <?php
-	// $connect = connectToDB();
-	// $résultats = $connexion -> execute(" SELECT * FROM ". PREFIX ."users");
 	$db= connectToDB();
-	$query = $db->prepare('SELECT * FROM '.PREFIX.'`events`');
-	$query->execute();
-	$result = $query->fetchAll(PDO::FETCH_ASSOC);
+	$query = $db->query(" SELECT * FROM ". PREFIX ."users");
+	$listOfUsers = $query->fetchAll(PDO::FETCH_ASSOC);
 	?>
-	
+
 <table class="table table-hover table-bordered w-100" aria-describedby="users-list">
     <thead>
-        <th>Pseudo</th>
-        <th>Email</th>
-        <th>Contenu</th><!-- d'autres infos au besoin jsp -->
-        <th>Actions</th>
+		<th>id</th>
+		<th>Scope</th>
+		<th>Pseudo</th>
+		<th>Email</th>
+		<th>visibility</th>
+		<th>Statut</th>
+		<th>Actions</th>
     </thead>
     <tbody>
 <?php
-    foreach ( $listOfUsers as  $user ){
+    foreach ($listOfUsers as $user){
 					echo " <tr> ";
-
-					echo " <td> ". $user ["id"]." </td> " ;
-					echo " <td> ". $user ["scope"]." </td> " ;
-					echo " <td> ". $user ["first_name"]." </td> " ;
-					echo " <td> ". $user ["last_name"]." </td> " ;
-					echo " <td> ". $user ["email"]." </td> " ;
-					echo " <td> ". $user ["phone"]." </td> " ;
-					echo " <td> ". $user ["adress"]." </td> " ;
-					echo " <td> ". $user ["postal_code"]." </td> " ;
-					echo " <td> ". $user ["country"]." </td> " ;
-					echo " <td> ". $user ["creation_date"]." </td> " ;
-					echo " <td> ". $user ["last_access_date"]." </td> " ;
-					echo " <td> ". $user ["update_at"]." </td> " ;
-					echo " <td> ". $user ["visibility"]." </td> " ;
-					echo " <td> ". $user ["status"]." </td> " ;
-					echo " <td><a href='removeUser.php'?id= ". $user["id"]." ' class='btn btn-danger'>Supprimer</a></td> ";
+					echo TD.$user["id"].ENDTD ;
+					echo TD.$user["scope"].ENDTD ;
+					echo TD.$user["username"].ENDTD ;
+					echo TD.$user["email"].ENDTD ;
+					echo TD.$user["phone"].ENDTD ;
+					echo TD.$user["address"].ENDTD ;
+					echo TD.$user["postal_code"].ENDTD ;
+					echo TD.$user["country"].ENDTD ;
+					echo TD.$user["visibility"].ENDTD ;
+					echo TD.$user["status"].ENDTD ;
+					echo TD."<a href='/admin/users/read?id= ". $user["id"]." ' class='btn btn-info'>Plus d'informations</a>".ENDTD;
 					
                     echo " </tr> ";
 				}

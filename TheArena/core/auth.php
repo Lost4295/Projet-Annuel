@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'activationCode' => htmlspecialchars($_GET['activationCode'])
     ]);
 
-    // if ($inputs['email'] && $inputs['activationCode']) {
-    //     $user = findUnverifiedUser($inputs['activationCode'], $inputs['email']);
-    //     // if user exists and activate the user successfully
-    //     if ($user && activateUser($user['id'])) {
-    //         $message='You account has been activated successfully. Please login here.';
-    //         $url = APP_URL . '/login';
-    //     }
-    // }
+    if ($inputs['email'] && $inputs['activationCode']) {
+        $user = findUnverifiedUser($inputs['activationCode'], $inputs['email']);
+        // if user exists and activate the user successfully
+        if ($user && activateUser($user['id'])) {
+            $message='You account has been activated successfully. Please login here.';
+            $url = APP_URL . '/login';
+        }
+    }
 }
 
 // redirect to the register page in other cases

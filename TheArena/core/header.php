@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container-fluid pl-0">
-    <div class="row ">
+    <div class="row">
         <div class="col px-0">
             <nav class="navbar bar">
                 <div class="container-fluid d-flex">
@@ -26,6 +26,7 @@
                                 class="d-inline-block align-text-center textlogo">
                             </a>
                         </div>
+                        <a class="btn btn-warning" id="changeToDarkMode">theme</a>
                         <?php session_start(); include 'functions.php'; if (isConnected()) {
                             $attr = whoIsConnected(); if ($attr[0] == SUPADMIN ||$attr[0] == ADMIN ) { ?>
                             <div class="d-flex flex-row"><div class="mx-3"><a class="btn btn-warning " href="/admin">Index Admin</a></div>

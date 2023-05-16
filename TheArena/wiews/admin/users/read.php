@@ -1,14 +1,14 @@
 <?php
 session_start();
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 
 $db= connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM '.PREFIX.' WHERE `id`=:id');
+    $query = $db->prepare('SELECT * FROM '.PREFIX.'users WHERE `id`=:id');
     $query->execute([':id'=>$id]);
-    $produit = $query->fetch();
-    if (!$produit) {
+    $user = $query->fetch();
+    if (!$user) {
         header('Location: index.php');
     }
 } else {
@@ -16,22 +16,25 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 require_once('close.php');
+
 //TODO : Adapter à chaque catégorie
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des produits</title>
 
-</head>
-<body>
-    <h1>Détails du produit <?= $produit['produit'] ?></h1>
-    <p>ID : <?= $produit['id'] ?></p>
-    <p>Produit : <?= $produit['produit'] ?></p>
-    <p>Prix : <?= $produit['prix'] ?></p>
-    <p>Nombre : <?= $produit['nombre'] ?></p>
+			<p>ID : <?php echo $user["id"] ?></p>
+			<p>SCOPE : <?php echo $user["scope"] ?></p>
+			<p>Pseudo : <?php echo $user["username"] ?></p>
+			<p>Prénom : <?php echo $user["first_name"] ?></p>
+			<p>Nom : <?php echo $user["last_name"] ?></p>
+			<p>Email : <?php echo $user["email"] ?></p>
+			<p>Téléphone : <?php echo $user["phone"] ?></p>
+			<p>Adresse : <?php echo $user["address"] ?></p>
+			<p>Code postal : <?php echo $user["postal_code"] ?></p>
+			<p>Pays : <?php echo $user["country"] ?></p>
+			<p>Date de création : <?php echo $user["creation_date"] ?></p>
+			<p>Date de dernière connexion <?php echo $user["last_access_date"] ?></p>
+			<p> Date de dernière modification <?php echo $user["update_at"] ?></p>
+			<p>Visibilité : <?php echo $user["visibility"] ?></p>
+			<p>Statut : <?php echo $user["status"] ?></p>
+
     <p><a href="update.php?id=<?= $produit['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $produit['id'] ?>">Supprimer</a></p>
-</body>
-</html>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

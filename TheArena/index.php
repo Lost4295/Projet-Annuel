@@ -20,6 +20,7 @@ $routes = array(
     "/admin/settings" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/settings",
     "/admin/signalement" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/signalementpage",
     "/admin/users" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/users/users",
+    "/admin/users/read" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/users/read",
     "/events" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/evenements",
     "/powerranking" => $_SERVER['DOCUMENT_ROOT']."/wiews/powerranking/powerRankingIndex",
     "/event" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/evenement2",
