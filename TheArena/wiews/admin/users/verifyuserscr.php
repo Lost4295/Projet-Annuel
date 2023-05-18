@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require('functions.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/core/functions.php');
     if (isset($_POST)) {
         if (!isset($_POST['newsletter'])) {
             $_POST['newsletter']=0;
@@ -80,22 +80,19 @@
                     $typefinal['scope']=PLAYER;//joueur
                     $typefinal['nom']="Joueur";
                     break;
+                case 2:
+                    $typefinal['scope']=ADMIN;//joueur
+                    $typefinal['nom']="Administrateur";
+                    break;
+                case 3:
+                    $typefinal['scope']=SUPADMIN;//joueur
+                    $typefinal['nom']="Super-Administrateur";
+                    break;
                 case 1:
                 default:
                     $typefinal['nom']="Organisateur";
                     $typefinal['scope']=ORGANIZER;// orga
                     break;
-            }
-            $db=connectToDB();
-            $queryPrepared = $db->prepare(" SELECT count(*) FROM ".PREFIX."users");
-            $queryPrepared->execute();
-            $result=$queryPrepared->fetch();
-            if (count($result)<=2) {
-                $typefinal['scope']=SUPADMIN;// le scope super admin
-                $typefinal['nom']="Super-Administrateur";
-            } elseif (count($result)<=6) {
-                $typefinal['scope']=ADMIN;// le scope admin
-                $typefinal['nom']="Administrateur";
             }
         }
 
@@ -109,12 +106,13 @@
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $erroremail = "L'email est incorrect.";
         } else {
+            $db=connectToDB();
             $queryPrepared = $db->prepare(" SELECT id FROM ".PREFIX."users WHERE email=:email");
             $queryPrepared->execute([
                 "email"=>$email
             ]);
             $result=$queryPrepared->fetch();
-            if (!empty($result)) {
+            if ((!empty($result))&&(count($result)<2)) {
                 $erroremail="L'email est déjà utilisé.";
             }
         }
@@ -160,7 +158,7 @@
                 "phone"=>$phonenumber
             ]);
             $result=$queryPrepared->fetch();
-            if (!empty($result)) {
+            if ((!empty($result))&&(count($result)<2)) {
                 $errorphonenumber="Le numéro de téléphone est déjà utilisé.";
             }
         }
@@ -204,7 +202,7 @@
             ||!empty($errorpwdconfirm)
             ||!empty($erroremail)
             ||!empty($errornewsletter)
-            ||!empty($errorcaptcha)) {
+            ) {
             $error=true;
         } else {
             $error=false;
@@ -226,18 +224,13 @@
             $table['errorpwd']= $errorpwd;
             $table['errorpwdconfirm']= $errorpwdconfirm;
             $table['errornewsletter']= $errornewsletter;
-            $table['errorcaptcha']= $errorcaptcha;
         } else {
             $pwd=password_hash($pwd, PASSWORD_DEFAULT);
-            $connection = connectToDB();
-            $query=$connection->prepare("INSERT INTO ".PREFIX."users
-            (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country,newsletter
-            ,activation_timeout,activation_code)
-            VALUES
-            (
-                :scope,:username,:email,:password,:first_name,:last_name,:birthdate,
-                :phone,:address,:postal_code,:country,:newsletter,:activation_timeout,:activation_code
-            )");
+            $query=$db->prepare("INSERT INTO ".PREFIX."users (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country,newsletter,activation_timeout,activation_code)
+            VALUES (:scope,:username,:email,:password,
+            :first_name,:last_name,:birthdate,:phone,
+            :address,:postal_code,:country,:newsletter
+            ,:activation_timeout,:activation_code)");
             $query->execute([
                 "scope" =>$typefinal["scope"],
                 "username"=>$username,
@@ -256,6 +249,8 @@
             ]);
             header("Location:/admin/users");
         }
+        print_r($table);
+
     } else {
         die('Pas de post.');
     }

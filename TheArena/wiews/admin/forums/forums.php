@@ -39,9 +39,9 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 </table>
 
 
-//TODO à fusionner quand on aura des objets en base
+//TODO à fusionner quand on aura des objets en basevcvf
 <h1>Liste des produits</h1>
-    <table>
+    <table class="table table-hover table-bordered w-100">
         <thead>
             <th>ID</th>
             <th>Nom</th>
@@ -51,14 +51,14 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
         <?php
-            foreach($result as $produit){
+            foreach($result as $event){
         ?>
                 <tr>
-                    <td><?= $produit['id'] ?></td>
-                    <td><?= $produit['produit'] ?></td>
-                    <td><?= $produit['prix'] ?></td>
-                    <td><?= $produit['nombre'] ?></td>
-                    <td><a href="read.php?id=<?= $produit['id'] ?>">Voir</a>  <a href="edit.php?id=<?= $produit['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $produit['id'] ?>">Supprimer</a></td>
+                    <td><?= $event['id'] ?></td>
+                    <td><?= $event['event'] ?></td>
+                    <td><?= $event['prix'] ?></td>
+                    <td><?= $event['nombre'] ?></td>
+                    <td><a href="read.php?id=<?= $event['id'] ?>">Voir</a>  <a href="edit.php?id=<?= $event['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $event['id'] ?>">Supprimer</a></td>
                 </tr>
         <?php
             }

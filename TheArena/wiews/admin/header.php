@@ -15,6 +15,7 @@
 // }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
 //redirectIfNotAdmin();
 ?>
 <!DOCTYPE html>

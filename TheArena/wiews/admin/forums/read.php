@@ -5,7 +5,7 @@ session_start();
 $db= connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM '.PREFIX.' WHERE `id`=:id');
+    $query = $db->prepare('SELECT * FROM '.PREFIX.'forums WHERE `id`=:id');
     $query->execute([':id'=>$id]);
     $produit = $query->fetch();
     if (!$produit) {

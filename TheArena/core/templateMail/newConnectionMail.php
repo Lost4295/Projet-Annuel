@@ -1,5 +1,5 @@
-<?php require "headerMail.php" ?>
-    <div class='div-container'>
+<?php require "headerMail.php";
+$body="<div class='div-container'>
         <div class='row'>
             <p>Bonjour pseudo,<br> Cet e-mail a été créé car une nouvelle connexion au compte pseudo a été établie le 19 septembre 2022 04:03:00 PDT (19 septembre 2022 11:03:00 UTC) depuis :<br>
             <li>
@@ -21,5 +21,5 @@
                 Si vous n'êtes pas à l'origine de cette connexion, vous devez immédiatement changer votre mot de passe sur The Arena pour assurer la sécurité de votre compte.
             </p>
         </div>
-    </div>
-<?php require "footerMail.php"?>
+    </div>";
+ require "footerMail.php"?>

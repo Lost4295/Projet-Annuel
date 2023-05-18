@@ -11,7 +11,7 @@ if(isset($_POST)){
         $prix = strip_tags($_POST['prix']);
         $nombre = strip_tags($_POST['nombre']);
 
-        $query = $db->prepare( "UPDATE `table` SET `produit`=:produit, `prix`=:prix, `nombre`=:nombre WHERE `id`=:id;");
+        $query = $db->prepare( "UPDATE ".PREFIX."events SET `produit`=:produit, `prix`=:prix, `nombre`=:nombre WHERE `id`=:id;");
 
         $query->execute([
             ':produit'=>$produit,
@@ -26,7 +26,7 @@ if(isset($_POST)){
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare("SELECT * FROM `table` WHERE `id`=:id;");
+    $query = $db->prepare("SELECT * FROM ".PREFIX."events WHERE `id`=:id;");
     $query->execute([':id'=> $id]);
     $result = $query->fetch();
 }

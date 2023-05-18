@@ -1,37 +1,36 @@
 <?php
 session_start();
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 
-$db= connectToDB();
+$db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM '.PREFIX.' WHERE `id`=:id');
-    $query->execute([':id'=>$id]);
-    $produit = $query->fetch();
-    if (!$produit) {
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:id');
+    $query->execute([':id' => $id]);
+    $event = $query->fetch();
+    if (!$event) {
         header('Location: index.php');
     }
 } else {
     header('Location: index.php');
 }
 
-
-//TODO : Adapter à chaque catégorie
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des produits</title>
+<h1>Détails de l'évènement <?php echo $event['name'] ?></h1>
+<p>ID : <?php echo $event['id'] ?></p>
+<p>Nom : <?php echo $event['name'] ?></p>
+<p>Description : <?php echo $event['description'] ?></p>
+<p> Id de l'organisateur : <?php echo $event['manager_id'] ?></p>
+<p> Id du shop : <?php echo ($event['shop_id']) ?? "NULL" ?></p>
+<p>Jeu : <?php echo $event['game'] ?></p>
+<p>Type : <?php echo $event['type'] ?></p>
 
-</head>
-<body>
-    <h1>Détails du produit <?= $produit['produit'] ?></h1>
-    <p>ID : <?= $produit['id'] ?></p>
-    <p>Produit : <?= $produit['produit'] ?></p>
-    <p>Prix : <?= $produit['prix'] ?></p>
-    <p>Nombre : <?= $produit['nombre'] ?></p>
-    <p><a href="update.php?id=<?= $produit['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $produit['id'] ?>">Supprimer</a></p>
-</body>
-</html>
+
+<p> Personnes inscrites à l'événement</p>
+//TODO accéder aux personnes inscrites
+<div>
+    <a class="btn btn-primary m-2" href="edit?id=<?php echo $event['id'] ?>">Modifier</a>
+    <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="/admin/shop/read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
+    <a class="btn btn-primary m-2" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a>
+</div>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";

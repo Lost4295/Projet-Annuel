@@ -1,29 +1,6 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
 
-if(isset($_POST)){
-    if(isset($_POST['id']) && !empty($_POST['id'])
-        && isset($_POST['produit']) && !empty($_POST['produit'])
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $id = strip_tags($_GET['id']);
-        $produit = strip_tags($_POST['produit']);
-        $prix = strip_tags($_POST['prix']);
-        $nombre = strip_tags($_POST['nombre']);
-
-        $query = $db->prepare( "UPDATE `table` SET `produit`=:produit, `prix`=:prix, `nombre`=:nombre WHERE `id`=:id;");
-
-        $query->execute([
-            ':produit'=>$produit,
-            ':prix'=> $prix,
-            ':nombre'=> $nombre,
-            ':id'=> $id
-            ]);
-
-        header('Location: index.php');
-    }
-}
-
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $id = strip_tags($_GET['id']);
     $query = $db->prepare("SELECT * FROM `table` WHERE `id`=:id;");

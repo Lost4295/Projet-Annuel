@@ -16,13 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if ($user && activateUser($user['id'])) {
             $message='You account has been activated successfully. Please login here.';
             $url = APP_URL . '/login';
+        } else {
+            $message='Invalid request. Please register here.';
+            $url = APP_URL . '/register';
         }
-    }
-}
-
-// redirect to the register page in other cases
+        }
+    } else {// redirect to the register page in other cases
     $message='Invalid request. Please register here.';
     $url = APP_URL . '/register';
+}
+
+
 ?>
 
 <html>

@@ -1,4 +1,4 @@
-   <footer>
+<?php $footer="<footer>
         <div class='div-container'>
             <div class='row  center'>
                 <p>Merci ! <br> L'équipe The Arena</p>

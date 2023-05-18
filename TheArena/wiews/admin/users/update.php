@@ -2,40 +2,16 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 
 $db = connectToDB();
-if (isset($_POST)) {
-    if (
-        isset($_POST['id']) && !empty($_POST['id'])
-        && isset($_POST['produit']) && !empty($_POST['produit'])
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['nombre']) && !empty($_POST['nombre'])
-    ) {
-        $id = strip_tags($_GET['id']);
-        $produit = strip_tags($_POST['produit']);
-        $prix = strip_tags($_POST['prix']);
-        $nombre = strip_tags($_POST['nombre']);
-
-        $query = $db->prepare("UPDATE " . PREFIX . "users SET `produit`=:produit, `prix`=:prix, `nombre`=:nombre WHERE `id`=:id;");
-
-        $query->execute([
-            ':produit' => $produit,
-            ':prix' => $prix,
-            ':nombre' => $nombre,
-            ':id' => $id
-        ]);
-
-        header('Location: index.php');
-    }
-}
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
     $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
     $query->execute([':id' => $id]);
-    $result = $query->fetch();
+    $user = $query->fetch();
 }
 ?>
 
-    <form method="post" action="/core/verifyall.php">
+    <form method="post" action="verifyusersup.php">
         <div class="row mt-3 mb-2 pr-5">
             <div class="col">
                 <label for="type" class="form-label">Type</label>
@@ -51,13 +27,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         </label>
                     </div>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="checkbox" name="type" value="1" id="admin">
+                        <input class="form-check-input" type="checkbox" name="type" value="2" id="admin">
                         <label class="form-check-label" for="organizer">
                             Administrateur
                         </label>
                     </div>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="checkbox" name="type" value="1" id="supadmin">
+                        <input class="form-check-input" type="checkbox" name="type" value="3" id="supadmin">
                         <label class="form-check-label" for="organizer">
                             Super Administrateur
                         </label>
@@ -104,7 +80,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <div class="row mt-3 mb-2">
             <div class="col-6">
                 <label for="birthdate" class="form-label">Date de naissance</label>
-                <input type="date" class="form-control" id="birthdate" name="birthdate" required placeholder="John">
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required placeholder="John" value="<?php echo $user["birthdate"]?>">
             </div>
             <div class="col">
                 <label for="phonenumber" class="form-label">Numéro de téléphone</label>
@@ -129,7 +105,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="col">
                 <label for="country" class="form-label">Pays</label>
                 <input type="text" class="form-control" id="country" value="<?php echo $user["country"] ?>" name="country" required placeholder="France">
-                <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                <input type="hidden" name="id" value="<?= $user['id'] ?>">
             </div>
         </div>
         <div class="col-12">

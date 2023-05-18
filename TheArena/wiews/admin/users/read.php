@@ -14,14 +14,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
     header('Location: index.php');
 }
-
-
-
-//TODO : Adapter à chaque catégorie
 ?>
 
 			<p>ID : <?php echo $user["id"] ?></p>
-			<p>SCOPE : <?php echo $user["scope"] ?></p>
+			<p>SCOPE : <?php echo formatScope($user["scope"]) ?></p>
 			<p>Pseudo : <?php echo $user["username"] ?></p>
 			<p>Prénom : <?php echo $user["first_name"] ?></p>
 			<p>Nom : <?php echo $user["last_name"] ?></p>
@@ -33,13 +29,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 			<p>Date de création : <?php echo $user["creation_date"] ?></p>
 			<p>Date de dernière connexion <?php echo $user["last_access_date"] ?></p>
 			<p> Date de dernière modification <?php echo $user["update_at"] ?></p>
-			<p>Visibilité : <?php echo $user["visibility"] ?></p>
-			<p>Statut : <?php echo $user["status"] ?></p>
+			<p>Visibilité : <?php echo formatVisibility($user["visibility"]) ?></p>
+			<p>Statut : <?php echo formatStatus($user["status"]) ?></p>
 
     <div>
     <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données reltives à la personne</a>
-    <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données concernant le compte</a>
-    <a class="btn btn-primary m-2" href="delete.php?id=<?php echo $user['id']?>">Pseudo suppression</a>
+    <a class="btn btn-primary m-2" href="changes?id=<?php echo $user['id']?>">Modifier les données concernant le compte</a>
+    <a class="btn btn-primary m-2" href="delete?id=<?php echo $user['id']?>">Pseudo suppression</a>
 	</div>
 
 

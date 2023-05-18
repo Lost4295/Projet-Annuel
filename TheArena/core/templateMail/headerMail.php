@@ -1,4 +1,4 @@
-<html lang='fr' >
+<?php $header= "<html lang='fr' >
 <head>
     <meta charset='UTF-8'>
     <meta name='Ma duper super page' content='Page HTML'>
@@ -19,4 +19,4 @@
             </div>
 
         </div>
-    </header>
+    </header>";

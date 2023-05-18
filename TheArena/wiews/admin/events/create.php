@@ -1,46 +1,91 @@
 <?php
-$sql = "INSERT INTO `liste` (`produit`, `prix`, `nombre`) VALUES (:produit, :prix, :nombre);";
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
+$db=connectToDB();
 
-$query = $db->prepare($sql);
+$query = $db->query("SELECT id, first_name FROM ".PREFIX."users WHERE (scope =".ORGANIZER.")");
+$result = $query->fetch(PDO::FETCH_ASSOC);
+print_r($result);
 
-$query->bindValue(':produit', $produit, PDO::PARAM_STR);
-$query->bindValue(':prix', $prix, PDO::PARAM_STR);
-$query->bindValue(':nombre', $nombre, PDO::PARAM_INT);
 
-$query->execute();
 ?>
-
-<form method="post">
-    <label for="produit">Produit</label>
-    <input type="text" name="produit" id="produit">
-    <label for="prix">Prix</label>
-    <input type="text" name="prix" id="prix">
-    <label for="nombre">Nombre</label>
-    <input type="number" name="nombre" id="nombre">
-    <button>Enregistrer</button>
+<form action="/wiews/admin/events/verifyevent.php" method="post" class="mb-5 row-cols-lg-auto">
+    <div class="mb-3">
+        <label for="eventname" class="form-label">Nom de l'événement</label>
+        <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Tournoi" required>
+        <div class="invalid">
+            <?php
+            if (isset($_SESSION["erroreventname"])) {
+                echo $_SESSION['erroreventname'];
+            }
+            ?>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="infos" class="form-label">Informations</label>
+        <textarea class="form-control" id="infos" name="infos" rows="7" required></textarea>
+        <div class="invalid">
+            <?php
+            if (isset($_SESSION["errorinfos"])) {
+                echo $_SESSION['errorinfos'];
+            }
+            ?>
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="online" value="0">
+        <label class="form-check-label" for="online">
+            En ligne
+        </label>
+    </div>
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="radio" name="type" id="local" value="1" checked>
+        <label class="form-check-label" for="local">
+            En local
+        </label>
+    </div>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errortype"])) {
+            echo $_SESSION['errortype'];
+        }
+        ?>
+    </div>
+    <!-- If local, ajouter une div pour sélectionner une room ! Sinon -->
+    <label for="game" class="form-label">Jeu utilisé</label>
+    <input class="form-control mb-5" list="datalistOptions" id="game" name="game" placeholder="Entrez le nom du jeu..." required>
+    <datalist id="datalistOptions">
+        <option value="CSGO">
+        <option value="LOL">
+        <option value="Super Smash Bros. Ultimate">
+        <option value="Rainbow Six Siege">
+        <option value="Rocket League">
+    </datalist>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errorgame"])) {
+            echo $_SESSION['errorgame'];
+        }
+        ?>
+    </div>
+    <div class="form-group row">
+    <label class="col-sm-2 form-control-label">Organisateur</label>
+    <div class="col-sm-6">
+        <select class="form-control" id="manager_id" name="manager_id">
+            <?php foreach($result as $entity){
+                echo "<option value=".$entity['id'].">".$entity['firstname']."</option>";
+            }?>
+        </select>
+    </div>
+</div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-2">
+            <button class="btn-primary btn btn-lg">Créer l'événement</button>
+        </div>
+    </div>
 </form>
 
 
 <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";
 
-if(isset($_POST)){
-    if(isset($_POST['produit']) && !empty($_POST['produit'])
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['nombre']) && !empty($_POST['nombre'])){
-            $produit = strip_tags($_POST['produit']);
-            $prix = strip_tags($_POST['prix']);
-            $nombre = strip_tags($_POST['nombre']);
-            $query = $db->prepare("INSERT INTO `liste` (`produit`, `prix`, `nombre`) VALUES (:produit, :prix, :nombre);");
-
-            $query->execute([
-                ':produit', $produit,
-                ':prix', $prix,
-                ':nombre', $nombre
-            ]);
-            $_SESSION['message'] = "Produit ajouté avec succès !";
-            header('Location: index.php');
-        }
-        
-}//TODO : Adapter à chaque catégorie
-
+?>

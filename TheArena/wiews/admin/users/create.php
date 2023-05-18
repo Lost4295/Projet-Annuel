@@ -3,12 +3,12 @@ require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 
 ?>
 
-<form method="post" action="/core/verifyall.php">
+<form method="post" action="/wiews/admin/users/verifyuserscr.php">
         <div class="row mt-3 mb-2 pr-5">
             <div class="col">
                 <label for="type" class="form-label">Type</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="type" value="0" id="player">
+                    <input class="form-check-input" type="radio" name="type" value="0" id="player" checked>
                     <label class="form-check-label" for="player">
                         Joueur
                     </label>

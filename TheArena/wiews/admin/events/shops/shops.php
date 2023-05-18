@@ -24,17 +24,17 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo $event['id'] ?></td>
                     <td><?php echo $event['name'] ?></td>
                     <td><?php echo $event['manager_id'] ?></td>
-                    <td><?php echo ($event['shop_id'])??"NULL" ?></td>
+                    <td><?php echo $event['shop_id'] ?></td>
                     <td><?php echo $event['game'] ?></td>
                     <td><?php echo $event['type'] ?></td>
-                    <td><a class="btn btn-primary m-1" href="/admin/events/read?id=<?php echo $event['id'] ?>">Voir</a>  <a class="btn btn-primary m-1" href="/admin/events/update?id=<?php echo $event['id'] ?>">Modifier</a>  <a class="btn btn-primary m-1" href="/admin/events/delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
+                    <td><a class="btn btn-primary m-1" href="read?id=<?php echo $event['id'] ?>">Voir</a>  <a class="btn btn-primary m-1" href="edit?id=<?php echo $event['id'] ?>">Modifier</a>  <a class="btn btn-primary m-1" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
                 </tr>
         <?php
             }
         ?>
         </tbody>
     </table>
-    <a class="btn btn-primary m-1" href="/admin/events/create">Ajouter</a>
-    <a class="btn btn-primary m-1" href="/admin/shops">Accéder à tous les shops</a>
+    <a class="btn btn-primary m-1" href="create">Ajouter</a>
+    <a class="btn btn-primary m-1" href="admin/shops">Ajouter</a>
 
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

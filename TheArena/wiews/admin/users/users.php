@@ -1,4 +1,5 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
+
 define("TD", "<td>");
 define("ENDTD", "</td>");?>
 
@@ -24,11 +25,11 @@ define("ENDTD", "</td>");?>
     foreach ($listOfUsers as $user){
 					echo " <tr> ";
 					echo TD.$user["id"].ENDTD ;
-					echo TD.$user["scope"].ENDTD ;
+					echo TD.formatScope($user["scope"]).ENDTD ;
 					echo TD.$user["username"].ENDTD ;
 					echo TD.$user["email"].ENDTD ;
-					echo TD.$user["visibility"].ENDTD ;
-					echo TD.$user["status"].ENDTD ;
+					echo TD.formatVisibility($user["visibility"]).ENDTD ;
+					echo TD.formatStatus($user["status"]).ENDTD ;
 					echo TD."<a href='/admin/users/read?id=". $user["id"]."' class='btn btn-info'>Plus d'informations</a>".ENDTD;
                     echo " </tr> ";
 				}
