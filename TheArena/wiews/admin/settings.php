@@ -11,16 +11,15 @@
 </form>
 
 <?php
+$dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\';
+
 if (isset($_FILES['image'])) {
         $tmpName = $_FILES['image']['tmp_name'];
         $name = $_FILES['image']['name'];
-        $dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\';
         move_uploaded_file($tmpName, $dirname.$name);
     } //FIXME : POTENTIAL BUG, Might not work so
 
     $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
-
-    print_r($images);
 
     foreach ($images as $image) {
         echo '<img src="'.$image.'" width=150px/><br />';

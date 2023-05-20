@@ -30,7 +30,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 			<p>Date de dernière connexion <?php echo $user["last_access_date"] ?></p>
 			<p> Date de dernière modification <?php echo $user["update_at"] ?></p>
 			<p>Visibilité : <?php echo formatVisibility($user["visibility"]) ?></p>
-			<p>Statut : <?php echo formatStatus($user["status"]) ?></p>
+			<p>Statut : <?php echo formatStatusUsers($user["status"]) ?></p>
 
     <div>
     <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données reltives à la personne</a>

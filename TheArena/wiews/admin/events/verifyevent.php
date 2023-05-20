@@ -34,11 +34,11 @@ if (!in_array($type, $types)) {
 if (strlen($infos)<3) {
     $errorinfos="Cette description est trop courte.";
 }
-$connection=connectToDB();
-$query=$db->prepare("SELECT id FROM ".PREFIX."users where id=:id AND scope IN (".ORGANIZER."||".ADMIN."||".SUPADMIN.")");
+$db=connectToDB();
+$query=$db->prepare("SELECT id FROM zeya_users where scope=".ORGANIZER."||scope= ".SUPADMIN."|| scope=".ADMIN.";");
 $query->execute();
 $result= $query->fetch(PDO::FETCH_ASSOC);
-if (!$result) {
+if (!array_search($manager_id, $result)) {
     $errormanagerid="L'id est incorrect.";
 }
 if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)||!empty($errormanagerid)){
@@ -50,26 +50,25 @@ if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)||!empty($er
 
 
 
-//FIXME: Add the event to the database
 if ($error) {
     $_SESSION['erroreventname']= $erroreventname;
     $_SESSION['errorinfos']= $errorinfos;
     $_SESSION['errortype']= $errortype;
-    header("Location:/wiews/events/createeventform.php");
+    header("Location:/admin/events/create");
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
     $_SESSION['game']= $game;
     $_SESSION['type']= $type;
     
-    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, manager_id, game, type) VALUES (:name,:description, :manager_id, :game, :type)");
+    $queryPrepared=$db->prepare("INSERT INTO ".PREFIX."events (name, description, manager_id, game, type) VALUES (:name,:description, :manager_id, :game, :type)");
     $queryPrepared->execute([
-        'name'=>$name,
-        'description'=>$description,
+        'name'=>$eventname,
+        'description'=>$infos,
         'manager_id'=>$manager_id,
         'type'=>$type,
         "game"=>$game
     ]);
-    header(""); 
+    header("Location: /admin/events"); 
 }
 

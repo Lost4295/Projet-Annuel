@@ -13,7 +13,13 @@
 </head>
 
 <body>
-    <div class="container-fluid pl-0">
+        <div class="alert alert-success" id="alert" style="display:none">
+        <span class="closebtn" onclick="disappear();">&times;</span>
+            Si votre adresse mail est bien enregistrée, un email vous a été envoyé. Si vous ne recevez pas cet email,
+             vérifiez votre dossier de courriers indésirables. Sinon, essayez de recréer un compte.
+        </div>
+    </div>
+    <div class="container-fluid ps-0">
         <div class="row">
             <div class="col px-0">
                 <nav class="navbar specbar">

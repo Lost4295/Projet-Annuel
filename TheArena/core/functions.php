@@ -54,26 +54,25 @@ function whoIsConnected()
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location:../wiews/register/login.php");
+        header("Location:/login ");
     }
 }
 function onlyAdmin():bool
 {
     $scope =whoIsConnected()[0];
-    print_r($scope);
     return ($scope == ADMIN || $scope == SUPADMIN)?true:false;
 }
 
 function redirectIfNotAdmin()
 {
     if (!onlyAdmin()) {
-        header("Location:/wiews/index.php");
+        header("Location:/ ");
     }
 }
 function noReconnection()
 {
     if (isConnected()) {
-        header("Location:/wiews/index.php");
+        header("Location:/ ");
     }
 }
 function base64EncodeImage($filename, $filetype)

@@ -14,10 +14,15 @@ $routes = [
     "/logout" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/logout",
     "/admin" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/adminindex",
     "/admin/forums" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums/forums",
+    "/admin/forum/create" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums/create",
+    "/admin/forum/update" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums/update",
+    "/admin/forum/delete" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums/delete",
+    "/admin/forum/read" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/forums/read",
     "/admin/notifications" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/notifications",
     "/admin/events" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events/events",
     "/admin/events/read" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events/read",
     "/admin/events/update" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events/update",
+    "/admin/users/changes"=> $_SERVER['DOCUMENT_ROOT']."/wiews/admin/users/changes",
     "/admin/events/delete" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events/delete",
     "/admin/events/create" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/events/create",
     "/admin/signalements" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/signalements",
@@ -48,6 +53,7 @@ $routes = [
     "/contact" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/contact",
     "/legal" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/mentionslégales",
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",
+    "/forum/create" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/createblogform",
 ];
 /*** Création de l'url de destination ***/
 $urls = explode('?', $origine);

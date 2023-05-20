@@ -3,7 +3,7 @@
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare( "DELETE FROM ".PREFIX."events WHERE `id`=:id;"$);
+    $query = $db->prepare( "DELETE FROM ".PREFIX."events WHERE `id`=:id;");
     $query->execute([':id'=>$id]);
 }
 ?> <h3 class="text-center m-4"> La modification a été effectuée.</h3>

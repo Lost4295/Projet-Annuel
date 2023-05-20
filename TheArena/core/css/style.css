@@ -274,7 +274,7 @@ footer {
     --bs-border-color: #495057;
     --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
 
-    .bar {
+    .specbar {
         background-color: #8274B2 !important;
     }
 

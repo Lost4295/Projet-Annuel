@@ -5,7 +5,7 @@
     <div class="col px-0">
         <footer class="footer specbar py-4">
             <div class="d-flex justify-content-between align-items-center">
-                <img src="../../img/logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center logo">
+                <img src="../../img/logothearena-removebg.png" alt="Logo" class="d-inline-block align-text-center logo">
                 <div class="d-flex justify-content-between">
                     <a href="/cgu" class="m-5 p-3">Conditions générales d'utilisation</a>
                     <a href="/cgv" class="m-5 p-3">Conditions générales de vente</a>
@@ -23,42 +23,52 @@
                 </div>
             </div>
             <p class="text-center text-muted">
-                &copy; <?php echo date("Y");?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger
+                &copy; <?php echo date("Y"); ?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger
             </p>
         </footer>
     </div>
 </div>
 <script>
     var theme = window.localStorage.getItem('data-bs-theme');
-if(theme) document.documentElement.setAttribute('data-bs-theme', theme);
+    if (theme) document.documentElement.setAttribute('data-bs-theme', theme);
 
-document.getElementById('changeToDarkMode').onclick = function() {
-  if (window.localStorage.getItem('data-bs-theme') == 'dark') {
-      document.documentElement.setAttribute('data-bs-theme', 'light');
-      window.localStorage.setItem('data-bs-theme', 'light');
-  } else {
-      document.documentElement.setAttribute('data-bs-theme', 'dark');
-      window.localStorage.setItem('data-bs-theme', 'dark');
-  }
-};
+    document.getElementById('changeToDarkMode').onclick = function() {
+        if (window.localStorage.getItem('data-bs-theme') == 'dark') {
+            document.documentElement.setAttribute('data-bs-theme', 'light');
+            window.localStorage.setItem('data-bs-theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+            window.localStorage.setItem('data-bs-theme', 'dark');
+        }
+    };
 
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("messages");
-var span = document.getElementsByClassName("close")[0];
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("messages");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
+    <?php if (isset($_SESSION['notification'])) {
+    } ?>
+
+    function disappear() {
+        var x = document.getElementById("alert");
+        x.style.opacity = "0";
+        setTimeout(function() {
+            x.style.display = "none";
+        }, 600);
+    }
 </script>
 </div>
 </body>
-</html>
 
+</html>

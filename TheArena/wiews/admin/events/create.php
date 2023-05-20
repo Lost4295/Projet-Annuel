@@ -1,12 +1,13 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
-$db=connectToDB();
+$db = connectToDB();
 
-$query = $db->query("SELECT id, first_name FROM ".PREFIX."users WHERE (scope =".ORGANIZER.")");
-$result = $query->fetch(PDO::FETCH_ASSOC);
+$query = $db->query("SELECT id, username as pseudo FROM " . PREFIX . "users WHERE scope =" . ORGANIZER . " || scope=" . ADMIN . "|| scope= " . SUPADMIN);
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$result = array_values($result);
+
 print_r($result);
-
-
 ?>
 <form action="/wiews/admin/events/verifyevent.php" method="post" class="mb-5 row-cols-lg-auto">
     <div class="mb-3">
@@ -68,18 +69,18 @@ print_r($result);
         ?>
     </div>
     <div class="form-group row">
-    <label class="col-sm-2 form-control-label">Organisateur</label>
-    <div class="col-sm-6">
-        <select class="form-control" id="manager_id" name="manager_id">
-            <?php foreach($result as $entity){
-                echo "<option value=".$entity['id'].">".$entity['firstname']."</option>";
-            }?>
-        </select>
+        <label class="col-sm-2 form-control-label">Organisateur</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="manager_id" name="manager_id">
+                <?php foreach ($result as $orga) {
+                    echo "<option value=" . $orga["id"] . ">" . $orga["pseudo"] . "</option>";
+                } ?>
+            </select>
+        </div>
     </div>
-</div>
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center m-4">
         <div class="col-2">
-            <button class="btn-primary btn btn-lg">Créer l'événement</button>
+            <button class="btn-primary btn btn-lg" type="submit">Créer l'événement</button>
         </div>
     </div>
 </form>

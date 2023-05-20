@@ -37,7 +37,7 @@ function formatVisibility($visibility)
     return $return;
 }
 
-function formatStatus($status)
+function formatStatusUsers($status)
 {
     if ($status == -1) {
         $return = "Supprimé au niveau du site (non visible)";
@@ -49,4 +49,37 @@ function formatStatus($status)
         $return = $status ." : Format étrange et non connu en base";
     }
     return $return;
+}
+
+function formatType($type)
+{
+    if ($type==0){
+    $return="En ligne";
+    } elseif ($type==1){
+        $return="En local";
+    } else {
+        $return=$type." : Format étrange et non connu en base";
+    }
+    return $return;
+}
+
+function findUserById($id)
+{
+    $db = connectToDB();
+    $query = $db->prepare("SELECT username as u FROM ".PREFIX."users WHERE id=:id");
+    $query->execute(['id'=>$id]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    return $result['u'];
+}
+
+function formatStatusForums($status)
+{
+    if ($status==0) {
+        $return="Effacé";
+        } elseif ($status==1) {
+            $return="Actif";
+        } else {
+            $return=$status." : Format étrange et non connu en base";
+        }
+        return $return;
 }

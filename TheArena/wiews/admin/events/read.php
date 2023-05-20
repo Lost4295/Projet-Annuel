@@ -20,7 +20,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <p>ID : <?php echo $event['id'] ?></p>
 <p>Nom : <?php echo $event['name'] ?></p>
 <p>Description : <?php echo $event['description'] ?></p>
-<p> Id de l'organisateur : <?php echo $event['manager_id'] ?></p>
+<p> Pseudo de l'organisateur : <?php echo findUserById($event['manager_id']) ?></p>
 <p> Id du shop : <?php echo ($event['shop_id']) ?? "NULL" ?></p>
 <p>Jeu : <?php echo $event['game'] ?></p>
 <p>Type : <?php echo $event['type'] ?></p>
@@ -29,7 +29,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <p> Personnes inscrites à l'événement</p>
 //TODO accéder aux personnes inscrites
 <div>
-    <a class="btn btn-primary m-2" href="edit?id=<?php echo $event['id'] ?>">Modifier</a>
+    <a class="btn btn-primary m-2" href="update?id=<?php echo $event['id'] ?>">Modifier</a>
     <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="/admin/shop/read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
     <a class="btn btn-primary m-2" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a>
 </div>

@@ -14,7 +14,7 @@
 //   header("location:indexSuperAdmin.php");
 // }
 
-require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
 //redirectIfNotAdmin();
 ?>
@@ -69,19 +69,11 @@ include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/notifications" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
-                                    Notifications
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/admin/signalements" class="nav-link link-dark aaaa">
                                     <svg class="bi me-2" width="16" height="16">
                                         <use xlink:href="#table" />
                                     </svg>
-                                    Sigalements
+                                    Signalements
                                 </a>
                             </li>
                             <li>
@@ -114,6 +106,14 @@ include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
                                         <use xlink:href="#people-circle" />
                                     </svg>
                                     Paramètres du site
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/" class="nav-link link-dark aaaa">
+                                    <svg class="bi me-2" width="16" height="16">
+                                        <use xlink:href="#table" />
+                                    </svg>
+                                    Retour à la page d'accueil
                                 </a>
                             </li>
                         </ul>

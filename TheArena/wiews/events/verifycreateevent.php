@@ -1,6 +1,7 @@
 <?php
 session_start();
-require('../../core/functions.php');
+require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+
 if (
     count($_POST)!=4
     ||!isset($_POST["type"])
@@ -59,6 +60,6 @@ if (!$error) {
         $type,
         $game
     ]);
-    header(""); 
+    header("/events"); 
 }
 

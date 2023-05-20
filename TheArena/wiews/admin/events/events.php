@@ -10,7 +10,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         <thead>
             <th>ID</th>
             <th>Nom</th>
-            <th>ID de l'organisateur</th>
+            <th>Pseudo de l'organisateur</th>
             <th>ID du shop</th>
             <th>jeu</th>
             <th>Type</th>
@@ -23,10 +23,10 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     <td><?php echo $event['id'] ?></td>
                     <td><?php echo $event['name'] ?></td>
-                    <td><?php echo $event['manager_id'] ?></td>
+                    <td><?php echo findUserById($event['manager_id']) ?></td>
                     <td><?php echo ($event['shop_id'])??"NULL" ?></td>
                     <td><?php echo $event['game'] ?></td>
-                    <td><?php echo $event['type'] ?></td>
+                    <td><?php echo formatType($event['type']) ?></td>
                     <td><a class="btn btn-primary m-1" href="/admin/events/read?id=<?php echo $event['id'] ?>">Voir</a>  <a class="btn btn-primary m-1" href="/admin/events/update?id=<?php echo $event['id'] ?>">Modifier</a>  <a class="btn btn-primary m-1" href="/admin/events/delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
                 </tr>
         <?php

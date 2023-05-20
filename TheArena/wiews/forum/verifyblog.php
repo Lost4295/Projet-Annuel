@@ -1,6 +1,7 @@
 <?php
 session_start();
-require('functions.php');
+require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+
 if (
     count($_POST)!=2
     ||empty($_POST["blogname"])
@@ -21,6 +22,15 @@ $errordesc="";
 if (strlen($blogname)<3) {
     $errorname= "Le nom doit faire plus de 2 caractères.";
 }
+$db = connectToDB();
+$query = $db->prepare("SELECT * FROM ".PREFIX."forums where name =:name");
+$query->execute(['name'=>$blogname]);
+$result = $query->fetch();
+
+if ($result){
+    $errorname = "Ce blog existe déjà.";
+}
+
 
 if (!empty($blogdesc)) {
     if (strlen($blogdesc)<3) {
@@ -49,5 +59,7 @@ if (!$error) {
 } else {
     $_SESSION['blogname']= $blogname;
     $_SESSION['blogdesc']= $blogdesc;
-    header("Location: ");
+    $query= $db->prepare("INSERT INTO ".PREFIX."forums (name, description) VALUES (:name,:description)");
+    $query->execute(["name"=>$blogname,"description"=>$blogdesc]);
+    header("Location: /forums");
 }
