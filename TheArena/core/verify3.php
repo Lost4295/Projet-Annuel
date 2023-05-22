@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'functions.php';
+include 'sendmail.php';
 if (isset($_POST)) {
 if (!isset($_POST['newsletter'])) {
     $_SESSION['newsletter']=0;
@@ -57,7 +58,7 @@ $table=[];
         :phone,:address,:postal_code,:country,:newsletter,:activation_timeout,:activation_code
     )");
     $query->execute([
-        "scope" =>$_SESSION['type'],
+        "scope" =>$_SESSION['type']["scope"],
         "username"=>$_SESSION['username'],
         "email"=>$_SESSION['email'],
         "password"=>$_SESSION['pwd'],
@@ -73,6 +74,13 @@ $table=[];
         "activation_code"=>password_hash(generateActivationCode(), PASSWORD_DEFAULT),
     ]);
     unsetwhenRegistered();
+    //TODO: Envoyer un mail de validation, pour de vrai
+    $activationCode = generateActivationCode();
+    $subject='Validation du compte The Arena : '.$_SESSION['username'];
+    $email=$_SESSION['email'];
+    $url = "https://thearena.litecloud.fr/authentification?email=".$email."&activationCode=".$activationCode;
+    $body='Clique sur le lien pour valider le compte ! <a href='.$url.'> Cliquer</a>';
+    sendEmail($email, $subject, $body);
     header("Location: /");
 }
 return json_encode($table);

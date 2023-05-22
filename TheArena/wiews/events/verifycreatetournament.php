@@ -1,6 +1,7 @@
 <?php
 session_start();
-require('functions.php');
+require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
+
 if (
     count($_POST)!=3
     ||empty($_POST["name"])

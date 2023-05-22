@@ -63,7 +63,7 @@ $errorbirthdate= "Format de date incorrect";
 
 
 
-if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}/", $phonenumber)) {
+if (!preg_match("/^0[1-9](?:[ .-]?[\d]{2}){4}$/", $phonenumber)) {
     $errorphonenumber="Le numéro est invalide.";
 } else {
     $db = connectToDB();

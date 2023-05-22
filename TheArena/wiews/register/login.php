@@ -27,12 +27,13 @@ if (isset($email)) {
             ]);
             $scope=$queryPrepared->fetch();
             unset($_SESSION['error']);
+            $_SESSION['message']= "Bonjour à vous !";
             switch ($scope["scope"]) {
                 case SUPADMIN : //super-admin
-                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
+                    header("Location:/admin");
                     break;
                 case ADMIN : //admin
-                    header("location:".$_SERVER['DOCUMENT_ROOT']."/wiews/admin/indexadmin.php");
+                    header("Location:/admin");
                     break;
                 case ORGANIZER : //organisateur
                     header(INDEX);
@@ -63,7 +64,8 @@ if (isset($_SESSION['error'])) {
             class="form-control"
             id="email" name="email"
             placeholder="name@example.com"
-            required />
+            required 
+            autocomplete="email"/>
     </div>
     <div class="mb-4">
         <label for="pwd" class="form-label">Mot de passe</label>

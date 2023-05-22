@@ -139,6 +139,9 @@ window.onclick = function(event) {
 //       }
 //     }
 //   }
-// }
+
+
 </script>
+
+
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

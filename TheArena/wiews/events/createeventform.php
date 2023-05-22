@@ -53,7 +53,7 @@
             ?></div>
         <div class="row d-flex justify-content-center">
 		<div class="col-2">
-		<button class="btn-primary btn btn-lg">Créer l'événement</button>
+		<button class="btn-primary btn btn-lg" type="submit">Créer l'événement</button>
 	</div>
 	</div>
     </form>

@@ -1,16 +1,22 @@
 <?php
 
 require 'constantes.php';
+
 function connectToDB()
 {
     try {
-        // $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD);
-        $db = new PDO('mysql:host='.LOCALHOST.';dbname='.DBNAME.';charset=utf8;port=3306', 'root', '');
+        //$db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD); // VPS
+        $db = new PDO('mysql:host='.LOCALHOST.';dbname='.DBNAME.';charset=utf8;port=3306', 'root', ''); // LOCAL
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
     return $db;
 }
+function closeConnectionToDB($db)
+{
+    $db = null;
+}
+
 function isConnected()
 {
     if (!empty($_SESSION["email"]) && (!empty($_SESSION["logged"]))) {
@@ -24,7 +30,7 @@ function isConnected()
     }
     return false;
 }
-function whoIsConnected() : array
+function whoIsConnected()
 {
     if (isConnected()) {
         $connect = connectToDB();
@@ -42,27 +48,38 @@ function whoIsConnected() : array
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location:../wiews/register/login.php");
+        header("Location:/login ");
     }
 }
 function onlyAdmin():bool
 {
     $scope =whoIsConnected()[0];
-    print_r($scope);
     return ($scope == ADMIN || $scope == SUPADMIN)?true:false;
 }
 
 function redirectIfNotAdmin()
 {
     if (!onlyAdmin()) {
-        header("Location:/wiews/index.php");
+        header("Location:/ ");
     }
 }
 function noReconnection()
 {
     if (isConnected()) {
-        header("Location:/wiews/index.php");
+        header("Location:/ ");
     }
+}
+function base64EncodeImage($filename, $filetype)
+{
+    if ($filename){
+        $imgbinary = fread(fopen($filename, "r"), filesize($filename));
+        return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+    }
+}
+
+function generateActivationCode(): string
+{
+    return bin2hex(random_bytes(16));
 }
 function unsetwhenRegistered()
 {
@@ -147,4 +164,4 @@ function unsetwhenRegistered()
         }
     }
 
-
+    
