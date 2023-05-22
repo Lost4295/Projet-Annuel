@@ -8,8 +8,8 @@
     <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
     <title>The Arena-Problème</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/core/css/bootstrap.css">
-    <link rel="stylesheet" href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/core/css/style.css">
+    <link rel="stylesheet" href="/core/css/bootstrap.css">
+    <link rel="stylesheet" href="/core/css/style.css">
 </head>
 
 <body>
