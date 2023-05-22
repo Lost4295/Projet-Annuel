@@ -25,4 +25,42 @@ if (isset($_FILES['image'])) {
         echo '<img src="'.$image.'" width=150px/><br />';
     }
 
+    ?>
+    <?php
+// Chemin vers l'image d'origine
+$imagePath = 'chemin/vers/image.jpg';
+
+// Charger l'image d'origine
+$image = imagecreatefromjpeg($imagePath);
+
+// Déterminer les dimensions de découpe
+$largeur = imagesx($image);
+$hauteur = imagesy($image);
+$partieLargeur = $largeur / 3;
+$partieHauteur = $hauteur / 3;
+
+// Découper l'image en parties
+$parties = array();
+
+for ($i = 0; $i < 3; $i++) {
+  for ($j = 0; $j < 3; $j++) {
+    $x = $j * $partieLargeur;
+    $y = $i * $partieHauteur;
+    $partie = imagecrop($image, ['x' => $x, 'y' => $y, 'width' => $partieLargeur, 'height' => $partieHauteur]);
+    $parties[] = $partie;
+  }
+}
+
+// Enregistrer les parties découpées
+foreach ($parties as $index => $partie) {
+  $nomFichier = 'partie' . ($index + 1) . '.jpg';
+  imagejpeg($partie, $nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
+}
+
+// Libérer les ressources GD
+imagedestroy($image);
+foreach ($parties as $partie) {
+  imagedestroy($partie);
+}
  include 'footer.php'?>
+
