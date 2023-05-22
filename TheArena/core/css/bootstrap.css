@@ -4817,6 +4817,7 @@ textarea.form-control-lg {
   background-color: var(--bs-alert-bg);
   border: var(--bs-alert-border);
   border-radius: var(--bs-alert-border-radius);
+  z-index: 10;
 }
 
 .alert-heading {

@@ -51,15 +51,13 @@ if (!$error) {
     $_SESSION['game']= $game;
     $_SESSION['type']= $type;
     $connection=connectToDB();
-    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description) VALUES (:eventname,:infos)");
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, type, game) VALUES (:eventname,:infos,:type,:game)");
     $queryPrepared->execute([
-        $eventname,
-        $infos,
-        $price,
-        $valueprice,
-        $type,
-        $game
+        'eventname'=>$eventname,
+        'infos'=>$infos,
+        'type'=>$type,
+        'game'=>$game
     ]);
-    header("/events"); 
+    header("/events");
 }
 

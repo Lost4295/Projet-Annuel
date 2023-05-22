@@ -2,9 +2,10 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";;
 if (
-    count($_POST)!=5
+    count($_POST)!=6
     ||!isset($_POST["type"])
     ||empty($_POST["infos"])
+    ||empty($_POST["id"])
     ||empty($_POST["manager_id"])
     ||empty($_POST["eventname"])
     ||empty($_POST["game"])
@@ -38,7 +39,10 @@ $db=connectToDB();
 $query=$db->prepare("SELECT id FROM zeya_users where scope=".ORGANIZER."||scope= ".SUPADMIN."|| scope=".ADMIN.";");
 $query->execute();
 $result= $query->fetchAll(PDO::FETCH_COLUMN);
-if (array_search($manager_id, $result)=== false) {
+print_r($manager_id);
+echo "<br>";
+print_r(array_values($result));
+if (!in_array($manager_id, $result)) {
     $errormanagerid="L'id est incorrect.";
 }
 if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)||!empty($errormanagerid)){
@@ -52,24 +56,26 @@ if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)||!empty($er
 
 if ($error) {
     $_SESSION['erroreventname']= $erroreventname;
-    $_SESSION['errorinfos']= $errorinfos;
     $_SESSION['errortype']= $errortype;
-    $_SESSION['errormanagerid']= $errormanagerid;
-    header("Location:/admin/events/create");
+    $_SESSION['errorinfos']= $errorinfos;
+    print_r($_SESSION);
+    die();
+    header("Location:/admin/events/update?id=".$_POST['id']);
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
     $_SESSION['game']= $game;
     $_SESSION['type']= $type;
     
-    $queryPrepared=$db->prepare("INSERT INTO ".PREFIX."events (name, description, manager_id, game, type) VALUES (:name,:description, :manager_id, :game, :type)");
+    $queryPrepared=$db->prepare("UPDATE ".PREFIX."events SET name=:name, description=:description, manager_id=:manager_id, game=:game, type=:type WHERE id =:id");
     $queryPrepared->execute([
         'name'=>$eventname,
         'description'=>$infos,
         'manager_id'=>$manager_id,
         'type'=>$type,
+        'id'=>$_POST['id'],
         "game"=>$game
     ]);
-    header("Location: /admin/events");
+    header("Location: /admin/events"); 
 }
 

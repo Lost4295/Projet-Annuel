@@ -15,7 +15,8 @@
 // }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
-include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
+session_start();
 //redirectIfNotAdmin();
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,8 @@ include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
     <link rel="stylesheet" href="/core/css/style.css">
 </head>
 
-<body>
+<body onload="timeoutmod()">
+   
     <div class="container-fluid">
         <div class="row">
             <div class="col px-0">
@@ -48,6 +50,18 @@ include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
                 </nav>
             </div>
         </div>
+        <div class="alert alert-success" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
+                                                                    echo "block";
+                                                                } else {
+                                                                    echo "none";
+                                                                } ?>">
+        <span class="closebtn" onclick="disappear();">&times;</span>
+        <?php if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+        ?>
+    </div>
         <div class="container-fluid px-0">
             <div class="row">
                 <div class="col-3 sidebare p-0">
@@ -62,57 +76,46 @@ include $_SERVER['DOCUMENT_ROOT']."/core/formatter.php";
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li>
                                 <a href="/admin" class="nav-link aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#speedometer2" />
-                                    </svg>
                                     Tableau de bord
                                 </a>
                             </li>
                             <li>
                                 <a href="/admin/signalements" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
                                     Signalements
                                 </a>
                             </li>
                             <li>
                                 <a href="/admin/events" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
                                     Événements
                                 </a>
                             </li>
                             <li>
                                 <a href="/admin/users" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#grid" />
-                                    </svg>
                                     Utilisateurs
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/admin/forums" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#home" />
-                                    </svg>
                                     Forums
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/tournaments" class="nav-link link-dark aaaa">
+                                    Tournois
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/shops" class="nav-link link-dark aaaa">
+                                    Shops
                                 </a>
                             </li>
                             <li>
                                 <a href="/admin/settings" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#people-circle" />
-                                    </svg>
                                     Paramètres du site
                                 </a>
                             </li>
                             <li>
                                 <a href="/" class="nav-link link-dark aaaa">
-                                    <svg class="bi me-2" width="16" height="16">
-                                        <use xlink:href="#table" />
-                                    </svg>
                                     Retour à la page d'accueil
                                 </a>
                             </li>

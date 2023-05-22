@@ -22,6 +22,20 @@ window.onscroll = () => {
       sidebar_content.style.position  = ""; 
     }
 };
+function disappear() {
+        var x = document.getElementById("alert");
+        x.style.opacity = "0";
+        setTimeout(function() {
+            x.style.display = "none";
+        }, 600);
+    }
+    function timeoutmod(){
+        var modal=document.getElementById("alert");
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 5000);
+        console.log("test");
+    }
 </script>
 </body>
 </html>

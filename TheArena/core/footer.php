@@ -67,6 +67,13 @@
             x.style.display = "none";
         }, 600);
     }
+
+    function timeoutmod(){
+        var modal=document.getElementById("alert");
+        setTimeout(function() {
+            modal.style.display = "none";
+        }, 10000);
+    }
 </script>
 </div>
 </body>

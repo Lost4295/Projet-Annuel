@@ -12,12 +12,8 @@
     <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
 </head>
 
-<body>
-        <div class="alert alert-success" id="alert" style="display:none">
-        <span class="closebtn" onclick="disappear();">&times;</span>
-            Si votre adresse mail est bien enregistrée, un email vous a été envoyé. Si vous ne recevez pas cet email,
-             vérifiez votre dossier de courriers indésirables. Sinon, essayez de recréer un compte.
-        </div>
+<body onload="timeoutmod()">
+
     </div>
     <div class="container-fluid ps-0">
         <div class="row">
@@ -33,6 +29,7 @@
                         <a class="btn btn-warning" id="changeToDarkMode">theme</a>
                         <?php session_start();
                         include 'functions.php';
+                        include 'formatter.php';
                         if (isConnected()) {
                             $attr = whoIsConnected();
                             if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
@@ -53,6 +50,13 @@
                     </div>
                 </nav>
             </div>
+        </div>
+        <div class="alert alert-success" id="alert" style="display:<?php if (isset($_SESSION['message'])) {echo "block";}else{ echo "none";}?>">
+        <span class="closebtn" onclick="disappear();">&times;</span>
+        <?php if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        }?>
         </div><!--notre sidebar-->
         <div class="container-fluid pl-0">
             <div class="row">

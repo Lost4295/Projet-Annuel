@@ -5,9 +5,6 @@ $db = connectToDB();
 $query = $db->query("SELECT id, username as pseudo FROM " . PREFIX . "users WHERE scope =" . ORGANIZER . " || scope=" . ADMIN . "|| scope= " . SUPADMIN);
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$result = array_values($result);
-
-print_r($result);
 ?>
 <form action="/wiews/admin/events/verifyevent.php" method="post" class="mb-5 row-cols-lg-auto">
     <div class="mb-3">
@@ -77,6 +74,13 @@ print_r($result);
                 } ?>
             </select>
         </div>
+    </div>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errormanagerid"])) {
+            echo $_SESSION['errormanagerid'];
+        }
+        ?>
     </div>
     <div class="row d-flex justify-content-center m-4">
         <div class="col-2">

@@ -1,45 +1,102 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/wiews/admin/header.php';
 
-if(isset($_GET['id']) && !empty($_GET['id'])){
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $db= connectToDB();
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare("SELECT * FROM `table` WHERE `id`=:id;");
+    $query = $db->prepare("SELECT * FROM ".PREFIX."events WHERE `id`=:id;");
     $query->execute([':id'=> $id]);
-    $result = $query->fetch();
+    $result2 = $query->fetch(PDO::FETCH_ASSOC);
+    $query = $db->query("SELECT id, username as pseudo FROM " . PREFIX . "users WHERE scope =" . ORGANIZER . " || scope=" . ADMIN . "|| scope= " . SUPADMIN);
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
 }
 
 
-//TODO : Adapter à chaque catégorie
 ?>
+<form action="/wiews/admin/events/verifyeventup.php" method="post" class="mb-5 row-cols-lg-auto">
+    <div class="mb-3">
+        <label for="eventname" class="form-label">Nom de l'événement</label>
+        <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Tournoi" required value="<?php echo $result2['name']?>">
+        <div class="invalid">
+            <?php
+            if (isset($_SESSION["erroreventname"])) {
+                echo $_SESSION['erroreventname'];
+            }
+            ?>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="infos" class="form-label">Informations</label>
+        <textarea class="form-control" id="infos" name="infos" rows="7" required><?php echo $result2['description']?></textarea>
+        <div class="invalid">
+            <?php
+            if (isset($_SESSION["errorinfos"])) {
+                echo $_SESSION['errorinfos'];
+            }
+            ?>
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="online" value="0">
+        <label class="form-check-label" for="online">
+            En ligne
+        </label>
+    </div>
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="radio" name="type" id="local" value="1" checked>
+        <label class="form-check-label" for="local">
+            En local
+        </label>
+    </div>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errortype"])) {
+            echo $_SESSION['errortype'];
+        }
+        ?>
+    </div>
+    <!-- If local, ajouter une div pour sélectionner une room ! Sinon -->
+    <label for="game" class="form-label">Jeu utilisé</label>
+    <input class="form-control mb-5" list="datalistOptions" id="game" name="game" placeholder="Entrez le nom du jeu..." value="<?php echo $result2['game']?>" required>
+    <datalist id="datalistOptions">
+        <option value="CSGO">
+        <option value="LOL">
+        <option value="Super Smash Bros. Ultimate">
+        <option value="Rainbow Six Siege">
+        <option value="Rocket League">
+    </datalist>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errorgame"])) {
+            echo $_SESSION['errorgame'];
+        }
+        ?>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Organisateur</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="manager_id" name="manager_id">
+                <?php foreach ($result as $orga) {
+                    echo "<option value=". $orga["id"];
+                    if ($orga['id']==$result2["manager_id"]){
+                        echo " selected";
+                    }
+                    echo ">" . $orga["pseudo"] . "</option>";
+                } ?>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="<?= $result2['id'] ?>">
+    <div class="row d-flex justify-content-center m-4">
+        <div class="col-2">
+            <button class="btn-primary btn btn-lg" type="submit">Créer l'événement</button>
+        </div>
+    </div>
+</form>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des produits</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-    <h1>Modifier un produit</h1>
-    <form method="post">
-        <p>
-            <label for="produit">Produit</label>
-            <input type="text" name="produit" id="produit" value="<?= $result['produit'] ?>">
-        </p>
-        <p>
-            <label for="prix">Prix</label>
-            <input type="text" name="prix" id="prix" value="<?= $result['prix'] ?>">
-        </p>
-        <p>
-            <label for="nombre">Nombre</label>
-            <input type="number" name="nombre" id="nombre" value="<?= $result['nombre'] ?>">
-        </p>
-        <p>
-            <button>Enregistrer</button>
-        </p>
-        <input type="hidden" name="id" value="<?= $result['id'] ?>">
-    </form>
-</body>
-</html>
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";
+
+?>

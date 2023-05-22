@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
 </head>
-//TODO modiffier les sessions pour bien avoir les erreurs
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -186,7 +185,7 @@
                                         <label for="cp" class="form-label">Code postal</label>
                                         <input type="text" class="form-control" id="cp" name="cp" required
                                             placeholder="75012">
-                                        <div class="invalid"> 
+                                        <div class="invalid">
                                             <?php
                                                 if (isset($_SESSION["errorcp"])) {echo $_SESSION['errorcp'];}
                                             ?>

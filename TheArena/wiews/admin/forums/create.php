@@ -1,46 +1,36 @@
 <?php
-$sql = "INSERT INTO `liste` (`produit`, `prix`, `nombre`) VALUES (:produit, :prix, :nombre);";
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
+$db = connectToDB();
 
-$query = $db->prepare($sql);
+$query = $db->query("SELECT * FROM " . PREFIX . "users");
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$query->bindValue(':produit', $produit, PDO::PARAM_STR);
-$query->bindValue(':prix', $prix, PDO::PARAM_STR);
-$query->bindValue(':nombre', $nombre, PDO::PARAM_INT);
-
-$query->execute();
 ?>
 
-<form method="post">
-    <label for="produit">Produit</label>
-    <input type="text" name="produit" id="produit">
-    <label for="prix">Prix</label>
-    <input type="text" name="prix" id="prix">
-    <label for="nombre">Nombre</label>
-    <input type="number" name="nombre" id="nombre">
-    <button>Enregistrer</button>
+
+<h1>Création d'un nouveau blog</h1>
+<form action="/wiews/admin/forums/verifyblog.php" method="post">
+    <div class="mb-3">
+        <label for="blogname" class="form-label">Nom du blog</label>
+        <input type="text" class="form-control" id="blogname" name="blogname" required>
+    </div>
+    <div class="mb-3">
+        <label for="blogdesc" class="form-label">Description</label>
+        <textarea class="form-control" id="blogdesc" name="blogdesc" rows="7"></textarea>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Auteur</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="author" name="author">
+                <?php foreach ($result as $orga) {
+                    echo "<option value=" . $orga["id"] . ">" . $orga["username"] . "</option>";
+                } ?>
+            </select>
+        </div>
+    </div>
+    <button class="btn-primary btn btn-lg" type="submit">Créer le forum</button>
 </form>
 
-
 <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
-
-if(isset($_POST)){
-    if(isset($_POST['produit']) && !empty($_POST['produit'])
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['nombre']) && !empty($_POST['nombre'])){
-            $produit = strip_tags($_POST['produit']);
-            $prix = strip_tags($_POST['prix']);
-            $nombre = strip_tags($_POST['nombre']);
-            $query = $db->prepare("INSERT INTO `liste` (`produit`, `prix`, `nombre`) VALUES (:produit, :prix, :nombre);");
-
-            $query->execute([
-                ':produit', $produit,
-                ':prix', $prix,
-                ':nombre', $nombre
-            ]);
-            $_SESSION['message'] = "Produit ajouté avec succès !";
-            header('Location: index.php');
-        }
-        
-}//TODO : Adapter à chaque catégorie
-
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";
+?>

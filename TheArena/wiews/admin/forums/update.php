@@ -1,68 +1,40 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
-
-if(isset($_POST)){
-    if(isset($_POST['id']) && !empty($_POST['id'])
-        && isset($_POST['produit']) && !empty($_POST['produit'])
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $id = strip_tags($_GET['id']);
-        $produit = strip_tags($_POST['produit']);
-        $prix = strip_tags($_POST['prix']);
-        $nombre = strip_tags($_POST['nombre']);
-
-        $query = $db->prepare( "UPDATE ".PREFIX."events SET `produit`=:produit, `prix`=:prix, `nombre`=:nombre WHERE `id`=:id;");
-
-        $query->execute([
-            ':produit'=>$produit,
-            ':prix'=> $prix,
-            ':nombre'=> $nombre,
-            ':id'=> $id
-            ]);
-
-        header('Location: index.php');
-    }
-}
+    require $_SERVER['DOCUMENT_ROOT'].'/wiews/admin/header.php';
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare("SELECT * FROM ".PREFIX."events WHERE `id`=:id;");
+    $query = $db->prepare("SELECT * FROM ".PREFIX."forums WHERE `id`=:id;");
     $query->execute([':id'=> $id]);
     $result = $query->fetch();
+    $query = $db->query("SELECT * FROM ".PREFIX."users");
+    $result2 = $query->fetch();
+
 }
 
-
-//TODO : Adapter à chaque catégorie
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des produits</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
 <body>
-    <h1>Modifier un produit</h1>
-    <form method="post">
-        <p>
-            <label for="produit">Produit</label>
-            <input type="text" name="produit" id="produit" value="<?= $result['produit'] ?>">
-        </p>
-        <p>
-            <label for="prix">Prix</label>
-            <input type="text" name="prix" id="prix" value="<?= $result['prix'] ?>">
-        </p>
-        <p>
-            <label for="nombre">Nombre</label>
-            <input type="number" name="nombre" id="nombre" value="<?= $result['nombre'] ?>">
-        </p>
-        <p>
-            <button>Enregistrer</button>
-        </p>
-        <input type="hidden" name="id" value="<?= $result['id'] ?>">
-    </form>
-</body>
-</html>
+<form action="/wiews/admin/forums/verifyblogup.php" method="post">
+    <div class="mb-3">
+        <label for="blogname" class="form-label">Nom du blog</label>
+        <input type="text" class="form-control" id="blogname" name="blogname" value="<?= $result['name'] ?>" required>
+    </div>
+    <div class="mb-3">
+        <label for="blogdesc" class="form-label">Description</label>
+        <textarea class="form-control" id="blogdesc" name="blogdesc" rows="7"><?= $result['description'] ?></textarea>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Organisateur</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="manager_id" name="manager_id">
+                <?php foreach ($result2 as $orga) {
+                    echo "<option value=" . $orga["id"] . ">" . $orga["username"] . "</option>";
+                } ?>
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="<?= $result['id'] ?>">
+    <button class="btn-primary btn btn-lg" type="submit">Modifier le forum</button>
+</form>
+        
+<?php
+    require $_SERVER['DOCUMENT_ROOT'].'/wiews/admin/footer.php';
