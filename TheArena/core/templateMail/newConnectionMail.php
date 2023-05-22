@@ -1,5 +1,5 @@
-<?php require "headerMail.php";
-$body="<div class='div-container'>
+<?php
+$bodync="<div class='div-container'>
         <div class='row'>
             <p>Bonjour pseudo,<br> Cet e-mail a été créé car une nouvelle connexion au compte pseudo a été établie le 19 septembre 2022 04:03:00 PDT (19 septembre 2022 11:03:00 UTC) depuis :<br>
             <li>
@@ -22,4 +22,4 @@ $body="<div class='div-container'>
             </p>
         </div>
     </div>";
- require "footerMail.php"?>
+?>

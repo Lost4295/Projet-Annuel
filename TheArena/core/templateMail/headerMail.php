@@ -12,10 +12,10 @@
     <header>
         <div class='row'>
             <div class='col-3'>
-                <img src='../../img/logothearena-removebg.png'>
+                <img src='cid:logo'>
             </div>
             <div class='col center'>
-                <img src='../../img/thearenatext-removebg.png'>
+                <img src='cid:text'>
             </div>
 
         </div>

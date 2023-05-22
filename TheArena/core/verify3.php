@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'functions.php';
+include 'sendmail.php';
 if (isset($_POST)) {
 if (!isset($_POST['newsletter'])) {
     $_SESSION['newsletter']=0;
@@ -77,8 +78,8 @@ $table=[];
     $activationCode = generateActivationCode();
     $subject='Validation du compte The Arena : '.$_SESSION['username'];
     $email=$_SESSION['email'];
-    $url = "http://thearena.litecloud.fr/core/auth.php?email=".$email."&activationCode=".$activationCode;
-    $body='Clique sur le lien pour valider le compte ! <a href='.$url.'> Cliquer</a><br><img src=cid:logo>';
+    $url = "https://thearena.litecloud.fr/authentification?email=".$email."&activationCode=".$activationCode;
+    $body='Clique sur le lien pour valider le compte ! <a href='.$url.'> Cliquer</a>';
     sendEmail($email, $subject, $body);
     header("Location: /");
 }

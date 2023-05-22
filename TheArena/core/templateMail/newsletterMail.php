@@ -1,3 +1,3 @@
-<?php require "headerMail.php" ?>
+<?php ?>
 
-<?php require "footerMail.php"?>
+<?php?>

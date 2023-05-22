@@ -1,5 +1,5 @@
-<?php require "headerMail.php";
-$body="<div class='div-container'>
+<?php
+$bodyw="<div class='div-container'>
         <div class='row'>
             <p>Bienvenue pseudo,<br></p>
             <p>Nous sommes ravis de vous présenter notre site dédié aux tournois et événements de jeux vidéo. 
@@ -11,4 +11,4 @@ Que vous soyez un joueur professionnel ou un amateur passionné, The Arena est l
             <p>Inscrivez-vous dès maintenant pour ne jamais manquer une opportunité de jouer, de vous améliorer et de vous classer parmi les meilleurs joueurs.</p>
         </div>
     </div>";
- require "footerMail.php"?>
+?>
