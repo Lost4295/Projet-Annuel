@@ -30,7 +30,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 //TODO accéder aux personnes inscrites
 <div>
     <a class="btn btn-primary m-2" href="update?id=<?php echo $event['id'] ?>">Modifier</a>
-    <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="/admin/shop/read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
+    <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="admin/shop/read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
     <a class="btn btn-primary m-2" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a>
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";

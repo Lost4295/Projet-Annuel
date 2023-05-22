@@ -36,5 +36,5 @@ define("ENDTD", "</td>");?>
 ?>
     </tbody>
 </table>
-<a href="/admin/users/create" class="btn-primary btn">Créer un utilisateur</a>
+<a href="admin/users/create" class="btn-primary btn">Créer un utilisateur</a>
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

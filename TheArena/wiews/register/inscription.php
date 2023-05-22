@@ -244,7 +244,7 @@
                                             <input class="form-check-input" type="checkbox" value="1" id="cgu"
                                                 name="cgu" required>
                                             <label class="form-check-label" for="cgu">
-                                                J'accepte les <a href="/cgu">CGU de The Arena</a>
+                                                J'accepte les <a href="cgu">CGU de The Arena</a>
                                             </label>
                                         </div>
                                     </div>

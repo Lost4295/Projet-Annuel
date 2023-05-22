@@ -8,7 +8,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id'=>$id]);
 }
 ?> <h3 class="text-center m-4"> La modification a été effectuée.</h3>
-<a href="/admin/events" class='btn-primary btn my-5'> Retourner à la page de gestion des événements</a>
+<a href="admin/events" class='btn-primary btn my-5'> Retourner à la page de gestion des événements</a>
 
 
 <?php 

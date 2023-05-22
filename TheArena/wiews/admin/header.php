@@ -27,10 +27,10 @@ session_start();
     <meta name="Ma duper super page" content="Page HTML">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Arena</title>
-    <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
+    <link rel="icon" type="image/png" href="img/logothearena-removebg.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/core/css/bootstrap.css">
-    <link rel="stylesheet" href="/core/css/style.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['DOCUMENT_ROOT']?>/core/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo $_SERVER['DOCUMENT_ROOT']?>/core/css/style.css">
 </head>
 
 <body onload="timeoutmod()">
@@ -66,7 +66,7 @@ session_start();
             <div class="row">
                 <div class="col-3 sidebare p-0">
                     <div class="contented d-flex flex-column flex-shrink-0 p-3 bg-light">
-                        <a href="/admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                        <a href="admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                             <svg class="bi me-2" width="40" height="32">
                                 <use xlink:href="#bootstrap" />
                             </svg>
@@ -75,42 +75,42 @@ session_start();
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li>
-                                <a href="/admin" class="nav-link aaaa">
+                                <a href="admin" class="nav-link aaaa">
                                     Tableau de bord
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/signalements" class="nav-link link-dark aaaa">
+                                <a href="admin/signalements" class="nav-link link-dark aaaa">
                                     Signalements
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/events" class="nav-link link-dark aaaa">
+                                <a href="admin/events" class="nav-link link-dark aaaa">
                                     Événements
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/users" class="nav-link link-dark aaaa">
+                                <a href="admin/users" class="nav-link link-dark aaaa">
                                     Utilisateurs
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/forums" class="nav-link link-dark aaaa">
+                                <a href="admin/forums" class="nav-link link-dark aaaa">
                                     Forums
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/tournaments" class="nav-link link-dark aaaa">
+                                <a href="admin/tournaments" class="nav-link link-dark aaaa">
                                     Tournois
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/admin/shops" class="nav-link link-dark aaaa">
+                                <a href="admin/shops" class="nav-link link-dark aaaa">
                                     Shops
                                 </a>
                             </li>
                             <li>
-                                <a href="/admin/settings" class="nav-link link-dark aaaa">
+                                <a href="admin/settings" class="nav-link link-dark aaaa">
                                     Paramètres du site
                                 </a>
                             </li>

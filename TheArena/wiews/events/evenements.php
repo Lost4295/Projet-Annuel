@@ -11,7 +11,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="row my-3">
         <!-- <div class="col">
-            <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg"></a>
+            <a href="event"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg"></a>
         </div>
         <div class="col">
             <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
@@ -40,7 +40,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)) { ?>
         <div class="row my-3">
             <div>
-                <a href="/event/create">Créer un événement</a>
+                <a href="event/create">Créer un événement</a>
             </div>
         </div>
     <?php

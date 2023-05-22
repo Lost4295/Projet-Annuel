@@ -1,10 +1,10 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>  
     <div class="row col-12">
         <nav class="navbar bar">
-            <a class="navbarSecondaryBtn" href="/event">Accueil</a>
-            <a class="navbarSecondaryBtn" href="/event/participants">Participants</a>
-            <a class="navbarSecondaryBtn" href="/event/dashboard">Tableau de bord</a>
-            <a class="btn btn-primary active btn-warning " href="/event/shop">Shop</a>
+            <a class="navbarSecondaryBtn" href="event">Accueil</a>
+            <a class="navbarSecondaryBtn" href="event/participants">Participants</a>
+            <a class="navbarSecondaryBtn" href="event/dashboard">Tableau de bord</a>
+            <a class="btn btn-primary active btn-warning " href="event/shop">Shop</a>
         </nav>
     </div> 
     <div class="row">
@@ -12,7 +12,7 @@
     </div>
     <div class="row my-3">
                 <div class="col"> 
-                    <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="#" ></a>
+                    <a href="event"><img style="position: relative; left:0; width: 250px; height:250px;" src="#" ></a>
                 </div>
                 <div class="col"> 
                     <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
