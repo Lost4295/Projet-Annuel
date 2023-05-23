@@ -6,7 +6,14 @@
 <h2> Ajouter une image</h2>
 
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="image" class="form-control" value="Ajouter une image" accept="image/*" />
+    <input type="file" name="image" class="form-control"  value="Ajouter une image" accept="image/*" onchange="loadFile(event)"/>
+    <img id="output" src=" " width="500" height=auto />
+        <script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+            };
+        </script>
     <button type="submit">Envoyer</button>
 </form>
 
@@ -20,25 +27,36 @@ if (isset($_FILES['image'])) {
     } //FIXME : POTENTIAL BUG, Might not work so
 
     $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
+    $active = glob($dirname.'active\\'."*.{jpg,gif,png}", GLOB_BRACE);
+    $_SESSION['prev-image']=$active[0];
 
     foreach ($images as $image) {
-        echo '<img src="'.$image.'" width=150px/><br />';
+        echo '<img src="'.$image.'" width=150px/><a href="delimg.php?src='.$image.'" class="btn btn-primary">Supprimer l\'image</a><br />';
+        echo '<a href="activateimg.php?src='.$image.'" class="btn btn-primary">Activer l\'image</a><br />';
     }
 
-    ?>
-    <?php
-// Chemin vers l'image d'origine
-$imagePath = 'chemin/vers/image.jpg';
+    foreach ($active as $image) {
+    
 
-// Charger l'image d'origine
-$image = imagecreatefromjpeg($imagePath);
+// Chemin vers l'image d'origine
+$imagePath = $image;
+$path_info = pathinfo($imagePath);
+
+if ($path_info['extension'] == 'jpg') {
+    $image = imagecreatefromjpeg($imagePath);
+} elseif ($path_info['extension'] == 'png') {
+    $image = imagecreatefrompng($imagePath);
+} elseif ($path_info['extension'] == 'gif') {
+    $image = imagecreatefromgif($imagePath);
+} else {
+    echo "Erreur : le format de l'image n'est pas supporté";
+}
 
 // Déterminer les dimensions de découpe
 $largeur = imagesx($image);
 $hauteur = imagesy($image);
 $partieLargeur = $largeur / 3;
 $partieHauteur = $hauteur / 3;
-
 // Découper l'image en parties
 $parties = array();
 
@@ -50,17 +68,21 @@ for ($i = 0; $i < 3; $i++) {
     $parties[] = $partie;
   }
 }
-
+$images = glob($dirname.'/parts/'."*.{jpg,gif,png}", GLOB_BRACE);
+foreach ($images as $oldImage) {
+    unlink($oldImage);
+}
 // Enregistrer les parties découpées
 foreach ($parties as $index => $partie) {
   $nomFichier = 'partie' . ($index + 1) . '.jpg';
-  imagejpeg($partie, $nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
+  imagejpeg($partie, $dirname.'/parts/'.$nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
 }
 
 // Libérer les ressources GD
 imagedestroy($image);
 foreach ($parties as $partie) {
   imagedestroy($partie);
+}
 }
  include 'footer.php'?>
 

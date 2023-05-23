@@ -34,7 +34,6 @@ function disappear() {
         setTimeout(function() {
             modal.style.display = "none";
         }, 5000);
-        console.log("test");
     }
 </script>
 </body>
