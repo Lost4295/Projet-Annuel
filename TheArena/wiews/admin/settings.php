@@ -11,7 +11,7 @@
 </form>
 
 <?php
-$dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\';
+$dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\captcha\\';
 
 if (isset($_FILES['image'])) {
         $tmpName = $_FILES['image']['tmp_name'];

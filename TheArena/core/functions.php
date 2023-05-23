@@ -63,6 +63,14 @@ function redirectIfNotAdmin()
         header("Location:/ ");
     }
 }
+
+function encodeImage($filename, $filetype)
+{
+    if ($filename){
+        $imgbinary = fread(fopen($filename, "r"), filesize($filename));
+        return 'data:image/' . $filetype . ';base64,' . base64_encode($imgbinary);
+    }
+}
 function noReconnection()
 {
     if (isConnected()) {
