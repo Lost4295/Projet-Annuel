@@ -15,76 +15,137 @@
 ?>
 
 <!doctype html>
-<meta charset=utf-8>
-<title>Test addok + fetch</title>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<script>
-    /* Use http://localhost:7878 if you run a local instance. */
-    const url = new URL('http://api-adresse.data.gouv.fr/search')
-    const params = {
-        q: 'lil'
-    }
-    Object.keys(params).forEach(
-        key => url.searchParams.append(key, params[key])
-    )
-    fetch(url)
-        .then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                return response
-            } else {
-                const error = new Error(response.statusText)
-                error.response = response
-                throw error
-            }
-        })
-        .then(response => response.json())
-        .then(data => console.log('request succeeded with JSON response', data))
-        .catch(error => console.log('request failed', error))
-</script>
+<html lang=fr>
+
+<head>
+    <meta charset=utf-8>
+    <title>Test addok + fetch</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script>
+        /* Use http://localhost:7878 if you run a local instance. */
+        const url = new URL('http://api-adresse.data.gouv.fr/search')
+        const params = {
+            q: 'lil'
+        }
+        Object.keys(params).forEach(
+            key => url.searchParams.append(key, params[key])
+        )
+        fetch(url)
+            .then(response => {
+                if (response.status >= 200 && response.status < 300) {
+                    return response
+                } else {
+                    const error = new Error(response.statusText)
+                    error.response = response
+                    throw error
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log('request succeeded with JSON response', data))
+            .catch(error => console.log('request failed', error))
+    </script>
+    <style>
+        .draggable {
+            width: 100px;
+            height: 100px;
+            background-color: #f1f1f1;
+            margin: 5px;
+            padding: 10px;
+            cursor: move;
+        }
+
+        .drop-zone {
+            width: 200px;
+            height: 200px;
+            background-color: #e0e0e0;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
 
 <body>
-    <form id="1">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <form id="2">
-        <div class="form-group">
-            <label for="exampleInputEmail2">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword2">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-        </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-            <label class="form-check-label" for="exampleCheck2">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="draggable" id="part1" draggable="true">Part 1</div>
+    <div class="draggable" id="part2" draggable="true">Part 2</div>
+    <div class="draggable" id="part3" draggable="true">Part 3</div>
+
+    <div class="drop-zone" id="dropZone1"></div>
+    <div class="drop-zone" id="dropZone2"></div>
+    <div class="drop-zone" id="dropZone3"></div>
+
+    <div class="drop-zone" id="resetZone">Reset Zone</div>
+
+
 </body>
 <script>
+    // Sélection des éléments déplaçables et des éléments de dépôt
+    const draggableElements = document.querySelectorAll('.draggable');
+    const dropZoneElements = document.querySelectorAll('.drop-zone');
+    const resetZone = document.getElementById('resetZone');
 
-    document.getElementById("1").addEventListener("submit", function(evt) {
-        evt.preventDefault();
-        console.log("form 1");
+
+    // Ajout des gestionnaires d'événements aux éléments déplaçables
+    draggableElements.forEach((draggable) => {
+        draggable.addEventListener('dragstart', dragStart);
     });
-    document.getElementById("2").addEventListener("submit", function(evt) {
-        evt.preventDefault();
-        console.log("form 2");
+
+    // Ajout des gestionnaires d'événements aux éléments de dépôt
+    dropZoneElements.forEach((dropZone) => {
+        dropZone.addEventListener('dragover', dragOver);
+        dropZone.addEventListener('drop', drop);
     });
-    
+
+    // Gestionnaire d'événement pour la zone de réinitialisation
+    resetZone.addEventListener('drop', resetDraggableElements);
+
+
+    // Fonction de démarrage du glisser-déposer
+    function dragStart(event) {
+    const draggedElement = event.target;
+
+    // Ajout de la classe CSS pour marquer l'élément en train d'être déplacé
+    draggedElement.classList.add('dragging');
+
+    // Définition des données à transférer
+    event.dataTransfer.setData('text/plain', draggedElement.id);
+}
+
+// Fonction de survol de la zone de dépôt
+function dragOver(event) {
+    event.preventDefault();
+
+    // Vérifier si l'élément survolé est également un bloc "draggable"
+    if (event.target.classList.contains('draggable')) {
+        event.dataTransfer.dropEffect = 'none';
+    } else {
+        event.dataTransfer.dropEffect = 'move';
+    }
+}
+
+    // Fonction de largage dans la zone de dépôt
+    function drop(event) {
+    event.preventDefault();
+
+    // Vérifier si la zone de dépôt contient déjà un élément draggable
+    const existingDraggable = event.target.querySelector('.draggable');
+    if (existingDraggable) {
+        return;
+    }
+
+    const droppedElementId = event.dataTransfer.getData('text/plain');
+    const droppedElement = document.getElementById(droppedElementId);
+
+    // Déplacement de l'élément déposé dans la zone de dépôt
+    event.target.appendChild(droppedElement);
+}
+function resetDraggableElements(event) {
+        event.preventDefault();
+        
+        
+    const droppedElementId = event.dataTransfer.getData('text/plain');
+    const droppedElement = document.getElementById(droppedElementId);
+    event.target.appendChild(droppedElement);
+}
 </script>
+
+</html>
