@@ -69,7 +69,7 @@ if (isset($_SESSION['error'])) {
     </div>
     <div class="mb-4">
         <label for="pwd" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control mb-3" id="pwd" name="pwd" required>
+        <input type="password" class="form-control mb-3" id="pwd" name="pwd" required autocomplete="current-password">
         <a href='/login/help'>Un problème pour vous connecter ?</a>
     </div>
     <div>
