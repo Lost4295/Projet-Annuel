@@ -32,7 +32,7 @@ if (isset($_FILES['image'])) {
 
     foreach ($images as $key => $image) {// TODO encoder les images en base64 pour les afficher
         $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-        echo '<img src="'.$image.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
+        echo '<img src="'.$url.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
     }
 
 
