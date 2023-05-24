@@ -84,15 +84,14 @@ foreach ($parties as $partie) {
 // Afficher les parties découpées  
 $images = glob($dirname.'/parts/'."*.{jpg,gif,png}", GLOB_BRACE);
 echo "<p>Captcha actuel :</p><div>";
-$val=0;
+
 foreach ($images as $key => $image) {
     $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-    if ($val==3) {
+    if ($key%3==0) {
         echo "<br />";
-        $val=0;
     }
-    $val+1;
-    echo '<img src="'.$url.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
+    
+    echo '<img style="border:dashed green;" src="'.$url.'" width=150px/>';
 }
 echo "</div>";
  include 'footer.php'?>
