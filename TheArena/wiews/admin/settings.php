@@ -91,7 +91,7 @@ foreach ($images as $key => $image) {
         echo "<br />";
         $val=0;
     }
-    $val+1
+    $val+1;
     echo '<img src="'.$url.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
 }
 echo "</div>";
