@@ -26,4 +26,4 @@ if (isset($_GET['img'])) {
 }
 
 sleep(5);
-header('Location: /admin/settings.php'); 
+header('Location: /admin/settings');
