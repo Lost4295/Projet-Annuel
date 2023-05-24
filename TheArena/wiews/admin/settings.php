@@ -18,7 +18,7 @@
 </form>
 
 <?php
-$dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\captcha\\';
+$dirname=$_SERVER['DOCUMENT_ROOT'].'/uploads/captcha/';
 
 if (isset($_FILES['image'])) {
         $tmpName = $_FILES['image']['tmp_name'];
@@ -27,7 +27,7 @@ if (isset($_FILES['image'])) {
     } //FIXME : POTENTIAL BUG, Might not work so
 
     $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
-    $active = glob($dirname.'active\\'."*.{jpg,gif,png}", GLOB_BRACE);
+    $active = glob($dirname.'active/'."*.{jpg,gif,png}", GLOB_BRACE);
     $_SESSION['prev-image']=$active[0];
 
     foreach ($images as $image) {
