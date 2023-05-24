@@ -13,11 +13,11 @@ if (isset($_GET['src'])) {
 
     // Supprimer l'image
     if (unlink($imagePath)) {
-    $_SESSION["message_type"]='success'; 
+    $_SESSION["message_type"]='success';
          $_SESSION["message"]=  "L'image a été supprimée avec succès.";
     } else {
-    $_SESSION["message_type"]='danger'; 
+    $_SESSION["message_type"]='danger';
          $_SESSION["message"]=  "Une erreur s'est produite lors de la suppression de l'image.";
     }
 }
-header('Location: /admin/settings');
+header('Location: /admin_settings');
