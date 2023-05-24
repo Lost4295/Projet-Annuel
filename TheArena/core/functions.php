@@ -100,6 +100,14 @@ function generateActivationCode(): string
     return bin2hex(random_bytes(16));
 }
 
+function cleanNames($name)
+{
+    return ucwords(strtolower(trim($name)), "\t\r\n\f\v-'") ;
+}
+
+
+
+
 function generateRandCode(): string
 {
     return bin2hex(random_bytes(2));

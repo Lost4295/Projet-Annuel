@@ -1,20 +1,31 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
+
+if (isset($_SESSION['email'])){
+    $db = connectToDB();
+    $queryPrepared = $db->prepare("SELECT first_name, last_name FROM " . PREFIX . "users WHERE email=:email");
+    $queryPrepared->execute(["email" => $_SESSION["email"]]);
+    $result = $queryPrepared->fetch();
+    $firstname = $result['first_name'];
+    $lastname = $result['last_name'];
+    closeConnectionToDB($db);
+}
+?>
 
 <form action="" method="post">
 <div class="row">
 <div class="col mb-3">
     <label for="lastname" class="form-label">Nom</label>
-    <input type="text" class="form-control" id="lastname" placeholder="John" required>
+    <input type="text" class="form-control" id="lastname" placeholder="John" value="<?php if (isset($result['last_name'])){echo cleanNames($result['last_name']);}?>" required>
 </div>
 <div class="col mb-3">
     <label for="firstname" class="form-label">Prénom</label>
-    <input type="text" class="form-control" id="firstname" placeholder="Doe" required>
+    <input type="text" class="form-control" id="firstname" placeholder="Doe"value="<?php if (isset($result['first_name'])){echo cleanNames($result['first_name']);}?>" required>
 </div>
 </div>
 <div class="row">
 <div class="col mb-3">
     <label for="email" class="form-label">Adresse email</label>
-    <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+    <input type="email" class="form-control" id="email" placeholder="name@example.com" value="<?php if (isset($_SESSION['email'])){echo $_SESSION['email'];}?>"required>
 </div>
 
 <div class="col mb-3">

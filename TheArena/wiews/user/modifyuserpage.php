@@ -35,11 +35,11 @@ if (!empty($result)) {
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
             <label for="firstname" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="firstname" disabled value="<?php echo ucwords(strtolower($firstname)) ?>">
+            <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNames($firstname)) ?>">
         </div>
         <div class="col-4">
             <label for="lastname" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="lastname" disabled value="<?php echo ucwords(strtolower($lastname), "\t\r\n\f\v-'") ?>">
+            <input type="text" class="form-control" id="lastname" disabled value="<?php echo cleanNames($lastname) ?>">
         </div>
     </div>
     <div class="row d-flex justify-content-between">
