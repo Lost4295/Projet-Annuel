@@ -1,7 +1,7 @@
 <?php require 'header.php';
 $db = connectToDB();
 $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "events");
-$resultq = $query->fetch(PDO::FETCH_ASSOC);
+$resulte = $query->fetch(PDO::FETCH_ASSOC);
 $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "users");
 $resultu = $query->fetch(PDO::FETCH_ASSOC);
 $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "forums");
@@ -35,7 +35,7 @@ $resultf = $query->fetch(PDO::FETCH_ASSOC);
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title text-center link-dark"> Nombre d'événements</h5>
-                    <p class=" link-dark fs-1 text-center"><?php echo $resultf['c'] ?> </p>
+                    <p class=" link-dark fs-1 text-center"><?php echo $resulte['c'] ?> </p>
                 </div>
             </div>
         </a>

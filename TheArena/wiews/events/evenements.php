@@ -3,6 +3,10 @@ $db = connectToDB();
 $query = $db->query("SELECT * FROM " . PREFIX . "events");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
+echo "<pre>";
+print_r($result);
+echo "</pre>";
+
 ?>
 
 <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
@@ -20,7 +24,9 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
             if ($key % 3 == 0) { ?></div><div class="row my-3">
                 <?php ;} ?>
             <div class="col">
-                <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
+                <a href="/event?eid=<?php echo $event['id']?>">
+                <img style="position: relative; left:0; width: 250px; height:250px;" src="<?php echo $event['image']?>">
+                </a>
             </div>
 <?php ;}?>
 </div>

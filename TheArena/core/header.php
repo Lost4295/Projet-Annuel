@@ -51,11 +51,12 @@
                 </nav>
             </div>
         </div>
-        <div class="alert alert-success" id="alert" style="display:<?php if (isset($_SESSION['message'])) {echo "block";}else{ echo "none";}?>">
+        <div class="alert alert-<?php if (isset($_SESSION['message_type'])){ echo $_SESSION['message_type'];} else { echo 'info';}?>" id="alert" style="display:<?php if (isset($_SESSION['message'])) {echo "block";}else{ echo "none";}?>">
         <span class="closebtn" onclick="disappear();">&times;</span>
         <?php if (isset($_SESSION['message'])) {
             echo $_SESSION['message'];
             unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
         }?>
         </div><!--notre sidebar-->
         <div class="container-fluid pl-0">
