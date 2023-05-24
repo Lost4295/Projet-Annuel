@@ -31,7 +31,7 @@ if (isset($_FILES['image'])) {
     $active = array_rand($images);
 
     foreach ($images as $key => $image) {// TODO encoder les images en base64 pour les afficher
-        $url = str_replace($dirname, '', $image);
+        $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
         echo '<img src="'.$image.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
     }
 
