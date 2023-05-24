@@ -99,6 +99,11 @@ function generateActivationCode(): string
 {
     return bin2hex(random_bytes(16));
 }
+
+function generateRandCode(): string
+{
+    return bin2hex(random_bytes(2));
+}
 function unsetwhenRegistered()
 {
     if (isset($_SESSION['errorfirstname'])) {
