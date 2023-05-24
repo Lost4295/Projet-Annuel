@@ -27,19 +27,15 @@ if (isset($_FILES['image'])) {
     } //FIXME : POTENTIAL BUG, Might not work so
 
     $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
-    $active = glob($dirname.'active\\'."*.{jpg,gif,png}", GLOB_BRACE);
-    $_SESSION['prev-image']=$active[0];
+    $active = array_rand($images);
 
     foreach ($images as $image) {
         echo '<img src="'.$image.'" width=150px/><a href="delimg.php?src='.$image.'" class="btn btn-primary">Supprimer l\'image</a><br />';
-        echo '<a href="activateimg.php?src='.$image.'" class="btn btn-primary">Activer l\'image</a><br />';
     }
 
-    foreach ($active as $image) {
-    
 
 // Chemin vers l'image d'origine
-$imagePath = $image;
+$imagePath = $images[$active];
 $path_info = pathinfo($imagePath);
 
 if ($path_info['extension'] == 'jpg') {
@@ -82,7 +78,6 @@ foreach ($parties as $index => $partie) {
 imagedestroy($image);
 foreach ($parties as $partie) {
   imagedestroy($partie);
-}
 }
  include 'footer.php'?>
 

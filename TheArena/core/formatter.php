@@ -83,3 +83,15 @@ function formatStatusForums($status)
         }
         return $return;
 }
+
+function formatTypeEvents($type)
+{
+    if ($type==0) {
+        $return="En ligne";
+        } elseif ($type==1) {
+            $return="En local";
+        } else {
+            $return=$type." : Format étrange et non connu en base";
+        }
+        return $return;
+}

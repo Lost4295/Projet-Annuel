@@ -1,6 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
@@ -14,6 +14,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header('Location: index.php');
 }
 
+require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 ?>
 <h1>Détails de l'évènement <?php echo $event['name'] ?></h1>
 <p>ID : <?php echo $event['id'] ?></p>
@@ -22,7 +23,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <p> Pseudo de l'organisateur : <?php echo findUserById($event['manager_id']) ?></p>
 <p> Id du shop : <?php echo ($event['shop_id']) ?? "NULL" ?></p>
 <p>Jeu : <?php echo $event['game'] ?></p>
-<p>Type : <?php echo $event['type'] ?></p>
+<p>Type : <?php echo formatTypeEvents($event['type']) ?></p>
 <p>Image : <img src="<?php echo $event['image'] ?>" height="450" alt="image de l'évènement"></p>
 
 
