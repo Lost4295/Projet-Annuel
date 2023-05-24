@@ -5,9 +5,9 @@ if (isset($_GET['img'])) {
     $removepath = $_SESSION['previous-img'];
     $sourcePath = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';     // Destination directory
     if (rename($removePath, $sourcePath)) {
-        echo "Image moved successfully.";
+        echo "Image removed successfully.";
     } else {
-        echo "Failed to move the image.";
+        echo "Failed to remove the image.";
     }
 
     $imageToPut = $_GET['src'];
@@ -19,8 +19,11 @@ if (isset($_GET['img'])) {
 
     // Move the file to the destination directory
     if (rename($imageToPut, $newFilePath)) {
-        echo "Image moved successfully.";
+        echo "Image to activate moved successfully.";
     } else {
-        echo "Failed to move the image.";
+        echo "Failed to move the image to activate.";
     }
 }
+
+sleep(5);
+header('Location: /admin/settings.php'); 
