@@ -10,7 +10,12 @@ if (
     ||empty($_POST["pwd"])
     ||empty($_POST["confirmpwd"])
     ||empty($_POST["about"])
-) { print_r($_POST);
+) { print_r($_POST); print_r($_FILES);
+    $val=0;
+            foreach ($_POST as $elem){
+                $val+=1;
+            }
+            echo "<br> Nombre total de values =".$val."<br>";
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
          Si cette page se réaffiche apèrs plusieurs essais, merci de vérifier vos informations,

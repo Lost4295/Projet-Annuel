@@ -7,6 +7,7 @@
 
 <form method="post" enctype="multipart/form-data">
     <input type="file" name="image" class="form-control"  value="Ajouter une image" accept="image/*" onchange="loadFile(event)"/>
+    <div id="captchaHelpBlock" class="form-text">Tentez de prendre une image carrée, pour aider les utilisateurs.</div>
     <img id="output" src=" " width="500" height=auto />
         <script>
             var loadFile = function(event) {
@@ -14,7 +15,7 @@
                 output.src = URL.createObjectURL(event.target.files[0]);
             };
         </script>
-    <button type="submit">Envoyer</button>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 
 <?php
@@ -29,21 +30,21 @@ if (isset($_FILES['image'])) {
     $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
     $active = array_rand($images);
 
-    foreach ($images as $image) {
-        echo '<img src="'.$image.'" width=150px/><a href="delimg.php?src='.$image.'" class="btn btn-primary">Supprimer l\'image</a><br />';
+    foreach ($images as $key => $image) {// TODO encoder les images en base64 pour les afficher
+        $url = str_replace($dirname, '', $image);
+        echo '<img src="'.$image.'" width=150px/><a href="/wiews/admin/delimg.php?src='.$key.'" class="btn btn-primary">Supprimer l\'image</a><br />';
     }
 
 
 // Chemin vers l'image d'origine
-$imagePath = $images[$active];
-$path_info = pathinfo($imagePath);
+$path_info = pathinfo($images[$active]);
 
 if ($path_info['extension'] == 'jpg') {
-    $image = imagecreatefromjpeg($imagePath);
+    $image = imagecreatefromjpeg($images[$active]);
 } elseif ($path_info['extension'] == 'png') {
-    $image = imagecreatefrompng($imagePath);
+    $image = imagecreatefrompng($images[$active]);
 } elseif ($path_info['extension'] == 'gif') {
-    $image = imagecreatefromgif($imagePath);
+    $image = imagecreatefromgif($images[$active]);
 } else {
     echo "Erreur : le format de l'image n'est pas supporté";
 }
