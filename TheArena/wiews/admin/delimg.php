@@ -1,17 +1,23 @@
 <?php
-
+session_start();
 if (isset($_GET['src'])) {
     // Récupérer le chemin de l'image à Supprimer
+    $dirname=$_SERVER['DOCUMENT_ROOT'].'\uploads\\captcha\\';
 
-    $imagePath = $_GET['src'];
+    $imagePathid = $_GET['src'];
+    $images = glob($dirname."*.{jpg,gif,png}", GLOB_BRACE);
 
-    $serverImagePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $imagePath;
+    $imagePath = $images[$imagePathid];
+
+
+
     // Supprimer l'image
     if (unlink($imagePath)) {
-        echo "L'image a été supprimée avec succès.";
+    $_SESSION["message_type"]='success'; 
+         $_SESSION["message"]=  "L'image a été supprimée avec succès.";
     } else {
-        echo "Une erreur s'est produite lors de la suppression de l'image.";
+    $_SESSION["message_type"]='danger'; 
+         $_SESSION["message"]=  "Une erreur s'est produite lors de la suppression de l'image.";
     }
-} else {
-    echo "Le chemin de l'image n'a pas été spécifié.";
 }
+header('Location: /admin/settings');

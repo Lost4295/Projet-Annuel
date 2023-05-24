@@ -34,7 +34,7 @@ session_start();
 </head>
 
 <body onload="timeoutmod()">
-   
+
     <div class="container-fluid">
         <div class="row">
             <div class="col px-0">
@@ -50,18 +50,22 @@ session_start();
                 </nav>
             </div>
         </div>
-        <div class="alert alert-success" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
-                                                                    echo "block";
-                                                                } else {
-                                                                    echo "none";
-                                                                } ?>">
-        <span class="closebtn" onclick="disappear();">&times;</span>
-        <?php if (isset($_SESSION['message'])) {
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-        ?>
-    </div>
+        <div class="alert alert-<?php if (isset($_SESSION['message_type'])) {
+                                    echo $_SESSION['message_type'];
+                                } else {
+                                    echo 'info';
+                                } ?>" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
+                                                                                                                                                                    echo "block";
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo "none";
+                                                                                                                                                                } ?>">
+            <span class="closebtn" onclick="disappear();">&times;</span>
+            <?php if (isset($_SESSION['message'])) {
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+            } ?>
+        </div>
         <div class="container-fluid px-0">
             <div class="row">
                 <div class="col-3 sidebare p-0">

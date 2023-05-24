@@ -15,7 +15,7 @@ function findUserByUsername(string $username)
 {
     $db = connectToDB();
     $query = $db->prepare('SELECT username, password, status, email
-            FROM users
+            FROM '.PREFIX.'users
             WHERE username=:username');
     $query->execute([':username'=> $username]);
     return $query->fetch();
@@ -23,7 +23,7 @@ function findUserByUsername(string $username)
 function deleteUserById($id)
 {
     $db = connectToDB();
-    $statement = $db->prepare('DELETE FROM users WHERE id =:id');
+    $statement = $db->prepare('DELETE FROM '.PREFIX.'users WHERE id =:id');
     return $statement->execute(['id'=> $id]);
 }
 
