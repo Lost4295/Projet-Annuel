@@ -176,7 +176,7 @@ noReconnection(); ?>
                                                         if ($key % 3 == 0) {
                                                             echo "<br />";
                                                         }
-                                                        echo '<img class="draggable" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
+                                                        echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
                                                     }
                                                     echo "</div>"; ?>
                                                 </div>

@@ -17,6 +17,10 @@
         cursor: move;
     }
 
+    .with-margin {
+        margin: 10px;
+    }
+
     .drop-zone {
         width: 100px;
         height: 100px;
