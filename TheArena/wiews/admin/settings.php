@@ -87,6 +87,7 @@ echo "<br />";
 echo "<br />";
 print_r($responses); echo '<br /><br />';
 print_r($responses2);
+$_SESSION['response'] = $responses2;
 // Libérer les ressources GD
 imagedestroy($image);
 foreach ($parties as $partie) {
@@ -213,6 +214,7 @@ echo "</div>"; ?>
 
         // Déplacement de l'élément déposé dans la zone de dépôt
         event.target.appendChild(droppedElement);
+        checkAllDropZonesFilled();
     }
 
     function resetDraggableElements(event) {
@@ -224,8 +226,16 @@ echo "</div>"; ?>
         event.target.appendChild(droppedElement);
     }
 
-
-
+function checkAllDropZonesFilled() {
+  var dropZones = document.getElementsByClassName("drop-zone");
+  for (var i = 0; i < dropZones.length; i++) {
+    var dropZone = dropZones[i];
+    if (!dropZone.innerHTML.trim()) {
+      return false;
+    }
+  }
+  return getDataValuesInDropZone();
+}
 
     function getDataValuesInDropZone() {
   const dropZones = document.querySelectorAll('.drop-zone');
@@ -239,13 +249,31 @@ echo "</div>"; ?>
       dataValues.push(dataValue);
     }
   });
-
   return dataValues;
 }
 
-// Utilisation de la fonction
-const values = getDataValuesInDropZone();
-console.log(values); // Affiche le tableau des data-values des divs dans les drop zones
+    function checkCaptcha() {
+        var dataValues = checkAllDropZonesFilled();
+        if (dataValues) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    if (response.success == true) {
+                        alert('Captcha validé');
+                    } else {
+                        alert('Captcha invalide');
+                    }
+                }
+            }            
+            xhr.open('POST', '/checkCaptcha', true);
+            var data = new FormData();
+            data.append('dataValues', JSON.stringify(dataValues));
+            xhr.send(data);
+        } else {
+            alert('Veuillez remplir tous les champs');
+        }
+    }
 
 </script>
 

@@ -53,6 +53,7 @@ $routes = [
     "/me/modify" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/modifyuserpage",
     "/cgu" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgu",
     "/cgv" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgv",
+    "/checkCaptcha" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/users/checkCaptcha",
     "/contact" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/contact",
     "/legal" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/mentionslégales",
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",

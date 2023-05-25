@@ -84,6 +84,8 @@ function moveFile($path, $to)
 function noReconnection()
 {
     if (isConnected()) {
+        $_SESSION['message'] = "Vous êtes déjà connecté. Cette page n'est pas accessible.";
+        $_SESSION['message_type'] = "danger";
         header("Location:/ ");
     }
 }
@@ -192,5 +194,69 @@ function unsetwhenRegistered2()
     }
     if (isset($_SESSION['errorcaptcha'])) {
         unset($_SESSION['errorcaptcha']);
+    }
+}
+
+function unsetSessionErrors()
+{
+    if (isset($_SESSION['errorfirstname'])) {
+        unset($_SESSION['errorfirstname']);
+    }
+    if (isset($_SESSION['errorlastname'])) {
+        unset($_SESSION['errorlastname']);
+    }
+    if (isset($_SESSION['errorbirthdate'])) {
+        unset($_SESSION['errorbirthdate']);
+    }
+    if (isset($_SESSION['errorphonenumber'])) {
+        unset($_SESSION['errorphonenumber']);
+    }
+    if (isset($_SESSION['erroraddress'])) {
+        unset($_SESSION['erroraddress']);
+    }
+    if (isset($_SESSION['errorcp'])) {
+        unset($_SESSION['errorcp']);
+    }
+    if (isset($_SESSION['errorcity'])) {
+        unset($_SESSION['errorcity']);
+    }
+    if (isset($_SESSION['errorcountry'])) {
+        unset($_SESSION['errorcountry']);
+    }
+    if (isset($_SESSION['errorusername'])) {
+        unset($_SESSION['errorusername']);
+    }
+    if (isset($_SESSION['erroremail'])) {
+        unset($_SESSION['erroremail']);
+    }
+    if (isset($_SESSION['errorpwd'])) {
+        unset($_SESSION['errorpwd']);
+    }
+    if (isset($_SESSION['errorpwdconfirm'])) {
+        unset($_SESSION['errorpwdconfirm']);
+    }
+    if (isset($_SESSION['errornewsletter'])) {
+        unset($_SESSION['errornewsletter']);
+    }
+    if (isset($_SESSION['errorcaptcha'])) {
+        unset($_SESSION['errorcaptcha']);
+    }
+    if (isset($_SESSION['error'])) {
+        unset($_SESSION['error']);
+    }
+    if (isset($_SESSION['errortype'])) {
+        unset($_SESSION['errortype']);
+    }
+    if (isset($_SESSION['errorabout'])) {
+        unset($_SESSION['errorabout']);
+    }
+    if (isset($_SESSION['errorimage'])) {
+        unset($_SESSION['errorimage']);
+    }
+    if (isset($_SESSION['errorabout'])) {
+        unset($_SESSION['errorabout']);
+    }
+    if (isset($_SESSION['errorpwdconfirm'])) {
+        unset($_SESSION['errorpwdconfirm']);
     }
 }
