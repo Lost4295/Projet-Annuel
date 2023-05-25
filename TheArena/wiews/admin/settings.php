@@ -96,7 +96,7 @@ foreach ($parties as $partie) {
 
 // Afficher les parties découpées  
 $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
-echo "<p>Captcha actuel :</p><div>";?>
+echo "<p>Captcha actuel : (le captcha apparaîtra de cette façon sur la page d'enregistrement )</p><div>";?>
 <div class="drop-zone" id="resetZone"> Reset Zone
 <?php foreach ($images as $key => $image) {
     $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
@@ -127,33 +127,7 @@ echo "</div>"; ?>
         <div class="drop-zone" id="dropZone9"></div>
     </div>
 </div>
-<style>
-    .draggable {
-        width: 100px;
-        height: 100px;
-        background-color: #f1f1f1;
-        margin: 0px;
-        padding: 0px;
-        cursor: move;
-    }
 
-    .drop-zone {
-        width: 100px;
-        height: 100px;
-        background-color: #e0e0e0;
-        margin: 0px;
-        padding: 0px;
-        border: 1px #000000 solid;
-    }
-
-    #resetZone {
-        width: 500px;
-        height: 500px;
-        background-color: #e0e0e0;
-        margin: 10px;
-        padding: 20px;
-    }
-</style>
 <script>
     // Sélection des éléments déplaçables et des éléments de dépôt
     const draggableElements = document.querySelectorAll('.draggable');

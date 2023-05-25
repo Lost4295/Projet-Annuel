@@ -43,7 +43,7 @@ noReconnection(); ?>
                 <div class="row">
                     <span id="errors" class="alert alert-danger"></span>
                     <div class="col pr-5 mr-5">
-                        <form action="/core/verify1.php" method="post">
+                        <form action="/core/verify3.php" method="post" id="allform">
                             <div id="form1">
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
@@ -161,23 +161,49 @@ noReconnection(); ?>
                                         </div>
                                     </div>
                                     <div class="row mt-5 mb-3 pr-5">
+                                    <label class="form-check-label" >
+                                                    Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
+                                                </label>
                                         <div class="col">
-                                            <img src="/wiews/register/captcha.php" width="100%">
-                                            <div class="col-md-6">
-                                                <input class="form-control" type="text" name="captcha" placeholder="Captcha" required="required">
-                                                <div class="invalid">
-                                                    <?php if (isset($_SESSION['errorcaptcha'])) {
-                                                        echo $_SESSION['errorcaptcha'];
-                                                    } ?>
+                                            <?php $dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';
+                                            $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE); ?>
+                                            <div>
+                                                <div class="drop-zone" id="resetZone"> Zone de Reset
+                                                    <?php foreach ($images as $key => $image) {
+                                                        $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
+                                                        $name = str_replace('\uploads\captcha\parts/partie', '', $url);
+                                                        $name = str_replace('.jpg', '', $name);
+                                                        if ($key % 3 == 0) {
+                                                            echo "<br />";
+                                                        }
+                                                        echo '<img class="draggable" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
+                                                    }
+                                                    echo "</div>"; ?>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="drop-zone" id="dropZone1"></div>
+                                                    <div class="drop-zone" id="dropZone2"></div>
+                                                    <div class="drop-zone" id="dropZone3"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="drop-zone" id="dropZone4"></div>
+                                                    <div class="drop-zone" id="dropZone5"></div>
+                                                    <div class="drop-zone" id="dropZone6"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="drop-zone" id="dropZone7"></div>
+                                                    <div class="drop-zone" id="dropZone8"></div>
+                                                    <div class="drop-zone" id="dropZone9"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="button" id="continue" class="btn btn-primary">Continuer</button>
-                            </div>
+                                <div class="col-12">
+                                    <button type="button" id="continue" class="btn btn-primary">Continuer</button>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -188,266 +214,7 @@ noReconnection(); ?>
 
 </html>
 
-<script>
-    function verifyValues1() {
-        let type = document.querySelector('input[name="type"]:checked').value;
-        let username = document.getElementById('username').value;
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('pwd').value;
-        let confirmPassword = document.getElementById('confirmpwd').value;
-        if (type == "" || username == "" || email == "" || password == "" || confirmPassword == "") {
-            alert("Veuillez remplir tous les champs.");
-            return false;
-        }
-
-        return {
-            type,
-            username,
-            email,
-            password,
-            confirmPassword
-
-        }
-    }
-
-    function table1() {
-        let type = document.querySelector('input[name="type"]:checked').value;
-        if (type==1){
-            type= "Joueur"
-        } else {
-            type= "Organisateur"
-        }
-        let username = document.getElementById('username').value;
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('pwd').value;
-        return {
-            "Type": type,
-            "Nom d'utilisateur": username,
-            "E-mail": email,
-            "Mot de passe": password,
-        };
-    }
-
-    function table2() {
-        let firstname = document.getElementById('firstname').value;
-        let lastname = document.getElementById('lastname').value;
-        let birthdate = document.getElementById('birthdate').value;
-        let phonenumber = document.getElementById('phonenumber').value;
-        let address = document.getElementById('address').value;
-        let cp = document.getElementById('cp').value;
-        let city = document.getElementById('city').value;
-        let country = document.getElementById('country').value;
-        return {
-            "Prénom": firstname,
-            "Nom": lastname,
-            "Date d'anniversaire": birthdate,
-            "Numéro de téléphone": phonenumber,
-            "Adresse": address,
-            "Code postal": cp,
-            "Ville": city,
-            "Pays": country
-        }
-    }
-
-    function verifyValues2() {
-        let firstname = document.getElementById('firstname').value;
-        let lastname = document.getElementById('lastname').value;
-        let birthdate = document.getElementById('birthdate').value;
-        let phonenumber = document.getElementById('phonenumber').value;
-        let address = document.getElementById('address').value;
-        let cp = document.getElementById('cp').value;
-        let city = document.getElementById('city').value;
-        let country = document.getElementById('country').value;
-        if (firstname == "" || lastname == "" || birthdate == "" || phonenumber == "" || address == "" || cp == "" || city == "" || country == "") {
-            alert("Veuillez remplir tous les champs.");
-            return false;
-        }
-        return {
-            firstname,
-            lastname,
-            birthdate,
-            phonenumber,
-            address,
-            cp,
-            city,
-            country
-        }
-    }
-
-
-
-    //TODO : Requête ajax + passage à la page suivante si tout est ok
-    let btn = document.getElementById('continue');
-    let form1 = document.getElementById("form1");
-    let form2 = document.getElementById("form2");
-    let form3 = document.getElementById("form3");
-    let check1 = document.getElementById("check1");
-    let check2 = document.getElementById("check2");
-    let check3 = document.getElementById("check3");
-    let span = document.getElementById("errors");
-    span.setAttribute("hidden", "");
-    form2.setAttribute("hidden", "");
-    form3.setAttribute("hidden", "");
-
-    btn.addEventListener('click', clickHandler);
-
-    function clickHandler(event) {
-        if (form1.getAttribute("hidden") == undefined && form2.getAttribute("hidden") == "") {
-            let form1values = verifyValues1();
-            if (form1values) {
-                fetch('/core/verify1.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(form1values)
-                    }).then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-
-                        if (data.length == 0) {
-                            span.innerHTML = "";
-                            span.setAttribute("hidden", "");
-                            form1.setAttribute("hidden", "");
-                            form2.removeAttribute("hidden");
-                            form3.setAttribute("hidden", "");
-                            check1.setAttribute("class", "bi bi-check-circle-fill text-info");
-                            return;
-                        } else {
-                            span.removeAttribute("hidden");
-                            span.innerHTML = " Il y a des erreurs. Merci de corriger les champs suivants :<ul>";
-                            let errortype = data.errortype
-                            let errorusername = data.errorusername
-                            let erroremail = data.erroremail
-                            let errorpwd = data.errorpwd
-                            let errorpwdconfirm = data.errorpwdconfirm
-                            if (errortype) {
-                                span.innerHTML += "<li> Type : " + errortype + "</li>";
-                            }
-                            if (errorusername) {
-                                span.innerHTML += "<li> Nom d'utilisateur : " + errorusername + "</li>";
-                            }
-                            if (erroremail) {
-                                span.innerHTML += "<li> Email : " + erroremail + "</li>";
-                            }
-                            if (errorpwd) {
-                                span.innerHTML += "<li> Mot de passe : " + errorpwd + "</li>";
-                            }
-                            if (errorpwdconfirm) {
-                                span.innerHTML += "<li> Confirmation du mot de passe : " + errorpwdconfirm + "</li>";
-                            }
-                            span.innerHTML += "</ul> ";
-                            return;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                return;
-            }
-        }
-
-        if (form2.getAttribute("hidden") == undefined && form3.getAttribute("hidden") == "") {
-
-            let form2values = verifyValues2();
-            console.log("Nom: " + form2values.firstname);
-            console.log("Prénom: " + form2values.lastname);
-            console.log("Date de naissance: " + form2values.birthdate);
-            console.log("Numéro de téléphone: " + form2values.phonenumber);
-            console.log("Adresse: " + form2values.address);
-            console.log("Code postal: " + form2values.cp);
-            console.log("Ville: " + form2values.city);
-            console.log("Pays: " + form2values.country);
-            if (form2values) {
-                fetch('/core/verify2.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(form2values)
-                    }).then(response => response.json())
-                    .then(data => {
-                        console.log('Success:', data);
-                        if (data.length == 0) {
-                            span.innerHTML = "";
-                            span.setAttribute("hidden", "");
-                            form1.setAttribute("hidden", "");
-                            form2.setAttribute("hidden", "");
-                            form3.removeAttribute("hidden");
-                            check3.setAttribute("class", "bi bi-check-circle-fill text-info");
-                            btn.innerHTML = "M'inscrire";
-                            const finalinfos = document.getElementById('finalinfos');
-
-                            let firsttable = table1()
-                            console.log(firsttable);
-                            let secondtable = table2()
-                            console.log(secondtable);
-                            for (const key in firsttable) {
-                                const h3 = document.createElement('h3');
-                                const div = document.createElement('div');
-                                h3.textContent = key;
-                                div.textContent = firsttable[key];
-                                finalinfos.appendChild(h3);
-                                finalinfos.appendChild(div);
-                            }
-                            for (const key in secondtable) {
-                                const h3 = document.createElement('h3');
-                                const div = document.createElement('div');
-                                h3.textContent = key;
-                                div.textContent = secondtable[key];
-                                finalinfos.appendChild(h3);
-                                finalinfos.appendChild(div);
-                            }
-                            return btn.setAttribute("type", "submit");
-                        } else {
-                            span.removeAttribute("hidden");
-                            span.innerHTML = " Il y a des erreurs. Merci de corriger les champs suivants :<ul>";
-                            let errorfirstname = data.errorfirstname
-                            let errorlastname = data.errorlastname
-                            let errorbirthdate = data.errorbirthdate
-                            let errorphonenumber = data.errorphonenumber
-                            let erroraddress = data.erroraddress
-                            let errorcp = data.errorcp
-                            let errorcity = data.errorcity
-                            let errorcountry = data.errorcountry
-                            if (errorfirstname) {
-                                span.innerHTML += "<li> Prénom : " + errorfirstname + "</li>";
-                            }
-                            if (errorlastname) {
-                                span.innerHTML += "<li> Nom : " + errorlastname + "</li>";
-                            }
-                            if (errorbirthdate) {
-                                span.innerHTML += "<li> Date de naissance : " + errorbirthdate + "</li>";
-                            }
-                            if (errorphonenumber) {
-                                span.innerHTML += "<li> Numéro de téléphone : " + errorphonenumber + "</li>";
-                            }
-                            if (erroraddress) {
-                                span.innerHTML += "<li> Adresse : " + erroraddress + "</li>";
-                            }
-                            if (errorcp) {
-                                span.innerHTML += "<li> Code postal : " + errorcp + "</li>";
-                            }
-                            if (errorcity) {
-                                span.innerHTML += "<li> Ville : " + errorcity + "</li>";
-                            }
-                            if (errorcountry) {
-                                span.innerHTML += "<li> Pays : " + errorcountry + "</li>";
-                            }
-                            span.innerHTML += "</ul> ";
-                            return;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                return;
-            }
-        }
-    }
-</script>
+<script src="/wiews/register/inscription.js"></script>
 </body>
 
 </html>
