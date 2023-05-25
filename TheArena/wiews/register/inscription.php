@@ -140,23 +140,7 @@ noReconnection(); ?>
                                     </p>
                                 </div>
                                 <div class="row mt-5 mb-5 pr-5">
-                                    <div class="row pr-5 mb-5">
-                                        <div class="fs-3">Type</div>
-                                        <div><?php echo $_SESSION['type']['nom'] ?></div>
-                                        <div class="fs-3">Nom d'utilisateur</div>
-                                        <div><?php echo $_SESSION['username'] ?></div>
-                                        <div class="fs-3">E-mail</div>
-                                        <div><?php echo $_SESSION['email'] ?></div>
-                                        <div class="fs-3">Nom</div>
-                                        <div><?php echo $_SESSION['lastname'] ?></div>
-                                        <div class="fs-3">Prénom</div>
-                                        <div><?php echo $_SESSION['firstname'] ?></div>
-                                        <div class="fs-3">Date de naissance</div>
-                                        <div><?php echo $_SESSION['birthdate'] ?></div>
-                                        <div class="fs-3">Numéro de téléphone</div>
-                                        <div><?php echo $_SESSION['phonenumber'] ?></div>
-                                        <div class="fs-3">Adresse</div>
-                                        <div><?php echo $_SESSION['address'] ?></div>
+                                    <div class="row pr-5 mb-5" id="finalinfos">
                                     </div>
                                     <div class="col">
                                         <div class="form-check">
@@ -215,6 +199,7 @@ noReconnection(); ?>
             alert("Veuillez remplir tous les champs.");
             return false;
         }
+
         return {
             type,
             username,
@@ -225,8 +210,46 @@ noReconnection(); ?>
         }
     }
 
+    function table1() {
+        let type = document.querySelector('input[name="type"]:checked').value;
+        if (type==1){
+            type= "Joueur"
+        } else {
+            type= "Organisateur"
+        }
+        let username = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('pwd').value;
+        return {
+            "Type": type,
+            "Nom d'utilisateur": username,
+            "E-mail": email,
+            "Mot de passe": password,
+        };
+    }
 
-    function getValues2() {
+    function table2() {
+        let firstname = document.getElementById('firstname').value;
+        let lastname = document.getElementById('lastname').value;
+        let birthdate = document.getElementById('birthdate').value;
+        let phonenumber = document.getElementById('phonenumber').value;
+        let address = document.getElementById('address').value;
+        let cp = document.getElementById('cp').value;
+        let city = document.getElementById('city').value;
+        let country = document.getElementById('country').value;
+        return {
+            "Prénom": firstname,
+            "Nom": lastname,
+            "Date d'anniversaire": birthdate,
+            "Numéro de téléphone": phonenumber,
+            "Adresse": address,
+            "Code postal": cp,
+            "Ville": city,
+            "Pays": country
+        }
+    }
+
+    function verifyValues2() {
         let firstname = document.getElementById('firstname').value;
         let lastname = document.getElementById('lastname').value;
         let birthdate = document.getElementById('birthdate').value;
@@ -284,6 +307,7 @@ noReconnection(); ?>
 
                         if (data.length == 0) {
                             span.innerHTML = "";
+                            span.setAttribute("hidden", "");
                             form1.setAttribute("hidden", "");
                             form2.removeAttribute("hidden");
                             form3.setAttribute("hidden", "");
@@ -322,16 +346,11 @@ noReconnection(); ?>
             } else {
                 return;
             }
-
-
         }
 
         if (form2.getAttribute("hidden") == undefined && form3.getAttribute("hidden") == "") {
-            form1.setAttribute("hidden", "");
-            form2.setAttribute("hidden", "");
-            form3.removeAttribute("hidden");
-            check3.setAttribute("class", "bi bi-check-circle-fill text-info");
-            let form2values = getValues2();
+
+            let form2values = verifyValues2();
             console.log("Nom: " + form2values.firstname);
             console.log("Prénom: " + form2values.lastname);
             console.log("Date de naissance: " + form2values.birthdate);
@@ -340,8 +359,92 @@ noReconnection(); ?>
             console.log("Code postal: " + form2values.cp);
             console.log("Ville: " + form2values.city);
             console.log("Pays: " + form2values.country);
-            btn.innerHTML = "M'inscrire";
-            return btn.setAttribute("type", "submit");
+            if (form2values) {
+                fetch('/core/verify2.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(form2values)
+                    }).then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        if (data.length == 0) {
+                            span.innerHTML = "";
+                            span.setAttribute("hidden", "");
+                            form1.setAttribute("hidden", "");
+                            form2.setAttribute("hidden", "");
+                            form3.removeAttribute("hidden");
+                            check3.setAttribute("class", "bi bi-check-circle-fill text-info");
+                            btn.innerHTML = "M'inscrire";
+                            const finalinfos = document.getElementById('finalinfos');
+
+                            let firsttable = table1()
+                            console.log(firsttable);
+                            let secondtable = table2()
+                            console.log(secondtable);
+                            for (const key in firsttable) {
+                                const h3 = document.createElement('h3');
+                                const div = document.createElement('div');
+                                h3.textContent = key;
+                                div.textContent = firsttable[key];
+                                finalinfos.appendChild(h3);
+                                finalinfos.appendChild(div);
+                            }
+                            for (const key in secondtable) {
+                                const h3 = document.createElement('h3');
+                                const div = document.createElement('div');
+                                h3.textContent = key;
+                                div.textContent = secondtable[key];
+                                finalinfos.appendChild(h3);
+                                finalinfos.appendChild(div);
+                            }
+                            return btn.setAttribute("type", "submit");
+                        } else {
+                            span.removeAttribute("hidden");
+                            span.innerHTML = " Il y a des erreurs. Merci de corriger les champs suivants :<ul>";
+                            let errorfirstname = data.errorfirstname
+                            let errorlastname = data.errorlastname
+                            let errorbirthdate = data.errorbirthdate
+                            let errorphonenumber = data.errorphonenumber
+                            let erroraddress = data.erroraddress
+                            let errorcp = data.errorcp
+                            let errorcity = data.errorcity
+                            let errorcountry = data.errorcountry
+                            if (errorfirstname) {
+                                span.innerHTML += "<li> Prénom : " + errorfirstname + "</li>";
+                            }
+                            if (errorlastname) {
+                                span.innerHTML += "<li> Nom : " + errorlastname + "</li>";
+                            }
+                            if (errorbirthdate) {
+                                span.innerHTML += "<li> Date de naissance : " + errorbirthdate + "</li>";
+                            }
+                            if (errorphonenumber) {
+                                span.innerHTML += "<li> Numéro de téléphone : " + errorphonenumber + "</li>";
+                            }
+                            if (erroraddress) {
+                                span.innerHTML += "<li> Adresse : " + erroraddress + "</li>";
+                            }
+                            if (errorcp) {
+                                span.innerHTML += "<li> Code postal : " + errorcp + "</li>";
+                            }
+                            if (errorcity) {
+                                span.innerHTML += "<li> Ville : " + errorcity + "</li>";
+                            }
+                            if (errorcountry) {
+                                span.innerHTML += "<li> Pays : " + errorcountry + "</li>";
+                            }
+                            span.innerHTML += "</ul> ";
+                            return;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                return;
+            }
         }
     }
 </script>

@@ -1,6 +1,19 @@
 <?php
 session_start();
 require('functions.php');
+
+
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+if ($contentType=== "application/json"){
+    $content = trim(file_get_contents("php://input"));
+    $decoded = json_decode($content, true);
+    if (is_array($decoded)){
+        $_POST = $decoded;
+    } else {
+        die("Le format de la requête est invalide.");
+    }
+}
+
 if (isset($_POST)) {
 if (
     count($_POST)!=8
@@ -126,5 +139,10 @@ if ($error) {
     $_SESSION['city']= $city;
     $_SESSION['country']= $country;
 }
-return json_encode($table);
+
+
+
+header('Content-Type: application/json');
+echo json_encode($table);
+
 }
