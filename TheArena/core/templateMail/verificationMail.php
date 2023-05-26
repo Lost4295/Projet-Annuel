@@ -1,6 +1,6 @@
 <?php
-    $email='turin-ylan@outlook.fr';
-    $activationCode='codecodecode';
+global $activationCode;
+global $email;
     $url = "http://localhost:8000/core/auth.php?email=".$email."&activationCode=".$activationCode;
     $bodyv="<div class='div-container'>
         <div class='row'>

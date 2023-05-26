@@ -1,9 +1,5 @@
 <?php
-session_start();
-
 require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
-
-
 redirectIfNotAdmin();
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {

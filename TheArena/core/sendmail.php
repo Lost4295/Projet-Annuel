@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once 'constantes.php';
+require_once 'functions.php';
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
@@ -30,31 +30,39 @@ require 'templateMail/newsletterMail.php';
  * 5 = newsletter
  * @return void
  */
-function sendEmail($reciever, $subject, $type, $infos=null)
-    {
+function sendEmail($reciever, $subject, $type, $body = null)
+{
     switch ($type) {
         case 0:
+            global $bodyv;
             $body = $bodyv;
             break;
         case 1:
+            global $bodyfp;
             $body = $bodyfp;
             break;
         case 2:
+            global $bodyla;
             $body = $bodyla;
             break;
         case 3:
+            global $bodync;
             $body = $bodync;
             break;
         case 4:
+            global $bodyw;
             $body = $bodyw;
             break;
         case 5:
+            global $bodyn;
             $body = $bodyn;
             break;
         default:
-            $body = $infos;
+            $body = $body;
             break;
     }
+    global $footer;
+    global $header;
     $rbody = $header . $body . $footer;
     $mail = new PHPMailer();
     $mail->IsSMTP();
@@ -62,60 +70,61 @@ function sendEmail($reciever, $subject, $type, $infos=null)
     $mail->Port = 465; //Port TCP du serveur SMTP
     $mail->SMTPAuth = 1; //Utiliser l'identification
     $mail->CharSet = 'UTF-8';
-    
+
     if ($mail->SMTPAuth) {
-    $mail->SMTPSecure = 'ssl'; //Protocole de sécurisation des échanges avec le SMTP
-    $mail->Username = NOREPLY; //Adresse email à utiliser
-    $mail->Password = MDP_NOREPLY; //Mot de passe de l'adresse email à utiliser
+        $mail->SMTPSecure = 'ssl'; //Protocole de sécurisation des échanges avec le SMTP
+        $mail->Username = NOREPLY; //Adresse email à utiliser
+        $mail->Password = MDP_NOREPLY; //Mot de passe de l'adresse email à utiliser
     }
-    
+
     $mail->From = NOREPLY; //Adresse email de l'expéditeur
     $mail->FromName = 'The Arena'; //Nom de l'expéditeur
-    
+
     $mail->AddAddress($reciever); //Adresse email du destinataire
-    
-    
-    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'\img\logothearena-removebg.png', 'logo');
-    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'/img/thearenatext-removebg.png', 'text');
+
+
+    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'] . '\img\logothearena-removebg.png', 'logo');
+    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'] . '/img/thearenatext-removebg.png', 'text');
     $mail->IsHTML(true); //Envoyer le message au format HTML
     $mail->Subject = $subject; //Objet du message
     $mail->Body = $rbody; //Corps du message au format HTML
-    
+    if (isset($_SESSION['codes'])) {
+        unset($_SESSION["codes"]);
+    }
+    if (!$mail->send()) {
+        echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
+    } else {
+        // echo 'Le message a été envoyé.'; for debbugging
+    }
+}
+function sendEmailPostMaster($body)
+{
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->Host = SMTP; //Adresse IP ou DNS du serveur SMTP
+    $mail->Port = 465; //Port TCP du serveur SMTP
+    $mail->SMTPAuth = 1; //Utiliser l'identification
+    $mail->CharSet = 'UTF-8';
+
+    if ($mail->SMTPAuth) {
+        $mail->SMTPSecure = 'ssl'; //Protocole de sécurisation des échanges avec le SMTP
+        $mail->Username = NOREPLY; //Adresse email à utiliser
+        $mail->Password = MDP_NOREPLY; //Mot de passe de l'adresse email à utiliser
+    }
+
+    $mail->From = NOREPLY; //Adresse email de l'expéditeur
+    $mail->FromName = 'Contact'; //Nom de l'expéditeur
+
+    $mail->AddAddress(POSTMASTER); //Adresse email du destinataire
+
+    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'] . '\img\logothearena-removebg.png', 'logo');
+    $mail->IsHTML(true); //Envoyer le message au format HTML
+    $mail->Subject = 'Message provenant de la page de contacts'; //Objet du message
+    $mail->Body = $body; //Corps du message au format HTML
+
     if (!$mail->send()) {
         echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
     } else {
         echo 'Le message a été envoyé.';
     }
-    }
-    function sendEmailPostMaster($body)
-    {
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->Host = SMTP; //Adresse IP ou DNS du serveur SMTP
-        $mail->Port = 465; //Port TCP du serveur SMTP
-        $mail->SMTPAuth = 1; //Utiliser l'identification
-        $mail->CharSet = 'UTF-8';
-        
-        if ($mail->SMTPAuth) {
-        $mail->SMTPSecure = 'ssl'; //Protocole de sécurisation des échanges avec le SMTP
-        $mail->Username = NOREPLY; //Adresse email à utiliser
-        $mail->Password = MDP_NOREPLY; //Mot de passe de l'adresse email à utiliser
-        }
-        
-        $mail->From = NOREPLY; //Adresse email de l'expéditeur
-        $mail->FromName = 'Contact'; //Nom de l'expéditeur
-        
-        $mail->AddAddress(POSTMASTER); //Adresse email du destinataire
-        
-        $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'\img\logothearena-removebg.png', 'logo');
-        $mail->IsHTML(true); //Envoyer le message au format HTML
-        $mail->Subject = 'Message provenant de la page de contacts'; //Objet du message
-        $mail->Body = $body; //Corps du message au format HTML
-        
-        if (!$mail->send()) {
-            echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
-        } else {
-            echo 'Le message a été envoyé.';
-        }
-    }
-
+}

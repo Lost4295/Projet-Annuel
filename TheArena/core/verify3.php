@@ -1,7 +1,6 @@
 <?php
 session_start();
 include 'functions.php';
-include 'sendmail.php';
 if (isset($_POST)) {
     if (!isset($_POST['newsletter'])) {
         $_POST['newsletter']=0;
@@ -227,7 +226,7 @@ if (isset($_POST)) {
         $table['errorpwdconfirm']= $errorpwdconfirm;
         $table['errornewsletter']= $errornewsletter;
     } else {
-        $activation_code= password_hash(generateActivationCode(), PASSWORD_DEFAULT);
+        $activationCode= password_hash(generateActivationCode(), PASSWORD_DEFAULT);
         $pwd=password_hash($pwd, PASSWORD_DEFAULT);
         $query=$db->prepare("INSERT INTO ".PREFIX."users (scope,username,email,password,first_name,last_name,birthdate,phone,address,postal_code,country,newsletter,activation_timeout,activation_code)
         VALUES (:scope,:username,:email,:password,
@@ -248,10 +247,12 @@ if (isset($_POST)) {
             "country"=>$country,
             "newsletter"=>$newsletter,
             "activation_timeout"=> date("Y-m-d H:i:s", strtotime("+1 day")),
-            "activation_code"=>$activation_code
+            "activation_code"=>$activationCode
         ]);
-        sendEmail($email, 'Activation du compte de'.$username.'sur The Arena', 0);
-        die();
+        
+        
+        include 'sendmail.php';
+        sendEmail($email, 'Activation du compte de '.$username.' sur The Arena', 0);
         $_SESSION["message"] = "Votre compte a bien été créé. Vous allez recevoir un mail de confirmation. Si vous ne le voyez pas, merci de vérifier vos spams.";
         header("Location:/");
     }

@@ -115,6 +115,7 @@ footer {
 /* The Modal (background) */
 .modal {
     display: none;
+    transition: opacity 0.6s;
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
