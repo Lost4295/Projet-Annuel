@@ -24,7 +24,7 @@ echo "</pre>";
             if ($key % 3 == 0) { ?></div><div class="row my-3">
                 <?php ;} ?>
             <div class="col">
-                <a href="/event?eid=<?php echo $event['id']?>">
+                <a href="event?eid=<?php echo $event['id']?>">
                 <img style="position: relative; left:0; width: 250px; height:250px;" src="<?php echo $event['image']?>">
                 </a>
             </div>

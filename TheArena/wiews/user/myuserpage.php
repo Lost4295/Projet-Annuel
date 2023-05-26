@@ -33,7 +33,7 @@ if (!empty($result)) {
     <h3>À propos de moi</h3>
     <h3><?php echo $username ?></h3>
     <div class="my-3"><p><?php echo $about ?></p></div>
-    <div class="d-flex justify-content-center"><a href="/me/modify" class="btn btn-primary">Modifier les informations</a></div>
+    <div class="d-flex justify-content-center"><a href="me_modify" class="btn btn-primary">Modifier les informations</a></div>
 </div>
 
 

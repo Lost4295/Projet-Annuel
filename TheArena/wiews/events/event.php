@@ -19,10 +19,10 @@ if (isset($_GET['eid']) && !empty($_GET['eid'])) {
 
     <div class="row col-12">
         <nav class="navbar bar">
-            <a class="btn btn-primary active btn-warning" href="/event?eid=<?php echo $event['id']?>">Accueil</a>
-            <a class="navbarSecondaryBtn" href="/event/participants?eid=<?php echo $event['id']?>">Participants</a>
-            <a class="navbarSecondaryBtn" href="/event/dashboard?eid=<?php echo $event['id']?>">Tableau de bord</a>
-            <a class="navbarSecondaryBtn "href="/event/shop?shop=<?php echo $event['shop_id'] ?>&eid=<?php echo $event['id'] ?>">Shop</a>
+            <a class="btn btn-primary active btn-warning" href="event?eid=<?php echo $event['id']?>">Accueil</a>
+            <a class="navbarSecondaryBtn" href="event_participants?eid=<?php echo $event['id']?>">Participants</a>
+            <a class="navbarSecondaryBtn" href="event_dashboard?eid=<?php echo $event['id']?>">Tableau de bord</a>
+            <a class="navbarSecondaryBtn "href="event_shop?shop=<?php echo $event['shop_id'] ?>&eid=<?php echo $event['id'] ?>">Shop</a>
         </nav>
     </div>    
     <div class="row">
@@ -38,7 +38,7 @@ if (isset($_GET['eid']) && !empty($_GET['eid'])) {
         <p><?php echo $event['description']?></p>
     </div>
     <div class="col-12 d-flex align-content-center flex-column flex-wrap">
-        <a class="btn btn-primary  btn-warning" href="/event/register">S'inscrire</a>
+        <a class="btn btn-primary  btn-warning" href="event/register">S'inscrire</a>
     </div>
 
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

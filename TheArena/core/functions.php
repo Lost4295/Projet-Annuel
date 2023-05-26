@@ -5,8 +5,7 @@ require 'constantes.php';
 function connectToDB()
 {
     try {
-        //$db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD); // VPS
-        $db = new PDO('mysql:host=' . LOCALHOST . ';dbname=' . DBNAME . ';charset=utf8;port=3306', 'root', ''); // LOCAL
+        $db = new PDO('mysql:host='.HOST.';dbname='.DBNAME.';charset=utf8;port=3306', DBUSER, DBPASSWORD); // VPS
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }

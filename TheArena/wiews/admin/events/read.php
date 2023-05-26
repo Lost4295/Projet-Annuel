@@ -30,9 +30,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 <p> Personnes inscrites à l'événement</p>
 //TODO accéder aux personnes inscrites
 <div>
-    <a class="btn btn-primary m-2" href="/event?eid=<?php echo $event['id'] ?>">Voir l'événement sur le site</a>
+    <a class="btn btn-primary m-2" href="event?eid=<?php echo $event['id'] ?>">Voir l'événement sur le site</a>
     <a class="btn btn-primary m-2" href="update?id=<?php echo $event['id'] ?>">Modifier</a>
-    <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="admin/shop/read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
+    <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="admin_shop_read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
     <a class="btn btn-primary m-2" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a>
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";
