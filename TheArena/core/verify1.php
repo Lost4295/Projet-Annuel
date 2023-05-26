@@ -111,11 +111,6 @@ if ($error) {
     $table['erroremail']= $erroremail;
     $table['errorpwd']= $errorpwd;
     $table['errorpwdconfirm']= $errorpwdconfirm;
-} else {
-    $_SESSION['type']= $fintype;
-    $_SESSION['username']= $username;
-    $_SESSION['email']= $email;
-    $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
 }
 
 header('Content-Type: application/json');

@@ -129,15 +129,6 @@ if ($error) {
     $table['errorcity']= $errorcity;
     $table['errorcountry']= $errorcountry;
     
-} else {
-    $_SESSION['firstname']= $firstname;
-    $_SESSION['lastname']= $lastname;
-    $_SESSION['birthdate']= $birthdate;
-    $_SESSION['phonenumber']= $phonenumber;
-    $_SESSION['address']= $address;
-    $_SESSION['cp']= $cp;
-    $_SESSION['city']= $city;
-    $_SESSION['country']= $country;
 }
 
 

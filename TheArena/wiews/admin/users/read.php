@@ -39,5 +39,5 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	</div>
 
 
-	<a class="btn btn-primary m-2" href="removeUser.php?id=<?php echo $user['id']?>">Supprimer( Attention, cela supprime totalement !)</a>
+	<a class="btn btn-primary m-2" href="removeUser?id=<?php echo $user['id']?>">Supprimer( Attention, cela supprime totalement !)</a>
     <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ;?>

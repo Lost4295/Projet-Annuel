@@ -18,7 +18,7 @@ require 'templateMail/newsletterMail.php';
 
 
 /**
- * @param string $sender
+ * @param string $reciever
  * @param string $subject
  * @param int $type
  * Pour le type, il faut savoir que :
@@ -30,7 +30,7 @@ require 'templateMail/newsletterMail.php';
  * 5 = newsletter
  * @return void
  */
-function sendEmail($sender, $subject, $type, $infos=null)
+function sendEmail($reciever, $subject, $type, $infos=null)
     {
     switch ($type) {
         case 0:
@@ -72,7 +72,7 @@ function sendEmail($sender, $subject, $type, $infos=null)
     $mail->From = NOREPLY; //Adresse email de l'expéditeur
     $mail->FromName = 'The Arena'; //Nom de l'expéditeur
     
-    $mail->AddAddress($sender); //Adresse email du destinataire
+    $mail->AddAddress($reciever); //Adresse email du destinataire
     
     
     $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'].'\img\logothearena-removebg.png', 'logo');
