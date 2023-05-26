@@ -1,6 +1,4 @@
 <?php
-session_start();
-require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 
 $db= connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -9,11 +7,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id'=>$id]);
     $user = $query->fetch();
     if (!$user) {
-        header('Location: index.php');
+        header('Location: /admin_users');
     }
 } else {
-    header('Location: index.php');
+    header('Location: /admin_users');
 }
+require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 ?>
 
 			<p>ID : <?php echo $user["id"] ?></p>
@@ -39,5 +38,5 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	</div>
 
 
-	<a class="btn btn-primary m-2" href="removeUser.php?id=<?php echo $user['id']?>">Supprimer( Attention, cela supprime totalement !)</a>
+	<a class="btn btn-primary m-2" href="removeUser?id=<?php echo $user['id']?>">Supprimer( Attention, cela supprime totalement !)</a>
     <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ;?>

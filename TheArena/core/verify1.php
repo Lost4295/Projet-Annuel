@@ -1,14 +1,25 @@
 <?php
 session_start();
 require('functions.php');
-if (isset($_POST)) {
+
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+if ($contentType=== "application/json"){
+    $content = trim(file_get_contents("php://input"));
+    $decoded = json_decode($content, true);
+    if (is_array($decoded)){
+        $_POST = $decoded;
+    } else {
+        die("Le format de la requête est invalide.");
+    }
+}
+
 if (
     count($_POST)!=5
     ||!isset($_POST["type"])
     ||empty($_POST["username"])
     ||empty($_POST["email"])
-    ||empty($_POST["pwd"])
-    ||empty($_POST["confirmpwd"])
+    ||empty($_POST["password"])
+    ||empty($_POST["confirmPassword"])
 ) { print_r($_POST);
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
@@ -19,28 +30,29 @@ if (
 $type=$_POST["type"];
 $username=$_POST["username"];
 $email=strtolower(trim($_POST["email"]));
-$pwd=$_POST["pwd"];
-$confirmpwd=$_POST["confirmpwd"];
+$pwd=$_POST["password"];
+$confirmpwd=$_POST["confirmPassword"];
 $errortype="";
 $errorusername="";
 $erroremail="";
 $errorpwd="";
 $errorpwdconfirm="";
 
-$types=[0,1];
+$types=[1,2];
 
 if (!in_array($type, $types)) {
     $errortype="Ce rôle n'existe pas.";
 } else {
+    $fintype=[];
     switch ($type) {
-        case 0:
-            $type['scope']=PLAYER;//joueur
-            $type['nom']="Joueur";
+        case 2:
+            $fintype['nom']="Organisateur";
+            $fintype['scope']=ORGANIZER;// orga
             break;
-        case 1:
         default:
-            $type['nom']="Organisateur";
-            $type['scope']=ORGANIZER;// orga
+        case 1:
+            $fintype['scope']=PLAYER;//joueur
+            $fintype['nom']="Joueur";
             break;
     }
     $db=connectToDB();
@@ -48,11 +60,11 @@ if (!in_array($type, $types)) {
     $queryPrepared->execute();
     $result=$queryPrepared->fetch();
     if (count($result)<=2) {
-        $type['scope']=SUPADMIN;// le scope super admin
-        $type['nom']="Super-Administrateur";
+        $fintype['scope']=SUPADMIN;// le scope super admin
+        $fintype['nom']="Super-Administrateur";
     } elseif (count($result)<=6) {
-        $type['scope']=ADMIN;// le scope admin
-        $type['nom']="Administrateur";
+        $fintype['scope']=ADMIN;// le scope admin
+        $fintype['nom']="Administrateur";
     }
 }
 
@@ -85,7 +97,7 @@ if (strlen($pwd)< 8 || !preg_match("#[a-z]#", $pwd)|| !preg_match("#[A-Z]#", $pw
 if ($pwd != $confirmpwd) {
     $errorpwdconfirm="Le mot de passe n'est pas bien copié.";
 }
-
+$table=[];
 if (!empty($errortype)||!empty($errorusername)||!empty($errorpwd)||!empty($errorpwdconfirm)||!empty($erroremail)) {
     $error=true;
 } else {
@@ -99,13 +111,8 @@ if ($error) {
     $table['erroremail']= $erroremail;
     $table['errorpwd']= $errorpwd;
     $table['errorpwdconfirm']= $errorpwdconfirm;
-    
-} else {
-    $_SESSION['type']= $type;
-    $_SESSION['username']= $username;
-    $_SESSION['email']= $email;
-    $_SESSION['pwd']= password_hash($pwd, PASSWORD_DEFAULT);
 }
 
-return json_encode($table);
-}
+header('Content-Type: application/json');
+echo json_encode($table);
+

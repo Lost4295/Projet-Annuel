@@ -1,5 +1,4 @@
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
-
 //FIXME Enregistrer les modifications dans la base de données(voir verifyuserpage.php)
 redirectIfNotConnected();
 $connection = connectToDB();
@@ -27,6 +26,8 @@ if (!empty($result)) {
     $about = $result["about"];
 }
 
+print_r($_SESSION)
+
 ?>
 
 <div class="w-100">
@@ -35,11 +36,11 @@ if (!empty($result)) {
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
             <label for="firstname" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="firstname" disabled value="<?php echo ucwords(strtolower($firstname)) ?>">
+            <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNames($firstname) ?>">
         </div>
         <div class="col-4">
             <label for="lastname" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="lastname" disabled value="<?php echo ucwords(strtolower($lastname), "\t\r\n\f\v-'") ?>">
+            <input type="text" class="form-control" id="lastname" disabled value="<?php echo cleanNames($lastname) ?>">
         </div>
     </div>
     <div class="row d-flex justify-content-between">
@@ -61,21 +62,42 @@ if (!empty($result)) {
         <div class="col-7 my-4">
             <label for="pseudo" class="form-label">Pseudo</label>
             <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?php echo $username; ?>">
-        </div>
 
+            <div class="invalid">
+                <?php if (isset($_SESSION["errorpseudo"])) {
+                    echo $_SESSION["errorpseudo"];
+                } ?>
+            </div>
+        </div>
         <div class="col-7 my-4">
             <label for="email" class="form-label">E-mail</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
-        </div>
 
+            <div class="invalid">
+                <?php if (isset($_SESSION["erroremail"])) {
+                    echo $_SESSION["erroremail"];
+                } ?>
+            </div>
+        </div>
         <div class="col-7 my-4">
             <label for="pwd" class="form-label">Mot de passe</label>
             <input type="text" class="form-control" id="pwd" name="pwd" value="Johndoe1234">
-        </div>
 
+            <div class="invalid">
+                <?php if (isset($_SESSION["errorpwd"])) {
+                    echo $_SESSION["errorpwd"];
+                } ?>
+            </div>
+        </div>
         <div class="col-7 my-4">
             <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
             <input type="password" class="form-control" id="confirmpwd" name="confirmpwd" value="Johndoe1234">
+
+            <div class="invalid">
+                <?php if (isset($_SESSION["errorpwdconfirm"])) {
+                    echo $_SESSION["errorpwdconfirm"];
+                } ?>
+            </div>
         </div>
         <h4>Photo de profil</h4>
 
@@ -90,23 +112,54 @@ if (!empty($result)) {
             };
         </script>
         <p class="text-muted text-center"> Cliquer pour modifier l'image</p>
-
+        <div class="invalid">
+            <?php if (isset($_SESSION["errorimage"])) {
+                echo $_SESSION["errorimage"];
+            } ?>
+        </div>
         <div class="mb-5 pb-5">
             <label for="about" class="form-label">
                 <h3>À propos de moi</h3>
             </label>
             <textarea class="form-control" id="about" rows="3" name="about"><?php echo $about ?></textarea>
+
+            <div class="invalid">
+                <?php if (isset($_SESSION["errorabout"])) {
+                    echo $_SESSION["errorabout"];
+                } ?>
+            </div>
         </div>
         <div class="mb-5 pb-5">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="1" name="newsletter" id="flexCheckDefault" <?php if ($newsletter == 1) {
-                                                                                                                        echo "checked";
-                                                                                                                    } ?>>
-                <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="1" name="newsletter" id="newslettter" <?php if ($newsletter == 1) {
+                                                                                                                    echo "checked";
+                                                                                                                } ?>>
+                <label class="form-check-label" for="newslettter">
                     Je m'abonne aux newsletters
                 </label>
+
             </div>
         </div>
+        <div class="mb-5 pb-5">
+            <label class="form-check-label" for="visibility">
+                Visibilité du compte
+            </label>
+            <select class="form-select" name="visibility" aria-label="visibility" id="visibility">
+                <option value="2" <?php if ($result['visibility'] == 2) {
+                                        echo "selected";
+                                    } ?>>Public</option>
+                <option value="1" <?php if ($result['visibility'] == 1) {
+                                        echo "selected";
+                                    } ?>>Privé</option>
+            </select>
+
+            <div class="invalid">
+                <?php if (isset($_SESSION["errorvisibility"])) {
+                    echo $_SESSION["errorvisibility"];
+                } ?>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
         <div class="d-flex justify-content-center">
             <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
         </div>

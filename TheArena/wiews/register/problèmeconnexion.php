@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="light">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="Ma duper super page" content="Page HTML">
@@ -18,11 +19,16 @@
             <div class="col">
                 <div class="mx-3 my-2">
                     <a class="navbar-brand" href="/">
-                        <img src="/img/logothearena-removebg.png" alt="Logo" class="d-inline-block align-text-center">
+                        <img src="/img/logothearena-removebg.png" alt="Logo"  class="d-inline-block align-text-center">
                         <img src="/img/thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center">
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="alert alert-success" id="alert" hidden>
+            <span class="closebtn" onclick="disappear();">&times;</span>
+            Si votre adresse mail est bien enregistrée, un email vous a été envoyé. Si vous ne recevez pas cet email,
+            vérifiez votre dossier de courriers indésirables. Sinon, essayez de recréer un compte.
         </div>
         <div class="row mr-5 mt-3">
             <div class="col-6 d-flex flex-column mt-5 justify-content-around align-items-center">
@@ -40,23 +46,21 @@
                 </div>
                 <div class="row">
                     <div class="col py-5 my-4">
-                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b2">J'ai oublié mon email</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col py-5 my-4">
-                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b3">Mon compte est désactivé</button>
+                        <button class="btn btn-secondary btn-lg py-4 px-4" id="b2">Mon compte est désactivé</button>
                     </div>
                 </div>
             </div>
             <div id="mod1" class="modal">
                 <div class="modal-content">
                     <span class="close" id="s1">&times;</span>
-                    <form>
+                    <form action="connectionhandler.php">
                         <p> Merci de renseigner votre adresse email. Nous enverrons un mail à cette adresse pour réinitialiser votre mot de passe.</p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+                            <label for="phonenumber" class="form-label">Numéro de téléphone</label>
+                            <input type="tel" class="form-control" id="phonenumber" placeholder="Numéro de téléphone" name="phonenumber" required>
+                            <input type="hidden" name="action" value="resetPassword">
                             <button type="submit" class="btn btn-primary">Continuer</button>
                         </div>
                     </form>
@@ -65,58 +69,34 @@
             <div id="mod2" class="modal">
                 <div class="modal-content">
                     <span class="close" id="s2">&times;</span>
-                    <form>
-                        <p> Merci de renseigner jsp quoi lol</p>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Adresse Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
-                            <button type="submit" class="btn btn-primary">Continuer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div id="mod3" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="s3">&times;</span>
-                    <form>
+                    <form action="connectionhandler.php">
                         <p> Merci de renseigner votre adresse email. Nous enverrons un mail à cette adresse pour pouvoir activer votre compte.</p>
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+                            <input type="hidden" name="action" value="enableAccount">
                             <button type="submit" class="btn btn-primary">Continuer</button>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="alert alert-success" id="alert">
-        <span class="closebtn" onclick="disappear();">&times;</span>
-        Si votre adresse mail est bien enregistrée, un email vous a été envoyé. Si vous ne recevez pas cet email,
-        vérifiez votre dossier de courriers indésirables. Sinon, essayez de recréer un compte.
-    </div>
-    </div>
 
     <script>
         var modal1 = document.getElementById("mod1");
         var modal2 = document.getElementById("mod2");
-        var modal3 = document.getElementById("mod3");
 
         var btn1 = document.getElementById("b1");
         var btn2 = document.getElementById("b2");
-        var btn3 = document.getElementById("b3");
 
         var span1 = document.getElementById("s1");
         var span2 = document.getElementById("s2");
-        var span3 = document.getElementById("s3");
 
         btn1.onclick = function() {
             modal1.style.display = "block";
         }
         btn2.onclick = function() {
             modal2.style.display = "block";
-        }
-        btn3.onclick = function() {
-            modal3.style.display = "block";
         }
 
         span1.onclick = function() {
@@ -125,8 +105,10 @@
         span2.onclick = function() {
             modal2.style.display = "none";
         }
-        span3.onclick = function() {
-            modal3.style.display = "none";
+
+        function modalGone() {
+            modal1.style.display = "none";
+            modal2.style.display = "none";
         }
 
         function disappear() {
@@ -136,7 +118,30 @@
                 x.style.display = "none";
             }, 600);
         }
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                console.log('Formulaire soumis:', form.id);
+                console.log('Données du formulaire:', new FormData(form));
+                fetch('/wiews/register/connectionhandler.php', {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            modalGone();
+                            document.getElementById("alert").style.display = "block";
+                            document.getElementById("alert").removeAttribute('hidden');
+                            setTimeout(function() {
+                                document.getElementById("alert").style.opacity = "1";
+                            }, 100);
+                            setTimeout(disappear, 5000);
+                        }
+                    })
+            });
+        });
     </script>
 </body>
-
 </html>

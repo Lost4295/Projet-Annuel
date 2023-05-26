@@ -14,32 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $user = findUnverifiedUser($inputs['activationCode'], $inputs['email']);
         // if user exists and activate the user successfully
         if ($user && activateUser($user['id'])) {
-            $message='You account has been activated successfully. Please login here.';
-            $url = APP_URL . '/login';
+            $_SESSION['message']='Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.';
         } else {
-            $message='Invalid request. Please register here.';
-            $url = APP_URL . '/register';
+            $_SESSION['message']='La requête est invalide. Merci de réessayer.';
+            $_SESSION['message_type']='danger';
         }
         }
     } else {// redirect to the register page in other cases
-    $message='Invalid request. Please register here.';
-    $url = APP_URL . '/register';
+    $_SESSION['message']='La requête est invalide. Merci de réessayer.';
+    $_SESSION['message_type']='danger';
 }
+header("Location : /");
 
 
-?>
-
-<html>
-<head>
-    <title>Activate Account</title>
-</head>
-<body>
-<h1>Activate Account</h1>
-<p>
-    <?php echo $message; ?>
-</p>
-<?php echo $inputs['email']."<br>"; ?>
-<?php echo $inputs['activationCode']; ?>
-<a href="<?php echo $url ?>">Bouton </a>
-</body>
-</html>
