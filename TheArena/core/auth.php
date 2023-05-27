@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'email' => FILTER_SANITIZE_EMAIL,
         'activationCode' => htmlspecialchars($_GET['activationCode'])
     ]);
-
     if ($inputs['email'] && $inputs['activationCode']) {
         $user = findUnverifiedUser($inputs['activationCode'], $inputs['email']);
         // if user exists and activate the user successfully
@@ -18,15 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             $_SESSION['message']='La requête est invalide. Merci de réessayer.';
             $_SESSION['message_type']='danger';
-            echo 'pas de user/ pas de activateUser';
         }
         }
     } else {// redirect to the register page in other cases
     $_SESSION['message']='La requête est invalide. Merci de réessayer.';
     $_SESSION['message_type']='danger';
-    echo 'Pas de get';
 }
-die();
+sleep(1);
 header("Location:/");
 
 
