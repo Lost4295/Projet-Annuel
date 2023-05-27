@@ -3,14 +3,15 @@
 <canvas id="game-canvas" width="300" height="600"></canvas>
 <h2 id="scoreboard">Score: 0</h2>
 <h2 id="lines-cleared">Lignes réalisées: 0</h2>
+<p>Vous avez trouvé le jeu caché ! Utilisez les touches fléchées ou ZQSD pour déplacer les blocs. (↑ ou Z pour les faie tourner)</p>
 <script>
     var GAME_CLOCK = 1000
     const BLOCK_SIDE_LENGTH = 30
     const ROWS = 20
     const COLS = 10
     var SCORE_WORTH = 10
-    var modify = 10
-    var clkmodify = 25
+    var modify = 5
+    var clkmodify = 15
     let restartButton = null;
     let linesCleared = 0;
 
@@ -143,7 +144,7 @@
                 });
 
                 // Trouver l'élément <h2>
-                const heading = document.querySelector("h2");
+                const heading = document.getElementById("lines-cleared");
 
                 // Ajouter le bouton au document
                 heading.parentNode.insertBefore(restartButton, heading.nextSibling);

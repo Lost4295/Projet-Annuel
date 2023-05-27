@@ -1,7 +1,7 @@
 <?php
 
 require 'loginfuncts.php';
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // sanitize the email & activation code
@@ -18,12 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } else {
             $_SESSION['message']='La requête est invalide. Merci de réessayer.';
             $_SESSION['message_type']='danger';
+            echo 'pas de user/ pas de activateUser';
         }
         }
     } else {// redirect to the register page in other cases
     $_SESSION['message']='La requête est invalide. Merci de réessayer.';
     $_SESSION['message_type']='danger';
+    echo 'Pas de get';
 }
-header("Location : /");
+die();
+header("Location:/");
+
 
 

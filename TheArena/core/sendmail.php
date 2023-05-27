@@ -124,6 +124,7 @@ function sendEmailPostMaster($body)
 
     if (!$mail->send()) {
         echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
+        die();
     } else {
         echo 'Le message a été envoyé.';
     }

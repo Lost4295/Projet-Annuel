@@ -10,14 +10,14 @@ if ($_POST) {
 }
 if (isset($email)) {
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare(" SELECT password FROM ".PREFIX."users WHERE email=:email");
+    $queryPrepared = $connection->prepare(" SELECT password, status FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         "email"=>$email
     ]);
     
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
-        if (password_verify($password, $result['password'])) {
+        if (password_verify($password, $result['password']) && $result["status"] >= 1) {
             session_regenerate_id($delete_old_session=true);
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
@@ -43,7 +43,11 @@ if (isset($email)) {
                     break;
             }
         } else {
-            $_SESSION["error"]="Erreur : mot de passe incorrect.";
+            if ($result["status"] < 1) {
+                $_SESSION["error"]="Erreur : votre compte n'est pas activé. Vérifiez vos mails. Si vous n'avez rien reçu, essayez de passer par le lien <a href='/login/help'>Un problème pour vous connecter ?</a>";
+            } else {
+                $_SESSION["error"]="Erreur : mot de passe incorrect.";
+            }
         }
     } else {
         $_SESSION["error"]="Erreur : mot de passe incorrect.";

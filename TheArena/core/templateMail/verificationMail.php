@@ -1,7 +1,8 @@
 <?php
 global $activationCode;
 global $email;
-    $url = "http://localhost:8000/core/auth.php?email=".$email."&activationCode=".$activationCode;
+
+    $url = "http://localhost:8000/authentification?email=".$email."&activationCode=".$activationCode;
     $bodyv="<div class='div-container'>
         <div class='row'>
             <p>Bonjour,<br> Vous avez créé votre compte sur The Arena et nous vous en remercions. Cependant, vous ne pourrez pas vous connecter
