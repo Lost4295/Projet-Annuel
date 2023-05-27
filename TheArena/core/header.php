@@ -43,7 +43,7 @@
                                 </div><?php } else { ?>
                                 <div>
                                     <a class="btn btn-warning" href="login">Se connecter</a>
-                                    <a class="btn btn-warning" href="register/1">S'inscrire</a>
+                                    <a class="btn btn-warning" href="register">S'inscrire</a>
                                 </div>
                             <?php } ?>
                                 </div>
