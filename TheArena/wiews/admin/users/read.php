@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
+require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
 $db= connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
@@ -7,11 +7,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id'=>$id]);
     $user = $query->fetch();
     if (!$user) {
-        header('Location: index.php');
+        header('Location: /admin/users');
     }
 } else {
-    header('Location: index.php');
+    header('Location: /admin/users');
 }
+require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 ?>
 
 			<p>ID : <?php echo $user["id"] ?></p>

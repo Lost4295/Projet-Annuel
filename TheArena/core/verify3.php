@@ -73,7 +73,7 @@ if (isset($_POST)) {
 
     $types=[0,1,2,3];
 
-    if (!in_array($type, $types)) {
+    if (!in_array($type, $types)) { // TODO : REFAIRE LE SWITCH
         $errortype="Ce rôle n'existe pas.";
     } else {
         switch ($type) {
@@ -115,6 +115,8 @@ if (isset($_POST)) {
         $result=$queryPrepared->fetch();
         if ((!empty($result))&&(count($result)<2)) {
             $erroremail="L'email est déjà utilisé.";
+        } else {
+            $_SESSION["emailtouse"]=$email;
         }
     }
 
@@ -253,6 +255,7 @@ if (isset($_POST)) {
         
         include 'sendmail.php';
         sendEmail($email, 'Activation du compte de '.$username.' sur The Arena', 0);
+        die();
         $_SESSION["message"] = "Votre compte a bien été créé. Vous allez recevoir un mail de confirmation. Si vous ne le voyez pas, merci de vérifier vos spams.";
         header("Location:/");
     }

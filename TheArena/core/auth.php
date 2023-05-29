@@ -2,6 +2,7 @@
 
 require 'loginfuncts.php';
 session_start();
+echo "Activation de votre compte en cours...";
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // sanitize the email & activation code
