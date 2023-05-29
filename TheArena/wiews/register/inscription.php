@@ -14,7 +14,6 @@ noReconnection(); ?>
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
 </head>
-
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -30,11 +29,17 @@ noReconnection(); ?>
         <div class="row mr-5 mt-3">
             <div class="col-3 d-flex flex-column mt-5 justify-content-between">
                 <div>
-                    <p><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
+                    <p id="text1"><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
                 </div>
                 <div>
-                    <p><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
+<hr class="separation" />
+</div>
+                <div>
+                    <p id="text2"><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
                 </div>
+                <div>
+<hr class="separation" />
+</div>
                 <div>
                     <p><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
                 </div>
@@ -79,13 +84,13 @@ noReconnection(); ?>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="password" class="form-label">Mot de passe</label>
+                                        <label for="pwd" class="form-label">Mot de passe</label>
                                         <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
                                     </div>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="confirmPwd" class="form-label">Confirmation du mot de passe</label>
+                                        <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
                                         <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
                                     </div>
                                 </div>

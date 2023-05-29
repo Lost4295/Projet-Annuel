@@ -181,6 +181,14 @@ footer {
     right: 50px;
     z-index: 2;
 }
+.separation{
+	clear: both;
+	margin-top :10px;
+	margin-left: 125px;
+	height: 200px;
+	width : 5px;
+	background: black;
+	}
 
 .logo {
     width: auto;
