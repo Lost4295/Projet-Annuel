@@ -3,11 +3,13 @@
 session_start();
 
 $dataValues = json_decode($_POST['dataValues']);
-$responses = $_SESSION['response'];
+$responsejson = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/core/captcha.json');
+$responsedata = json_decode($responsejson);
+
 
 $rela = true;
 
-foreach ($responses as $key => $response) {
+foreach ($responsedata as $key => $response) {
     if ($response != $dataValues[$key]) {
         $rela = false;
         break;

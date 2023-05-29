@@ -87,7 +87,7 @@ echo "<br />";
 echo "<br />";
 print_r($responses); echo '<br /><br />';
 print_r($responses2);
-$_SESSION['response'] = $responses2;
+file_put_contents($_SERVER['DOCUMENT_ROOT'].'/core/captcha.json',json_encode($responses2));
 // Libérer les ressources GD
 imagedestroy($image);
 foreach ($parties as $partie) {

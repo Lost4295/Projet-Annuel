@@ -1,7 +1,8 @@
 <?php
 
 require 'loginfuncts.php';
-
+session_start();
+echo "Activation de votre compte en cours...";
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // sanitize the email & activation code
@@ -9,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'email' => FILTER_SANITIZE_EMAIL,
         'activationCode' => htmlspecialchars($_GET['activationCode'])
     ]);
-
     if ($inputs['email'] && $inputs['activationCode']) {
         $user = findUnverifiedUser($inputs['activationCode'], $inputs['email']);
         // if user exists and activate the user successfully
@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $_SESSION['message']='La requête est invalide. Merci de réessayer.';
     $_SESSION['message_type']='danger';
 }
-header("Location : /");
+sleep(1);
+header("Location:/");
+
 
 

@@ -111,6 +111,8 @@ if ($error) {
     $table['erroremail']= $erroremail;
     $table['errorpwd']= $errorpwd;
     $table['errorpwdconfirm']= $errorpwdconfirm;
+} else{
+    $_SESSION['type']=$fintype;
 }
 
 header('Content-Type: application/json');

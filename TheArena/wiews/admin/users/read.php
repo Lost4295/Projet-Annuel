@@ -1,5 +1,5 @@
 <?php
-
+require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
 $db= connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
