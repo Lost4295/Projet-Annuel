@@ -178,7 +178,7 @@ function clickHandler(event) {
                         form1.setAttribute("hidden", "");
                         form2.setAttribute("hidden", "");
                         form3.removeAttribute("hidden");
-                        check3.setAttribute("class", "bi bi-check-circle-fill text-info");
+                        check2.setAttribute("class", "bi bi-check-circle-fill text-info");
                         btn.innerHTML = "M'inscrire";
                         const finalinfos = document.getElementById('finalinfos');
 
