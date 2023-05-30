@@ -129,7 +129,7 @@ function clickHandler(event) {
                         form3.setAttribute("hidden", "");
                         check1.setAttribute("class", "bi bi-check-circle-fill text-info");
                         text1.setAttribute("class", "text-info");
-                        bar1.setAttribute("class", "progress-bar bg-info");
+                        bar1.setAttribute("class", "separation bg-info");
                         return;
                     } else {
                         span.removeAttribute("hidden");
@@ -187,7 +187,7 @@ function clickHandler(event) {
                         form3.removeAttribute("hidden");
                         check2.setAttribute("class", "bi bi-check-circle-fill text-info");
                         text2.setAttribute("class", "text-info");
-                        bar2.setAttribute("class", "progress-bar bg-info");
+                        bar2.setAttribute("class", "separation bg-info");
                         btn.innerHTML = "M'inscrire";
                         const finalinfos = document.getElementById('finalinfos');
 
