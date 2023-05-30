@@ -14,6 +14,7 @@ noReconnection(); ?>
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -32,14 +33,14 @@ noReconnection(); ?>
                     <p id="text1"><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
                 </div>
                 <div>
-<hr class="separation" />
-</div>
+                    <div class="separation"> </div>
+                </div>
                 <div>
                     <p id="text2"><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
                 </div>
                 <div>
-<hr class="separation" />
-</div>
+                    <div class="separation"> </div>
+                </div>
                 <div>
                     <p><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
                 </div>
@@ -166,9 +167,9 @@ noReconnection(); ?>
                                         </div>
                                     </div>
                                     <div class="row mt-5 mb-3 pr-5">
-                                    <label class="form-check-label" >
-                                                    Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
-                                                </label>
+                                        <label class="form-check-label">
+                                            Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
+                                        </label>
                                         <div class="col">
                                             <?php $dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';
                                             $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE); ?>
