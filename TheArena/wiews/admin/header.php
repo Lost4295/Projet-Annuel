@@ -84,37 +84,37 @@ session_start();
                                 </a>
                             </li>
                             <li>
-                                <a href="admin/signalements" class="nav-link link-dark aaaa">
+                                <a href="admin_signalements" class="nav-link link-dark aaaa">
                                     Signalements
                                 </a>
                             </li>
                             <li>
-                                <a href="admin/events" class="nav-link link-dark aaaa">
+                                <a href="admin_events" class="nav-link link-dark aaaa">
                                     Événements
                                 </a>
                             </li>
                             <li>
-                                <a href="admin/users" class="nav-link link-dark aaaa">
+                                <a href="admin_users" class="nav-link link-dark aaaa">
                                     Utilisateurs
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin/forums" class="nav-link link-dark aaaa">
+                                <a href="admin_forums" class="nav-link link-dark aaaa">
                                     Forums
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin/tournaments" class="nav-link link-dark aaaa">
+                                <a href="admin_tournaments" class="nav-link link-dark aaaa">
                                     Tournois
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin/shops" class="nav-link link-dark aaaa">
+                                <a href="admin_shops" class="nav-link link-dark aaaa">
                                     Shops
                                 </a>
                             </li>
                             <li>
-                                <a href="admin/settings" class="nav-link link-dark aaaa">
+                                <a href="admin_settings" class="nav-link link-dark aaaa">
                                     Paramètres du site
                                 </a>
                             </li>
