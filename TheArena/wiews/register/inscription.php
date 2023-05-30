@@ -33,14 +33,14 @@ noReconnection(); ?>
                     <p id="text1"><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
                 </div>
                 <div>
-                    <div class="separation"> </div>
-                </div>
+                                        <div class="separation" id="bar1"> </div>
+                                </div>
                 <div>
                     <p id="text2"><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
                 </div>
                 <div>
-                    <div class="separation"> </div>
-                </div>
+                                        <div class="separation" id="bar2"> </div>
+                                </div>
                 <div>
                     <p><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
                 </div>
