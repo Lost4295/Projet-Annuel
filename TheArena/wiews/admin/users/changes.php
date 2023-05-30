@@ -28,7 +28,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 
 $db = connectToDB();
 
-if ((isset($_GET['id']) && !empty($_GET['id'])) && !(isset($_GET['activity']) && !empty($_GET['activity']))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && !(isset($_GET['activity']) && !empty($_GET['activity'])) && !(isset($_GET['activity']) && (!empty($_GET['activity'])))) {
     $id = strip_tags($_GET['id']);
     $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
     $query->execute([':id' => $id]);
