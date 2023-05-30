@@ -43,7 +43,7 @@ if (isset($email)) {
                     break;
             }
         } else {
-            if ($result["status"] < 1) {
+            if ($result["status"] ==0) {
                 $_SESSION["error"]="Erreur : votre compte n'est pas activé. Vérifiez vos mails. Si vous n'avez rien reçu, essayez de passer par le lien <a href='/login/help'>Un problème pour vous connecter ?</a>";
             } else {
                 $_SESSION["error"]="Erreur : mot de passe incorrect.";
