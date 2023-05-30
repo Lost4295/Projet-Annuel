@@ -3,7 +3,7 @@
 $db= connectToDB();
 $query= $db->query("Select id, name, description,date_creation as date, author from ".PREFIX."forums ORDER BY date_creation");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-print_r($result);
+// print_r($result);
 ?>
 
 <h1 class="text-center">Forums</h1>

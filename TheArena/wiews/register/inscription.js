@@ -99,6 +99,8 @@ let check1 = document.getElementById("check1");
 let check2 = document.getElementById("check2");
 let check3 = document.getElementById("check3");
 let span = document.getElementById("errors");
+let text1 = document.getElementById("text1");
+let text2 = document.getElementById("text2");
 span.setAttribute("hidden", "");
 form2.setAttribute("hidden", "");
 form3.setAttribute("hidden", "");
@@ -124,6 +126,7 @@ function clickHandler(event) {
                         form2.removeAttribute("hidden");
                         form3.setAttribute("hidden", "");
                         check1.setAttribute("class", "bi bi-check-circle-fill text-info");
+                        text1.setAttribute("class", "text-info");
                         return;
                     } else {
                         span.removeAttribute("hidden");
@@ -149,6 +152,7 @@ function clickHandler(event) {
                             span.innerHTML += "<li> Confirmation du mot de passe : " + errorpwdconfirm + "</li>";
                         }
                         span.innerHTML += "</ul> ";
+                        text1.setAttribute("class", "text-danger");
                         return;
                     }
                 })
@@ -178,7 +182,8 @@ function clickHandler(event) {
                         form1.setAttribute("hidden", "");
                         form2.setAttribute("hidden", "");
                         form3.removeAttribute("hidden");
-                        check3.setAttribute("class", "bi bi-check-circle-fill text-info");
+                        check2.setAttribute("class", "bi bi-check-circle-fill text-info");
+                        text2.setAttribute("class", "text-info");
                         btn.innerHTML = "M'inscrire";
                         const finalinfos = document.getElementById('finalinfos');
 
@@ -241,6 +246,7 @@ function clickHandler(event) {
                             span.innerHTML += "<li> Pays : " + errorcountry + "</li>";
                         }
                         span.innerHTML += "</ul> ";
+                        text2.setAttribute("class", "text-danger");
                         return;
                     }
                 })

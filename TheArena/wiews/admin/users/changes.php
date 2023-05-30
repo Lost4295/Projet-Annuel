@@ -1,25 +1,26 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
+print_r($_GET);
 
-if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) && !empty($_GET['visibility']))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) && (!empty($_GET['visibility'])||$_GET['visibility']==0))) {
     $id = strip_tags($_GET['id']);
     $visibility = strip_tags($_GET['visibility']);
     if ($visibility == -1||$visibility == 0||$visibility == 1||$visibility == 2) {
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
     $query->execute([':id' => $id, ':visibility'=>$visibility]);
-    header("Location:/admin/users/read?id=".$id);
+    header("Location:/admin/users");
     }
 }
-if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && !empty($_GET['activity']))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && (!empty($_GET['activity'])||$_GET['activity']==0))) {
     $id = strip_tags($_GET['id']);
     $activity = strip_tags($_GET['activity']);
     if ($activity == -1||$activity == 0||$activity == 1) {
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
     $query->execute([':id' => $id, ':activity'=>$activity]);
-    header("Location:/admin/users/read?id=".$id);
+    header("Location:/admin/users");
     }
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
@@ -27,7 +28,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 
 $db = connectToDB();
 
-if ((isset($_GET['id']) && !empty($_GET['id']))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && !(isset($_GET['activity']) && !empty($_GET['activity'])) && !(isset($_GET['activity']) && (!empty($_GET['activity'])))) {
     $id = strip_tags($_GET['id']);
     $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
     $query->execute([':id' => $id]);

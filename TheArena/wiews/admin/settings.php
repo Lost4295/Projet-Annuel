@@ -71,13 +71,13 @@ foreach ($images as $oldImage) {
     unlink($oldImage);
 }
 
-$responses = array();
-$responses2 = array();
-// Enregistrer les parties découpées
-foreach ($parties as $index => $partie) {
-    $nomFichier = 'partie' . generateRandCode() . '.jpg';
-    imagejpeg($partie, $dirname . 'parts/' . $nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
-    $name= str_replace('partie', '', $nomFichier);
+$responses = [];
+$responses2 = [];
+
+foreach ($parties as $image) {
+    $nomFichier = 'image' . generateRandCode() . '.jpg';
+    imagejpeg($image, $dirname . 'parts/' . $nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
+    $name= str_replace('image', '', $nomFichier);
     $name= str_replace('.jpg', '', $name);
 
     $responses[] = $nomFichier;
