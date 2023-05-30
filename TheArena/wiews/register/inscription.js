@@ -88,9 +88,6 @@ function verifyValues2() {
     }
 }
 
-
-
-//TODO : Requête ajax + passage à la page suivante si tout est ok
 let btn = document.getElementById('continue');
 let form1 = document.getElementById("form1");
 let form2 = document.getElementById("form2");
@@ -339,12 +336,12 @@ function resetDraggableElements(event) {
     const droppedElementId = event.dataTransfer.getData('text/plain');
     const droppedElement = document.getElementById(droppedElementId);
     event.target.appendChild(droppedElement);
-        if (resetZone.contains(droppedElement)) {
-            droppedElement.classList.add('with-margin');
-        } else {
-            droppedElement.classList.remove('with-margin');
-        }
-    };
+    if (resetZone.contains(droppedElement)) {
+        droppedElement.classList.add('with-margin');
+    } else {
+        droppedElement.classList.remove('with-margin');
+    }
+};
 
 
 function checkAllDropZonesFilled() {

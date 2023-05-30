@@ -171,20 +171,7 @@ noReconnection(); ?>
                                             Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
                                         </label>
                                         <div class="col">
-                                            <?php $dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';
-                                            $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE); ?>
-                                            <div>
-                                                <div class="drop-zone" id="resetZone"> Zone de Reset
-                                                    <?php foreach ($images as $key => $image) {
-                                                        $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-                                                        $name = str_replace('\uploads\captcha\parts/partie', '', $url);
-                                                        $name = str_replace('.jpg', '', $name);
-                                                        if ($key % 3 == 0) {
-                                                            echo "<br />";
-                                                        }
-                                                        echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
-                                                    }
-                                                    echo "</div>"; ?>
+                                            <?php require $_SERVER['DOCUMENT_ROOT'].'/core/createCaptcha.php'?>
                                                 </div>
                                             </div>
                                             <div class="col">
