@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="light">
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
-session_start();
 noReconnection(); ?>
 
 <head>
@@ -51,6 +50,9 @@ noReconnection(); ?>
                     <div class="col pr-5 mr-5">
                         <form action="/core/verify3.php" method="post" id="allform">
                             <div id="form1">
+
+
+                            
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="type" class="form-label">Type</label>

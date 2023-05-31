@@ -64,18 +64,23 @@ $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
 
 <img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '',$active) ?>" alt="initial_image">
 
-<div class="drop-zone" id="resetZone"> Zone de reset
+<div class="drop-zone" id="resetZone">
     <?php foreach ($images as $key => $image) {
         $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-        $name = str_replace('\uploads\captcha\parts/partie', '', $url);
+        $name = str_replace('\uploads\captcha\parts/image', '', $url);
         $name = str_replace('.jpg', '', $name);
-        if ($key % 3 == 0) {
-            echo "<br />";
+        echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
+    } ?><script>
+    function shuffleCaptcha(){
+        var parent = document.getElementById("resetZone");
+        var divs = parent.children;
+        var frag = document.createDocumentFragment();
+        while (divs.length) {
+            frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
         }
-        echo '<img class="draggable" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
-    } ?>
-</div>
-</div>
-<script>
-    function shuffleCaptcha(){} // TODO faire la fonction shuffleCaptcha
+        parent.appendChild(frag);
+    } 
 </script>
+    <script>shuffleCaptcha();</script>
+</div>
+</div>
