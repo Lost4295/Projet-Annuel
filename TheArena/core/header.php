@@ -44,7 +44,7 @@
                                 <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
                                 <div id="thedropdown" class="dropdown-content dropcolor">
                                     <?php echo "Connecté en tant que " . $attr['1']; ?>
-                                    <a class="btn btn-warning " href="/logout">Se déconnecter</a>
+                                    <a class="btn btn-warning" href="/logout"><i class="bi bi-box-arrow-right text-danger fs-4"></i> Se déconnecter </a>
                                     <a class="btn btn-warning" href="/me">Ma page</a>
                                     <?php if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
                                         <a class="btn btn-warning " href="/admin">Index Admin</a>
@@ -55,8 +55,8 @@
 
                         <?php } else { ?>
                             <div>
-                                <a class="btn btn-warning" href="/login">Se connecter</a>
-                                <a class="btn btn-warning" href="/register">S'inscrire</a>
+                                <a class="btn btn-warning" href="/login">Connexion</a>
+                                <a class="btn btn-warning" href="/register">Inscription</a>
                             </div>
                         <?php } ?>
                     </div>

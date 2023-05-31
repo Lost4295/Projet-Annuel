@@ -315,6 +315,56 @@ footer {
     z-index: 2;
 }
 
+.addropdown {
+    border: 1px solid black;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+}
+.addropdown li {
+    cursor: pointer;
+    list-style-type: none;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.addropdown li span {
+    font-weight: bold;
+}
+.addropdown li:hover {
+    background-color: lightsteelblue;
+}
+.addropdown ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.adpanel {
+    width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.adpanel input[type=text] {
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid lightgray;
+    font-size: 15px;
+}
+.sep {
+    margin-top: 20px;
+}
+.test {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
 

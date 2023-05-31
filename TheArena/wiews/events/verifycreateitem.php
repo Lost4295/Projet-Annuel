@@ -6,8 +6,8 @@ if (
     count($_POST)!=4
     ||empty($_POST["name"])
     ||empty($_POST["price"])
-    ||empty($_POST["image"])
     ||!isset($_POST["description"])
+    ||!isset($_POST["shop_id"])
 ) { print_r($_POST);
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
@@ -17,29 +17,31 @@ if (
 
 $name=$_POST["name"];
 $price=$_POST["price"];
-$image=$_POST["image"];
 $description=$_POST["description"];
 $errorname="";
 $errorprice="";
-$errorimage="";
 $errordescription="";
 
 
-if (condition($price)) {
-    $errorprice="";
+if ($price<0) {
+    $errorprice="Le prix ne peut pas être négatif.";
 }
-if (condition($price)) {
-    $errorprice="";
-}
-
-if (condition($description)) {
-    $errordescription="";
+if (is_integer($price)||is_float($price)) {
+    $errorprice="Veuillez entrer des valeurs numériques.";
 }
 
-if (condition($image)) {
-    $errorimage="";
+
+if ($description=="") {
+    $errordescription="La description ne peut pas être vide.";
 }
 
+if (strlen($description)<10) {
+    $errordescription="La description doit faire au moins 10 caractères.";
+}
+
+if (strlen($description)>700) {
+    $errordescription="La description doit faire moins de 700 caractères.";
+}
 
 if (!empty($errorname)||!empty($errorprice)||!empty($errordescription)||!empty($errorimage)) {
     $error=false;
@@ -53,12 +55,21 @@ if (!$error) {
     $_SESSION['errorprice']= $errorprice;
     $_SESSION['errorimage']= $errorimage;
     $_SESSION['errordescription']= $errordescription;
-    header("");
+    header("Location: /");
 } else {
     $_SESSION['name']= $name;
     $_SESSION['price']= $price;
     $_SESSION['image']= $image;
     $_SESSION['description']= $description;
-    header("");
+    $db = connectToDB();
+    $queryPrepared=$db->prepare("INSERT INTO ".PREFIX."items (name, price, description, image,shop_id) VALUES (:name, :price, :description, :image,:shop_id)");
+    $queryPrepared->execute([
+        ":name"=>$name,
+        ":price"=>$price,
+        ":description"=>$description,
+        ":image"=>$image,
+        ":shop_id"=>$shop_id
+    ]);
+    header("Location: /");
 }
 

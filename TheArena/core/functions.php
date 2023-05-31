@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+$fmt->setPattern('EEEE dd MMMM YYYY');
 require 'constantes.php';
 
 function connectToDB()

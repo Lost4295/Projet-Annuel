@@ -63,7 +63,7 @@ if (!$error) {
     ]);
     $result=$queryPrepared->fetch(PDO::FETCH_ASSOC);
     $manager_id=$result['id'];
-    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, type, game, manager_id, image) VALUES (:eventname,:infos,:type,:game, :manager_id, :image)");
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, type, game, manager_id, image,shop_id) VALUES (:eventname,:infos,:type,:game, :manager_id, :image, (SELECT count(*)+1 FROM ".PREFIX."shops))");
     $queryPrepared->execute([
         'eventname'=>$eventname,
         'infos'=>$infos,

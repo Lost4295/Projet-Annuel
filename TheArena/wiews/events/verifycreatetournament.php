@@ -2,11 +2,14 @@
 session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
+
 if (
-    count($_POST)!=3
+    count($_POST)!=5
     ||empty($_POST["name"])
     ||empty($_POST["price"])
     ||empty($_POST["date"])
+    ||!isset($_POST["description"])
+    ||!isset($_POST["event_id"])
 ) { print_r($_POST);
     die(
         "Il ne vous est pas possible de terminer l'action. Merci de réessayer.
@@ -48,8 +51,7 @@ $errordate= "Format de date incorrect";
         $errordate = "La date est dans le passé. Impossible de faire un tournoi dans le passé !";
     }
     if (($time >= 3)) {
-        $errordate = "La date est trop lointaine. Essayez de mettre une date inférieure à";
-         // mettre date actuelle + 3 ans quoi
+        $errordate = "La date est trop lointaine. Essayez de mettre une date inférieure à " . $fmt->format(new DateTime("+3 years"));
     }
 }
 

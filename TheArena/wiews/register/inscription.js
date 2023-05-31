@@ -1,3 +1,53 @@
+let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
+    let select = document.getElementById("selection");
+    window.onload = function() {
+        document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
+    };
+    function displaySelection(response) {
+        if (Object.keys(response.features).length > 0) {
+            select.style.display = "block";
+            select.removeChild(select.firstChild);
+            let ul = document.createElement('ul');
+            select.appendChild(ul);
+            response.features.forEach(function (element) {
+                let li = document.createElement('li');
+                let ligneAdresse = document.createElement('span');
+                let infosAdresse = document.createTextNode(element.properties.postcode + ' ' + element.properties.city);
+                ligneAdresse.innerHTML = element.properties.name;
+                li.onclick = function () { selectAdresse(element); };
+                li.appendChild(ligneAdresse);
+                li.appendChild(infosAdresse);
+                ul.appendChild(li);
+            });
+        } else {
+            select.style.display = "none";
+        }
+    }
+    function autocompleteAdresse() {
+        let inputValue = document.getElementById("adresse").value;
+        if (inputValue) {
+            fetch(setQuery(inputValue))
+                .then(function (response) {
+                    response.json().then(function (data) {
+                        displaySelection(data);
+                    });
+                });
+        } else {
+            select.style.display = "none";
+        }
+    };
+    function selectAdresse(element) {
+        document.getElementById("adresse").value = element.properties.name + ", " + element.properties.postcode + ", " + element.properties.city;
+        select.style.display = "none";
+        document.getElementById("resAdresse").value = " " + element.properties.name;
+        document.getElementById("CP").value = " " + element.properties.postcode;
+        document.getElementById("Ville").value = " " + element.properties.city;
+    }
+    function setQuery(value) {
+        return requestURL + value + "?type=housenumber&autocomplete=1";
+    }
+
+
 function verifyValues1() {
     let type = document.querySelector('input[name="type"]:checked').value;
     let username = document.getElementById('username').value;
@@ -34,7 +84,6 @@ async function table1() {
     let type = await fetchType();
     let username = document.getElementById('username').value;
     let email = document.getElementById('email').value;
-    let password = document.getElementById('pwd').value;
     return {
         "Type": type,
         "Nom d'utilisateur": username,
@@ -47,10 +96,10 @@ function table2() {
     let lastname = document.getElementById('lastname').value;
     let birthdate = document.getElementById('birthdate').value;
     let phonenumber = document.getElementById('phonenumber').value;
-    let address = document.getElementById('address').value;
-    let cp = document.getElementById('cp').value;
-    let city = document.getElementById('city').value;
-    let country = document.getElementById('country').value;
+    let address = document.getElementById('resAdresse').value;
+    let cp = document.getElementById('CP').value;
+    let city = document.getElementById('Ville').value;
+    let fulladdress = document.getElementById('adresse').value;
     return {
         "Prénom": firstname,
         "Nom": lastname,
@@ -59,7 +108,7 @@ function table2() {
         "Adresse": address,
         "Code postal": cp,
         "Ville": city,
-        "Pays": country
+        "Adresse complète": fulladdress
     }
 }
 
@@ -68,11 +117,11 @@ function verifyValues2() {
     let lastname = document.getElementById('lastname').value;
     let birthdate = document.getElementById('birthdate').value;
     let phonenumber = document.getElementById('phonenumber').value;
-    let address = document.getElementById('address').value;
-    let cp = document.getElementById('cp').value;
-    let city = document.getElementById('city').value;
-    let country = document.getElementById('country').value;
-    if (firstname == "" || lastname == "" || birthdate == "" || phonenumber == "" || address == "" || cp == "" || city == "" || country == "") {
+    let address = document.getElementById('resAdresse').value;
+    let cp = document.getElementById('CP').value.trim();
+    let ville = document.getElementById('Ville').value.trim();
+    let fulladdress = document.getElementById('adresse').value.trim();
+    if (firstname == "" || lastname == "" || birthdate == "" || phonenumber == "" || address == "" || cp == "" || ville == "" || fulladdress == "") {
         alert("Veuillez remplir tous les champs.");
         return false;
     }
@@ -83,8 +132,8 @@ function verifyValues2() {
         phonenumber,
         address,
         cp,
-        city,
-        country
+        ville,
+        fulladdress
     }
 }
 
@@ -221,7 +270,7 @@ function clickHandler(event) {
                         let erroraddress = data.erroraddress
                         let errorcp = data.errorcp
                         let errorcity = data.errorcity
-                        let errorcountry = data.errorcountry
+                        let errorfulladdress = data.errorfulladdress
                         if (errorfirstname) {
                             span.innerHTML += "<li> Prénom : " + errorfirstname + "</li>";
                         }
@@ -243,8 +292,8 @@ function clickHandler(event) {
                         if (errorcity) {
                             span.innerHTML += "<li> Ville : " + errorcity + "</li>";
                         }
-                        if (errorcountry) {
-                            span.innerHTML += "<li> Pays : " + errorcountry + "</li>";
+                        if (errorfulladdress) {
+                            span.innerHTML += "<li> Pays : " + errorfulladdress + "</li>";
                         }
                         span.innerHTML += "</ul> ";
                         text2.setAttribute("class", "text-danger");
@@ -345,9 +394,9 @@ function resetDraggableElements(event) {
 
 
 function checkAllDropZonesFilled() {
-    var dropZones = document.getElementsByClassName("drop-zone");
-    for (var i = 0; i < dropZones.length; i++) {
-        var dropZone = dropZones[i];
+    let dropZones = document.getElementsByClassName("drop-zone");
+    for (let i = 0; i < dropZones.length; i++) {
+        let dropZone = dropZones[i];
         if (!dropZone.innerHTML.trim()) {
             return false;
         }
@@ -371,12 +420,12 @@ function getDataValuesInDropZone() {
 
 function checkCaptcha() {
     if (document.getElementById('cgu').checked) {
-        var dataValues = checkAllDropZonesFilled();
+        let dataValues = checkAllDropZonesFilled();
         if (dataValues) {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (this.status == 200) {
-                    var response = JSON.parse(this.responseText);
+                    let response = JSON.parse(this.responseText);
                     if (response.success == true) {
                         document.getElementById('allform').submit();
                     } else {
@@ -385,7 +434,7 @@ function checkCaptcha() {
                 }
             }
             xhr.open('POST', '/checkCaptcha', true);
-            var data = new FormData();
+            let data = new FormData();
             data.append('dataValues', JSON.stringify(dataValues));
             xhr.send(data);
         } else {
