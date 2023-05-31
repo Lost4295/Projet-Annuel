@@ -201,9 +201,6 @@ function unsetwhenRegistered2()
     if (isset($_SESSION['errorcaptcha'])) {
         unset($_SESSION['errorcaptcha']);
     }
-    if (isset($_SESSION['emailtouse'])){
-        unset($_SESSION['emailtouse']);
-    }
 }
 
 function unsetSessionErrors()

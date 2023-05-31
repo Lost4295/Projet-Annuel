@@ -1,5 +1,9 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
+$db = connectToDB();
+$query = $db->prepare("SELECT scope FROM ".PREFIX."users WHERE email = :email");
+$query->execute(['email' => $_SESSION['email']]);
+$admin = $query->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -25,7 +29,7 @@ require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
                         </label>
                     </div>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="radio" name="type" value="4" id="supadmin">
+                        <input class="form-check-input" type="radio" name="type" value="4" id="supadmin" <?php if ($admin['scope'] != 4){echo 'disabled';}?>>
                         <label class="form-check-label" for="organizer">
                             Super Administrateur
                         </label>

@@ -125,7 +125,7 @@ if (isset($_POST)) {
         if ((!empty($result)) && (count($result) < 2)) {
             $erroremail = "L'email est déjà utilisé.";
         } else {
-            $_SESSION["emailtouse"] = $email;
+            $_SESSION["emailtosend"] = $email;
         }
     }
 

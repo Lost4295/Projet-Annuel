@@ -23,6 +23,7 @@ if (isset($_GET['eid']) && !empty($_GET['eid'])) {
             <a class="navbarSecondaryBtn" href="/event/participants?eid=<?php echo $event['id']?>">Participants</a>
             <a class="navbarSecondaryBtn" href="/event/dashboard?eid=<?php echo $event['id']?>">Tableau de bord</a>
             <a class="navbarSecondaryBtn "href="/event/shop?shop=<?php echo $event['shop_id'] ?>&eid=<?php echo $event['id'] ?>">Shop</a>
+            //TODO AJOUTER PAGE ADMIN DE l'event
         </nav>
     </div>    
     <div class="row">

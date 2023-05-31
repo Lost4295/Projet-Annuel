@@ -40,7 +40,6 @@ if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)) {
     $error=true;
 }
 
-//FIXME: Add the event to the database
 if (!$error) {
     $_SESSION['erroreventname']= $erroreventname;
     $_SESSION['errorinfos']= $errorinfos;
@@ -73,7 +72,8 @@ if (!$error) {
         'manager_id'=>$manager_id,
         'image'=>$encodedimg
     ]);
-    echo "done !";
+    $_SESSION['message']="Votre évènement a bien été créé !";
+    $_SESSION['message_type']="success";
     header("Location: /events");
 }
 

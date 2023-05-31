@@ -9,6 +9,7 @@ $routes = [
     "/resetPassword" => $_SERVER['DOCUMENT_ROOT']."/core/resetPassword",
     "/hiddengame" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/hiddengame",
     "/authentification" => $_SERVER['DOCUMENT_ROOT']."/core/auth",
+    "/noNewsletter" => $_SERVER['DOCUMENT_ROOT']."/core/noNewsletter",
     "/register" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/inscription",
     "/login" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/login",
     "/login/help" => $_SERVER['DOCUMENT_ROOT']."/wiews/register/problèmeconnexion",

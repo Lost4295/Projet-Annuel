@@ -125,7 +125,7 @@ $footer="<footer>
                     <a href='thearena.litecloud.fr'> The Arena</a>
                 </div>
                 <div class='col-6'>
-                    <a href='#'> se désinscrire de la newsletter</a>
+                    <a href='http://localhost:8000/noNewsletter?email=".$email."'> se désinscrire de la newsletter</a>
                 </div>
             </div>
         </div>
@@ -137,6 +137,7 @@ $footer="<footer>
  * @param string $reciever
  * @param string $subject
  * @param int $type
+ * @param string|null $body
  * Pour le type, il faut savoir que :
  * 0 = verification
  * 1 = forgotPwd
@@ -146,40 +147,40 @@ $footer="<footer>
  * 5 = newsletter
  * @return void
  */
-function sendEmail($reciever, $subject, $type, $body = null)
+function sendEmail(string $reciever, string $subject, int  $type, string $body = null)
 {
     switch ($type) {
         case 0:
             global $bodyv;
-            $body = $bodyv;
+            $mbody = $bodyv;
             break;
         case 1:
             global $bodyfp;
-            $body = $bodyfp;
+            $mbody = $bodyfp;
             break;
         case 2:
             global $bodyla;
-            $body = $bodyla;
+            $mbody = $bodyla;
             break;
         case 3:
             global $bodync;
-            $body = $bodync;
+            $mbody = $bodync;
             break;
         case 4:
             global $bodyw;
-            $body = $bodyw;
+            $mbody = $bodyw;
             break;
         case 5:
             global $bodyn;
-            $body = $bodyn;
+            $mbody = $bodyn;
             break;
         default:
-            $body = $body;
+            $mbody = $body;
             break;
     }
     global $footer;
     global $header;
-    $rbody = $header . $body . $footer;
+    $rbody = $header . $mbody . $footer;
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->Host = SMTP; //Adresse IP ou DNS du serveur SMTP
@@ -235,8 +236,6 @@ function sendEmailPostMaster($body)
     $mail->FromName = 'Contact'; //Nom de l'expéditeur
 
     $mail->AddAddress(POSTMASTER); //Adresse email du destinataire
-
-    $mail->addEmbeddedImage($_SERVER['DOCUMENT_ROOT'] . '\img\logothearena-removebg.png', 'logo');
     $mail->IsHTML(true); //Envoyer le message au format HTML
     $mail->Subject = 'Message provenant de la page de contacts'; //Objet du message
     $mail->Body = $body; //Corps du message au format HTML

@@ -1,7 +1,6 @@
 <!-- TODO implémenter l'api de recherhe dans la création de compte -->
 <!-- TODO ajouter l'api fetch pour faie des reherches sur le site -->
 <!-- TODO faire en sorte de finir les events en entier (crud sur shop, back + front avec tout ce qu'il faut) -->
-<!-- TODO faire la vérification des messages de contact -->
 <!doctype html>
 <html lang=fr>
 

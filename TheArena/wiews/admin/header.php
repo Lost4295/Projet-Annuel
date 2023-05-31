@@ -1,23 +1,9 @@
 <?php
 
-// session_start();
-// require "../../core/functions.php";
-// $connection = connectToDB();
-// $_SESSION['email']=$email;
-// $_SESSION['login']=true;
-// $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
-// $queryPrepared->execute([
-//     "email"=>$email
-// ]);
-// $scope=$queryPrepared->fetch();
-// if($scope != 550620){
-//   header("location:indexSuperAdmin.php");
-// }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 include $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
-session_start();
-//redirectIfNotAdmin();
+redirectIfNotAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">
