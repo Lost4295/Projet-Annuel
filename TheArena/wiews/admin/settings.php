@@ -1,11 +1,13 @@
 <?php require 'header.php' ?>
+<div class="my-3">
 <h1>Paramètres</h1>
 <a href="https://iredadmin.thearena.litecloud.fr/iredadmin" class="btn btn-primary">Modifier les paramètres mail</a>
 <a href="https://sogo.thearena.litecloud.fr/sogo" class="btn btn-primary">Accéder aux mails de The Arena</a>
-
+</div>
+<div class="my-3">
 <h2> Ajouter une image</h2>
-
-<form method="post" enctype="multipart/form-data">
+</div>
+<form method="post" enctype="multipart/form-data" class="mb-4">
     <input type="file" name="image" class="form-control" value="Ajouter une image" accept="image/*" onchange="loadFile(event)" />
     <div id="captchaHelpBlock" class="form-text">Tentez de prendre une image carrée, pour aider les utilisateurs.</div>
     <img id="output" src=" " width="500" height=auto />
@@ -25,16 +27,18 @@ if (isset($_FILES['image'])) {
     $tmpName = $_FILES['image']['tmp_name'];
     $name = $_FILES['image']['name'];
     move_uploaded_file($tmpName, $dirname . $name);
-} //FIXME : POTENTIAL BUG, Might not work so
+} 
 
 $images = glob($dirname . "*.{jpg,gif,png}", GLOB_BRACE);
 
-
-foreach ($images as $key => $image) { // TODO encoder les images en base64 pour les afficher
+echo "<table class='table'><thead><tr><th scope='col'>Image</th><th scope='col'>Supprimer</th></tr></thead><tbody>";
+foreach ($images as $key => $image) {
+    echo '<tr>';
     $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-    echo '<img src="' . $url . '" width=150px/><a href="/wiews/admin/delimg.php?src=' . $key . '" class="btn btn-primary">Supprimer l\'image</a><br />';
+    echo '<td><img src="' . $url . '" width=150px/></td>';
+    echo '<td><a href="/wiews/admin/delimg.php?src=' . $key . '" class="btn btn-primary">Supprimer l\'image</a></td></tr>';
 }
-
+echo "</tbody></table>";
 
 
 

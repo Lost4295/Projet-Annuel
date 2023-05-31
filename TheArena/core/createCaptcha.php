@@ -1,4 +1,5 @@
 <?php
+$dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';
 
 $images = glob($dirname . "*.{jpg,gif,png}", GLOB_BRACE);
 $active = $images[array_rand($images)];
@@ -49,11 +50,7 @@ foreach ($parties as $image) {
     $responses[] = $nomFichier;
     $responses2[] = $name;
 }
-echo "<br />";
-echo "<br />";
-print_r($responses);
-echo '<br /><br />';
-print_r($responses2);
+
 file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/core/captcha.json', json_encode($responses2));
 // Libérer les ressources GD
 imagedestroy($image);
@@ -65,7 +62,7 @@ foreach ($parties as $partie) {
 $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
 ?>
 
-<img src="<?php echo $active ?>">
+<img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '',$active) ?>" alt="initial_image">
 
 <div class="drop-zone" id="resetZone"> Zone de reset
     <?php foreach ($images as $key => $image) {
@@ -79,23 +76,6 @@ $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
     } ?>
 </div>
 </div>
-<div>
-    <div class="row">
-        <div class="drop-zone" id="dropZone1"></div>
-        <div class="drop-zone" id="dropZone2"></div>
-        <div class="drop-zone" id="dropZone3"></div>
-    </div>
-    <div class="row">
-        <div class="drop-zone" id="dropZone4"></div>
-        <div class="drop-zone" id="dropZone5"></div>
-        <div class="drop-zone" id="dropZone6"></div>
-    </div>
-    <div class="row">
-        <div class="drop-zone" id="dropZone7"></div>
-        <div class="drop-zone" id="dropZone8"></div>
-        <div class="drop-zone" id="dropZone9"></div>
-    </div>
-</div>
 <script>
-    function shuffleCaptcha(){}
+    function shuffleCaptcha(){} // TODO faire la fonction shuffleCaptcha
 </script>

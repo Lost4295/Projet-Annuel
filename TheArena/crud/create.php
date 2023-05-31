@@ -42,5 +42,5 @@ if(isset($_POST)){
             header('Location: index.php');
         }
         
-}//TODO : Adapter à chaque catégorie
+}
 

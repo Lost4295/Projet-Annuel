@@ -1,44 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
 
 
-/* The alert message box */
+/* NOTIFICATIONS */
 .alert {
     padding: 20px;
     transition: opacity 0.6s;
     margin-bottom: 15px;
 }
 
-    .draggable {
-        width: 100px;
-        height: 100px;
-        background-color: #f1f1f1;
-        margin: 0px;
-        padding: 0px;
-        cursor: move;
-    }
-
-    .with-margin {
-        margin: 10px;
-    }
-
-    .drop-zone {
-        width: 100px;
-        height: 100px;
-        background-color: #e0e0e0;
-        margin: 0px;
-        padding: 0px;
-        border: 1px #000000 solid;
-    }
-
-    #resetZone {
-        width: 500px;
-        height: 500px;
-        background-color: #e0e0e0;
-        margin: 10px;
-        padding: 20px;
-    }
-
-/* The close button */
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -50,23 +19,31 @@
     transition: 0.3s;
 }
 
-/* When moving the mouse over the close button */
 .closebtn:hover {
     color: black;
 }
 
-footer {
+
+/* DROPDOWN */
+
+.dropdown {
     position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #FEEBD5;
+    right: 100px;
+    display: inline-block;
 }
 
-* {
-    font-family: 'Kanit', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    text-decoration: dotted;
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.show {
+    display: block !important;
 }
 
 .dropbtn {
@@ -90,11 +67,14 @@ footer {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+}
+
+.dropcolor {
+    background-color: #f1f1f1;
 }
 
 .dropdown-content a {
@@ -104,15 +84,182 @@ footer {
     display: block;
 }
 
-.dropdown a:hover {
+/* .dropdown a:hover { 
     background-color: #ddd;
+} */
+TODO fix this
+/* REGISTER */
+
+.separation {
+    clear: both;
+    margin-top: 10px;
+    margin-left: 125px;
+    height: 200px;
+    width: 5px;
+    background: black;
 }
 
-.show {
-    display: block;
+/* DRAG AND DROP */
+
+.draggable {
+    width: 100px;
+    height: 100px;
+    background-color: #f1f1f1;
+    margin: 0px;
+    padding: 0px;
+    cursor: move;
 }
 
-/* The Modal (background) */
+.with-margin {
+    margin: 10px;
+}
+
+.drop-zone {
+    width: 102px;
+    height: 99px;
+    background-color: #e0e0e0;
+    margin: -1px;
+    padding: 0px;
+    border: 1px #000000 solid;
+}
+
+#resetZone {
+    width: 500px;
+    height: 500px;
+    background-color: #e0e0e0;
+    margin: 10px;
+    padding: 20px;
+}
+
+/* THE PAGE  */
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FEEBD5;
+}
+
+#avatar{
+    width: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+.contented {
+    width: 280px;
+    height: 88vh;
+}
+
+* {
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: dotted;
+}
+
+
+.bar {
+    background-color: #FEEBD5;
+    height: 12vh;
+}
+
+.specbar {
+    background-color: #FEEBD5;
+}
+
+.logo {
+    width: auto;
+    height: 65px;
+}
+
+.textlogo {
+    width: 130px;
+    height: auto;
+}
+
+
+.invalid {
+    color: red;
+    font-size: small;
+}
+
+.eventimg {
+    width: 20%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+
+}
+
+.sun-moon {
+    position: relative;
+    width: 100px;
+    height: 56px;
+    padding: 5px;
+    border-radius: 45px;
+    border: 3px solid #1a237e;
+    background-color: #3f51b5;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.circle {
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+.small {
+    width: 30px;
+    height: 30px;
+    background: #3f51b5;
+    left: 20px;
+    top: 3px;
+    transition: all 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.large {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 3px solid #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 7px;
+    transition: all 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.sun-moon input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.move {
+    background-color: #fff;
+    border-color: #f3909a;
+}
+
+
+.move .large {
+    left: 50px;
+    background: yellow;
+    border-color: orange;
+}
+
+
+.move .small {
+    left: 60px;
+    top: 50px;
+    background-color: #fff;
+}
+
+/* Modal MESSAGERIE + login/help */
 .modal {
     display: none;
     transition: opacity 0.6s;
@@ -133,7 +280,6 @@ footer {
     /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -147,7 +293,6 @@ footer {
 
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -155,10 +300,6 @@ footer {
     font-weight: bold;
 }
 
-.contented {
-    width: 280px;
-    height: 88vh;
-}
 
 .close:hover,
 .close:focus {
@@ -167,14 +308,6 @@ footer {
     cursor: pointer;
 }
 
-
-.bar {
-    background-color: #FEEBD5;
-    height: 12vh;
-}
-.specbar {
-    background-color: #FEEBD5;
-}
 .messages {
     position: fixed;
     bottom: 60px;
@@ -182,24 +315,9 @@ footer {
     z-index: 2;
 }
 
-.separation {
-	clear: both;
-	margin-top :10px;
-	margin-left: 125px;
-	height: 200px;
-	width : 5px;
-	background: black;
-}
 
-.logo {
-    width: auto;
-    height: 65px;
-}
 
-.textlogo {
-    width: 130px;
-    height: auto;
-}
+
 
 .forumbtn {
     height: 75px;
@@ -232,12 +350,6 @@ footer {
 #image {
     display: none;
 }
-
-.invalid {
-    color: red;
-    font-size: small;
-}
-
 
 
 [data-bs-theme="blue"] {
@@ -318,6 +430,10 @@ footer {
         background-color: #8274B2 !important;
     }
 
+    .dropcolor {
+        background-color: #888494!important;
+        color:white;
+    }
     .bg-secondary {
         background-color: #3B3259 !important;
     }

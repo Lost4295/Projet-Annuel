@@ -1,7 +1,7 @@
 <?php
 phpinfo();
 
-// Fais le wkhtmltopdf ylan
+// TODO Fais le wkhtmltopdf ylan
 $html = '<html><body><h1>Contenu du PDF</h1></body></html>'; // Le contenu HTML à convertir en PDF
 
 $pdfFilePath = $_SERVER['DOCUMENT_ROOT'].'test.pdf'; // Chemin de destination du fichier PDF

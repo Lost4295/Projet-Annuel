@@ -8,24 +8,24 @@ require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
             <div class="col">
                 <label for="type" class="form-label">Type</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="type" value="0" id="player" checked>
+                    <input class="form-check-input" type="radio" name="type" value="1" id="player" checked>
                     <label class="form-check-label" for="player">
                         Joueur
                     </label>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="radio" name="type" value="1" id="organizer">
+                        <input class="form-check-input" type="radio" name="type" value="2" id="organizer">
                         <label class="form-check-label" for="organizer">
                             Organisateur
                         </label>
                     </div>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="radio" name="type" value="2" id="admin">
+                        <input class="form-check-input" type="radio" name="type" value="3" id="admin">
                         <label class="form-check-label" for="organizer">
                             Administrateur
                         </label>
                     </div>
                     <div class="form-check-inline form-check">
-                        <input class="form-check-input" type="radio" name="type" value="3" id="supadmin">
+                        <input class="form-check-input" type="radio" name="type" value="4" id="supadmin">
                         <label class="form-check-label" for="organizer">
                             Super Administrateur
                         </label>

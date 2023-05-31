@@ -1,6 +1,8 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
-//FIXME Enregistrer les modifications dans la base de données(voir verifyuserpage.php)
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 redirectIfNotConnected();
+
+require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 $connection = connectToDB();
 $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE email=:email");
 $queryPrepared->execute([
@@ -58,7 +60,7 @@ print_r($_SESSION)
         <input type="text" class="form-control" id="adresss" name="adresss" value="<?php echo $address; ?>" disabled>
     </div>
     <p class="text-muted text-center"> Ces informations ne sont pas modifiables. Afin de pouvoir les modifier, merci de contacter un administrateur.</p>
-    <form action="/wiews/user/verifyuserpage.php" method="post">
+    <form action="/wiews/user/verifyuserpage.php" method="post" enctype="multipart/form-data">
         <div class="col-7 my-4">
             <label for="pseudo" class="form-label">Pseudo</label>
             <input type="text" class="form-control" id="pseudo" name="pseudo" value="<?php echo $username; ?>">
@@ -100,21 +102,37 @@ print_r($_SESSION)
             </div>
         </div>
         <h4>Photo de profil</h4>
+        <div class="images">
+            <label for="image" class="d-flex justify-content-center">
+                <div class=" my-5">
+                    <img src="<?php echo $avatar ?>" width="150" height="150" id="output" />
 
-        <label for="image" class="d-flex justify-content-center">
-            <div class=" my-5"><img src="#" width="150" height="150" id="output" /></div>
-        </label>
-        <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="image" onchange="loadFile(event)">
+                </div>
+            </label>
+            <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
+        </div>
+        <style>
+
+            .images img {
+                border-radius: 50%;
+                cursor: pointer;
+                border: 1px solid black;
+            }
+
+            .images>input {
+                display: none;
+            }
+        </style>
         <script>
             var loadFile = function(event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
             };
         </script>
-        <p class="text-muted text-center"> Cliquer pour modifier l'image</p>
+        <p class="text-muted text-center"> Cliquer pour modifier l'avatar</p>
         <div class="invalid">
-            <?php if (isset($_SESSION["errorimage"])) {
-                echo $_SESSION["errorimage"];
+            <?php if (isset($_SESSION["erroravatar"])) {
+                echo $_SESSION["erroravatar"];
             } ?>
         </div>
         <div class="mb-5 pb-5">

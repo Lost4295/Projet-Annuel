@@ -86,13 +86,13 @@ noReconnection(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="pwd" class="form-label">Mot de passe</label>
-                                        <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                        <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
-                                        <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                        <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
                                     </div>
                                 </div>
                             </div>
@@ -100,11 +100,11 @@ noReconnection(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="firstname" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="firstname" name="firstname" required placeholder="John">
+                                        <input type="text" class="form-control" id="firstname" name="firstname" required autocapitalize="words" placeholder="John">
                                     </div>
                                     <div class="col">
                                         <label for="lastname" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="lastname" name="lastname" required placeholder="Doe">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" required autocapitalize="words" placeholder="Doe">
                                     </div>
                                 </div>
                                 <div class="row mt-5 mb-3">

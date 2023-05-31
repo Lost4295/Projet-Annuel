@@ -1,19 +1,7 @@
-<?php
-// //Le message
-// $message = "Line 1\r\nLine 2\r\nLine 3";
-// 
-// //Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
-// $message = wordwrap($message, 70, "\r\n");
-// 
-// //Envoi du mail
-// 
-// if (mail('turin-ylan@outlook.fr', 'Mon Sujet', $message)) {
-// echo "Message envoyé !";
-// } else {
-// echo "Erreur";
-// }
-?>
-
+<!-- TODO implémenter l'api de recherhe dans la création de compte -->
+<!-- TODO ajouter l'api fetch pour faie des reherches sur le site -->
+<!-- TODO faire en sorte de finir les events en entier (crud sur shop, back + front avec tout ce qu'il faut) -->
+<!-- TODO faire la vérification des messages de contact -->
 <!doctype html>
 <html lang=fr>
 

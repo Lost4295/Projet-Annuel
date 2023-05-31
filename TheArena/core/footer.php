@@ -30,15 +30,23 @@
 </div>
 <script>
     var theme = window.localStorage.getItem('data-bs-theme');
+    const switchBox = document.querySelector(".sun-moon");
     if (theme) document.documentElement.setAttribute('data-bs-theme', theme);
+    if (theme == 'dark') {
+        switchBox.classList.remove("move");
+    } else {
+        switchBox.classList.add("move");
+    }
 
     document.getElementById('changeToDarkMode').onclick = function() {
         if (window.localStorage.getItem('data-bs-theme') == 'dark') {
             document.documentElement.setAttribute('data-bs-theme', 'light');
             window.localStorage.setItem('data-bs-theme', 'light');
+            switchBox.classList.add("move");
         } else {
             document.documentElement.setAttribute('data-bs-theme', 'dark');
             window.localStorage.setItem('data-bs-theme', 'dark');
+            switchBox.classList.remove("move");
         }
     };
 
@@ -57,6 +65,23 @@
         }
     }
 
+    function myFunction() {
+        var dropdown = document.getElementById("thedropdown");
+        dropdown.classList.toggle("show");
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropper')&&!event.target.matches('#avatar')&&!event.target.matches('#triangle')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    }
     <?php if (isset($_SESSION['notification'])) {
     } ?>
 
@@ -68,8 +93,8 @@
         }, 600);
     }
 
-    function timeoutmod(){
-        var modal=document.getElementById("alert");
+    function timeoutmod() {
+        var modal = document.getElementById("alert");
         setTimeout(function() {
             modal.style.display = "none";
         }, 10000);

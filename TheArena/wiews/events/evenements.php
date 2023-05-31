@@ -20,28 +20,29 @@ echo "</pre>";
         <div class="col">
             <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
         </div> -->
-        <?php foreach ($result as $key => $event) {
-            if ($key % 3 == 0) { ?></div><div class="row my-3">
-                <?php ;} ?>
-            <div class="col">
-                <a href="/event?eid=<?php echo $event['id']?>">
-                <img style="position: relative; left:0; width: 250px; height:250px;" src="<?php echo $event['image']?>">
-                </a>
+        <?php foreach ($result as $key => $event) { ?>
+            <div class="col-lg-4">
+                <div class="">
+                    <a href="/event?eid=<?php echo $event['id']; ?>">
+                        <img style="position: relative; width: 250px; height:250px;" class="eventimg " src="<?php echo $event['image']; ?>">
+                    </a>
+                </div>
             </div>
-<?php ;}?>
-</div>
+        <?php } ?>
+        </div>
 
-<div class="col">
-    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
-        </ul>
-    </nav>
-</div>
+
+        <div class="col">
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)) { ?>
         <div class="row my-3">
