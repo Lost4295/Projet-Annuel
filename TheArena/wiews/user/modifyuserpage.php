@@ -83,8 +83,10 @@ print_r($_SESSION)
         </div>
         <div class="col-7 my-4">
             <label for="pwd" class="form-label">Mot de passe</label>
-            <input type="text" class="form-control" id="pwd" name="pwd" value="Johndoe1234">
-
+            <div class="input-group mb-3">
+                <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                <button type="button" class="input-group-text" id="pwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+            </div>
             <div class="invalid">
                 <?php if (isset($_SESSION["errorpwd"])) {
                     echo $_SESSION["errorpwd"];
@@ -93,14 +95,37 @@ print_r($_SESSION)
         </div>
         <div class="col-7 my-4">
             <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
-            <input type="password" class="form-control" id="confirmpwd" name="confirmpwd" value="Johndoe1234">
-
+            <div class="input-group mb-3">
+            <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+            <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+        </div>
             <div class="invalid">
                 <?php if (isset($_SESSION["errorpwdconfirm"])) {
                     echo $_SESSION["errorpwdconfirm"];
                 } ?>
             </div>
         </div>
+
+
+
+</div>
+</div>
+
+
+<div class=" row mt-5 mb-3 pr-5">
+    <div class="col">
+        <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
+        
+
+
+
+
+
+
+
+
+
+
         <h4>Photo de profil</h4>
         <div class="images">
             <label for="image" class="d-flex justify-content-center">
@@ -112,7 +137,6 @@ print_r($_SESSION)
             <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
         </div>
         <style>
-
             .images img {
                 border-radius: 50%;
                 cursor: pointer;
@@ -128,6 +152,35 @@ print_r($_SESSION)
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
             };
+
+            let eye = document.getElementById("pwd-eye");
+            let confeye = document.getElementById("confpwd-eye");
+            let pwd = document.getElementById("pwd");
+            let confirmpwd = document.getElementById("confirmpwd");
+            console.log(eye);
+            eye.addEventListener("click", function() {
+                if (pwd.type === "password") {
+                    pwd.type = "text";
+                    confirmpwd.type = "password";
+                    confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                    eye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+                } else {
+                    pwd.type = "password";
+                    eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                }
+            })
+            confeye.addEventListener("click", function() {
+                if (confirmpwd.type === "password") {
+                    confirmpwd.type = "text";
+                    confeye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+                    pwd.type = "password";
+                    eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                } else {
+                    confirmpwd.type = "password";
+                    confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                }
+
+            })
         </script>
         <p class="text-muted text-center"> Cliquer pour modifier l'avatar</p>
         <div class="invalid">
@@ -181,8 +234,8 @@ print_r($_SESSION)
         <div class="d-flex justify-content-center">
             <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
         </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

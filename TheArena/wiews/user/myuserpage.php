@@ -9,7 +9,6 @@ $queryPrepared->execute([
 
 $result = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 if (!empty($result)) {
-    print_r($result);
     $firstname = $result["first_name"];
     $lastname = $result["last_name"];
     $username = $result["username"];
@@ -24,6 +23,10 @@ if (!empty($result)) {
     $newsletter = $result["newsletter"];
     $avatar = $result["avatar"];
     $about = $result["about"];
+} else {
+    $_SESSION["message"] = "Une erreur est survenue.";
+    $_SESSION["message_type"] = "danger";
+    header("Location: /");
 }
 ?>
 

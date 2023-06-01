@@ -25,7 +25,7 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
 include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
 
-<div class="row col-12">
+<div class="row">
     <nav class="navbar bar">
         <a class="btn btn-primary btn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
         <a class="btn btn-warning" href="/event/participants?name=<?php echo $event['name'] ?>">Participants</a>

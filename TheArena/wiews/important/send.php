@@ -88,9 +88,9 @@ if (
     header("Location: /contact");
 } else {
     include $_SERVER['DOCUMENT_ROOT'].'/core/sendmail.php';
-    $body = "Bonjour " . $firstname . " " . $lastname . ".<br> Le type du message que vous venez d'envoyer est : " . $type . "<br> Voici le contenu du message : <br><br>" . $message . "<br><br> Ce message a été envoyé afin de pouvoir accuser réception de votre message de contact. Nous allons traiter votre demande au plus vite. <br> Nous vous remercions de votre confiance. <br> Cordialement, <br> L'équipe The Arena";
+    $body = "Bonjour " . $firstname . " " . $lastname . ".<br> Le type du message que vous venez d'envoyer est : " . $type . "<br> Voici le contenu du message : <br><br>" . $message . "<br><br> Ce message a été envoyé afin de pouvoir accuser réception de votre message de contact. Nous allons traiter votre demande au plus vite. <br> Nous vous remercions de votre confiance. <br>";
     sendEmail($email, 'Récapitulatif du message envoyé', 6, $body);
-    $bodypm = "Bonjour, <br> Un nouveau message a été envoyé par " . $firstname . " " . $lastname . ".<br> Son email est : " . $email . "<br> Le type du message est : " . $type . "<br> Voici le contenu du message : <br><br>" . $message . "<br><br> Cordialement, <br> L'équipe The Arena";
+    $bodypm = "Bonjour, <br> Un nouveau message a été envoyé par " . $firstname . " " . $lastname . ".<br> Son email est : " . $email . "<br> Le type du message est : " . $type . "<br> Voici le contenu du message : <br><br>" . $message . "<br><br> ";
     sendEmailPostMaster($bodypm);
     $_SESSION["message"] = "Votre message a bien été envoyé !";
     $_SESSION['message_type'] = "success";
