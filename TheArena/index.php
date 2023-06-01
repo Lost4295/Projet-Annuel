@@ -6,6 +6,7 @@ $origine = str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI'
 $routes = [
     "/route_ecrite_dans_le_fichier_php" => $_SERVER['DOCUMENT_ROOT']."localisation/du/fichier",
     "/" => $_SERVER['DOCUMENT_ROOT']."/wiews/index",
+    "/404" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/errorpage",
     "/resetPassword" => $_SERVER['DOCUMENT_ROOT']."/core/resetPassword",
     "/hiddengame" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/hiddengame",
     "/authentification" => $_SERVER['DOCUMENT_ROOT']."/core/auth",

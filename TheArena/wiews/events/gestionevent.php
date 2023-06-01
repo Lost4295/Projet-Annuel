@@ -11,6 +11,11 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
         $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
         $nquery->execute([':email' => $_SESSION['email']]);
         $user = $nquery->fetch(PDO::FETCH_ASSOC);
+        if ($user['id'] != $event['manager_id']){
+            $_SESSION['message'] = "L'action a échoué.";
+            $_SESSION['message_type'] = "danger";
+            header('Location: /404');
+        }
     }
     if (!$event) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";

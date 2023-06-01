@@ -1,8 +1,38 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
+<?php 
+
+// require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+// $db = connectToDB();
+// if (isset($_GET['shop']) && !empty($_GET['shop'])) {
+//     $name = strip_tags($_GET['shop']);
+//     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'shops WHERE `shop_id`=:shop');
+//     $query->execute([':shop' => $shop]);
+//     $event = $query->fetch(PDO::FETCH_ASSOC);
+//     if (isConnected()) {
+//         $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
+//         $nquery->execute([':email' => $_SESSION['email']]);
+//         $user = $nquery->fetch(PDO::FETCH_ASSOC);
+//         if ($user['id'] != $event['manager_id']){
+//             $_SESSION['message'] = "L'action a échoué.";
+//             $_SESSION['message_type'] = "danger";
+//             header('Location: /404');
+//         }
+//     }
+//     if (!$event) {
+//         $_SESSION['message'] = "Cet évènement n'existe pas.";
+//         $_SESSION['message_type'] = "danger";
+//         header('Location: /');
+//     }
+// } else {
+//     $_SESSION['message'] = "Cet évènement n'existe pas.";
+//     $_SESSION['message_type'] = "danger";
+//     header('Location: /');
+// }
+include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
+?>
 
 
     <h1>Créer un article</h1>
-    <form action="" method="post" class="mb-5 row-cols-lg-auto">
+    <form action="/wiews/events/verifycreateitem.php" method="post" class="mb-5 row-cols-lg-auto">
         <div class="mb-3">
             <label for="name" class="form-label">Nom de l'article</label>
             <input type="text" class="form-control" id="name">
