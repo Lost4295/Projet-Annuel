@@ -31,8 +31,7 @@ noReconnection(); ?>
                 <div>
                     <p id="text1"><i id="check1" class="bi bi-circle"></i>&emsp;&emsp;Informations relatives au site</p>
                 </div>
-                    <div class="separation" id="bar1"></div>
-
+                <div class="separation" id="bar1"></div>
                 <div>
                     <p id="text2"><i id="check2" class="bi bi-circle"></i>&emsp;&emsp;Informations personnelles</p>
                 </div>
@@ -84,13 +83,21 @@ noReconnection(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="pwd" class="form-label">Mot de passe</label>
-                                        <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                                            <button type="button" class="input-group-text" id="pwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
-                                        <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+
+                                            <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +126,7 @@ noReconnection(); ?>
                                     <div class="col">
                                         <label for="adresse" class="form-label">Enrez votre adresse : </label>
                                         <input type="text" class="form-control" id="adresse" name="fulladdress" required placeholder="1 Rue de Paris">
-                                            <div id="selection" style="display: none;" class="dropdown-menu">
+                                        <div id="selection" style="display: none;" class="dropdown-menu">
                                         </div>
                                     </div>
                                 </div>
@@ -194,21 +201,15 @@ noReconnection(); ?>
                             </div>
                         </div>
                     </div>
+                    <div class="col-12">
+                        <button type="button" id="continue" class="btn btn-primary">Continuer</button>
+                    </div>
+                    </form>
                 </div>
-                <div class="col-12">
-                    <button type="button" id="continue" class="btn btn-primary">Continuer</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-</body>
-
-</html>
-
-<script src="/wiews/register/inscription.js"></script>
+    <script src="/wiews/register/inscription.js"></script>
 </body>
 
 </html>

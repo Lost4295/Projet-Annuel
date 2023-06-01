@@ -1,50 +1,79 @@
 let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
-    let select = document.getElementById("selection");
-    window.onload = function() {
-        document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
-    };
-    function displaySelection(response) {
-        if (Object.keys(response.features).length > 0) {
-            select.style.display = "block";
-            select.removeChild(select.firstChild);
-            let ul = document.createElement('ul');
-            select.appendChild(ul);
-            response.features.forEach(function (element) {
-                let li = document.createElement('li');
-                li.classList.add('dropdown-item');
-                let infosAdresse = document.createTextNode( element.properties.name+", "+element.properties.postcode + ' ' + element.properties.city);
-                li.onclick = function () { selectAdresse(element); };
-                li.appendChild(infosAdresse);
-                ul.appendChild(li);
-            });
-        } else {
-            select.style.display = "none";
-        }
-    }
-    function autocompleteAdresse() {
-        let inputValue = document.getElementById("adresse").value;
-        if (inputValue) {
-            fetch(setQuery(inputValue))
-                .then(function (response) {
-                    response.json().then(function (data) {
-                        displaySelection(data);
-                    });
-                });
-        } else {
-            select.style.display = "none";
-        }
-    };
-    function selectAdresse(element) {
-        document.getElementById("adresse").value = element.properties.name + ", " + element.properties.postcode + ", " + element.properties.city;
+let select = document.getElementById("selection");
+window.onload = function () {
+    document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
+};
+function displaySelection(response) {
+    if (Object.keys(response.features).length > 0) {
+        select.style.display = "block";
+        select.removeChild(select.firstChild);
+        let ul = document.createElement('ul');
+        select.appendChild(ul);
+        response.features.forEach(function (element) {
+            let li = document.createElement('li');
+            li.classList.add('dropdown-item');
+            let infosAdresse = document.createTextNode(element.properties.name + ", " + element.properties.postcode + ' ' + element.properties.city);
+            li.onclick = function () { selectAdresse(element); };
+            li.appendChild(infosAdresse);
+            ul.appendChild(li);
+        });
+    } else {
         select.style.display = "none";
-        document.getElementById("resAdresse").value = " " + element.properties.name;
-        document.getElementById("CP").value = " " + element.properties.postcode;
-        document.getElementById("Ville").value = " " + element.properties.city;
     }
-    function setQuery(value) {
-        return requestURL + value + "?type=housenumber&autocomplete=1";
+}
+function autocompleteAdresse() {
+    let inputValue = document.getElementById("adresse").value;
+    if (inputValue) {
+        fetch(setQuery(inputValue))
+            .then(function (response) {
+                response.json().then(function (data) {
+                    displaySelection(data);
+                });
+            });
+    } else {
+        select.style.display = "none";
+    }
+};
+function selectAdresse(element) {
+    document.getElementById("adresse").value = element.properties.name + ", " + element.properties.postcode + ", " + element.properties.city;
+    select.style.display = "none";
+    document.getElementById("resAdresse").value = " " + element.properties.name;
+    document.getElementById("CP").value = " " + element.properties.postcode;
+    document.getElementById("Ville").value = " " + element.properties.city;
+}
+
+
+function setQuery(value) {
+    return requestURL + value + "?type=housenumber&autocomplete=1";
+}
+let eye = document.getElementById("pwd-eye");
+let confeye = document.getElementById("confpwd-eye");
+let pwd = document.getElementById("pwd");
+let confirmpwd = document.getElementById("confirmpwd");
+console.log(eye);
+eye.addEventListener("click", function () {
+    if (pwd.type === "password") {
+        pwd.type = "text";
+        confirmpwd.type = "password";
+        confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+        eye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+    } else {
+        pwd.type = "password";
+        eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+    }
+})
+confeye.addEventListener("click", function () {
+    if (confirmpwd.type === "password") {
+        confirmpwd.type = "text";
+        confeye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+        pwd.type = "password";
+        eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+    } else {
+        confirmpwd.type = "password";
+        confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
     }
 
+})
 
 function verifyValues1() {
     let type = document.querySelector('input[name="type"]:checked').value;

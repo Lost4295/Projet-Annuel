@@ -12,14 +12,15 @@
                     <a href="/legal" class="m-5 p-3">Mentions légales</a>
                     <a href="/contact" class="m-5 p-3">Nous contacter</a>
                 </div>
-                <div>
+                
+                <div><?php if (isConnected()){ ?>
                     <button class="btn btn-warning messages" id="messages">Messagerie</button>
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <span class="close">&times;</span>
                             <p>Some text in the Modal..</p>
                         </div>
-                    </div>
+                    </div><?php }?>
                 </div>
             </div>
             <p class="text-center text-muted">
@@ -70,7 +71,7 @@
         dropdown.classList.toggle("show");
 
         window.onclick = function(event) {
-            if (!event.target.matches('.dropper')&&!event.target.matches('#avatar')&&!event.target.matches('#triangle')) {
+            if (!event.target.matches('.dropper') && !event.target.matches('#avatar') && !event.target.matches('#triangle')) {
                 var dropdowns = document.getElementsByClassName("dropdown-content");
                 var i;
                 for (i = 0; i < dropdowns.length; i++) {

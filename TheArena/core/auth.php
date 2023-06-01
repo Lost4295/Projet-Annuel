@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // if user exists and activate the user successfully
         if ($user && activateUser($user['id'])) {
             $_SESSION['message']='Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter.';
+            sendEmail($inputs['email'], 'Bienvenue sur The Arena !', 4);
         } else {
             $_SESSION['message']='La requête est invalide. Merci de réessayer.';
             $_SESSION['message_type']='danger';
