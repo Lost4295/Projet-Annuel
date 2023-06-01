@@ -34,6 +34,17 @@ if (strlen($infos)<3) {
     $errorinfos="Cette description est trop courte.";
 }
 
+$connection=connectToDB();
+$queryPrepared=$connection->prepare("SELECT name FROM ".PREFIX."events WHERE name=:eventname");
+$queryPrepared->execute([
+    'eventname'=>$eventname
+]);
+$result=$queryPrepared->fetch(PDO::FETCH_ASSOC);
+if ($result) {
+    $erroreventname="Ce nom d'évènement est déjà utilisé.";
+}
+
+
 if (!empty($erroreventname)||!empty($errorinfos)||!empty($errortype)) {
     $error=false;
 } else {
@@ -56,14 +67,18 @@ if (!$error) {
     $_SESSION['infos']= $infos;
     $_SESSION['game']= $game;
     $_SESSION['type']= $type;
-    $connection=connectToDB();
+
     $queryPrepared=$connection->prepare("SELECT id FROM ".PREFIX."users WHERE email=:email");
     $queryPrepared->execute([
         'email'=>$_SESSION['email']
     ]);
     $result=$queryPrepared->fetch(PDO::FETCH_ASSOC);
     $manager_id=$result['id'];
-    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, type, game, manager_id, image,shop_id) VALUES (:eventname,:infos,:type,:game, :manager_id, :image, (SELECT count(*)+1 FROM ".PREFIX."shops))");
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."shops (name) VALUES (:name) ");
+    $queryPrepared->execute([
+        'name'=>$eventname
+    ]);
+    $queryPrepared=$connection->prepare("INSERT INTO ".PREFIX."events (name, description, type, game, manager_id, image, shop_id) VALUES (:eventname,:infos,:type,:game, :manager_id, :image, (SELECT id FROM ".PREFIX."shops WHERE name=:eventname))");
     $queryPrepared->execute([
         'eventname'=>$eventname,
         'infos'=>$infos,

@@ -99,6 +99,15 @@ TODO fix this
     background: black;
 }
 
+.separation {
+    clear: both;
+    margin-top: 10px;
+    margin-left: 125px;
+    height: 200px;
+    width: 5px;
+    background: black;
+}
+
 /* DRAG AND DROP */
 
 .draggable {
@@ -307,6 +316,9 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
+ul{
+padding: 0
+;}
 
 .messages {
     position: fixed;

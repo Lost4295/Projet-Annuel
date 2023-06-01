@@ -1,27 +1,41 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
-$db=connectToDB();
-if (isset($_GET['eid']) && !empty($_GET['eid'])) {
-    $id = strip_tags($_GET['eid']);
-    $query = $db->prepare('SELECT id,shop_id FROM '.PREFIX.'events WHERE `id`=:id');
-    $query->execute([':id' => $id]);
+<?php 
+
+require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+$db = connectToDB();
+if (isset($_GET['name']) && !empty($_GET['name'])) {
+    $name = strip_tags($_GET['name']);
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
+    $query->execute([':name' => $name]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
-    if (!$event){
-        $_SESSION['message'] = "Cet évènement n'existe pas";
+    if (isConnected()) {
+        $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
+        $nquery->execute([':email' => $_SESSION['email']]);
+        $user = $nquery->fetch(PDO::FETCH_ASSOC);
+    }
+    if (!$event) {
+        $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
     }
-    } else {
-        header('Location: /');
-    }
-    ?>
-    <div class="row col-12">
+} else {
+    $_SESSION['message'] = "Cet évènement n'existe pas.";
+    $_SESSION['message_type'] = "danger";
+    header('Location: /');
+}
+include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
+?>
+
+<div class="row col-12">
     <nav class="navbar bar">
-            <a class="btn btn-primary active btn-warning" href="/event?eid=<?php echo $event['id']?>">Accueil</a>
-            <a class="navbarSecondaryBtn" href="/event/participants?eid=<?php echo $event['id']?>">Participants</a>
-            <a class="navbarSecondaryBtn" href="/event/dashboard?eid=<?php echo $event['id']?>">Tableau de bord</a>
-            <a class="navbarSecondaryBtn "href="/event/shop?shop=<?php echo $event['shop_id'] ?>&eid=<?php echo $event['id'] ?>">Shop</a>
-        </nav>
-    </div> 
+        <a class="btn btn-primary active btn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
+        <a class="btn btn-warning" href="/event/participants?name=<?php echo $event['name'] ?>">Participants</a>
+        <a class="btn btn-warning" href="/event/dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
+        <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
+        <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
+            <a class="btn btn-warning" href="/event/management?name=<?php echo $event['name'] ?>">Gestion</a>
+        <?php } ?>
+    </nav>
+</div>
     <div class="row">
         <h2><u>Participants<u></h2>
     </div>

@@ -11,11 +11,9 @@ let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
             select.appendChild(ul);
             response.features.forEach(function (element) {
                 let li = document.createElement('li');
-                let ligneAdresse = document.createElement('span');
-                let infosAdresse = document.createTextNode(element.properties.postcode + ' ' + element.properties.city);
-                ligneAdresse.innerHTML = element.properties.name;
+                li.classList.add('dropdown-item');
+                let infosAdresse = document.createTextNode( element.properties.name+", "+element.properties.postcode + ' ' + element.properties.city);
                 li.onclick = function () { selectAdresse(element); };
-                li.appendChild(ligneAdresse);
                 li.appendChild(infosAdresse);
                 ul.appendChild(li);
             });
@@ -56,7 +54,7 @@ function verifyValues1() {
     let confirmPassword = document.getElementById('confirmpwd').value;
     if (type == "" || username == "" || email == "" || password == "" || confirmPassword == "") {
         alert("Veuillez remplir tous les champs.");
-        return false;
+        return;
     }
 
     return {
@@ -123,7 +121,7 @@ function verifyValues2() {
     let fulladdress = document.getElementById('adresse').value.trim();
     if (firstname == "" || lastname == "" || birthdate == "" || phonenumber == "" || address == "" || cp == "" || ville == "" || fulladdress == "") {
         alert("Veuillez remplir tous les champs.");
-        return false;
+        return;
     }
     return {
         firstname,
