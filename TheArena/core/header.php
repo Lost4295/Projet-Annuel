@@ -34,20 +34,20 @@
                             <span class="circle large"></span>
                             <span class="circle small"></span>
                         </div>
+                        <div>
+                            <form class="d-flex" role="search" method="get" action="/core/search.php">
+                                <div class="input-group mb-3">
+                                    <input class="form-control" type="search" name="q" placeholder="Rechercher">
+                                    <button class="input-group-text" type="submit"><i class="bi bi-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
                         <?php
                         include_once 'functions.php';
                         include 'formatter.php';
                         if (isConnected()) {
                             $attr = whoIsConnected();
                         ?>
-                            <div>
-                                <form class="d-flex" role="search" method="get" action="/core/search.php">
-                                    <div class="input-group mb-3">
-                                        <input class="form-control" type="search" name="q" placeholder="Search">
-                                        <button class="input-group-text" type="submit"><i class="bi bi-search"></i></button>
-                                    </div>
-                                </form>
-                            </div>
                             <div class="dropdown">
                                 <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
                                 <div id="thedropdown" class="dropdown-content dropcolor">
