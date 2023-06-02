@@ -22,9 +22,14 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
     $_SESSION['message_type'] = "danger";
     header('Location: /');
 }
+
+$query = $db->prepare('SELECT * FROM ' . PREFIX . 'products WHERE `shop_id`=:event');
+$query->execute([':event' => $event['shop_id']]);
+$items = $query->fetchAll(PDO::FETCH_ASSOC);
+print_r($items);
 include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
-
+//TODO faire l'implémentation en tableau des items
 <div class="row ">
     <nav class="navbar bar px-3">
         <a class="btn btn-primary active btn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
@@ -39,8 +44,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <div class="row">
         <h2><u>Shop<u></h2>
     </div>
+
+    foreach gna gna gna print item
     <div class="row my-3">
                 <div class="col"> 
+
                     <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="#" ></a>
                 </div>
                 <div class="col"> 

@@ -1,6 +1,8 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
+<?php 
 
+require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
 redirectIfNotConnected();
+require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 $connection = connectToDB();
 $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE email=:email");
 $queryPrepared->execute([

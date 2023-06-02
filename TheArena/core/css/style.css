@@ -396,6 +396,10 @@ padding: 0
     color: white;
 }
 
+.activated {
+    color: #d36f0b!important;
+}
+
 @media (max-width: 685px) {
     * {
         display: none;
@@ -488,6 +492,9 @@ padding: 0
     --bs-border-color: #495057;
     --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
 
+    .activated {
+        color: #ffffff;
+    }
     .specbar {
         background-color: #8274B2 !important;
     }

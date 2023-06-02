@@ -1,6 +1,6 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}?>
+} ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">
 
@@ -40,6 +40,12 @@
                         if (isConnected()) {
                             $attr = whoIsConnected();
                         ?>
+                            <div>
+                                <form class="d-flex" role="search" method="get" action="/core/search.php">
+                                    <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                            </div>
                             <div class="dropdown">
                                 <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
                                 <div id="thedropdown" class="dropdown-content dropcolor">
@@ -59,6 +65,7 @@
                                 <a class="btn btn-warning" href="/register">Inscription</a>
                             </div>
                         <?php } ?>
+
                     </div>
             </div>
             </nav>
