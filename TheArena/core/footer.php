@@ -50,7 +50,7 @@
             switchBox.classList.remove("move");
         }
     };
-
+    <?php if (isConnected()) { ?>
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("messages");
     var span = document.getElementsByClassName("close")[0];
@@ -65,7 +65,7 @@
             modal.style.display = "none";
         }
     }
-
+    <?php }?>
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
         dropdown.classList.toggle("show");
@@ -83,7 +83,7 @@
             }
         }
     }
-    <?php if (isset($_SESSION['notification'])) {
+    <?php if (isset($_SESSION['message'])) {
     } ?>
 
     function disappear() {
