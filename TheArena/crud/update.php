@@ -31,8 +31,6 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
     $result = $query->fetch();
 }
 
-
-//TODO : Adapter à chaque catégorie
 ?>
 
 <!DOCTYPE html>

@@ -3,33 +3,33 @@ $db = connectToDB();
 $query = $db->query("SELECT * FROM " . PREFIX . "events");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo "<pre>";
-print_r($result);
-echo "</pre>";
+// echo "<pre>";
+// print_r($result);
+// echo "</pre>";
 
 ?>
 
 <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
-    <div class="row my-3">
+    <div class="row m-3">
         <h2>Événements</h2>
     </div>
-    <div class="row my-3">
+    <div class="row w-100 p-2 m-3">
         <!-- <div class="col">
             <a href="event"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg"></a>
         </div>
         <div class="col">
             <img style="position: relative; left:0; width: 250px; height:250px;" src="#">
         </div> -->
-        <?php foreach ($result as $key => $event) {
-            if ($key % 3 == 0) { ?></div><div class="row my-3">
-                <?php ;} ?>
-            <div class="col">
-                <a href="event?eid=<?php echo $event['id']?>">
-                <img style="position: relative; left:0; width: 250px; height:250px;" src="<?php echo $event['image']?>">
-                </a>
+        <?php foreach ($result as $key => $event) { ?>
+            <div class="col-lg-4">
+                <div class="border">
+                    <a href="/event?name=<?php echo $event['name']; ?>">
+                        <img style="position: relative; width: 250px; height:250px;" class="eventimg " src="<?php echo $event['image']; ?>">
+                    </a>
+                </div>
             </div>
-<?php ;}?>
-</div>
+        <?php } ?>
+    </div>
 
 <div class="col">
     <nav aria-label="Page navigation example" class="d-flex justify-content-center">
@@ -46,7 +46,7 @@ echo "</pre>";
     <?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)) { ?>
         <div class="row my-3">
             <div>
-                <a href="event/create">Créer un événement</a>
+                <a href="/event_create">Créer un événement</a>
             </div>
         </div>
     <?php

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="light">
 <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
-session_start();
 noReconnection(); ?>
 
 <head>
@@ -86,13 +85,21 @@ noReconnection(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="pwd" class="form-label">Mot de passe</label>
-                                        <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                                            <button type="button" class="input-group-text" id="pwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
-                                        <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required>
+                                        <div class="input-group mb-3">
+                                            <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+
+                                            <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,11 +107,11 @@ noReconnection(); ?>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="firstname" class="form-label">Prénom</label>
-                                        <input type="text" class="form-control" id="firstname" name="firstname" required placeholder="John">
+                                        <input type="text" class="form-control" id="firstname" name="firstname" required autocapitalize="words" placeholder="John">
                                     </div>
                                     <div class="col">
                                         <label for="lastname" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" id="lastname" name="lastname" required placeholder="Doe">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" required autocapitalize="words" placeholder="Doe">
                                     </div>
                                 </div>
                                 <div class="row mt-5 mb-3">
@@ -119,108 +126,92 @@ noReconnection(); ?>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="address" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="address" name="address" required placeholder="1 Rue de Paris">
+                                        <label for="adresse" class="form-label">Enrez votre adresse : </label>
+                                        <input type="text" class="form-control" id="adresse" name="fulladdress" required placeholder="1 Rue de Paris">
+                                        <div id="selection" style="display: none;" class="dropdown-menu">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class=" row mt-5 mb-3 pr-5">
+                                <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="cp" class="form-label">Code postal</label>
-                                        <input type="text" class="form-control" id="cp" name="cp" required placeholder="75012">
+                                        <label for="resAdresse" class="form-label">Adresse</label>
+                                        <input type="text" class="form-control" id="resAdresse" name="address" disabled required placeholder="France">
                                     </div>
                                     <div class="col">
-                                        <label for="city" class="form-label">Ville</label>
-                                        <input type="text" class="form-control" id="city" name="city" required placeholder="Paris">
+                                        <label for="CP" class="form-label">Code postal</label>
+                                        <input type="text" class="form-control" id="CP" name="cp" disabled required placeholder="75012">
                                     </div>
                                     <div class="col">
-                                        <label for="country" class="form-label">Pays</label>
-                                        <input type="text" class="form-control" id="country" name="country" required placeholder="France">
+                                        <label for="Ville" class="form-label">Ville</label>
+                                        <input type="text" class="form-control" id="Ville" name="city" disabled required placeholder="Paris">
                                     </div>
                                 </div>
                             </div>
-                            <div id="form3">
-                                <div class="col">
-                                    <h1 class="text-center">Confirmation</h1>
-                                    <p>
-                                        Veuillez confirmer votre inscription en cochant les cases ci-dessous.
-                                    </p>
-                                </div>
-                                <div class="row mt-5 mb-5 pr-5">
-                                    <div class="row pr-5 mb-5" id="finalinfos">
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" id="cgu" name="cgu" required>
-                                            <label class="form-check-label" for="cgu">
-                                                J'accepte les <a href="cgu">CGU de The Arena</a>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class=" row mt-5 mb-3 pr-5">
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1" id="newsletter" name="newsletter">
-                                                <label class="form-check-label" for="newsletter">
-                                                    Je m'abonne à la newsletter
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-5 mb-3 pr-5">
-                                        <label class="form-check-label">
-                                            Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
-                                        </label>
-                                        <div class="col">
-                                            <?php $dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\captcha\\';
-                                            $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE); ?>
-                                            <div>
-                                                <div class="drop-zone" id="resetZone"> Zone de Reset
-                                                    <?php foreach ($images as $key => $image) {
-                                                        $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
-                                                        $name = str_replace('\uploads\captcha\parts/partie', '', $url);
-                                                        $name = str_replace('.jpg', '', $name);
-                                                        if ($key % 3 == 0) {
-                                                            echo "<br />";
-                                                        }
-                                                        echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
-                                                    }
-                                                    echo "</div>"; ?>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="row">
-                                                    <div class="drop-zone" id="dropZone1"></div>
-                                                    <div class="drop-zone" id="dropZone2"></div>
-                                                    <div class="drop-zone" id="dropZone3"></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="drop-zone" id="dropZone4"></div>
-                                                    <div class="drop-zone" id="dropZone5"></div>
-                                                    <div class="drop-zone" id="dropZone6"></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="drop-zone" id="dropZone7"></div>
-                                                    <div class="drop-zone" id="dropZone8"></div>
-                                                    <div class="drop-zone" id="dropZone9"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="button" id="continue" class="btn btn-primary">Continuer</button>
-                                </div>
-                        </form>
                     </div>
+                    <div id="form3">
+                        <div class="col">
+                            <h1 class="text-center">Confirmation</h1>
+                            <p>
+                                Veuillez confirmer votre inscription en cochant les cases ci-dessous.
+                            </p>
+                        </div>
+                        <div class="row mt-5 mb-5 pr-5">
+                            <div class="row pr-5 mb-5" id="finalinfos">
+                            </div>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" id="cgu" name="cgu" required>
+                                    <label class="form-check-label" for="cgu">
+                                        J'accepte les <a href="/cgu">CGU de The Arena</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class=" row mt-5 mb-3 pr-5">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="newsletter" name="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Je m'abonne à la newsletter
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5 mb-3 pr-5">
+                                <label class="form-check-label">
+                                    Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
+                                </label>
+                                <div class="col">
+                                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="drop-zone" id="dropZone1"></div>
+                                    <div class="drop-zone" id="dropZone2"></div>
+                                    <div class="drop-zone" id="dropZone3"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="drop-zone" id="dropZone4"></div>
+                                    <div class="drop-zone" id="dropZone5"></div>
+                                    <div class="drop-zone" id="dropZone6"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="drop-zone" id="dropZone7"></div>
+                                    <div class="drop-zone" id="dropZone8"></div>
+                                    <div class="drop-zone" id="dropZone9"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" id="continue" class="btn btn-primary">Continuer</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
-</html>
-
-<script src="/wiews/register/inscription.js"></script>
+    <script src="/wiews/register/inscription.js"></script>
 </body>
 
 </html>

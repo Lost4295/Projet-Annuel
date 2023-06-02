@@ -16,7 +16,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 
-//TODO : Adapter à chaque catégorie
 ?>
 <!DOCTYPE html>
 <html lang="fr">

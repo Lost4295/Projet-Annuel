@@ -1,5 +1,9 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::NONE, IntlDateFormatter::NONE);
+$fmt->setPattern('EEEE dd MMMM YYYY');
 require 'constantes.php';
 
 function connectToDB()
@@ -33,11 +37,11 @@ function whoIsConnected()
 {
     if (isConnected()) {
         $connect = connectToDB();
-        $queryPrepared = $connect->prepare("SELECT scope,username FROM " . PREFIX . "users WHERE email=:email");
+        $queryPrepared = $connect->prepare("SELECT scope,username,avatar FROM " . PREFIX . "users WHERE email=:email");
         $queryPrepared->execute(["email" => $_SESSION["email"]]);
         $result = $queryPrepared->fetch();
         if (!empty($result)) {
-            return [$result["scope"], $result["username"]];
+            return [$result["scope"], $result["username"], $result["avatar"]];
         }
     } else {
         redirectifNotConnected();
@@ -47,7 +51,12 @@ function whoIsConnected()
 function redirectIfNotConnected()
 {
     if (!isConnected()) {
-        header("Location:/login ");
+        $_SESSION['message'] = "Vous n'êtes pas connecté. Cette page n'est pas accessible.";
+        $_SESSION['message_type'] = "danger";
+        header("Location: /login ");
+    }
+    else{
+        return true;
     }
 }
 function onlyAdmin(): bool

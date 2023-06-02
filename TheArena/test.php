@@ -1,7 +1,7 @@
 <?php
 
-require 'core/templateMail/verificationMail.php';
-require 'core/functions.php';
+// TODO Fais le wkhtmltopdf ylan
+$html = '<html><body><h1>Contenu du PDF</h1></body></html>'; // Le contenu HTML à convertir en PDF
 
 $message= $header.$body.$footer;
 

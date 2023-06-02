@@ -18,6 +18,16 @@ if (isset($email)) {
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password']) && $result["status"] >= 1) {
+            $query = $connection->prepare("SELECT avatar FROM ".PREFIX."users WHERE email=:email");
+            $query->execute(['email'=>$email]);
+            $avatar=$query->fetch();
+            if (empty($avatar["avatar"])) {
+                $query = $connection->prepare("UPDATE ".PREFIX."users SET avatar=:avatar WHERE email=:email");
+                $query->execute([
+                    'avatar'=>encodeImage($_SERVER['DOCUMENT_ROOT'].'/img/placeholder_user.png', 'png'),
+                    'email'=>$email
+                ]);
+            }
             session_regenerate_id($delete_old_session=true);
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;

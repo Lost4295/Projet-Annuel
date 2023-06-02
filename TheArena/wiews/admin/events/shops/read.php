@@ -1,37 +1,59 @@
 <?php
 session_start();
-    require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
-$db= connectToDB();
+$db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM '.PREFIX.' WHERE `id`=:id');
-    $query->execute([':id'=>$id]);
-    $produit = $query->fetch();
-    if (!$produit) {
-        header('Location: index.php');
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'products WHERE `shop_id`=:id');
+    $query->execute([':id' => $id]);
+    $produits = $query->fetchAll(PDO::FETCH_ASSOC);
+    if (!$produits) {
+        echo ' pas de produit';
+        // header('Location: index.php');
     }
 } else {
-    header('Location: index.php');
+    echo ' pas de prosuit';
+    // header('Location: index.php');
 }
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 
 
-//TODO : Adapter à chaque catégorie
+//TODO : Finir ça ici et faire le nécessaire pour que ce soit good (par exemple la page de modification d'item)
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des produits</title>
 
 </head>
+
 <body>
-    <h1>Détails du produit <?= $produit['produit'] ?></h1>
-    <p>ID : <?= $produit['id'] ?></p>
-    <p>Produit : <?= $produit['produit'] ?></p>
-    <p>Prix : <?= $produit['prix'] ?></p>
-    <p>Nombre : <?= $produit['nombre'] ?></p>
-    <p><a href="update.php?id=<?= $produit['id'] ?>">Modifier</a>  <a href="delete.php?id=<?= $produit['id'] ?>">Supprimer</a></p>
+    <table class="table table-hover table-bordered w-100">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($produits as $produit) { ?>
+                <tr>
+                    <td><?= $produit['id'] ?></td>
+                    <td><?= $produit['nom'] ?></td>
+                    <td><?= $produit['prix'] ?></td>
+                    <td><?= $produit['description'] ?></td>
+                    <td><a class="btn btn-primary m-1" href="/admin/items/modify?id=<?= $produit['id'] ?>">Modifier</a></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 </body>
+
 </html>
