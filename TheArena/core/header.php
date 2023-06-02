@@ -21,7 +21,7 @@
     <div class="container-fluid  d-flex flex-column justify-content-between ps-0">
         <div class="row">
             <div class="col px-0">
-                <nav class="navbar p-0 header">
+                <nav class="navbar p-0 heading">
                     <div class="container-fluid d-flex justify-content-between">
                         <div class="mr-auto">
                             <a class="navbar-brand" href="/">

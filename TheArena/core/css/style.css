@@ -165,7 +165,7 @@ body{
     overflow-x: hidden;
 }
 
-.footer {
+.footing {
     margin-left: 17%;
     background-color: #FEEBD5;
 }
@@ -195,7 +195,7 @@ body{
     height: 12vh;
 }
 
-.header {
+.heading {
     position: fixed;
     width: 100%;
     height: 10%;
@@ -531,7 +531,7 @@ padding: 0
     .activated {
         color: #ffffff;
     }
-    .header, .footer {
+    .heading, .footing {
         background-color: #8274B2 !important;
     }
 

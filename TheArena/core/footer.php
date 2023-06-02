@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div class="col px-0">
-        <footer class="footer pt-4 pb-2">
+        <footer class="footing pt-4 pb-2">
             <div class="d-flex justify-content-around align-items-center">
                 <img src="/img/logothearena-removebg.png" alt="Logo" class="d-inline-block logo">
                 <a href="/cgu" class="m-4 p-3">Conditions générales d'utilisation</a>
