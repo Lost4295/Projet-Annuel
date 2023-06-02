@@ -160,9 +160,9 @@ TODO fix this */
     transition: 0.5s;
 }
 
-body{
+body {
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden!important;
 }
 
 .footing {
