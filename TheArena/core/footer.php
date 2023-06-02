@@ -12,15 +12,15 @@
                     <a href="/legal" class="m-5 p-3">Mentions légales</a>
                     <a href="/contact" class="m-5 p-3">Nous contacter</a>
                 </div>
-                
+
                 <div><?php if (isConnected()) { ?>
-                    <button class="btn btn-warning messages" id="messages">Messagerie</button>
-                    <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Some text in the Modal..</p>
-                        </div>
-                    </div><?php }?>
+                        <button class="btn btn-warning messages" id="messages">Messagerie</button>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Some text in the Modal..</p>
+                            </div>
+                        </div><?php } ?>
                 </div>
             </div>
             <p class="text-center text-muted">
@@ -29,6 +29,8 @@
         </footer>
     </div>
 </div>
+</body>
+
 <script>
     var theme = window.localStorage.getItem('data-bs-theme');
     const switchBox = document.querySelector(".sun-moon");
@@ -51,21 +53,22 @@
         }
     };
     <?php if (isConnected()) { ?>
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("messages");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("messages");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
             modal.style.display = "none";
         }
-    }
-    <?php }?>
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    <?php } ?>
+
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
         dropdown.classList.toggle("show");
@@ -101,7 +104,6 @@
         }, 10000);
     }
 </script>
-</div>
-</body>
+
 
 </html>
