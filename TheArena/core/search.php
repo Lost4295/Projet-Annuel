@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
-if (isset($_GET['q'])) {
+if (isset($_GET['q']) && !empty($_GET['q'])) {
     $search = strip_tags($_GET['q']);
     $db = connectToDB();
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name` LIKE :search OR `description` LIKE :search OR game LIKE :search');
@@ -19,6 +19,8 @@ if (isset($_GET['q'])) {
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'tournaments WHERE `name` LIKE :search');
     $query->execute([':search' => '%' . $search . '%']);
     $results['tournaments'] = $query->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    header("Location: /");
 }
 
 

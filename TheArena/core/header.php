@@ -42,8 +42,10 @@
                         ?>
                             <div>
                                 <form class="d-flex" role="search" method="get" action="/core/search.php">
-                                    <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <div class="input-group mb-3">
+                                        <input class="form-control" type="search" name="q" placeholder="Search">
+                                        <button class="input-group-text" type="submit"><i class="bi bi-search"></i></button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="dropdown">
