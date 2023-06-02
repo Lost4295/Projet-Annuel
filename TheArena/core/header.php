@@ -2,7 +2,7 @@
     session_start();
 } ?>
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="">
+<html lang="fr" data-bs-theme="" style="height:100%">
 
 <head>
     <meta charset="UTF-8">
@@ -15,13 +15,13 @@
     <link rel="icon" type="image/png" href="/img/logothearena-removebg.png" />
 </head>
 
-<body onload="timeoutmod()">
+<body onload="timeoutmod()" class="h-100">
 
     </div>
-    <div class="container-fluid ps-0">
+    <div class="container-fluid  d-flex flex-column justify-content-between ps-0">
         <div class="row">
             <div class="col px-0">
-                <nav class="navbar specbar">
+                <nav class="navbar p-0 header">
                     <div class="container-fluid d-flex justify-content-between">
                         <div class="mr-auto">
                             <a class="navbar-brand" href="/">
@@ -91,7 +91,7 @@
     </div><!--notre sidebar-->
     <div class="container-fluid pl-0">
         <div class="row">
-            <div class="col-3 d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
+            <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
                 <div class="w-100 d-flex flex-column justify-content-between">
                     <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
                     <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
@@ -108,5 +108,5 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
+            <div class=" content col-9 d-flex align-content-center flex-column flex-wrap">
                 <div class="w-100 mb-5">
