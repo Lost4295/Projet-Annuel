@@ -79,7 +79,7 @@ echo "</pre>";
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><?php echo $item['username']?></h5>
                         </div>
-                        <p class="mb-1"><?php echo $item['about']?></p> //TODO COUPER? SI C4EST TROP LONG
+                        <p class="mb-1"><?php echo mb_strimwidth($item['about'],0,125,"&hellip;") ?></p> 
                         <small> Mentions j'aime : </small> //TODO Implémenter le sistème de like
                     </a> <?php }} else { ?>
                         <p> Il n'y a aucun utilisateur correspondant à votre recherche.</p>
@@ -106,7 +106,7 @@ echo "</pre>";
                         <a href="/forum?id=<?php echo $item['id']?>" class="list-group-item list-group-item-action" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><?php echo $item['name']?></h5>
-                            <small><?php echo $item['date_creation'] ?></small> //TODO METTRE PAR RAPPORT A MAINTENANT
+                            <small><?php echo "Créé le ". $fmt->format(strtotime($item['date_creation'])); ?></small>
                         </div>
                         <p class="mb-1"><?php echo $item['description']?></p>
                         <small></small> //TODO METTRE DERNIER MESSAGE ENVOYé
@@ -125,7 +125,7 @@ echo "</pre>";
                         </div>
                         <p class="mb-1"><?php echo $item['description']?></p>
                         <small> Prix : <?php echo $item['price']?> € </small>
-                        <small> Date : <?php echo $item['date']?> </small> //TODO Formatter la date
+                        <small> Date : <?php echo $fmt->format(strtotime($item['date'])) ?> </small>
                     </a> <?php }} else { ?>
                         <p> Il n'y a aucun tournoi correspondant à votre recherche.</p>
                         <?php } ?>
