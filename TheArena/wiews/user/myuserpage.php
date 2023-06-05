@@ -21,7 +21,6 @@ if (!empty($result)) {
     $phone = $result["phone"];
     $address = $result["address"];
     $postal_code = $result["postal_code"];
-    $country = $result["country"];
     $newsletter = $result["newsletter"];
     $avatar = $result["avatar"];
     $about = $result["about"];

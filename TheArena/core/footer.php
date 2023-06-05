@@ -67,7 +67,6 @@
             }
         }
     <?php } ?>
-
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
         dropdown.classList.toggle("show");

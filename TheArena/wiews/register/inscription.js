@@ -1,3 +1,20 @@
+let btn = document.getElementById('continue');
+let form1 = document.getElementById("form1");
+let form2 = document.getElementById("form2");
+let form3 = document.getElementById("form3");
+let check1 = document.getElementById("check1");
+let check2 = document.getElementById("check2");
+let check3 = document.getElementById("check3");
+let span = document.getElementById("errors");
+let text1 = document.getElementById("text1");
+let text2 = document.getElementById("text2");
+let text3 = document.getElementById("text3");
+let bar1 = document.getElementById("bar1");
+let bar2 = document.getElementById("bar2");
+
+
+
+
 let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
 let select = document.getElementById("selection");
 window.onload = function () {
@@ -83,6 +100,7 @@ function verifyValues1() {
     let confirmPassword = document.getElementById('confirmpwd').value;
     if (type == "" || username == "" || email == "" || password == "" || confirmPassword == "") {
         alert("Veuillez remplir tous les champs.");
+        text1.setAttribute("class", "text-danger");
         return;
     }
 
@@ -150,6 +168,7 @@ function verifyValues2() {
     let fulladdress = document.getElementById('adresse').value.trim();
     if (firstname == "" || lastname == "" || birthdate == "" || phonenumber == "" || address == "" || cp == "" || ville == "" || fulladdress == "") {
         alert("Veuillez remplir tous les champs.");
+        text2.setAttribute("class", "text-danger");
         return;
     }
     return {
@@ -164,18 +183,6 @@ function verifyValues2() {
     }
 }
 
-let btn = document.getElementById('continue');
-let form1 = document.getElementById("form1");
-let form2 = document.getElementById("form2");
-let form3 = document.getElementById("form3");
-let check1 = document.getElementById("check1");
-let check2 = document.getElementById("check2");
-let check3 = document.getElementById("check3");
-let span = document.getElementById("errors");
-let text1 = document.getElementById("text1");
-let text2 = document.getElementById("text2");
-let bar1 = document.getElementById("bar1");
-let bar2 = document.getElementById("bar2");
 span.setAttribute("hidden", "");
 form2.setAttribute("hidden", "");
 form3.setAttribute("hidden", "");
@@ -457,6 +464,7 @@ function checkCaptcha() {
                         document.getElementById('allform').submit();
                     } else {
                         alert('Captcha invalide. Merci de réessayer.');
+                        text3.setAttribute("class", "text-danger");
                     }
                 }
             }
@@ -465,10 +473,12 @@ function checkCaptcha() {
             data.append('dataValues', JSON.stringify(dataValues));
             xhr.send(data);
         } else {
-            alert('Veuillez remplir tous les champs');
+            alert('Veuillez remplir tous les champs.');
+            text3.setAttribute("class", "text-danger");
         }
     }
     else {
-        alert('Veuillez accepter les CGU');
+        alert('Veuillez accepter les CGU.');
+        text3.setAttribute("class", "text-danger");
     }
 }

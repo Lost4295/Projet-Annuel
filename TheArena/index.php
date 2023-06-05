@@ -1,5 +1,8 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $origine = str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']);
 /*** ROUTES ***/
@@ -71,6 +74,10 @@ if (count($urls) > 1) {
     $origine = $urls[0];
     $args= $urls[1];
 }
+
+
 $destination = (array_key_exists($origine, $routes) ? $routes[$origine] : "wiews/important/errorpage") . '.php';
+
+
 /*** Appel du bon fichier ***/
 require $destination;
