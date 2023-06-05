@@ -19,6 +19,11 @@ $header = "<!doctype html>
 <title></title>
 </head>
 <body>
+<span style='display:inline-block; max-height:0; max-width:0;mso-font-width:0%;mso-style-textfill-type: none; white-space: nowrap;'>
+  <span style='max-height:1px; max-width:1px; display:inline-block; overflow:hidden; font-size:1px;color:rgba(0,0,0,0);text-indent:9px;'>
+    Êtes-vous prêts à vous battre ?
+  </span>
+</span>
 <div style='width:800px;background:#fff;border-style:groove;'>
 <div style='width:50%;text-align:left;'><a href='https://thearena.litecloud.fr' alt='The Arena'> <img 
 src=\"cid:logo\" height=60 width=60><img 
@@ -165,7 +170,6 @@ function sendEmail(string $reciever, string $subject, int  $type, string $body =
     if (isset($_SESSION['emailtosend'])) {
         unset($_SESSION["emailtosend"]);
     }
-    die($rbody);
     if (!$mail->send()) {
         echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
     } else {

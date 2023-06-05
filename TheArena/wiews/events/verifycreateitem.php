@@ -60,7 +60,7 @@ if ($priceint < 0 || $pricefloat < 0) {
 
 if (empty($priceint) && empty($pricefloat)) {
     $price = 0;
-} elseif (empty($priceint)) {
+} elseif ($priceint != $pricefloat) {
     $price = $pricefloat;
 } else {
     $price = $priceint;
@@ -116,12 +116,12 @@ if (!$error) {
     $db = connectToDB();
     $queryPrepared = $db->prepare("INSERT INTO " . PREFIX . "products (nom, price, description, image,shop_id,type) VALUES (:nom, :price, :description, :image,:shop_id,:type)");
     $queryPrepared->execute([
-        ":nom" => $name,
-        ":price" => $price,
-        ":description" => $description,
-        ":image" => $image,
-        ":shop_id" => $shop_id,
-        ":type" => $type,
+        "nom" => $name,
+        "price" => $price,
+        "description" => $description,
+        "image" => $image,
+        "shop_id" => $shop_id,
+        "type" => $type,
     ]);
     $_SESSION['message'] = "L'item a bien été créé.";
     $_SESSION['message_type'] = "success";

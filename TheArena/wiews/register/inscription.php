@@ -41,7 +41,7 @@ noReconnection(); ?>
                                         <div class="separation" id="bar2"> </div>
                                 </div>
                 <div>
-                    <p><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
+                    <p id="text3"><i id="check3" class="bi bi-circle"></i>&emsp;&emsp;Confirmation</p>
                 </div>
             </div>
             <div class="col-7">
@@ -126,7 +126,7 @@ noReconnection(); ?>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="adresse" class="form-label">Enrez votre adresse : </label>
+                                        <label for="adresse" class="form-label">Adresses</label>
                                         <input type="text" class="form-control" id="adresse" name="fulladdress" required placeholder="1 Rue de Paris">
                                         <div id="selection" style="display: none;" class="dropdown-menu">
                                         </div>
@@ -134,16 +134,16 @@ noReconnection(); ?>
                                 </div>
                                 <div class="row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="resAdresse" class="form-label">Adresse</label>
-                                        <input type="text" class="form-control" id="resAdresse" name="address" disabled required placeholder="France">
+                                        <label for="resAdresse" hidden class="form-label">Adresse</label>
+                                        <input type="text" hidden class="form-control" id="resAdresse" name="address" placeholder="France">
                                     </div>
                                     <div class="col">
-                                        <label for="CP" class="form-label">Code postal</label>
-                                        <input type="text" class="form-control" id="CP" name="cp" disabled required placeholder="75012">
+                                        <label for="CP" hidden class="form-label">Code postal</label>
+                                        <input type="text" hidden class="form-control" id="CP" name="cp" placeholder="75012">
                                     </div>
                                     <div class="col">
-                                        <label for="Ville" class="form-label">Ville</label>
-                                        <input type="text" class="form-control" id="Ville" name="city" disabled required placeholder="Paris">
+                                        <label for="Ville" hidden class="form-label">Ville</label>
+                                        <input type="text" hidden class="form-control" id="Ville" name="city" placeholder="Paris">
                                     </div>
                                 </div>
                             </div>

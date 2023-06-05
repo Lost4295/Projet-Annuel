@@ -38,7 +38,6 @@ foreach ($images as $oldImage) {
     unlink($oldImage);
 }
 
-$responses = [];
 $responses2 = [];
 
 foreach ($parties as $image) {
@@ -46,8 +45,6 @@ foreach ($parties as $image) {
     imagejpeg($image, $dirname . 'parts/' . $nomFichier, 100); // Enregistrement de la partie en tant que fichier JPEG avec une qualité de 100
     $name = str_replace('image', '', $nomFichier);
     $name = str_replace('.jpg', '', $name);
-
-    $responses[] = $nomFichier;
     $responses2[] = $name;
 }
 
@@ -62,7 +59,7 @@ foreach ($parties as $partie) {
 $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
 ?>
 
-<img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '',$active) ?>" alt="initial_image">
+<img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '', $active) ?>" alt="initial_image">
 
 <div class="drop-zone" id="resetZone">
     <?php foreach ($images as $key => $image) {

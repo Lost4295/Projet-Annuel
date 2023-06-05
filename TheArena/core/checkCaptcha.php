@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $dataValues = json_decode($_POST['dataValues']);
 $responsejson = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/core/captcha.json');
 $responsedata = json_decode($responsejson);
