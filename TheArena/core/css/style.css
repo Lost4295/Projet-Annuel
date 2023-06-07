@@ -159,6 +159,10 @@ TODO fix this
     transition: 0.5s;
 }
 
+/* #maxer{
+    width: max-content;
+} */
+
 body{
     position: relative;
     overflow-x: hidden;

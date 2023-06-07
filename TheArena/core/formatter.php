@@ -95,3 +95,18 @@ function formatTypeEvents($type)
         }
         return $return;
 }
+
+function formatEventName($namez)
+{
+    $db = connectToDB();
+    $query = $db->prepare("SELECT name as n FROM ".PREFIX."events WHERE id=:id");
+    $query->execute(['id'=>$namez]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $name = $result['n'];
+    if ($name) {
+        $return=$name;
+    } else {
+        $return=$name." : Format étrange et non connu en base";
+    }
+    return $return;
+}

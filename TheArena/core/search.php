@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
-if (isset($_GET['q']) && !empty($_GET['q'])) {
+if (isset($_GET['q']) && !empty($_GET['q']) && strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50 && !preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]*/', $_GET['q']) && !preg_match('/^ *$/', $_GET['q'])) {
     $search = strip_tags($_GET['q']);
     $db = connectToDB();
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name` LIKE :search OR `description` LIKE :search OR game LIKE :search');

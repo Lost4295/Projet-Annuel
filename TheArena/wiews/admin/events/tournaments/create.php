@@ -1,41 +1,14 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
-
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 $db = connectToDB();
-if (isset($_GET['name']) && !empty($_GET['name'])) {
-	$name = strip_tags($_GET['name']);
-	$query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
-	$query->execute([':name' => $name]);
-	$event = $query->fetch(PDO::FETCH_ASSOC);
-	if (!$event) {
-		$_SESSION['message'] = "Cet évènement n'existe pas.";
-		$_SESSION['message_type'] = "danger";
-		print_r($_SESSION);
-		// header('Location: /');
-	}
-	if (isConnected() && ($name == $event['name'])) {
-		$nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
-		$nquery->execute([':email' => $_SESSION['email']]);
-		$user = $nquery->fetch(PDO::FETCH_ASSOC);
-		if ($user['id'] != $event['manager_id']) {
-			$_SESSION['message'] = "L'action a échoué.";
-			$_SESSION['message_type'] = "danger";
-			header('Location: /404');
-		}
-	} else {
-		$_SESSION['message'] = "L'action a échoué.";
-		$_SESSION['message_type'] = "danger";
-		header('Location: /404');
-	}
-} else {
-	$_SESSION['message'] = "Cet évènement n'existe pas.";
-	$_SESSION['message_type'] = "danger";
-	header('Location: /');
-}
+
+$query = $db->query("SELECT * FROM " . PREFIX . "users");
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 
 
-require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
-<h1>Créer un tournoi</h1>
+<h1>Création d'un nouveau tournoi</h1>
 <form action="/wiews/events/verifycreatetournament.php" method="post" class="mb-5">
 	<div class="mb-3">
 		<label for="name" class="form-label">Nom du tournoi </label>
@@ -127,5 +100,6 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 	</div>
 </form>
 
-
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
+<?php
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";
+?>

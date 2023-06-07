@@ -52,7 +52,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
         <a href="/event/tournament/create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
     <?php } ?>
-    <a class="btn btn-warning" href="/event/register">S'inscrire</a>
+    <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
 </div>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

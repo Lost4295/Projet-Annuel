@@ -91,7 +91,7 @@
         } ?>
     </div><!--notre sidebar-->
     <div class="container-fluid pl-0">
-        <div class="row">
+        <div class="row" id="maxer">
             <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
                 <div class="w-100 d-flex flex-column justify-content-between">
                     <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>

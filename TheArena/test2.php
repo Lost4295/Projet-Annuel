@@ -36,20 +36,7 @@
 </div>
 
 
-<a href="/events" class="btn btn-warning">Événements</a>*
 
-
-<button type="button" class="btn btn-warning" onclick="functiondefou()">
-  Launch demo moda
-</button>
-
-
-<script>
-  function functiondefou(){
-    alert("defou");
-    window.location.href = "/events";
-  }
-</script>
 
 <?php
 
