@@ -66,11 +66,11 @@ if (!$error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errordesc']= $errordesc;
     $_SESSION['errorauthor']= $errorauthor;
-    header("Location:/admin/forum/create");
+    header("Location:admin_forum_create");
 } else {
     $_SESSION['blogname']= $blogname;
     $_SESSION['blogdesc']= $blogdesc;
     $query= $db->prepare("INSERT INTO ".PREFIX."forums (name, description, author) VALUES (:name,:description,:author)");
     $query->execute(["name"=>$blogname,"description"=>$blogdesc,"author"=>$author]);
-    header("Location: /admin/forums");
+    header("Location: /admin_forums");
 }

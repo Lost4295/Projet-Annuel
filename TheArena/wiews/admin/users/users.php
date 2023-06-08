@@ -30,7 +30,7 @@ define("ENDTD", "</td>");?>
 					echo TD.$user["email"].ENDTD ;
 					echo TD.formatVisibility($user["visibility"]).ENDTD ;
 					echo TD.formatStatusUsers($user["status"]).ENDTD ;
-					echo TD."<a href='/admin/users/read?id=". $user["id"]."' class='btn btn-info'>Plus d'informations</a>".ENDTD;
+					echo TD."<a href='admin_users/read?id=". $user["id"]."' class='btn btn-info'>Plus d'informations</a>".ENDTD;
                     echo " </tr> ";
 				}
 ?>

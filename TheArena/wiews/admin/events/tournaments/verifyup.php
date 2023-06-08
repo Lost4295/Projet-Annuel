@@ -116,7 +116,7 @@ if ($error) {
     $_SESSION['errorprice'] = $errorprice;
     $_SESSION['errordate'] = $errordate;
     $_SESSION['errordescription'] = $errordescription;
-    header("Location: /admin/tournament/update?id=" . $id);
+    header("Location: /admin_tournament_update?id=" . $id);
 } else {
     $db = connectToDB();
     $queryPrepared = $db->prepare("UPDATE " . PREFIX . "tournaments SET name=:nom, price=:price, description=:description, event_type=:event_type, event_id=:event_id, date=:date WHERE id=:id");
@@ -131,5 +131,5 @@ if ($error) {
     ]);
     $_SESSION['message'] = "Le tournoi a bien été modifié.";
     $_SESSION['message_type'] = "success";
-    header("Location: /admin/tournaments");
+    header("Location: /admin_tournaments");
 }

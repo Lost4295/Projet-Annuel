@@ -55,7 +55,7 @@ if ($error) {
     $_SESSION['errorinfos']= $errorinfos;
     $_SESSION['errortype']= $errortype;
     $_SESSION['errormanagerid']= $errormanagerid;
-    header("Location:/admin/events/create");
+    header("Location:admin_events_create");
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
@@ -70,6 +70,6 @@ if ($error) {
         'type'=>$type,
         "game"=>$game
     ]);
-    header("Location: /admin/events");
+    header("Location: /admin_events");
 }
 

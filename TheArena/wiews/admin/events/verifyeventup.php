@@ -60,7 +60,7 @@ if ($error) {
     $_SESSION['errorinfos']= $errorinfos;
     print_r($_SESSION);
     die();
-    header("Location:/admin/events/update?id=".$_POST['id']);
+    header("Location:admin_events_update?id=".$_POST['id']);
 } else {
     $_SESSION['eventname']= $eventname;
     $_SESSION['infos']= $infos;
@@ -76,6 +76,6 @@ if ($error) {
         'id'=>$_POST['id'],
         "game"=>$game
     ]);
-    header("Location: /admin/events"); 
+    header("Location: /admin_events"); 
 }
 

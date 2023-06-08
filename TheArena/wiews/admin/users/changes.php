@@ -10,7 +10,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) &
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
     $query->execute([':id' => $id, ':visibility'=>$visibility]);
-    header("Location:/admin/users");
+    header("Location:admin_users");
     }
 }
 if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && (!empty($_GET['activity'])||$_GET['activity']==0))) {
@@ -20,7 +20,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && 
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
     $query->execute([':id' => $id, ':activity'=>$activity]);
-    header("Location:/admin/users");
+    header("Location:admin_users");
     }
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';

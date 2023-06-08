@@ -15,4 +15,4 @@ $query = $db->prepare("UPDATE ".PREFIX."forums SET status=:status WHERE id=:id")
 $query->execute(["id"=>$id, 'status'=>$status]);
 }
 
-header("Location : /admin/forums/read?id=".$id);
+header("Location : admin_forums_read?id=".$id);

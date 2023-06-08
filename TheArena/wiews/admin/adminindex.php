@@ -14,7 +14,7 @@ $resultt = $query->fetch(PDO::FETCH_ASSOC);
     <h1>Tableau de bord</h1>
     <div class="col m-2">
         <div class="card" style="width: 18rem;">
-            <a href="admin/forums" class="text-decoration-none">
+            <a href="admin_forums" class="text-decoration-none">
                 <div class="card-body">
                     <h5 class="card-title text-center link-dark"> Nombre de Forums</h5>
                     <p class=" link-dark fs-1 text-center"><?php echo $resultf['c'] ?> </p>

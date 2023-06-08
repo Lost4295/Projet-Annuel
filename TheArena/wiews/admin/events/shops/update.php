@@ -17,7 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && empty($_POST)) {
     ) {
         $_SESSION['message'] = "Erreur lors de la modification";
         $_SESSION['message_type'] = "danger";
-        header('Location: /admin/shops/edit?id=' . $_GET['id']);
+        header('Location: /admin_shops/edit?id=' . $_GET['id']);
     } else {
         $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "shops SET `name`=:name, `description`=:description WHERE `id`=:id;");
@@ -29,27 +29,14 @@ if (isset($_GET['id']) && !empty($_GET['id']) && empty($_POST)) {
         $_SESSION['message'] = "Modification effectuée";
         $_SESSION['message_type'] = "success";
         unset($_POST);
-        header('Location: /admin/shops');
+        header('Location: /admin_shops');
     }
 } else {
-    header('Location: /admin/shops');
+    header('Location: /admin_shops');
 }
 
 require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-
-<body>
     <h1>Modifier un shop</h1>
     <form method="post">
         <p>
@@ -65,6 +52,5 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
         </p>
         <input type="hidden" name="id" value="<?= $result['id'] ?>">
     </form>
-</body>
-
-</html>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';

@@ -34,7 +34,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         ?>
         </tbody>
     </table>
-    <a class="btn btn-primary m-1" href="admin/events/create">Ajouter</a>
-    <a class="btn btn-primary m-1" href="admin/shops">Accéder à tous les shops</a>
+    <a class="btn btn-primary m-1" href="admin_events_create">Ajouter</a>
+    <a class="btn btn-primary m-1" href="admin_shops">Accéder à tous les shops</a>
 
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

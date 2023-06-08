@@ -8,10 +8,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id' => $id]);
     $tournament = $query->fetch();
     if (!$tournament) {
-        header('Location: /admin/tournaments');
+        header('Location: /admin_tournaments');
     }
 } else {
-    header('Location: /admin/tournaments');
+    header('Location: /admin_tournaments');
 }
 ?>
 

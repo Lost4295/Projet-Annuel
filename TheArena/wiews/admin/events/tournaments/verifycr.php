@@ -114,7 +114,7 @@ if ($error) {
     $_SESSION['errorprice'] = $errorprice;
     $_SESSION['errordate'] = $errordate;
     $_SESSION['errordescription'] = $errordescription;
-    header("Location: /admin/tournament/create");
+    header("Location: /admin_tournament_create");
 } else {
     $db = connectToDB();
     $queryPrepared = $db->prepare("INSERT INTO " . PREFIX . "tournaments (name, price, description, event_type, event_id, date) VALUES (:nom, :price, :description,:event_type,:event_id, :date)");
@@ -128,5 +128,5 @@ if ($error) {
     ]);
     $_SESSION['message'] = "Le tournoi a bien été créé.";
     $_SESSION['message_type'] = "success";
-    header("Location: /admin/tournaments");
+    header("Location: /admin_tournaments");
 }

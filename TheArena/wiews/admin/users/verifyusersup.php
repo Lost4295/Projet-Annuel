@@ -249,7 +249,7 @@
                 "id"=>$id,
                 "activation_code"=>password_hash(generateActivationCode(), PASSWORD_DEFAULT),
             ]);
-            header("Location:/admin/users");
+            header("Location:admin_users");
         }
         print_r($table);
 

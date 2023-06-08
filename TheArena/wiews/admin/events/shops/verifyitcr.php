@@ -109,7 +109,7 @@ if (!$error) {
     $_SESSION['errorimage'] = $errorimage;
     $_SESSION['errordescription'] = $errordescription;
     $_SESSION['errortype'] = $errortype;
-    header("Location: /admin/items/create?id=" . $shop_id);
+    header("Location: /admin_items_create?id=" . $shop_id);
 } else {
     $_SESSION['name'] = $name;
     $_SESSION['price'] = $price;
@@ -127,5 +127,5 @@ if (!$error) {
     ]);
     $_SESSION['message'] = "L'item a bien été créé.";
     $_SESSION['message_type'] = "success";
-    header("Location: /admin/shops/read?id=" . $shop_id );
+    header("Location: /admin_shops_read?id=" . $shop_id );
 }

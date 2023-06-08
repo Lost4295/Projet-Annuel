@@ -26,13 +26,13 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $forum['date_creation'] ?></td>
                 <td><?php echo formatStatusForums($forum['status']) ?></td>
                 <td><?php echo findUserById($forum['author']) ?></td>
-                <td><a class="btn btn-primary m-1" href="admin/forum/read?id=<?php echo $forum['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="admin/forum/update?id=<?php echo $forum['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="admin/forum/delete?id=<?php echo $forum['id'] ?>">Supprimer</a></td>
+                <td><a class="btn btn-primary m-1" href="admin_forum_read?id=<?php echo $forum['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="admin/forum/update?id=<?php echo $forum['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="admin/forum/delete?id=<?php echo $forum['id'] ?>">Supprimer</a></td>
             </tr>
         <?php
         }
         ?>
     </tbody>
 </table>
-<a href="admin/forum/create" class="btn btn-primary m-1">Ajouter</a>
+<a href="admin_forum_create" class="btn btn-primary m-1">Ajouter</a>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php" ?>

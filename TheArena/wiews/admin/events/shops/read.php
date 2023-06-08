@@ -12,7 +12,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $shop = $query->fetch(PDO::FETCH_ASSOC);
 } else {
     $_SESSION['message'] ='Pas de shop par ici !';
-    // header('Location:/admin/shops');
+    // header('Location:admin_shops');
 }
 require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 
@@ -42,14 +42,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
                     <td><?= $produit['price'] ?></td>
                     <td><?= $produit['description'] ?></td>
                     <td><img src="<?= $produit['image'] ?>" width="70"></td>
-                    <td><a class="btn btn-primary m-1" href="/admin/items/edit?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Modifier</a>
-                    <a class="btn btn-primary m-1" href="/admin/items/delete?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Supprimer</a>
+                    <td><a class="btn btn-primary m-1" href="admin_items/edit?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Modifier</a>
+                    <a class="btn btn-primary m-1" href="admin_items/delete?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Supprimer</a>
                 </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-    <a class="btn btn-primary m-1" href="/admin/items/create?id=<?php echo $id?>">Ajouter un item</a>
+    <a class="btn btn-primary m-1" href="admin_items_create?id=<?php echo $id?>">Ajouter un item</a>
 
     <?php
     require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";

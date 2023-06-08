@@ -8,10 +8,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id'=>$id]);
     $forum = $query->fetch();
     if (!$forum) {
-        header('Location: /admin/forums');
+        header('Location: /admin_forums');
     }
 } else {
-    header('Location: /admin/forums');
+    header('Location: /admin_forums');
 }
 ?>
 

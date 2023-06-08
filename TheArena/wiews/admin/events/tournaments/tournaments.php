@@ -30,7 +30,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo formatStateTournaments($tournament['state']) ?></td>
                 <td><?php echo formatTypePriceEvents($tournament['event_type']) ?></td>
                 <td><?php echo formatEventName($tournament['event_id']) ?></td>
-                <td><a class="btn btn-primary m-1" href="/admin/tournament/read?id=<?php echo $tournament['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="/admin/tournament/update?id=<?php echo $tournament['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="/admin/tournament/delete?id=<?php echo $tournament['id'] ?>">Supprimer</a></td>
+                <td><a class="btn btn-primary m-1" href="admin_tournament_read?id=<?php echo $tournament['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="admin_tournament/update?id=<?php echo $tournament['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="admin_tournament/delete?id=<?php echo $tournament['id'] ?>">Supprimer</a></td>
             </tr>
         <?php
         }
