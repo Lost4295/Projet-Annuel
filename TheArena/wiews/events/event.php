@@ -27,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btn btn-warning" href="event?name=<?php echo $event['name'] ?>">Accueil</a>
+        <a class="btn  btn-warning active" href="event?name=<?php echo $event['name'] ?>">Accueil</a>
         <a class="btn btn-warning" href="event_participants?name=<?php echo $event['name'] ?>">Participants</a>
         <a class="btn btn-warning" href="event_dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
         <a class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
@@ -37,7 +37,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </nav>
 </div>
 <div class="row">
-    <h2><u>Evenement <?php echo $event['name'] ?><u></h2>
+    <h2>Evenement <?php echo $event['name'] ?></h2>
 </div>
 <div class="row">
     <img style="position: relative; left: 300px; width: 685px; height: 279px;" src="<?php echo $event['image'] ?>">
@@ -50,9 +50,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 </div>
 <div class="col-12 d-flex justify-content-around flex-wrap">
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
+        <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
         <a href="event_tournament_create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
+    <?php } elseif (isConnected()) { ?>
+        <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
     <?php } ?>
-    <a class="btn btn-warning" href="event_register">S'inscrire</a>
 </div>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

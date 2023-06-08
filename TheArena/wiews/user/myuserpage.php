@@ -28,6 +28,7 @@ if (!empty($result)) {
     $_SESSION["message"] = "Une erreur est survenue.";
     $_SESSION["message_type"] = "danger";
     header("Location: /");
+    exit(); 
 }
 ?>
 

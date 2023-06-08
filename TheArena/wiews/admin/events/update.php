@@ -9,7 +9,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $result2 = $query->fetch(PDO::FETCH_ASSOC);
     $query = $db->query("SELECT id, username as pseudo FROM " . PREFIX . "users WHERE scope =" . ORGANIZER . " || scope=" . ADMIN . "|| scope= " . SUPADMIN);
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-
 }
 
 

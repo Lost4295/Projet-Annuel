@@ -2,7 +2,17 @@
 
 function formatUsers($user)
 {
-
+    $db = connectToDB();
+    $query = $db->prepare("SELECT username as u FROM ".PREFIX."users WHERE id=:id");
+    $query->execute(['id'=>$user]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $username = $result['u'];
+    if ($username) {
+        $return=$username;
+    } else {
+        $return=$username." : Format étrange et non connu en base";
+    }
+    return $return;
 }
 
 function formatScope($scope)
@@ -94,4 +104,59 @@ function formatTypeEvents($type)
             $return=$type." : Format étrange et non connu en base";
         }
         return $return;
+}
+
+function formatEventName($namez)
+{
+    $db = connectToDB();
+    $query = $db->prepare("SELECT name as n FROM ".PREFIX."events WHERE id=:id");
+    $query->execute(['id'=>$namez]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $name = $result['n'];
+    if ($name) {
+        $return=$name;
+    } else {
+        $return=$name." : Format étrange et non connu en base";
+    }
+    return $return;
+}
+
+function formatTypePriceEvents($type){
+    if ($type==1) {
+        $return="Gratuit";
+        } elseif ($type==2) {
+            $return="Payant";
+        } else {
+            $return=$type." : Format étrange et non connu en base";
+        }
+        return $return;
+}
+
+function formatTypeItems($type){
+    if ($type==0) {
+        $return="Numérique";
+        } elseif ($type==1) {
+            $return="Physique";
+        } else {
+            $return=$type." : Format étrange et non connu en base";
+        }
+        return $return;
+}
+
+function formatStateTournaments($state) {
+    if ($state==-1) {
+        $return="Annulé/supprimé";
+        } elseif ($state==0) {
+            $return="Créé";
+        } elseif ($state==1) {
+        $return="En attente";
+        } elseif ($state==2) {
+            $return="En cours";
+        } elseif ($state==3) {
+            $return="Terminé";
+        } else {
+            $return=$state." : Format étrange et non connu en base";
+        }
+        return $return;
+
 }

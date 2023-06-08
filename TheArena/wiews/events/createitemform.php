@@ -107,6 +107,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             </div>
         </div>
         <input type="hidden" value="<?php echo $event['shop_id'] ?>" name="shop_id">
+        <input type="hidden" value="<?php echo $event['name'] ?>" name="eventname">
         <div class="row d-flex justify-content-center">
             <div class="col-2">
                 <button class="btn-primary btn btn-lg">Enregistrer l'article</button>

@@ -1,4 +1,4 @@
-<?php
+<?php //TODO finish this
 require $_SERVER['DOCUMENT_ROOT'].'/core/functions.php';
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {

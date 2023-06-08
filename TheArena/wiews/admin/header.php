@@ -65,42 +65,42 @@ redirectIfNotAdmin();
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li>
-                                <a href="admin" class="nav-link aaaa">
+                                <a href="admin" id="dashboard" class="nav-link aaaa">
                                     Tableau de bord
                                 </a>
                             </li>
                             <li>
-                                <a href="admin_signalements" class="nav-link link-dark aaaa">
+                                <a href="admin_signalements" id="reports" class="nav-link link-dark aaaa">
                                     Signalements
                                 </a>
                             </li>
                             <li>
-                                <a href="admin_events" class="nav-link link-dark aaaa">
+                                <a href="admin_events" id="events" class="nav-link link-dark aaaa">
                                     Événements
                                 </a>
                             </li>
                             <li>
-                                <a href="admin_users" class="nav-link link-dark aaaa">
+                                <a href="admin_users" id="users" class="nav-link link-dark aaaa">
                                     Utilisateurs
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin_forums" class="nav-link link-dark aaaa">
+                                <a href="admin_forums" id="forums" class="nav-link link-dark aaaa">
                                     Forums
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin_tournaments" class="nav-link link-dark aaaa">
+                                <a href="admin_tournaments" id="tournaments" class="nav-link link-dark aaaa">
                                     Tournois
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="admin_shops" class="nav-link link-dark aaaa">
+                                <a href="admin_shops" id="shops" class="nav-link link-dark aaaa">
                                     Shops
                                 </a>
                             </li>
                             <li>
-                                <a href="admin_settings" class="nav-link link-dark aaaa">
+                                <a href="admin_settings" id="settings" class="nav-link link-dark aaaa">
                                     Paramètres du site
                                 </a>
                             </li>
@@ -129,3 +129,4 @@ redirectIfNotAdmin();
                     </div>
                 </div>
                 <div class="col-8">
+                    

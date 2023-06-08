@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
+require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
 noReconnection();
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
@@ -69,6 +69,7 @@ if (isset($_SESSION['error'])) {
     echo "<li>". $_SESSION['error'] . "</li>";
     echo "</ul></div>";
     }
+    require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 ?>
 <form method="post" class="m-5">
     <div class="mb-4">

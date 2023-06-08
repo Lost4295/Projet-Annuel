@@ -52,7 +52,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 				</label>
 			</div>
 			<div class="form-check">
-				<input class="form-check-input" type="radio" name="price" onchange="checkPrice()" id="nfree" value="0">
+				<input class="form-check-input" type="radio" name="price" onchange="checkPrice()" id="nfree" value="2">
 				<label class="form-check-label" for="nfree">
 					Payant
 				</label>
@@ -71,7 +71,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 
 			<div class="col-2 mb-2" id="prixdiv">
 				<label for="valueprice" class="form-label">Prix</label>
-				<input type="number" class="form-control" id="valueprice" name="price">
+				<input type="number" class="form-control" id="valueprice" name="valueprice">
 				<div class="invalid">
 					<?php
 					if (isset($_SESSION["errorprice"])) {
@@ -85,6 +85,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 			<script>
 				var divSuivante = document.getElementById("prixdiv");
 				divSuivante.style.display = "none";
+
 				function checkPrice() {
 					if (document.getElementById("nfree").checked) {
 						divSuivante.style.display = "block";
@@ -98,10 +99,26 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 		<div class="mt-3 mb-5">
 			<label for="date" class="form-label">Date du tournoi</label>
 			<input type="datetime-local" class="form-control form-control-date" id="date" name="date" required>
+
+			<div class="invalid">
+				<?php
+				if (isset($_SESSION["errordate"])) {
+					echo $_SESSION['errordate'];
+				}
+				?>
+			</div>
 		</div>
 		<div class="mb-3">
 			<label for="description" class="form-label">Description du tournoi</label>
 			<textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+
+			<div class="invalid">
+				<?php
+				if (isset($_SESSION["errordescription"])) {
+					echo $_SESSION['errordescription'];
+				}
+				?>
+			</div>
 		</div>
 		<input type="hidden" name="event" value="<?php echo $event['name']; ?>">
 		<div class="mb-3">
@@ -109,5 +126,6 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 		</div>
 	</div>
 </form>
+
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

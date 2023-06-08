@@ -8,6 +8,15 @@
     margin-bottom: 15px;
 }
 
+
+.homevideo {
+    width: 60%;
+    height: 627px;
+    margin: 0px auto;
+    display: block;
+    align-self: center;
+}
+
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -27,8 +36,6 @@
 /* DROPDOWN */
 
 .dropdown {
-    position: relative;
-    right: 100px;
     display: inline-block;
 }
 
@@ -68,6 +75,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
+    right:0%;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -161,14 +169,26 @@ TODO fix this */
     transition: 0.5s;
 }
 
-body {
+/* #maxer{
+    width: max-content;
+} */
+
+#minheight{
+    min-height: 82vh;
+}
+
+body{
     position: relative;
     overflow-x: hidden!important;
 }
 
-.footing {
-    margin-left: 17%;
-    background-color: #FEEBD5;
+.footer {
+        margin-bottom: 0px;
+        width: 91%;
+        margin-left: 9%;
+        background-color: #FEEBD5;
+        transition: 0.5s;
+        position: absolute;
 }
 
 #avatar{
@@ -188,7 +208,7 @@ body {
 }
 .content {
     margin-left: 17%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .bar {
@@ -532,7 +552,7 @@ padding: 0
     .activated {
         color: #ffffff;
     }
-    .heading, .footing {
+    .header, .footer, .bar {
         background-color: #8274B2 !important;
     }
 

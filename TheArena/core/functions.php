@@ -54,8 +54,7 @@ function redirectIfNotConnected()
         $_SESSION['message'] = "Vous n'êtes pas connecté. Cette page n'est pas accessible.";
         $_SESSION['message_type'] = "danger";
         header("Location: /login ");
-    }
-    else{
+    } else {
         return true;
     }
 }
@@ -112,7 +111,7 @@ function generateActivationCode(): string
 
 function cleanNames($name)
 {
-    return ucwords(strtolower(trim($name)), "\t\r\n\f\v-'") ;
+    return ucwords(strtolower(trim($name)), "\t\r\n\f\v-'");
 }
 
 
@@ -124,30 +123,7 @@ function generateRandCode(): string
 }
 function unsetwhenRegistered()
 {
-    if (isset($_SESSION['errorfirstname'])) {
-        unset($_SESSION['errorfirstname']);
-    }
-    if (isset($_SESSION['errorlastname'])) {
-        unset($_SESSION['errorlastname']);
-    }
-    if (isset($_SESSION['errorbirthdate'])) {
-        unset($_SESSION['errorbirthdate']);
-    }
-    if (isset($_SESSION['errorphonenumber'])) {
-        unset($_SESSION['errorphonenumber']);
-    }
-    if (isset($_SESSION['erroraddress'])) {
-        unset($_SESSION['erroraddress']);
-    }
-    if (isset($_SESSION['errorcp'])) {
-        unset($_SESSION['errorcp']);
-    }
-    if (isset($_SESSION['errorcity'])) {
-        unset($_SESSION['errorcity']);
-    }
-    if (isset($_SESSION['errorcountry'])) {
-        unset($_SESSION['errorcountry']);
-    }
+unsetSessionErrors();
     if (isset($_SESSION['firstname'])) {
         unset($_SESSION['firstname']);
     }
@@ -160,10 +136,6 @@ function unsetwhenRegistered()
     if (isset($_SESSION['phonenumber'])) {
         unset($_SESSION['phonenumber']);
     }
-    unsetwhenRegistered2();
-}
-function unsetwhenRegistered2()
-{
     if (isset($_SESSION['address'])) {
         unset($_SESSION['address']);
     }
@@ -176,95 +148,13 @@ function unsetwhenRegistered2()
     if (isset($_SESSION['country'])) {
         unset($_SESSION['country']);
     }
-    if (isset($_SESSION['errortype'])) {
-        unset($_SESSION['errortype']);
-    }
-    if (isset($_SESSION['errorusername'])) {
-        unset($_SESSION['errorusername']);
-    }
-    if (isset($_SESSION['erroremail'])) {
-        unset($_SESSION['erroremail']);
-    }
-    if (isset($_SESSION['errorpwd'])) {
-        unset($_SESSION['errorpwd']);
-    }
-    if (isset($_SESSION['errorpwdconfirm'])) {
-        unset($_SESSION['errorpwdconfirm']);
-    }
-    if (isset($_SESSION['type'])) {
-        unset($_SESSION['type']);
-    }
-    if (isset($_SESSION['pwd'])) {
-        unset($_SESSION['pwd']);
-    }
-    if (isset($_SESSION['errornewsletter'])) {
-        unset($_SESSION['errornewsletter']);
-    }
-    if (isset($_SESSION['errorcaptcha'])) {
-        unset($_SESSION['errorcaptcha']);
-    }
 }
 
 function unsetSessionErrors()
 {
-    if (isset($_SESSION['errorfirstname'])) {
-        unset($_SESSION['errorfirstname']);
-    }
-    if (isset($_SESSION['errorlastname'])) {
-        unset($_SESSION['errorlastname']);
-    }
-    if (isset($_SESSION['errorbirthdate'])) {
-        unset($_SESSION['errorbirthdate']);
-    }
-    if (isset($_SESSION['errorphonenumber'])) {
-        unset($_SESSION['errorphonenumber']);
-    }
-    if (isset($_SESSION['erroraddress'])) {
-        unset($_SESSION['erroraddress']);
-    }
-    if (isset($_SESSION['errorcp'])) {
-        unset($_SESSION['errorcp']);
-    }
-    if (isset($_SESSION['errorcity'])) {
-        unset($_SESSION['errorcity']);
-    }
-    if (isset($_SESSION['errorcountry'])) {
-        unset($_SESSION['errorcountry']);
-    }
-    if (isset($_SESSION['errorusername'])) {
-        unset($_SESSION['errorusername']);
-    }
-    if (isset($_SESSION['erroremail'])) {
-        unset($_SESSION['erroremail']);
-    }
-    if (isset($_SESSION['errorpwd'])) {
-        unset($_SESSION['errorpwd']);
-    }
-    if (isset($_SESSION['errorpwdconfirm'])) {
-        unset($_SESSION['errorpwdconfirm']);
-    }
-    if (isset($_SESSION['errornewsletter'])) {
-        unset($_SESSION['errornewsletter']);
-    }
-    if (isset($_SESSION['errorcaptcha'])) {
-        unset($_SESSION['errorcaptcha']);
-    }
-    if (isset($_SESSION['error'])) {
-        unset($_SESSION['error']);
-    }
-    if (isset($_SESSION['errortype'])) {
-        unset($_SESSION['errortype']);
-    }
-    if (isset($_SESSION['errorabout'])) {
-        unset($_SESSION['errorabout']);
-    }
-    if (isset($_SESSION['errorimage'])) {
-        unset($_SESSION['errorimage']);
-    }
-    if (isset($_SESSION['errorabout'])) {
-        unset($_SESSION['errorabout']);
-    }
-    if (isset($_SESSION['errorpwdconfirm'])) {
-        unset($_SESSION['errorpwdconfirm']);
+    foreach ($_SESSION as $key => $value) {
+        if (strpos($key, 'error') === 0) {
+            unset($_SESSION[$key]);
+        }
     }
 }

@@ -27,5 +27,5 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <a class="btn btn-primary m-2" href="update?id=<?php echo $forum['id']?>">Modifier</a>
     <a class="btn btn-primary m-2" href="status?id=<?php echo $forum['id']?>">Changer le statut</a>
     <a class="btn btn-primary m-2" href="delete?id=<?php echo $forum['id']?>">Suppression</a>
-	</div></body>
-</html>
+	</div>
+<?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>
