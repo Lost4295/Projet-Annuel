@@ -25,16 +25,24 @@ if (
     }
 
     $name = $_POST["name"];
-    $priceint = intval($_POST["price"]);
-    $pricefloat = floatval($_POST["price"]);
+    $type = $_POST["price"];
+    $priceint = intval($_POST["valueprice"]);
+    $pricefloat = floatval($_POST["valueprice"]);
     $date = $_POST["date"];
     $description = $_POST["description"];
     $eventname = $_POST["event"];
     $errorname = "";
     $errorprice = "";
+    $errortype = "";
     $errordate = "";
     $errordescription = "";
-
+    
+    
+    $possibleTypes = ["1", "2"];
+    
+    if (!in_array($type, $possibleTypes)) {
+        $errortype = "Le type de tournoi n'est pas valide.";
+    }
 
     if ($name == "" || $name == "/^ *$/") {
         $errorname = "Le nom ne peut pas être vide.";
@@ -64,6 +72,9 @@ if (
         $price = $priceint;
     }
 
+    if ($type==2 && $price == 0) {
+        $errorprice = "Le prix ne peut pas être nul pour un tournoi payant.";
+    }
 
     if (strlen($description) > 700) {
         $errordescription = "La description doit faire moins de 700 caractères.";
@@ -89,17 +100,17 @@ if (
     }
 
 
-    if ( empty($errorname) || empty($errorprice) || empty($errordate) || empty($errordescription)) {
+    if (empty($errorname) && empty($errorprice) && empty($errordate) && empty($errordescription)) {
         $error = false;
     } else {
         $error = true;
     }
 
-    //FIXME: Add the tournament to the database
-    if (!$error) {
+    if ($error) {
         $_SESSION['errorname'] = $errorname;
         $_SESSION['errorprice'] = $errorprice;
         $_SESSION['errordate'] = $errordate;
+        $_SESSION['errortype'] = $errortype;
         $_SESSION['errordescription'] = $errordescription;
         header("Location: /event/tournament/create?name=" . $eventname);
     } else {

@@ -12,6 +12,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         <th>Description</th>
         <th>Prix</th>
         <th>Date</th>
+        <th>État</th>
         <th>Type d'événement</th>
         <th>Événement</th>
         <th>Actions</th>
@@ -24,9 +25,10 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $tournament['id'] ?></td>
                 <td><?php echo $tournament['name'] ?></td>
                 <td><?php echo $tournament['description'] ?></td>
-                <td><?php echo $tournament['price'] ?></td>
-                <td><?php echo $tournament['date'] ?></td>
-                <td><?php echo $tournament['event_type'] ?></td>
+                <td><?php echo $tournament['price'] ?> €</td>
+                <td><?php echo $fmt->format(date_create_from_format('Y-m-d H:i:s', $tournament['date']))."<br>(".$tournament['date'].")" ?></td>
+                <td><?php echo formatStateTournaments($tournament['state']) ?></td>
+                <td><?php echo formatTypePriceEvents($tournament['event_type']) ?></td>
                 <td><?php echo formatEventName($tournament['event_id']) ?></td>
                 <td><a class="btn btn-primary m-1" href="/admin/tournament/read?id=<?php echo $tournament['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="/admin/tournament/update?id=<?php echo $tournament['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="/admin/tournament/delete?id=<?php echo $tournament['id'] ?>">Supprimer</a></td>
             </tr>

@@ -82,7 +82,7 @@ $bodyfp = "<h2 style='width:50%;height:40px;padding-left:190px;text-align:right;
 
 $footer = "<hr />
         <p style='margin-top:8px'>Merci ! <br> L'équipe The Arena</p><div style='text-align:center;'><a href='http://localhost:8000'>The Arena</a></div>
-        <p style='text-align:center; margin-top:0'>Vous ne voulez plus recevoir ces messages ? <a href='http://localhost:8000/noNewsletter?email=" . $email . "'>Faites le nous savoir.</a></p>
+        <p style='text-align:center; margin-top:0'>Vous ne voulez plus recevoir nos messages ? <a href='http://localhost:8000/noNewsletter?email=" . $email . "'>Faites le nous savoir.</a></p>
         </div>
     </div>
 </body>

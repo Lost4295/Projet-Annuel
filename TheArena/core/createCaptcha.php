@@ -68,16 +68,16 @@ $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
         $name = str_replace('.jpg', '', $name);
         echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
     } ?><script>
-    function shuffleCaptcha(){
-        var parent = document.getElementById("resetZone");
-        var divs = parent.children;
-        var frag = document.createDocumentFragment();
-        while (divs.length) {
-            frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+        function shuffleCaptcha() {
+            var parent = document.getElementById("resetZone");
+            var divs = parent.children;
+            var frag = document.createDocumentFragment();
+            while (divs.length) {
+                frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+            }
+            parent.appendChild(frag);
         }
-        parent.appendChild(frag);
-    } 
-</script>
-    <script>shuffleCaptcha();</script>
-</div>
+        shuffleCaptcha();
+    </script>
+
 </div>

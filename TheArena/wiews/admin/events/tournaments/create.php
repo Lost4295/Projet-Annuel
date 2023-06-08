@@ -2,17 +2,25 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 $db = connectToDB();
 
-$query = $db->query("SELECT * FROM " . PREFIX . "users");
+$query = $db->query("SELECT * FROM " . PREFIX . "events");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
+print_r($_SESSION);
 ?>
 
 
 <h1>Création d'un nouveau tournoi</h1>
-<form action="/wiews/events/verifycreatetournament.php" method="post" class="mb-5">
+<form action="/wiews/admin/events/tournaments/verifycr.php" method="post" class="mb-5">
 	<div class="mb-3">
 		<label for="name" class="form-label">Nom du tournoi </label>
 		<input type="text" class="form-control" id="name" name="name" required>
+		<div class="invalid">
+				<?php
+				if (isset($_SESSION["errorname"])) {
+					echo $_SESSION['errorname'];
+				}
+				?>
+			</div>
 	</div>
 	<!-- apparaît seulement si l'évent est payant de base -->
 
@@ -32,8 +40,8 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 			<div class="invalid">
 				<?php
-				if (isset($_SESSION["errorprice"])) {
-					echo $_SESSION['errorprice'];
+				if (isset($_SESSION["errortype"])) {
+					echo $_SESSION['errortype'];
 				}
 				?>
 			</div>
@@ -93,7 +101,23 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 				?>
 			</div>
 		</div>
-		<input type="hidden" name="event" value="<?php echo $event['name']; ?>">
+        <div class="form-group row">
+        <label class="col-sm-2 form-control-label">Événement</label>
+        <div class="col-sm-6">
+            <select class="form-control" id="event" name="event">
+                <?php foreach ($result as $key => $orga) {
+                    echo "<option value=" . $orga["id"] . ">" . $orga["name"] . "</option>";
+                } ?>
+            </select>
+        </div>
+    </div>
+    <div class="invalid">
+        <?php
+        if (isset($_SESSION["errormanagerid"])) {
+            echo $_SESSION['errormanagerid'];
+        }
+        ?>
+    </div>
 		<div class="mb-3">
 			<button type="submit" class="btn btn-primary">Créer le tournoi</button>
 		</div>

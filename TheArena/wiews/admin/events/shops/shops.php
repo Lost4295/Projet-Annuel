@@ -4,7 +4,7 @@ $query = $db->prepare('SELECT * FROM '.PREFIX.'shops');
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
-<h1>Événements</h1>
+<h1>Boutiques des événements</h1>
 
     <table class="table table-hover table-bordered w-100">
         <thead>

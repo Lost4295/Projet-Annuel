@@ -20,4 +20,3 @@ $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
 $dompdf->stream('fichier.pdf', ['Attachment' => false]);
-00

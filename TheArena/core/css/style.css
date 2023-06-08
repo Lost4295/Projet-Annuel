@@ -171,6 +171,7 @@ body{
 .footer {
     margin-left: 17%;
     background-color: #FEEBD5;
+    transition: 0.5s;
 }
 
 #avatar{

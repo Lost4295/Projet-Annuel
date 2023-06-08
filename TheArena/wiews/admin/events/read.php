@@ -6,9 +6,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:id');
     $query->execute([':id' => $id]);
-    $event = $query->fetch();
+    $event = $query->fetch(PDO::FETCH_ASSOC);
     if (!$event) {
         header('Location: index.php');
+    } else {
+        $query = $db->prepare('SELECT * FROM ' . PREFIX . 'tournaments WHERE `event_id`=:id');
+        $query->execute([':id' => $event['id']]);
+        $tournaments = $query->fetchAll(PDO::FETCH_ASSOC);
     }
 } else {
     header('Location: index.php');
@@ -27,8 +31,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 <p>Image : <img src="<?php echo $event['image'] ?>" height="450" alt="image de l'évènement"></p>
 
 
-<p> Personnes inscrites à l'événement</p>
-//TODO accéder aux personnes inscrites
+<p> Tournois liés :</p>
+
+<?php foreach ($tournaments as $key=> $tournament) {?>
+    <a class="btn btn-primary" href="/admin/tournament/read?id=<?php echo $tournament['id'];?>" ><?php echo $tournament['name']; ?></a>
+
+
+    <?php }?>
 <div>
     <a class="btn btn-primary m-2" href="/event?name=<?php echo $event['id'] ?>">Voir l'événement sur le site</a>
     <a class="btn btn-primary m-2" href="update?id=<?php echo $event['id'] ?>">Modifier</a>

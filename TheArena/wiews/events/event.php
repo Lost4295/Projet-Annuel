@@ -27,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btnbtn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
+        <a class="btn btn-warning active" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
         <a class="btn btn-warning" href="/event/participants?name=<?php echo $event['name'] ?>">Participants</a>
         <a class="btn btn-warning" href="/event/dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
         <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
@@ -51,8 +51,9 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 <div class="col-12 d-flex justify-content-around flex-wrap">
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
         <a href="/event/tournament/create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
-    <?php } ?>
+    <?php } elseif (isConnected()) { ?>
     <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
+    <?php } ?>
 </div>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
