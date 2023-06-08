@@ -10,19 +10,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query = $db->prepare('SELECT name FROM ' . PREFIX . 'shops WHERE `id`=:id');
     $query->execute([':id' => $id]);
     $shop = $query->fetch(PDO::FETCH_ASSOC);
-    print_r($produits);
-    if (!$produits) {
-        echo ' pas de produit';
-        // header('Location: index.php');
-    }
 } else {
-    echo ' pas de prosuit';
-    // header('Location: index.php');
+    $_SESSION['message'] ='Pas de shop par ici !';
+    // header('Location:/admin/shops');
 }
 require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 
 
-//TODO : Finir ça ici et faire le nécessaire pour que ce soit good (par exemple la page de modification d'item)
 ?>
 
 <body>
@@ -48,14 +42,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
                     <td><?= $produit['price'] ?></td>
                     <td><?= $produit['description'] ?></td>
                     <td><img src="<?= $produit['image'] ?>" width="70"></td>
-                    <td><a class="btn btn-primary m-1" href="/admin/items/edit?id=<?= $produit['id'] ?>">Modifier</a>
-                    <a class="btn btn-primary m-1" href="/admin/items/delete?id=<?= $produit['id'] ?>">Supprimer</a>
+                    <td><a class="btn btn-primary m-1" href="/admin/items/edit?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Modifier</a>
+                    <a class="btn btn-primary m-1" href="/admin/items/delete?id=<?= $produit['id'] ?>&sid=<?php echo $id?>">Supprimer</a>
                 </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
-    <a class="btn btn-primary m-1" href="/admin/items/create">Ajouter un item</a>
-</body>
+    <a class="btn btn-primary m-1" href="/admin/items/create?id=<?php echo $id?>">Ajouter un item</a>
 
-</html>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";

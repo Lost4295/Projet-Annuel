@@ -1,7 +1,8 @@
 </div>
 </div>
 </div>
-<div class="row">
+</div>
+<div class="row footer">
     <div class="col px-0">
         <footer class="footer pt-4 pb-2">
             <div class="d-flex justify-content-around align-items-center">

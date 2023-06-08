@@ -42,6 +42,4 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <a class="btn btn-primary m-2" href="update?id=<?php echo $tournament['id'] ?>">Modifier</a>
         <a class="btn btn-primary m-2" href="delete?id=<?php echo $tournament['id'] ?>">Suppression</a>
     </div>
-</body>
-
-</html>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

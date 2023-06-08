@@ -9,11 +9,11 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="col-9 my-3 py-4 d-flex align-content-center flex-column flex-wrap">
+<div class="col-9 d-flex align-content-center flex-column flex-wrap">
     <div class="row m-3">
         <h2>Événements</h2>
     </div>
-    <div class="row w-100 p-2 m-3">
+    <div class="row w-100 p-2 m-3 ms-5">
         <!-- <div class="col">
             <a href="/event"><img style="position: relative; left:0; width: 250px; height:250px;" src="../img/evenement1.jpg"></a>
         </div>
@@ -22,11 +22,9 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         </div> -->
         <?php foreach ($result as $key => $event) { ?>
             <div class="col-lg-4">
-                <div class="border">
                     <a href="/event?name=<?php echo $event['name']; ?>">
-                        <img style="position: relative; width: 250px; height:250px;" class="eventimg " src="<?php echo $event['image']; ?>">
+                        <img style="position: relative; width: 250px; height:250px;" class="eventimg border" src="<?php echo $event['image']; ?>">
                     </a>
-                </div>
             </div>
         <?php } ?>
     </div>
@@ -51,5 +49,5 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 <?php
-}
+};
 require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

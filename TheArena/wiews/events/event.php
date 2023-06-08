@@ -37,7 +37,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </nav>
 </div>
 <div class="row">
-    <h2><u>Evenement <?php echo $event['name'] ?><u></h2>
+    <h2>Evenement <?php echo $event['name'] ?></h2>
 </div>
 <div class="row">
     <img style="position: relative; left: 300px; width: 685px; height: 279px;" src="<?php echo $event['image'] ?>">
@@ -50,9 +50,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 </div>
 <div class="col-12 d-flex justify-content-around flex-wrap">
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
+        <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
         <a href="/event/tournament/create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
     <?php } elseif (isConnected()) { ?>
-    <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
+        <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
     <?php } ?>
 </div>
 

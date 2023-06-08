@@ -136,10 +136,6 @@ unsetSessionErrors();
     if (isset($_SESSION['phonenumber'])) {
         unset($_SESSION['phonenumber']);
     }
-    unsetwhenRegistered2();
-}
-function unsetwhenRegistered2()
-{
     if (isset($_SESSION['address'])) {
         unset($_SESSION['address']);
     }

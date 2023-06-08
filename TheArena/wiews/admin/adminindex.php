@@ -6,11 +6,13 @@ $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "users");
 $resultu = $query->fetch(PDO::FETCH_ASSOC);
 $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "forums");
 $resultf = $query->fetch(PDO::FETCH_ASSOC);
+$query = $db->query("SELECT count(*) as c FROM " . PREFIX . "tournaments");
+$resultt = $query->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <div class="row">
     <h1>Tableau de bord</h1>
-    <div class="col">
+    <div class="col m-2">
         <div class="card" style="width: 18rem;">
             <a href="/admin/forums" class="text-decoration-none">
                 <div class="card-body">
@@ -20,7 +22,7 @@ $resultf = $query->fetch(PDO::FETCH_ASSOC);
         </div>
         </a>
     </div>
-    <div class="col">
+    <div class="col m-2">
         <a href="/admin/users" class="text-decoration-none">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -30,7 +32,7 @@ $resultf = $query->fetch(PDO::FETCH_ASSOC);
             </div>
         </a>
     </div>
-    <div class="col">
+    <div class="col m-2">
         <a href="/admin/events" class="text-decoration-none">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -40,8 +42,18 @@ $resultf = $query->fetch(PDO::FETCH_ASSOC);
             </div>
         </a>
     </div>
-    <div class="col">
-        <a href="/admin/reports" class="text-decoration-none">
+    <div class="col m-2">
+        <a href="/admin/tournaments" class="text-decoration-none">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center link-dark"> Nombre de tournois</h5>
+                    <p class=" link-dark fs-1 text-center"><?php echo $resultt['c'] ?> </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col m-2">
+        <a href="/admin/signalements" class="text-decoration-none">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title text-center link-dark">Signalements</h5>

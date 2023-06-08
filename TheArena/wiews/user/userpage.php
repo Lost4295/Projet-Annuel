@@ -19,11 +19,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $_SESSION["message"] = "Une erreur est survenue.";
         $_SESSION["message_type"] = "danger";
         header("Location: /");
+    exit(); 
     }
 } else {
     $_SESSION["message"] = "Une erreur est survenue.";
     $_SESSION["message_type"] = "danger";
     header("Location: /");
+    exit(); 
 }
 ?>
 

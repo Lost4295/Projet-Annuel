@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
-if (isset($_GET['q']) && !empty($_GET['q']) && strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50 && !preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]*/', $_GET['q']) && !preg_match('/^ *$/', $_GET['q'])) {
+if (isset($_GET['q']) && (strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50) && !preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]+/', $_GET['q']) && !preg_match('/^ *$/', $_GET['q'])) {
     $search = strip_tags($_GET['q']);
     $db = connectToDB();
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name` LIKE :search OR `description` LIKE :search OR game LIKE :search');
@@ -20,7 +20,10 @@ if (isset($_GET['q']) && !empty($_GET['q']) && strlen($_GET['q']) > 2 && strlen(
     $query->execute([':search' => '%' . $search . '%']);
     $results['tournaments'] = $query->fetchAll(PDO::FETCH_ASSOC);
 } else {
+    $_SESSION['message']="Votre recherche n'est pas valide. Veuillez réessayer. (entre 3 et 50 caractères, pas de caractères spéciaux)";
+    $_SESSION['message_type']="warning";
     header("Location: /");
+    exit(); 
 }
 
 

@@ -37,7 +37,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <div class="mb-3">
                 <h4>Inscription aux événements</h4>
                 <div class="mb-3">
-                    <?php print_r($tournaments);
+                    <?php
                     foreach ($tournaments as $key => $tournament) { ?>
                         <div class="form-check">
                             <input class="form-check-input check" type="checkbox" name="tournament[<?php echo $tournament['id'] ?>]" value="checked" id="<?php echo $tournament['id'] ?>">
@@ -107,190 +107,189 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                         <div class="drop-zone" id="dropZone9"></div>
                     </div>
                 </div>
-                <div class="col">
-                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
-                </div>
-                <input type="hidden" name="eventid" id="eventid" value="<?php echo $event['id'] ?>">
-                <input type="hidden" name="eventname" id="eventname" value="<?php echo $event['name'] ?>">
-                <div class="m-5">
-                    <button type="submit" class="btn btn-primary d-block mx-auto btn-lg" onclick="checkCaptcha(event)">Finaliser l'inscription</button>
-                </div>
+                <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
             </div>
+            <input type="hidden" name="eventid" id="eventid" value="<?php echo $event['id'] ?>">
+            <input type="hidden" name="eventname" id="eventname" value="<?php echo $event['name'] ?>">
+            <div class="m-5">
+                <button type="submit" class="btn btn-primary d-block mx-auto btn-lg" onclick="checkCaptcha(event)">Finaliser l'inscription</button>
+            </div>
+    </div>
 
-        </form>
-        <script>
-            const draggableElements = document.querySelectorAll('.draggable');
-            const dropZoneElements = document.querySelectorAll('.drop-zone');
-            const resetZone = document.getElementById('resetZone');
-
-
-
-            draggableElements.forEach((draggable) => {
-                draggable.addEventListener('dragstart', dragStart);
-            });
-
-
-            dropZoneElements.forEach((dropZone) => {
-                dropZone.addEventListener('dragover', dragOver);
-                dropZone.addEventListener('drop', drop);
-            });
-
-
-            resetZone.addEventListener('drop', resetDraggableElements);
+    </form>
+    <script>
+        const draggableElements = document.querySelectorAll('.draggable');
+        const dropZoneElements = document.querySelectorAll('.drop-zone');
+        const resetZone = document.getElementById('resetZone');
 
 
 
-            function dragStart(event) {
-                const draggedElement = event.target;
+        draggableElements.forEach((draggable) => {
+            draggable.addEventListener('dragstart', dragStart);
+        });
 
 
-                draggedElement.classList.add('dragging');
+        dropZoneElements.forEach((dropZone) => {
+            dropZone.addEventListener('dragover', dragOver);
+            dropZone.addEventListener('drop', drop);
+        });
 
 
-                event.dataTransfer.setData('text/plain', draggedElement.id);
+        resetZone.addEventListener('drop', resetDraggableElements);
+
+
+
+        function dragStart(event) {
+            const draggedElement = event.target;
+
+
+            draggedElement.classList.add('dragging');
+
+
+            event.dataTransfer.setData('text/plain', draggedElement.id);
+        }
+
+
+        function dragOver(event) {
+            event.preventDefault();
+
+
+            if (event.target.classList.contains('draggable')) {
+                event.dataTransfer.dropEffect = 'none';
+            } else {
+                event.dataTransfer.dropEffect = 'move';
+            }
+        }
+
+        function drop(event) {
+            event.preventDefault();
+
+            const existingDraggable = event.target.querySelector('.draggable');
+            if (existingDraggable) {
+                return;
             }
 
+            const droppedElementId = event.dataTransfer.getData('text/plain');
+            const droppedElement = document.getElementById(droppedElementId);
 
-            function dragOver(event) {
-                event.preventDefault();
-
-
-                if (event.target.classList.contains('draggable')) {
-                    event.dataTransfer.dropEffect = 'none';
+            event.target.appendChild(droppedElement);
+            checkAllDropZonesFilled();
+            draggableElements.forEach(function(image) {
+                if (resetZone.contains(image)) {
+                    image.classList.add('with-margin');
                 } else {
-                    event.dataTransfer.dropEffect = 'move';
+                    image.classList.remove('with-margin');
+                }
+            });
+        }
+
+        function resetDraggableElements(event) {
+            event.preventDefault();
+            const droppedElementId = event.dataTransfer.getData('text/plain');
+            const droppedElement = document.getElementById(droppedElementId);
+            event.target.appendChild(droppedElement);
+            if (resetZone.contains(droppedElement)) {
+                droppedElement.classList.add('with-margin');
+            } else {
+                droppedElement.classList.remove('with-margin');
+            }
+        };
+
+
+        function checkAllDropZonesFilled() {
+            let dropZones = document.getElementsByClassName("drop-zone");
+            for (let i = 0; i < dropZones.length; i++) {
+                let dropZone = dropZones[i];
+                if (!dropZone.innerHTML.trim()) {
+                    return false;
                 }
             }
+            return getDataValuesInDropZone();
+        }
 
-            function drop(event) {
-                event.preventDefault();
+        function getDataValuesInDropZone() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const dataValues = [];
 
-                const existingDraggable = event.target.querySelector('.draggable');
-                if (existingDraggable) {
-                    return;
+            dropZones.forEach(dropZone => {
+                if (dropZone.parentNode.classList.contains('col-auto')) {
+                    const img = dropZone.querySelector('img');
+                    const dataValue = img.dataset.value;
+                    dataValues.push(dataValue);
                 }
+            });
+            return dataValues;
+        }
 
-                const droppedElementId = event.dataTransfer.getData('text/plain');
-                const droppedElement = document.getElementById(droppedElementId);
-
-                event.target.appendChild(droppedElement);
-                checkAllDropZonesFilled();
-                draggableElements.forEach(function(image) {
-                    if (resetZone.contains(image)) {
-                        image.classList.add('with-margin');
-                    } else {
-                        image.classList.remove('with-margin');
-                    }
-                });
-            }
-
-            function resetDraggableElements(event) {
-                event.preventDefault();
-                const droppedElementId = event.dataTransfer.getData('text/plain');
-                const droppedElement = document.getElementById(droppedElementId);
-                event.target.appendChild(droppedElement);
-                if (resetZone.contains(droppedElement)) {
-                    droppedElement.classList.add('with-margin');
-                } else {
-                    droppedElement.classList.remove('with-margin');
-                }
-            };
-
-
-            function checkAllDropZonesFilled() {
-                let dropZones = document.getElementsByClassName("drop-zone");
-                for (let i = 0; i < dropZones.length; i++) {
-                    let dropZone = dropZones[i];
-                    if (!dropZone.innerHTML.trim()) {
-                        return false;
-                    }
-                }
-                return getDataValuesInDropZone();
-            }
-
-            function getDataValuesInDropZone() {
-                const dropZones = document.querySelectorAll('.drop-zone');
-                const dataValues = [];
-
-                dropZones.forEach(dropZone => {
-                    if (dropZone.parentNode.classList.contains('col-auto')) {
-                        const img = dropZone.querySelector('img');
-                        const dataValue = img.dataset.value;
-                        dataValues.push(dataValue);
-                    }
-                });
-                return dataValues;
-            }
-
-            function valthis() {
-                var checkBoxes = document.getElementsByClassName('check');
-                var isChecked = false;
-                for (var i = 0; i < checkBoxes.length; i++) {
-                    if (checkBoxes[i].checked) {
-                        isChecked = true;
-                    };
+        function valthis() {
+            var checkBoxes = document.getElementsByClassName('check');
+            var isChecked = false;
+            for (var i = 0; i < checkBoxes.length; i++) {
+                if (checkBoxes[i].checked) {
+                    isChecked = true;
                 };
-                return isChecked
-            }
+            };
+            return isChecked
+        }
 
-            function checkCaptcha(event) {
-                event.preventDefault();
-                if (document.getElementById('cgu').checked && document.getElementById('paying').checked) {
-                    if (valthis() == true) {
-                        let dataValues = checkAllDropZonesFilled();
-                        if (dataValues) {
-                            let xhr = new XMLHttpRequest();
-                            xhr.onload = function() {
-                                if (this.status == 200) {
-                                    let response = JSON.parse(this.responseText);
-                                    if (response.success == true) {
-                                        document.getElementById('form').submit();
-                                    } else {
-                                        alert('Captcha invalide. Merci de réessayer.');
-                                    }
+        function checkCaptcha(event) {
+            event.preventDefault();
+            if (document.getElementById('cgu').checked && document.getElementById('paying').checked) {
+                if (valthis() == true) {
+                    let dataValues = checkAllDropZonesFilled();
+                    if (dataValues) {
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function() {
+                            if (this.status == 200) {
+                                let response = JSON.parse(this.responseText);
+                                if (response.success == true) {
+                                    document.getElementById('form').submit();
+                                } else {
+                                    alert('Captcha invalide. Merci de réessayer.');
                                 }
                             }
-                            xhr.open('POST', '/checkCaptcha', true);
-                            let data = new FormData();
-                            data.append('dataValues', JSON.stringify(dataValues));
-                            xhr.send(data);
-                        } else {
-                            alert('Veuillez remplir entièrement le Captcha.');
-                            return;
                         }
+                        xhr.open('POST', '/checkCaptcha', true);
+                        let data = new FormData();
+                        data.append('dataValues', JSON.stringify(dataValues));
+                        xhr.send(data);
                     } else {
-                        alert('Veuillez au moins sélectionner un tournoi.');
-                        document.getElementById('invalidt').style.display = 'block';
+                        alert('Veuillez remplir entièrement le Captcha.');
+                        return;
                     }
                 } else {
-                    alert('Veuillez accepter les conditions du paiement, et les CGU.');
+                    alert('Veuillez au moins sélectionner un tournoi.');
+                    document.getElementById('invalidt').style.display = 'block';
                 }
+            } else {
+                alert('Veuillez accepter les conditions du paiement, et les CGU.');
             }
-        </script>
-    </div>
+        }
+    </script>
+</div>
 
-    <div class="ms-5 col-6 float-end">
-        <div class="border-start p-5">
-            <div class="border-bottom">
-                <h3 class="text-center">Récapitulatif</h3>
-            </div>
-            <div class="d-flex justify-content-center py-3 border-bottom">
-                <table class="w-50">
-                    <tr>
-                        <td>Sous total</td>
-                        <td class="text-success">Gratuit</td>
-                    </tr>
-                    <tr>
-                        <td>Taxes</td>
-                        <td class="text-success">Gratuit</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="d-flex justify-content-around py-3">
-                <div>Total</div>
-                <div class="text-success">Gratuit</div>
-            </div>
+<div class="ms-5 col-6 float-end">
+    <div class="border-start p-5">
+        <div class="border-bottom">
+            <h3 class="text-center">Récapitulatif</h3>
+        </div>
+        <div class="d-flex justify-content-center py-3 border-bottom">
+            <table class="w-50">
+                <tr>
+                    <td>Sous total</td>
+                    <td class="text-success">Gratuit</td>
+                </tr>
+                <tr>
+                    <td>Taxes</td>
+                    <td class="text-success">Gratuit</td>
+                </tr>
+            </table>
+        </div>
+        <div class="d-flex justify-content-around py-3">
+            <div>Total</div>
+            <div class="text-success">Gratuit</div>
         </div>
     </div>
+</div>
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

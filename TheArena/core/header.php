@@ -1,6 +1,6 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
-} 
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="" style="height:100%">
@@ -19,7 +19,7 @@
 <body onload="timeoutmod()" class="h-100">
 
     </div>
-    <div class="container-fluid  d-flex flex-column justify-content-between ps-0">
+    <div class="d-flex flex-column justify-content-between ps-0">
         <div class="row">
             <div class="col px-0">
                 <nav class="navbar p-0 header">
@@ -30,11 +30,7 @@
                                 <img src="/img/thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center textlogo">
                             </a>
                         </div>
-                        <div class="sun-moon">
-                            <input type="checkbox" id="changeToDarkMode" />
-                            <span class="circle large"></span>
-                            <span class="circle small"></span>
-                        </div>
+
                         <div>
                             <form class="d-flex" role="search" method="get" action="/core/search.php">
                                 <div class="input-group">
@@ -43,32 +39,37 @@
                                 </div>
                             </form>
                         </div>
-                        <?php
-                        include_once 'functions.php';
-                        include 'formatter.php';
-                        if (isConnected()) {
-                            $attr = whoIsConnected();
-                        ?>
-                            <div class="dropdown">
-                                <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
-                                <div id="thedropdown" class="dropdown-content dropcolor">
-                                    <?php echo "Connecté en tant que " . $attr['1']; ?>
-                                    <a class="btn btn-warning" href="/logout"><i class="bi bi-box-arrow-right text-danger fs-4"></i> Se déconnecter </a>
-                                    <a class="btn btn-warning" href="/me">Ma page</a>
-                                    <?php if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
-                                        <a class="btn btn-warning " href="/admin">Index Admin</a>
-                                    <?php } ?>
+                        <div class="d-flex flex-row me-2">
+                            <div class="sun-moon mt-1 me-2">
+                                <input type="checkbox" id="changeToDarkMode" />
+                                <span class="circle large"></span>
+                                <span class="circle small"></span>
+                            </div>
+                            <?php
+                            include_once 'functions.php';
+                            include 'formatter.php';
+                            if (isConnected()) {
+                                $attr = whoIsConnected();
+                            ?>
+                                <div class="dropdown">
+                                    <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
+                                    <div id="thedropdown" class="dropdown-content dropcolor">
+                                        <?php echo "Connecté en tant que " . $attr['1']; ?>
+                                        <a class="btn btn-warning" href="/me">Ma page</a>
+                                        <?php if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
+                                            <a class="btn btn-warning " href="/admin">Index Admin</a>
+                                        <?php } ?>
+                                        <a class="btn btn-danger " href="/logout"><i class="bi bi-box-arrow-right fs-4"></i> Se déconnecter </a>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } else { ?>
+                                <div>
+                                    <a class="btn btn-warning" href="/login">Connexion</a>
+                                    <a class="btn btn-warning" href="/register">Inscription</a>
+                                </div>
+                            <?php } ?>
 
-
-                        <?php } else { ?>
-                            <div>
-                                <a class="btn btn-warning" href="/login">Connexion</a>
-                                <a class="btn btn-warning" href="/register">Inscription</a>
-                            </div>
-                        <?php } ?>
-
+                        </div>
                     </div>
             </div>
             </nav>
@@ -90,7 +91,7 @@
             unset($_SESSION['message_type']);
         } ?>
     </div><!--notre sidebar-->
-    <div class="container-fluid pl-0">
+    <div class="container-fluid pl-0" id="minheight">
         <div class="row" id="maxer">
             <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
                 <div class="w-100 d-flex flex-column justify-content-between">

@@ -3,12 +3,13 @@ session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
 if (
-    count($_POST) != 5
+    count($_POST) != 6
     || empty($_POST["name"])
     || !isset($_POST["price"])
     || !isset($_POST["description"])
     || !isset($_POST["shop_id"])
     || !isset($_POST["type"])
+    || !isset($_POST["eventname"])
 ) {
     print_r($_POST);
     print_r($_FILES);
@@ -23,6 +24,7 @@ $pricefloat = floatval($_POST["price"]);
 $description = $_POST["description"];
 $shop_id = $_POST["shop_id"];
 $type = $_POST["type"];
+$eventname = $_POST["eventname"];
 $errorname = "";
 $errorprice = "";
 $errordescription = "";
@@ -125,5 +127,5 @@ if (!$error) {
     ]);
     $_SESSION['message'] = "L'item a bien été créé.";
     $_SESSION['message_type'] = "success";
-    header("Location: /event/shop?shop=" . $shop_id);
+    header("Location: /event/shop?shop=" . $shop_id . "&name=". $eventname);
 }

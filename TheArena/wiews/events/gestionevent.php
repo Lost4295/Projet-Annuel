@@ -42,7 +42,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </nav>
 </div>
 <div class="row">
-    <h2><u>Gestion de l'événement<u></h2>
+    <h2>Gestion de l'événement</h2>
 </div>
 <div class="row">
     <div class="col-12">

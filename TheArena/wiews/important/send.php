@@ -95,4 +95,5 @@ if (
     $_SESSION["message"] = "Votre message a bien été envoyé !";
     $_SESSION['message_type'] = "success";
     header("Location: /");
+    exit(); 
 }

@@ -37,7 +37,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </nav>
 </div>
     <div class="row">
-        <h2><u>Tableau de bord<u></h2>
+        <h2>Tableau de bord</h2>
     </div>
     <div class="row border">
         <div class="d-flex align-content-center flex-column flex-wrap">
