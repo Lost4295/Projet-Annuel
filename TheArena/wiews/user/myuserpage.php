@@ -20,7 +20,6 @@ if (!empty($result)) {
     $scope = $result["scope"];
     $phone = $result["phone"];
     $address = $result["address"];
-    $postal_code = $result["postal_code"];
     $newsletter = $result["newsletter"];
     $avatar = $result["avatar"];
     $about = $result["about"];

@@ -17,17 +17,18 @@ if (!empty($result)) {
     $username = $result["username"];
     $birthdate = $result["birthdate"];
     $email = $result["email"];
+    $address = $result["address"];
     $password = $result["password"];
     $scope = $result["scope"];
     $phone = $result["phone"];
-    $address = $result["address"];
-    $postal_code = $result["postal_code"];
-    $country = $result["country"];
     $newsletter = $result["newsletter"];
     $avatar = $result["avatar"];
     $about = $result["about"];
 }
-
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 print_r($_SESSION)
 
 ?>
