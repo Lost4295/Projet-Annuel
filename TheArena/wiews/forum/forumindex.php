@@ -1,9 +1,21 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 
 $db= connectToDB();
-$query= $db->query("Select id, name, description,date_creation as date, author from ".PREFIX."forums ORDER BY date_creation");
+$query= $db->query("Select * from ".PREFIX."forums ORDER BY date_creation");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
 // print_r($result);
+
+$last_messages = array();
+foreach ($result as $key => $forum) {
+$query= $db->prepare("Select message from ".PREFIX."forum_reponses WHERE date_reponse=:date_response");
+$query->execute([
+    "date_response" => $forum['date_last_message']
+]);
+$last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
+}
+// print_r($last_messages);
+
 ?>
 
 <h1 class="text-center">Forums</h1>
@@ -11,14 +23,14 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="w-100">
     <div class="list-group">
-        <?php foreach ($result as $forum){?>
+        <?php foreach ($result as $key => $forum) {?>
         <a href="forum?id=<?php echo $forum['id']?>" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><?php echo $forum['name']?></h5>
-                <small class="text-body-secondary"><?php echo $forum['date']?></small>
+                <small class="text-body-secondary"><?php echo $forum['date_last_message']?></small>
             </div>
             <p class="mb-1"><?php echo $forum["description"]?></p>
-            <small class="text-body-secondary">Écrit par <?php echo findUserById($forum["author"])?></small>
+            <small class="text-body-secondary">Dernier message :<?php echo $last_messages[$key]['message']?></small>
         </a>
         <?php ; }?>
     </div>

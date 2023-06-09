@@ -75,7 +75,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    right:0%;
+    right:4%;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -184,8 +184,8 @@ body{
 
 .footer {
         margin-bottom: 0px;
-        width: 91%;
-        margin-left: 9%;
+        width: 92%;
+        margin-left: 8%;
         background-color: #FEEBD5;
         transition: 0.5s;
         position: absolute;

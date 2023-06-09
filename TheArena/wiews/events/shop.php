@@ -46,8 +46,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 <div class="row w-100 p-2 ms-4 m-3">
     <?php foreach ($items as $key => $item) { ?>
         <div class="col-lg-4">
-                <a href="/item?id=<?php echo $item['id']; ?>">
-                    <img style="" class=" border eventimg" src="<?php echo $item['image']; ?>">
+                <a href="/item?id=<?php echo $item['id']; ?>&shop=<?php echo $event['shop_id']?>">
+                    <img style="width:150px" class=" border eventimg" src="<?php echo $item['image']; ?>">
                 </a>
         </div>
     <?php } ?>

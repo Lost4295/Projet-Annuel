@@ -1,5 +1,6 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+
 
 $db = connectToDB();
 
@@ -13,7 +14,7 @@ $db = connectToDB();
 $query = $db->prepare("SELECT scope FROM ".PREFIX."users WHERE email = :email");
 $query->execute(['email' => $_SESSION['email']]);
 $admin = $query->fetch(PDO::FETCH_ASSOC);
-
+require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
 ?>
 
     <form method="post" action="verifyusersup.php">
