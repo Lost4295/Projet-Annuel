@@ -18,6 +18,7 @@ if (
 
 $blogname= trim($_POST["blogname"]);
 $blogdesc= trim($_POST["blogdesc"]);
+$author= $_POST["author"];
 $id= $_POST["id"];
 $errorname="";
 $errordesc="";
@@ -29,9 +30,9 @@ if (strlen($blogname)<3) {
 $db = connectToDB();
 $query = $db->prepare("SELECT * FROM ".PREFIX."forums where name =:name");
 $query->execute(['name'=>$blogname]);
-$result = $query->fetch();
+$result = $query->fetch(PDO::FETCH_ASSOC);
 
-if ($result){
+if ($result>1) {
     $errorname = "Ce blog existe déjà.";
 }
 
@@ -56,19 +57,20 @@ if (!empty($blogdesc)) {
 }
 
 
-if (!empty($errorname)||!empty($errordesc)) {
+if (empty($errorname) && empty($errordesc)) {
     $error=false;
 } else {
     $error=true;
 }
 
 
-if (!$error) {
+if ($error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errordesc']= $errordesc;
-    header("Location:/wiews/forum/createblogform.php");
+    $_SESSION['errorauthor']= $errorauthor;
+    header("Location:/admin/forum/update?id=".$id);
 } else {
-    $query= $db->prepare("UPDATE".PREFIX."forums SET name=:name, description=:description, author=:author WHERE id=:id");
+    $query= $db->prepare("UPDATE ".PREFIX."forums SET name=:name, description=:description, author=:author WHERE id=:id");
     $query->execute(["name"=>$blogname,"description"=>$blogdesc,'author'=>$author, 'id'=>$id]);
-    header("Location: /forums");
+    header("Location: /admin/forums");
 }

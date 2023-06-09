@@ -131,5 +131,5 @@
                     </script> -->
                 </div>
             </div>
-            <div class=" content col-9 d-flex align-content-center flex-column flex-wrap">
+            <div class=" content col-10 d-flex align-content-center flex-column flex-wrap">
                 <div class="w-100 mb-5">

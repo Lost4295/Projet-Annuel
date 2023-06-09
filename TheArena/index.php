@@ -56,6 +56,7 @@ $routes = [
     "/events" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/evenements",
     "/powerranking" => $_SERVER['DOCUMENT_ROOT']."/wiews/powerranking/powerRankingIndex",
     "/event" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/event",
+    "/item" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/item",
     "/event/shop/create/item" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/createitemform",
     "/event/shop" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/shop",
     "/event/participants" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/participant",
