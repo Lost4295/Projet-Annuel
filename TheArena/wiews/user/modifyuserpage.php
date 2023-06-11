@@ -182,8 +182,15 @@ print_r($_SESSION)
                 }
 
             })
+        
         </script>
-        <p class="text-muted text-center"> Cliquer pour modifier l'avatar</p>
+        <button class="btn btn-warning" id="avatar">avatar</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <canvas id="canvas" style="border:4px solid #000000;"></canvas>
+                </div>
+            </div>
         <div class="invalid">
             <?php if (isset($_SESSION["erroravatar"])) {
                 echo $_SESSION["erroravatar"];
@@ -212,6 +219,9 @@ print_r($_SESSION)
 
             </div>
         </div>
+        <div>
+
+        </div>
         <div class="mb-5 pb-5">
             <label class="form-check-label" for="visibility">
                 Visibilité du compte
@@ -235,8 +245,9 @@ print_r($_SESSION)
         <div class="d-flex justify-content-center">
             <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
         </div>
+  
         </form>
     </div>
-
+    <script src="Javatar/avatarMaker.js"></script>
 
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
