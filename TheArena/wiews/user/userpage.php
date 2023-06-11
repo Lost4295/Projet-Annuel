@@ -34,7 +34,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <h1> Page utilisateur de <?php echo $username; ?> </h1>
         <div><a class="more" href="#">···</a>&emsp;&emsp;&emsp;</div>
     </div>
-    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar?>" width="150" height="150" /></div>
+    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar?>" width="200" height="200" /></div>
     <h3>À propos de moi</h3>
     <div class="my-5">
         <p>

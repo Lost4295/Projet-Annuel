@@ -37,6 +37,27 @@ print_r($_SESSION)
     <h1> Modifier ma page </h1>
 
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">changer l'avatar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <canvas id="canvas" style="border:5px solid #000000;"></canvas>
+            </div>
+            <div class="modal-footer">
+                <button onClick="window.location.reload();" type="button" class="btn btn-primary" href="/Javatar/changeAvatar.php"> générer et sauvegarder les modifications</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+            </div>
+            </div>
+        </div>
+</div>
+    </div>
+    <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
             <label for="firstname" class="form-label">Prénom</label>
             <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNames($firstname) ?>">
@@ -184,13 +205,6 @@ print_r($_SESSION)
             })
         
         </script>
-        <button class="btn btn-warning" id="avatar">avatar</button>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <canvas id="canvas" style="border:4px solid #000000;"></canvas>
-                </div>
-            </div>
         <div class="invalid">
             <?php if (isset($_SESSION["erroravatar"])) {
                 echo $_SESSION["erroravatar"];

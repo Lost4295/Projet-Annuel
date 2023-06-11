@@ -3,33 +3,28 @@ window.onload = function ()
 {
         // head
         var head = new Image();
-        var headNum = document.getElementById("head");
+        var headNum = Math.floor(Math.random()*3)+1;
         var headName = "head"+ headNum + ".png";
-        head.src = headName;
+        head.src ="/avatarsAtributes/head/"+ headName;
 
         // eye
         var eyes = new Image();
-        var eyesNum = document.getElementById("eyes");
+        var eyesNum = Math.floor(Math.random()*3)+1;
         var eyesName = "eyes"+ eyesNum + ".png";
-        eyes.src = eyesName;
+        eyes.src ="/avatarsAtributes/eye/"+ eyesName;
         
-        //hair
-        var hair = new Image();
-        var hairNum = document.getElementById("hair");
-        var hairName = "hair"+ eyesNum + ".png";
-        hair.src = hairName;
 
         // accessory
         var accessory = new Image();
-        var accessoryNum = document.getElementById("accessory");
+        var accessoryNum = Math.floor(Math.random()*3)+1;
         var accessoryName = "accessory"+ accessoryNum + ".png";
-        accessory.src = accessoryName;
+        accessory.src ="/avatarsAtributes/accessory/"+ accessoryName;
 
         // mouth
         var mouth = new Image();
-        var mouthNum = document.getElementById("mouth");
-        var mouthName = "mouth"+ eyesNum + ".png";
-        mouth.src = mouthName;
+        var mouthNum = Math.floor(Math.random()*3)+1;
+        var mouthName = "mouth"+ mouthNum + ".png";
+        mouth.src ="/avatarsAtributes/mouth/"+ mouthName;
     
     
     head.onload=function()
@@ -42,10 +37,6 @@ window.onload = function ()
         buildAvatar();
     }
 
-    hair.onload=function()
-    {
-        buildAvatar();
-    }
 
     accessory.onload=function()
     {
@@ -65,8 +56,6 @@ window.onload = function ()
         canvas.height = 200;
 
         ctx.drawImage(head,((200-head.width)/2),25);
-
-        ctx.drawImage(hair,((150-hair.width)/2),25);
 
         ctx.drawImage(eyes,((100-eyes.width)/2),50);
 
