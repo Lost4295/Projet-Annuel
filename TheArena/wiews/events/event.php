@@ -32,7 +32,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <a class="btn btn-warning" href="event_dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
         <a class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning" href="/event/management?name=<?php echo $event['name'] ?>">Gestion</a>
+            <a class="btn btn-warning" href="event_management?name=<?php echo $event['name'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>
