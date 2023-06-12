@@ -1,13 +1,11 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
-redirectIfNotConnected();
-require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = strip_tags($_GET['id']);
+if (isset($_GET['name']) && !empty($_GET['name'])) {
+    $name = strip_tags($_GET['name']);
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE id=:id");
+    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE username=:name");
     $queryPrepared->execute([
-        "id" => $id
+        "name" => $name
     ]);
 
     $result = $queryPrepared->fetch(PDO::FETCH_ASSOC);
@@ -27,6 +25,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header("Location: /");
     exit(); 
 }
+require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
 
 <div class="w-100">
@@ -34,7 +33,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <h1> Page utilisateur de <?php echo $username; ?> </h1>
         <div><a class="more" href="#">···</a>&emsp;&emsp;&emsp;</div>
     </div>
-    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar?>" width="150" height="150" /></div>
+    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar?>" width="200" height="200" /></div>
     <h3>À propos de moi</h3>
     <div class="my-5">
         <p>

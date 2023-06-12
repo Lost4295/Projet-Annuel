@@ -37,6 +37,27 @@ print_r($_SESSION)
     <h1> Modifier ma page </h1>
 
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">changer l'avatar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <canvas id="canvas" style="border:5px solid #000000;"></canvas>
+            </div>
+            <div class="modal-footer">
+                <button onClick="window.location.reload();" type="button" class="btn btn-primary" href="/Javatar/changeAvatar.php"> générer et sauvegarder les modifications</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+            </div>
+            </div>
+        </div>
+</div>
+    </div>
+    <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
             <label for="firstname" class="form-label">Prénom</label>
             <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNames($firstname) ?>">
@@ -182,8 +203,8 @@ print_r($_SESSION)
                 }
 
             })
+        
         </script>
-        <p class="text-muted text-center"> Cliquer pour modifier l'avatar</p>
         <div class="invalid">
             <?php if (isset($_SESSION["erroravatar"])) {
                 echo $_SESSION["erroravatar"];
@@ -212,6 +233,9 @@ print_r($_SESSION)
 
             </div>
         </div>
+        <div>
+
+        </div>
         <div class="mb-5 pb-5">
             <label class="form-check-label" for="visibility">
                 Visibilité du compte
@@ -235,8 +259,9 @@ print_r($_SESSION)
         <div class="d-flex justify-content-center">
             <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
         </div>
+  
         </form>
     </div>
-
+    <script src="Javatar/avatarMaker.js"></script>
 
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

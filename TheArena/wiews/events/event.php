@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
@@ -17,6 +19,11 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
         $_SESSION['message_type'] = "danger";
         header('Location: /');
         exit();
+    } else {
+        $tquery = $db->prepare('SELECT * FROM ' . PREFIX . 'events_users WHERE `event_id`=:event_id AND `user_id`=:user_id');
+        $tquery->execute([':event_id' => $event['id'], ':user_id' => $user['id']]);
+        $participation = $tquery->fetch(PDO::FETCH_ASSOC);
+    
     }
 } else {
     $_SESSION['message'] = "Cet évènement n'existe pas.";
@@ -54,8 +61,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
         <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
         <a href="event_tournament_create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
-    <?php } elseif (isConnected()) { ?>
+    <?php } elseif (isConnected() && $participation) { ?>
         <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
+    <?php } elseif (isConnected() && $participation) { ?>
+    <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">Se désinscrire</a>
     <?php } ?>
 </div>
 

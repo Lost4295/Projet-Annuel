@@ -39,7 +39,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
 <div class="w-100"><?php if (isset($result)) { ?>
 
         <ul class="list-group list-group-flush mb-4">
-            <?php foreach ($_SESSION["forum"] as $element) { ?>
+            <?php foreach ($result as $element) { ?>
                 <li href="#" class="list-group-item">
                     <div class="d-flex w-100 justify-content-between flex-wrap align-items-center">
                         <h5 class="mb-1"><?php echo formatUsers($element['user_id']) ?></h5>

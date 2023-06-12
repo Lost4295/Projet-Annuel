@@ -78,7 +78,7 @@ echo "</pre>";
             <div class="tab-pane" id="nav-users" role="tabpanel" tabindex="0">
                 <div class="list-group">
                     <?php if (!empty($results['users'])) { foreach ($results['users'] as $item ) {?>
-                        <a href="/user?id=<?php echo $item['id']?>" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="/user?name=<?php echo $item['username']?>" class="list-group-item list-group-item-action" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"><?php echo $item['username']?></h5>
                         </div>

@@ -30,7 +30,7 @@
             </div>
 
             <div>
-                <form class="d-flex" role="search" method="get" action="/core/search.php">
+                <form class="d-flex" role="search" method="get" action="/search">
                     <div class="input-group">
                         <input class="form-control" type="search" name="q" placeholder="Rechercher">
                         <button class="input-group-text" type="submit"><i class="bi bi-search"></i></button>

@@ -30,7 +30,9 @@ $last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
                 <small class="text-body-secondary"><?php echo $forum['date_last_message']?></small>
             </div>
             <p class="mb-1"><?php echo $forum["description"]?></p>
+            <?php if (isset($last_messages[$key]['message'])) { ?>
             <small class="text-body-secondary">Dernier message :<?php echo $last_messages[$key]['message']?></small>
+            <?php ;}?>
         </a>
         <?php ; }?>
     </div>
