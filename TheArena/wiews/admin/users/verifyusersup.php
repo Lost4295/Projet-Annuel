@@ -211,20 +211,21 @@
 
         $table =[];
         if ($error) {
-            $table['errorfirstname']= $errorfirstname;
-            $table['errorlastname']= $errorlastname;
-            $table['errorbirthdate']= $errorbirthdate;
-            $table['errorphonenumber']= $errorphonenumber;
-            $table['erroraddress']= $erroraddress;
-            $table['errorcp']= $errorcp;
-            $table['errorcity']= $errorcity;
-            $table['errorcountry']= $errorcountry;
-            $table['errortype']= $errortype;
-            $table['errorusername']= $errorusername;
-            $table['erroremail']= $erroremail;
-            $table['errorpwd']= $errorpwd;
-            $table['errorpwdconfirm']= $errorpwdconfirm;
-            $table['errornewsletter']= $errornewsletter;
+            $_SESSION['errorfirstname']= $errorfirstname;
+            $_SESSION['errorlastname']= $errorlastname;
+            $_SESSION['errorbirthdate']= $errorbirthdate;
+            $_SESSION['errorphonenumber']= $errorphonenumber;
+            $_SESSION['erroraddress']= $erroraddress;
+            $_SESSION['errorcp']= $errorcp;
+            $_SESSION['errorcity']= $errorcity;
+            $_SESSION['errorcountry']= $errorcountry;
+            $_SESSION['errortype']= $errortype;
+            $_SESSION['errorusername']= $errorusername;
+            $_SESSION['erroremail']= $erroremail;
+            $_SESSION['errorpwd']= $errorpwd;
+            $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
+            $_SESSION['errornewsletter']= $errornewsletter;
+            header("Location: /admin_users_update?id=".$id);
         } else {
             $pwd=password_hash($pwd, PASSWORD_DEFAULT);
             $query=$db->prepare("UPDATE ".PREFIX."users
@@ -249,7 +250,7 @@
                 "id"=>$id,
                 "activation_code"=>password_hash(generateActivationCode(), PASSWORD_DEFAULT),
             ]);
-            header("Location:admin_users");
+            header("Location: /admin_users");
         }
         print_r($table);
 

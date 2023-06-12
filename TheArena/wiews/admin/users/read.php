@@ -31,9 +31,9 @@ require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 			<p>Statut : <?php echo formatStatusUsers($user["status"]) ?></p>
 
     <div>
-    <a class="btn btn-primary m-2" href="update?id=<?php echo $user['id']?>">Modifier les données reltives à la personne</a>
-    <a class="btn btn-primary m-2" href="changes?id=<?php echo $user['id']?>">Modifier les données concernant le compte</a>
-    <a class="btn btn-primary m-2" href="delete?id=<?php echo $user['id']?>">Pseudo suppression</a>
+    <a class="btn btn-primary m-2" href="admin_users_update?id=<?php echo $user['id']?>">Modifier les données reltives à la personne</a>
+    <a class="btn btn-primary m-2" href="admin_users_changes?id=<?php echo $user['id']?>">Modifier les données concernant le compte</a>
+    <a class="btn btn-primary m-2" href="admin_users_delete?id=<?php echo $user['id']?>">Pseudo suppression</a>
 	</div>
 
 

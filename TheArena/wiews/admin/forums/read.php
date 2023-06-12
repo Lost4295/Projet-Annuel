@@ -24,8 +24,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <p>Statut : <?php echo formatStatusForums($forum['status']) ?></p>
     <p>Auteur : <?php echo findUserById($forum['author']) ?></p>
     <div>
-    <a class="btn btn-primary m-2" href="update?id=<?php echo $forum['id']?>">Modifier</a>
-    <a class="btn btn-primary m-2" href="status?id=<?php echo $forum['id']?>">Changer le statut</a>
-    <a class="btn btn-primary m-2" href="delete?id=<?php echo $forum['id']?>">Suppression</a>
+    <a class="btn btn-primary m-2" href="admin_forum_update?id=<?php echo $forum['id']?>">Modifier</a>
+    <a class="btn btn-primary m-2" href="admin_forum_status?id=<?php echo $forum['id']?>">Changer le statut</a>
+    <a class="btn btn-primary m-2" href="admin_forum_delete?id=<?php echo $forum['id']?>">Suppression</a>
 	</div>
 <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>

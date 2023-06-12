@@ -27,7 +27,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo ($event['shop_id'])??"NULL" ?></td>
                     <td><?php echo $event['game'] ?></td>
                     <td><?php echo formatType($event['type']) ?></td>
-                    <td><a class="btn btn-primary m-1" href="admin/events/read?id=<?php echo $event['id'] ?>">Voir</a>  <a class="btn btn-primary m-1" href="admin/events/update?id=<?php echo $event['id'] ?>">Modifier</a>  <a class="btn btn-primary m-1" href="admin/events/delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
+                    <td><a class="btn btn-primary m-1" href="admin_events_read?id=<?php echo $event['id'] ?>">Voir</a>  <a class="btn btn-primary m-1" href="admin_events_update?id=<?php echo $event['id'] ?>">Modifier</a>  <a class="btn btn-primary m-1" href="admin_events_delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
                 </tr>
         <?php
             }

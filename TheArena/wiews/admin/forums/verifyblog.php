@@ -66,7 +66,7 @@ if (!$error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errordesc']= $errordesc;
     $_SESSION['errorauthor']= $errorauthor;
-    header("Location:admin_forum_create");
+    header("Location: /admin_forum_create");
 } else {
     $_SESSION['blogname']= $blogname;
     $_SESSION['blogdesc']= $blogdesc;

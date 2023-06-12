@@ -17,7 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id']) && empty($_POST)) {
     ) {
         $_SESSION['message'] = "Erreur lors de la modification";
         $_SESSION['message_type'] = "danger";
-        header('Location: /admin_shops/edit?id=' . $_GET['id']);
+        header('Location: /admin_shops_edit?id=' . $_GET['id']);
     } else {
         $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "shops SET `name`=:name, `description`=:description WHERE `id`=:id;");

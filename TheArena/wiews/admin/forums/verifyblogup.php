@@ -67,7 +67,7 @@ if (empty($errorname) && empty($errordesc)) {
 if ($error) {
     $_SESSION['errorname']= $errorname;
     $_SESSION['errordesc']= $errordesc;
-    header("Location: /wiews_forum_update?id=".$id); 
+    header("Location: /admin_forum_update?id=".$id); 
 } else {
     $query= $db->prepare("UPDATE ".PREFIX."forums SET name=:name, description=:description, author=:author WHERE id=:id");
     $query->execute(["name"=>$blogname,"description"=>$blogdesc,'author'=>$author, 'id'=>$id]);

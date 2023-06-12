@@ -34,14 +34,14 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 <p> Tournois liés :</p>
 
 <?php foreach ($tournaments as $key=> $tournament) {?>
-    <a class="btn btn-primary" href="admin_tournament/read?id=<?php echo $tournament['id'];?>" ><?php echo $tournament['name']; ?></a>
+    <a class="btn btn-primary" href="admin_tournament_read?id=<?php echo $tournament['id'];?>" ><?php echo $tournament['name']; ?></a>
 
 
     <?php }?>
 <div>
     <a class="btn btn-primary m-2" href="event?name=<?php echo $event['id'] ?>">Voir l'événement sur le site</a>
-    <a class="btn btn-primary m-2" href="update?id=<?php echo $event['id'] ?>">Modifier</a>
+    <a class="btn btn-primary m-2" href="admin_events_update?id=<?php echo $event['id'] ?>">Modifier</a>
     <?php if ($event['shop_id']) {?><a class="btn btn-primary m-2" href="admin_shop_read?id=<?php echo $event['shop_id'] ?>">Voir le shop associé</a><?php }?>
-    <a class="btn btn-primary m-2" href="delete?id=<?php echo $event['id'] ?>">Supprimer</a>
+    <a class="btn btn-primary m-2" href="admin_events_delete?id=<?php echo $event['id'] ?>">Supprimer</a>
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/footer.php";

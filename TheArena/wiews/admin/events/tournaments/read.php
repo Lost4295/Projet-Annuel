@@ -39,7 +39,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     </ul>
 
     <div>
-        <a class="btn btn-primary m-2" href="update?id=<?php echo $tournament['id'] ?>">Modifier</a>
-        <a class="btn btn-primary m-2" href="delete?id=<?php echo $tournament['id'] ?>">Suppression</a>
+        <a class="btn btn-primary m-2" href="admin_tournament_update?id=<?php echo $tournament['id'] ?>">Modifier</a>
+        <a class="btn btn-primary m-2" href="admin_tournament_delete?id=<?php echo $tournament['id'] ?>">Suppression</a>
     </div>
     <?php require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/footer.php" ?>
