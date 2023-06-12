@@ -5,26 +5,26 @@ window.onload = function ()
         var head = new Image();
         var headNum = Math.floor(Math.random()*3)+1;
         var headName = "head"+ headNum + ".png";
-        head.src ="/avatarsAtributes/head/"+ headName;
+        head.src ="/wiews/user/Javatar/avatarsAtributes/head/"+ headName;
 
         // eye
         var eyes = new Image();
         var eyesNum = Math.floor(Math.random()*3)+1;
         var eyesName = "eyes"+ eyesNum + ".png";
-        eyes.src ="/avatarsAtributes/eye/"+ eyesName;
+        eyes.src ="/wiews/user/Javatar/avatarsAtributes/eye/"+ eyesName;
         
 
         // accessory
         var accessory = new Image();
         var accessoryNum = Math.floor(Math.random()*3)+1;
         var accessoryName = "accessory"+ accessoryNum + ".png";
-        accessory.src ="/avatarsAtributes/accessory/"+ accessoryName;
+        accessory.src ="/wiews/user/Javatar/avatarsAtributes/accessory/"+ accessoryName;
 
         // mouth
         var mouth = new Image();
         var mouthNum = Math.floor(Math.random()*3)+1;
         var mouthName = "mouth"+ mouthNum + ".png";
-        mouth.src ="/avatarsAtributes/mouth/"+ mouthName;
+        mouth.src ="/wiews/user/Javatar/avatarsAtributes/mouth/"+ mouthName;
     
     
     head.onload=function()

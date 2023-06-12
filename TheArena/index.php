@@ -65,6 +65,7 @@ $routes = [
     "event_create" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/createeventform",
     "event_management" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/gestionevent",
     "event_register" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/registereventform",
+    "event_unregister" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/unregistereventform",
     "event_dashboard" => $_SERVER['DOCUMENT_ROOT']."/wiews/events/dashboard",
     "me" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/myuserpage",
     "forums" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumindex",
