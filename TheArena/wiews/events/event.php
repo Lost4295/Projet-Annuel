@@ -18,8 +18,7 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
-    }
-    if ($event) {
+    } else {
         $tquery = $db->prepare('SELECT * FROM ' . PREFIX . 'events_users WHERE `event_id`=:event_id AND `user_id`=:user_id');
         $tquery->execute([':event_id' => $event['id'], ':user_id' => $user['id']]);
         $participation = $tquery->fetch(PDO::FETCH_ASSOC);
