@@ -1,13 +1,11 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
-redirectIfNotConnected();
-require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id = strip_tags($_GET['id']);
+if (isset($_GET['name']) && !empty($_GET['name'])) {
+    $name = strip_tags($_GET['name']);
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE id=:id");
+    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE username=:name");
     $queryPrepared->execute([
-        "id" => $id
+        "name" => $name
     ]);
 
     $result = $queryPrepared->fetch(PDO::FETCH_ASSOC);
@@ -27,6 +25,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header("Location: /");
     exit(); 
 }
+require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
 
 <div class="w-100">
