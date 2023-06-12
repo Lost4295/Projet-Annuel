@@ -40,8 +40,8 @@ var input = document.getElementById('myinput');
 var tableData = [
 {name: 'Onion', quantity: 29, price: 1.2, expiry: '2021-09-12'}, {name: 'Apple', quantity: 55, price: 3.3, expiry: '2021-09-22'}, {name: 'Potato', quantity: 25, price: 2.5, expiry: '2021-09-18'}, {name: 'Carrot', quantity: 8, price: 0.8, expiry: '2021-09-25'}
 ];
-var caretUpClassName = 'fa fa-caret-up';
-var caretDownClassName = 'fa fa-caret-down';
+var caretUpClassName = 'bi bi-caret-up-fill';
+var caretDownClassName = 'bi bi-caret-down-fill';
 const sort_by = (field, reverse, primer) => {
 
 const key = primer ?
