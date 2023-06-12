@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
         <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
         <a href="event_tournament_create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
-    <?php } elseif (isConnected() && $participation) { ?>
+    <?php } elseif (isConnected() && !$participation) { ?>
         <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
     <?php } elseif (isConnected() && $participation) { ?>
     <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">Se désinscrire</a>
