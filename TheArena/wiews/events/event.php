@@ -16,11 +16,13 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
+        exit();
     }
 } else {
     $_SESSION['message'] = "Cet évènement n'existe pas.";
     $_SESSION['message_type'] = "danger";
     header('Location: /');
+    exit();
 }
 include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
