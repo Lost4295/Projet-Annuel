@@ -4,7 +4,7 @@ $db= connectToDB();
 $query= $db->query("Select * from ".PREFIX."forums ORDER BY date_creation");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-// print_r($result);
+print_r($result);
 
 $last_messages = array();
 foreach ($result as $key => $forum) {
@@ -14,7 +14,7 @@ $query->execute([
 ]);
 $last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
 }
-// print_r($last_messages);
+print_r($last_messages);
 
 ?>
 
@@ -39,7 +39,7 @@ $last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
 </div>
 
 
-<?php if(isConnected()) {?>
+<?php if (isConnected()) {?>
     
     <a href="forum/create" class="btn btn-primary m-5"> Créer un forum</a>
     
