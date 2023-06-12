@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <?php } elseif (isConnected() && !$participation) { ?>
         <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">S'inscrire</a>
     <?php } elseif (isConnected() && $participation) { ?>
-    <a class="btn btn-warning" href="/event/register?name=<?php echo $event['name'] ?>">Se désinscrire</a>
+    <a class="btn btn-warning" href="/event/unregister?name=<?php echo $event['name'] ?>">Se désinscrire</a>
     <?php } ?>
 </div>
 
