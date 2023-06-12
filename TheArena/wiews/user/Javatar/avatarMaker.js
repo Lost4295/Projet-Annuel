@@ -62,5 +62,7 @@ window.onload = function ()
         ctx.drawImage(mouth,((100-mouth.width)/2),75);
 
         ctx.drawImage(accessory,((100-accessory.width)/2),25);
+
+        
     }
 }
