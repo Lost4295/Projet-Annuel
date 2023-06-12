@@ -37,25 +37,25 @@ print_r($_SESSION)
     <h1> Modifier ma page </h1>
 
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
-    <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">changer l'avatar</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <canvas id="canvas" style="border:5px solid #000000;"></canvas>
-            </div>
-            <div class="modal-footer">
-                <button onClick="window.location.reload();" type="button" class="btn btn-primary" href="/Javatar/changeAvatar.php"> générer et sauvegarder les modifications</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-            </div>
+        <div class="modal" id="example" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">changer l'avatar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <canvas id="canvas" style="border:5px solid #000000;"></canvas>
+                    </div>
+                    <div class="modal-footer">
+                        <button onClick="window.location.reload();" type="button" class="btn btn-primary" href="/wiews/user/Javatar/changeAvatar.php"> générer et sauvegarder les modifications</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
     </div>
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
@@ -118,150 +118,202 @@ print_r($_SESSION)
         <div class="col-7 my-4">
             <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
             <div class="input-group mb-3">
-            <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
-            <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
-        </div>
+                <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
+            </div>
             <div class="invalid">
                 <?php if (isset($_SESSION["errorpwdconfirm"])) {
                     echo $_SESSION["errorpwdconfirm"];
                 } ?>
             </div>
         </div>
+        <div class=" row mt-5 mb-3 pr-5">
+            <div class="col">
+                <h4>Photo de profil</h4>
+                <div class="images">
+                    <label for="image" class="d-flex justify-content-center">
+                        <div class=" my-5">
+                            <img src="<?php echo $avatar ?>" width="150" height="150" id="output" />
 
-
-
-</div>
-</div>
-
-
-<div class=" row mt-5 mb-3 pr-5">
-    <div class="col">
-        <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
-        
-
-
-
-
-
-
-
-
-
-
-        <h4>Photo de profil</h4>
-        <div class="images">
-            <label for="image" class="d-flex justify-content-center">
-                <div class=" my-5">
-                    <img src="<?php echo $avatar ?>" width="150" height="150" id="output" />
-
+                        </div>
+                    </label>
+                    <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
                 </div>
-            </label>
-            <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
-        </div>
-        <style>
-            .images img {
-                border-radius: 50%;
-                cursor: pointer;
-                border: 1px solid black;
-            }
+                <style>
+                    .images img {
+                        border-radius: 50%;
+                        cursor: pointer;
+                        border: 1px solid black;
+                    }
 
-            .images>input {
-                display: none;
-            }
-        </style>
-        <script>
-            var loadFile = function(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-            };
+                    .images>input {
+                        display: none;
+                    }
+                </style>
+                <script>
+                    var loadFile = function(event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                    };
 
-            let eye = document.getElementById("pwd-eye");
-            let confeye = document.getElementById("confpwd-eye");
-            let pwd = document.getElementById("pwd");
-            let confirmpwd = document.getElementById("confirmpwd");
-            console.log(eye);
-            eye.addEventListener("click", function() {
-                if (pwd.type === "password") {
-                    pwd.type = "text";
-                    confirmpwd.type = "password";
-                    confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
-                    eye.innerHTML = "<i class='bi bi-eye-fill'></i>";
-                } else {
-                    pwd.type = "password";
-                    eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
-                }
-            })
-            confeye.addEventListener("click", function() {
-                if (confirmpwd.type === "password") {
-                    confirmpwd.type = "text";
-                    confeye.innerHTML = "<i class='bi bi-eye-fill'></i>";
-                    pwd.type = "password";
-                    eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
-                } else {
-                    confirmpwd.type = "password";
-                    confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
-                }
+                    let eye = document.getElementById("pwd-eye");
+                    let confeye = document.getElementById("confpwd-eye");
+                    let pwd = document.getElementById("pwd");
+                    let confirmpwd = document.getElementById("confirmpwd");
+                    console.log(eye);
+                    eye.addEventListener("click", function() {
+                        if (pwd.type === "password") {
+                            pwd.type = "text";
+                            confirmpwd.type = "password";
+                            confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                            eye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+                        } else {
+                            pwd.type = "password";
+                            eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                        }
+                    })
+                    confeye.addEventListener("click", function() {
+                        if (confirmpwd.type === "password") {
+                            confirmpwd.type = "text";
+                            confeye.innerHTML = "<i class='bi bi-eye-fill'></i>";
+                            pwd.type = "password";
+                            eye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                        } else {
+                            confirmpwd.type = "password";
+                            confeye.innerHTML = "<i class='bi bi-eye-slash-fill'></i>";
+                        }
 
-            })
+                    })
+                </script>
+                <div class="invalid">
+                    <?php if (isset($_SESSION["erroravatar"])) {
+                        echo $_SESSION["erroravatar"];
+                    } ?>
+                </div>
+                <script>
+                    function example() {
+                        el = document.getElementById("example");
+                        el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                    }
+                </script>
+
+                <a href='#' onclick=example()>open</a>
+                <div class="mb-5 pb-5">
+                    <label for="about" class="form-label">
+                        <h3>À propos de moi</h3>
+                    </label>
+                    <textarea class="form-control" id="about" rows="3" name="about"><?php echo $about ?></textarea>
+
+                    <div class="invalid">
+                        <?php if (isset($_SESSION["errorabout"])) {
+                            echo $_SESSION["errorabout"];
+                        } ?>
+                    </div>
+                </div>
+                <div class="mb-5 pb-5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" name="newsletter" id="newslettter" <?php if ($newsletter == 1) {
+                                                                                                                            echo "checked";
+                                                                                                                        } ?>>
+                        <label class="form-check-label" for="newslettter">
+                            Je m'abonne aux newsletters
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-5 pb-5">
+                    <label class="form-check-label" for="visibility">
+                        Visibilité du compte
+                    </label>
+                    <select class="form-select" name="visibility" aria-label="visibility" id="visibility">
+                        <option value="2" <?php if ($result['visibility'] == 2) {
+                                                echo "selected";
+                                            } ?>>Public</option>
+                        <option value="1" <?php if ($result['visibility'] == 1) {
+                                                echo "selected";
+                                            } ?>>Privé</option>
+                    </select>
+                    <div class="invalid">
+                        <?php if (isset($_SESSION["errorvisibility"])) {
+                            echo $_SESSION["errorvisibility"];
+                        } ?>
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
+                <div class="d-flex justify-content-center">
+                    <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
+                </div>
+    </form>
+</div>
+<script>window.onload = function ()
+{
+        // head
+        var head = new Image();
+        var headNum = Math.floor(Math.random()*3)+1;
+        var headName = "head"+ headNum + ".png";
+        head.src ="/wiews/user/Javatar/avatarsAtributes/head/"+ headName;
+
+        // eye
+        var eyes = new Image();
+        var eyesNum = Math.floor(Math.random()*3)+1;
+        var eyesName = "eyes"+ eyesNum + ".png";
+        eyes.src ="/wiews/user/Javatar/avatarsAtributes/eye/"+ eyesName;
         
-        </script>
-        <div class="invalid">
-            <?php if (isset($_SESSION["erroravatar"])) {
-                echo $_SESSION["erroravatar"];
-            } ?>
-        </div>
-        <div class="mb-5 pb-5">
-            <label for="about" class="form-label">
-                <h3>À propos de moi</h3>
-            </label>
-            <textarea class="form-control" id="about" rows="3" name="about"><?php echo $about ?></textarea>
 
-            <div class="invalid">
-                <?php if (isset($_SESSION["errorabout"])) {
-                    echo $_SESSION["errorabout"];
-                } ?>
-            </div>
-        </div>
-        <div class="mb-5 pb-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="1" name="newsletter" id="newslettter" <?php if ($newsletter == 1) {
-                                                                                                                    echo "checked";
-                                                                                                                } ?>>
-                <label class="form-check-label" for="newslettter">
-                    Je m'abonne aux newsletters
-                </label>
+        // accessory
+        var accessory = new Image();
+        var accessoryNum = Math.floor(Math.random()*3)+1;
+        var accessoryName = "accessory"+ accessoryNum + ".png";
+        accessory.src ="/wiews/user/Javatar/avatarsAtributes/accessory/"+ accessoryName;
 
-            </div>
-        </div>
-        <div>
+        // mouth
+        var mouth = new Image();
+        var mouthNum = Math.floor(Math.random()*3)+1;
+        var mouthName = "mouth"+ mouthNum + ".png";
+        mouth.src ="/wiews/user/Javatar/avatarsAtributes/mouth/"+ mouthName;
+    
+    
+    head.onload=function()
+    {
+        buildAvatar();
+    }
 
-        </div>
-        <div class="mb-5 pb-5">
-            <label class="form-check-label" for="visibility">
-                Visibilité du compte
-            </label>
-            <select class="form-select" name="visibility" aria-label="visibility" id="visibility">
-                <option value="2" <?php if ($result['visibility'] == 2) {
-                                        echo "selected";
-                                    } ?>>Public</option>
-                <option value="1" <?php if ($result['visibility'] == 1) {
-                                        echo "selected";
-                                    } ?>>Privé</option>
-            </select>
+    eyes.onload=function()
+    {
+        buildAvatar();
+    }
 
-            <div class="invalid">
-                <?php if (isset($_SESSION["errorvisibility"])) {
-                    echo $_SESSION["errorvisibility"];
-                } ?>
-            </div>
-        </div>
-        <input type="hidden" name="id" value="<?php echo $result["id"] ?>">
-        <div class="d-flex justify-content-center">
-            <input type="submit" value="Enregistrer les modifications" class="btn btn-primary ">
-        </div>
-  
-        </form>
-    </div>
-    <script src="Javatar/avatarMaker.js"></script>
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
+    accessory.onload=function()
+    {
+        buildAvatar();
+    }
+
+    mouth.onload=function()
+    {
+        buildAvatar();
+    }
+
+    function buildAvatar()
+    {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = 200;
+        canvas.height = 200;
+
+        ctx.drawImage(head,((200-head.width)/2),25);
+
+        ctx.drawImage(eyes,((100-eyes.width)/2),50);
+
+        ctx.drawImage(mouth,((100-mouth.width)/2),75);
+
+        ctx.drawImage(accessory,((100-accessory.width)/2),25);
+
+        
+    }
+}</script>
+</div>
+</div>
+</div>
+</div>
+
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
