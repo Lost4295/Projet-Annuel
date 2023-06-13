@@ -26,6 +26,13 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
             $liked = $queryPrepared->fetch(PDO::FETCH_ASSOC);
         }
 
+        if ($result['visibility'] <= 1) {
+            $_SESSION["message"] = "Ce profil est privé.";
+            $_SESSION["message_type"] = "danger";
+            header("Location: /");
+            exit();
+        }
+
         $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) AS like_count FROM " . PREFIX . "users_likes WHERE liked_id=:liked_id");
         $queryPrepared->execute([
             "liked_id" => $result["id"]

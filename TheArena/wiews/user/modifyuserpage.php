@@ -37,19 +37,6 @@ print_r($_SESSION)
     <h1> Modifier ma page </h1>
 
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
-        <div class="modal" id="example" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">changer l'avatar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </div>
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
@@ -124,15 +111,21 @@ print_r($_SESSION)
         <div class=" row mt-5 mb-3 pr-5">
             <div class="col">
                 <h4>Photo de profil</h4>
-                <div class="images">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="chooser">
+                    <label class="form-check-label" for="chooser" id="texte">Image utilisateur</label>
+                </div>
+                <div id="customimg" class="images">
                     <label for="image" class="d-flex justify-content-center">
                         <div class=" my-5">
                             <img src="<?php echo $avatar ?>" width="150" height="150" id="output" />
-                        <canvas id="canvas" style="border:5px solid #000000;"></canvas>
-                        <button onClick="window.location.reload()" name='avatar' type="button" class="btn btn-primary" href="/wiews/user/Javatar/saveAvatar.php"> générer et sauvegarder les modifications</button>
                         </div>
                     </label>
                     <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
+                </div>
+                <div id="customavatar" style="display:none">
+                    <canvas id="canvas" style="border:5px solid #000000;"></canvas>
+                    <button onClick="window.location.reload()" name='avatar' type="button" class="btn btn-primary" href="/wiews/user/Javatar/saveAvatar.php"> générer et sauvegarder les modifications</button>
                 </div>
                 <style>
                     .images img {
@@ -146,6 +139,22 @@ print_r($_SESSION)
                     }
                 </style>
                 <script>
+                    let choosetypeimage = document.getElementById("chooser");
+                    let customimg = document.getElementById("customimg");
+                    let customavatar = document.getElementById("customavatar");
+
+                    choosetypeimage.onclick = function() {
+                        if (choosetypeimage.checked == true) {
+                            customimg.style.display = "none";
+                            customavatar.style.display = "block";
+                            document.getElementById("texte").innerHTML = "Avatar personnalisé";
+
+                        } else {
+                            customimg.style.display = "block";
+                            customavatar.style.display = "none";
+                            document.getElementById("texte").innerHTML = "Image utilisateur";
+                        }
+                    }
                     var loadFile = function(event) {
                         var output = document.getElementById('output');
                         output.src = URL.createObjectURL(event.target.files[0]);
@@ -192,7 +201,6 @@ print_r($_SESSION)
                     }
                 </script>
 
-                <a href='#' onclick=example()>open</a>
                 <div class="mb-5 pb-5">
                     <label for="about" class="form-label">
                         <h3>À propos de moi</h3>
@@ -239,73 +247,69 @@ print_r($_SESSION)
                 </div>
     </form>
 </div>
-<script>window.onload = function ()
-{
+<script>
+    window.onload = function() {
         // head
         var head = new Image();
-        var headNum = Math.floor(Math.random()*3)+1;
-        var headName = "head"+ headNum + ".png";
-        head.src ="/wiews/user/Javatar/avatarsAtributes/head/"+ headName;
+        var headNum = Math.floor(Math.random() * 3) + 1;
+        var headName = "head" + headNum + ".png";
+        head.src = "/wiews/user/Javatar/avatarsAtributes/head/" + headName;
 
         // eye
         var eyes = new Image();
-        var eyesNum = Math.floor(Math.random()*3)+1;
-        var eyesName = "eyes"+ eyesNum + ".png";
-        eyes.src ="/wiews/user/Javatar/avatarsAtributes/eye/"+ eyesName;
-        
+        var eyesNum = Math.floor(Math.random() * 3) + 1;
+        var eyesName = "eyes" + eyesNum + ".png";
+        eyes.src = "/wiews/user/Javatar/avatarsAtributes/eye/" + eyesName;
+
 
         // accessory
         var accessory = new Image();
-        var accessoryNum = Math.floor(Math.random()*3)+1;
-        var accessoryName = "accessory"+ accessoryNum + ".png";
-        accessory.src ="/wiews/user/Javatar/avatarsAtributes/accessory/"+ accessoryName;
+        var accessoryNum = Math.floor(Math.random() * 3) + 1;
+        var accessoryName = "accessory" + accessoryNum + ".png";
+        accessory.src = "/wiews/user/Javatar/avatarsAtributes/accessory/" + accessoryName;
 
         // mouth
         var mouth = new Image();
-        var mouthNum = Math.floor(Math.random()*3)+1;
-        var mouthName = "mouth"+ mouthNum + ".png";
-        mouth.src ="/wiews/user/Javatar/avatarsAtributes/mouth/"+ mouthName;
-    
-    
-    head.onload=function()
-    {
-        buildAvatar();
+        var mouthNum = Math.floor(Math.random() * 3) + 1;
+        var mouthName = "mouth" + mouthNum + ".png";
+        mouth.src = "/wiews/user/Javatar/avatarsAtributes/mouth/" + mouthName;
+
+
+        head.onload = function() {
+            buildAvatar();
+        }
+
+        eyes.onload = function() {
+            buildAvatar();
+        }
+
+
+        accessory.onload = function() {
+            buildAvatar();
+        }
+
+        mouth.onload = function() {
+            buildAvatar();
+        }
+
+        function buildAvatar() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            canvas.width = 200;
+            canvas.height = 200;
+
+            ctx.drawImage(head, ((200 - head.width) / 2), 25);
+
+            ctx.drawImage(eyes, ((100 - eyes.width) / 2), 50);
+
+            ctx.drawImage(mouth, ((100 - mouth.width) / 2), 75);
+
+            ctx.drawImage(accessory, ((100 - accessory.width) / 2), 25);
+
+
+        }
     }
-
-    eyes.onload=function()
-    {
-        buildAvatar();
-    }
-
-
-    accessory.onload=function()
-    {
-        buildAvatar();
-    }
-
-    mouth.onload=function()
-    {
-        buildAvatar();
-    }
-
-    function buildAvatar()
-    {
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
-        canvas.width = 200;
-        canvas.height = 200;
-
-        ctx.drawImage(head,((200-head.width)/2),25);
-
-        ctx.drawImage(eyes,((100-eyes.width)/2),50);
-
-        ctx.drawImage(mouth,((100-mouth.width)/2),75);
-
-        ctx.drawImage(accessory,((100-accessory.width)/2),25);
-
-        
-    }
-}</script>
+</script>
 </div>
 </div>
 </div>
