@@ -26,7 +26,7 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
             $liked = $queryPrepared->fetch(PDO::FETCH_ASSOC);
         }
 
-        $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) FROM " . PREFIX . "users_likes WHERE liked_id=:liked_id");
+        $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) AS like_count FROM " . PREFIX . "users_likes WHERE liked_id=:liked_id");
         $queryPrepared->execute([
             "liked_id" => $result["id"]
         ]);
@@ -58,7 +58,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <p>
             <?php echo $about ?>
         </p>
-        <div class="text-center"><?php $nbrlike ?>J'aime &emsp; 12 amis <- nombres pouvant être privés</div>
+        <div class="text-center"><?php $nbrlike["like_count"] ?>J'aime &emsp; 12 amis <- nombres pouvant être privés</div>
         </div>
         <div class="d-flex justify-content-around">
            <?php if ($liked) { ?>
