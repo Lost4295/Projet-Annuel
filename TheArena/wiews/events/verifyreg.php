@@ -16,7 +16,7 @@ if (
          puis de contacter un administrateur.");
 }
 
-$pseudo = $_POST["pseudo"];
+// $pseudo = $_POST["pseudo"];
 $email = $_SESSION['email'];
 $tournament = $_POST["tournament"];
 $eventid = $_POST["eventid"];
@@ -42,17 +42,17 @@ if (!isset($resulte)) {
     $resultp = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 
 
-    if (strlen($pseudo) < 3) {
-        $errorpseudo = "Votre pseudo doit contenir au moins 3 caractères.";
-    } elseif (strlen($pseudo) > 20) {
-        $errorpseudo = "Votre pseudo ne peut pas contenir plus de 20 caractères.";
-    } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $pseudo)) {
-        $errorpseudo = "Votre pseudo ne peut contenir que des lettres et des chiffres.";
-    } elseif (isset($resultp) && $pseudo == $resultp['username']) {
-        $errorpseudo = "Ce pseudo est déjà utilisé. De toute façon, ceci n'était pas modifiable.";
-    } else {
-        $errorpseudo = "";
-    }
+    // if (strlen($pseudo) < 3) {
+    //     $errorpseudo = "Votre pseudo doit contenir au moins 3 caractères.";
+    // } elseif (strlen($pseudo) > 20) {
+    //     $errorpseudo = "Votre pseudo ne peut pas contenir plus de 20 caractères.";
+    // } elseif (!preg_match("/^[a-zA-Z0-9]*$/", $pseudo)) {
+    //     $errorpseudo = "Votre pseudo ne peut contenir que des lettres et des chiffres.";
+    // } elseif (isset($resultp) && $pseudo == $resultp['username']) {
+    //     $errorpseudo = "Ce pseudo est déjà utilisé. De toute façon, ceci n'était pas modifiable.";
+    // } else {
+    //     $errorpseudo = "";
+    // }
 
 
 
@@ -73,7 +73,7 @@ if (!isset($resulte)) {
     }
 
 
-    if (empty($errorpseudo) && empty($errortournament)) {
+    if (/*empty($errorpseudo) &&*/ empty($errortournament)) {
         $error = false;
     } else {
         $error = true;

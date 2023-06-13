@@ -5,7 +5,7 @@ $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <h1>Événements</h1>
-<input type="text" id="myinput" placeholder="Search..." title="Type in something">
+<input type="text" id="myinput" class="form-control" placeholder="Insérez une valeur pour filtrer le tableau..." title="Insérez une valeur">
 <table class="table table-hover table-bordered w-100">
     <thead>
         <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
@@ -41,6 +41,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     var tableData = <?php echo json_encode($result); ?>;
     var caretUpClassName = 'bi bi-caret-up-fill';
     var caretDownClassName = 'bi bi-caret-down-fill';
+    console.log(tableData)
     const sort_by = (field, reverse, primer) => {
 
         const key = primer ?

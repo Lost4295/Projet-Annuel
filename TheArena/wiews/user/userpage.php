@@ -13,6 +13,25 @@ if (isset($_GET['name']) && !empty($_GET['name'])) {
         $username = $result["username"];
         $avatar = $result["avatar"];
         $about = $result["about"];
+
+        if (isConnected()) {
+            $nquery =  $connection->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
+            $nquery->execute([':email' => $_SESSION['email']]);
+            $user = $nquery->fetch(PDO::FETCH_ASSOC);
+            $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_likes WHERE user_id=:user_id AND liked_id=:liked_id");
+            $queryPrepared->execute([
+                "user_id" => $user["id"],
+                "liked_id" => $result["id"]
+            ]);
+            $liked = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+        }
+
+        $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) FROM " . PREFIX . "users_likes WHERE liked_id=:liked_id");
+        $queryPrepared->execute([
+            "liked_id" => $result["id"]
+        ]);
+        $nbrlike = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+
     } else {
         $_SESSION["message"] = "Une erreur est survenue.";
         $_SESSION["message_type"] = "danger";
@@ -39,10 +58,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <p>
             <?php echo $about ?>
         </p>
-        <div class="text-center">0 J'aime &emsp;&emsp;12 amis <- nombres pouvant être privés</div>
+        <div class="text-center"><?php $nbrlike ?>J'aime &emsp; 12 amis <- nombres pouvant être privés</div>
         </div>
         <div class="d-flex justify-content-around">
-            <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> J'aime</div>
+           <?php if ($liked) { ?>
+                <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> J'aime</div>
+           <?php } elseif (!$liked) { ?>
+                <div class="btn-default btn"><i class="bi bi-heart-fill"></i> J'aime</div>
+            <?php } ?>
             <div class="btn-secondary btn"><i class="bi bi-person-add"></i> Demander en ami</div>
         </div>
     </div>
