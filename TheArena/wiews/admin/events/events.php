@@ -5,7 +5,7 @@ $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <h1>Événements</h1>
-<input type="text" id="myinput" placeholder="Search..." title="Type in something">
+<input type="text" id="myinput" class="form-control" placeholder="Insérez une valeur pour filtrer le tableau..." title="Insérez une valeur">
 <table class="table table-hover table-bordered w-100">
     <thead>
         <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
@@ -34,32 +34,14 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         ?>
     </tbody>
 </table>
-<div>
-    <h2>Product Table</h2>
-    <p>Key in your input to filter the table:</p>
 
-
-
-    <p>Click on the header of a column to sort the table:</p>
-
-    <table>
-        <thead>
-            <tr>
-
-                <th><span id="description" class="w3-button table-column">description <i class="caret"></i></span></th>
-                <th><span id="price" class="w3-button table-column">price <i class="caret"></span></i></th>
-                <th><span id="date_creation" class="w3-button table-column">Expiry Date <i class="caret"></i></span></th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
 <script>
     var table = document.getElementById('mytable');
     var input = document.getElementById('myinput');
     var tableData = <?php echo json_encode($result); ?>;
     var caretUpClassName = 'bi bi-caret-up-fill';
     var caretDownClassName = 'bi bi-caret-down-fill';
+    console.log(tableData)
     const sort_by = (field, reverse, primer) => {
 
         const key = primer ?
