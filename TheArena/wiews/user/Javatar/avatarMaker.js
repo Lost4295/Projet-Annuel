@@ -63,6 +63,8 @@ window.onload = function ()
 
         ctx.drawImage(accessory,((100-accessory.width)/2),25);
 
+
         
     }
+
 }
