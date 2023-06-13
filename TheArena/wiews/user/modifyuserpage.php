@@ -46,13 +46,7 @@ print_r($_SESSION)
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <canvas id="canvas" style="border:5px solid #000000;"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                        <button onClick="window.location.reload();" type="button" class="btn btn-primary" href="/wiews/user/Javatar/changeAvatar.php"> générer et sauvegarder les modifications</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -134,7 +128,8 @@ print_r($_SESSION)
                     <label for="image" class="d-flex justify-content-center">
                         <div class=" my-5">
                             <img src="<?php echo $avatar ?>" width="150" height="150" id="output" />
-
+                        <canvas id="canvas" style="border:5px solid #000000;"></canvas>
+                        <button onClick="window.location.reload()" name='avatar' type="button" class="btn btn-primary" href="/wiews/user/Javatar/saveAvatar.php"> générer et sauvegarder les modifications</button>
                         </div>
                     </label>
                     <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
