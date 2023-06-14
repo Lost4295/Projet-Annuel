@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
-if (isset($_GET['name']) && !empty($_GET['name'])) {
-    $name = strip_tags($_GET['name']);
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $name = strip_tags($_GET['id']);
     $connection = connectToDB();
     $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE username=:name");
     $queryPrepared->execute([

@@ -91,29 +91,61 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     function populateTable() {
         table.innerHTML = '';
         for (let data of tableData) {
-            let row = table.insertRow(-1);
-            let id = row.insertCell(0);
-            id.innerHTML = data.id;
+            let form1 = new FormData();
+            form1.append('data', data.state);
+            form1.append('action', 'formatStateTournaments');
+            fetch('/core/fetchformatter.php', {
+                    method: 'POST',
+                    body: form1
+                })
+                .then(response => response.text())
+                .then(stated => {
+                    let form2 = new FormData();
+                    form2.append('data', data.event_id);
+                    form2.append('action', 'formatEventName');
+                    fetch('/core/fetchformatter.php', {
+                            method: 'POST',
+                            body: form2
+                        })
+                        .then(response => response.text())
+                        .then(evtname => {
+                            let form3 = new FormData();
+                            form3.append('data', data.event_type);
+                            form3.append('action', 'formatTypeEvents');
+                            fetch('/core/fetchformatter.php', {
+                                    method: 'POST',
+                                    body: form3
+                                })
+                                .then(response => response.text())
+                                .then(evttype => {
 
-            let name = row.insertCell(1);
-            name.innerHTML = data.name;
 
-            let description = row.insertCell(2);
-            description.innerHTML = data.description;
+                                    let row = table.insertRow(-1);
+                                    let id = row.insertCell(0);
+                                    id.innerHTML = data.id;
 
-            let price = row.insertCell(3);
-            price.innerHTML = data.price;
-            let date = row.insertCell(4);
+                                    let name = row.insertCell(1);
+                                    name.innerHTML = data.name;
 
-            date.innerHTML = data.date;
-            let state = row.insertCell(5);
-            state.innerHTML = data.state;
-            let event_type = row.insertCell(6);
-            event_type.innerHTML = data.event_type;
-            let event_id = row.insertCell(7);
-            event_id.innerHTML = data.event_id;
-            let actions = row.insertCell(8);
-            actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/tournament/read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin/tournament/update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin/tournament/delete?id=${data.id}">Supprimer</a>`;
+                                    let description = row.insertCell(2);
+                                    description.innerHTML = data.description;
+
+                                    let price = row.insertCell(3);
+                                    price.innerHTML = data.price + "€";
+                                    let date = row.insertCell(4);
+
+                                    date.innerHTML = data.date;
+                                    let state = row.insertCell(5);
+                                    state.innerHTML = stated;
+                                    let event_type = row.insertCell(6);
+                                    event_type.innerHTML = evttype;
+                                    let event_id = row.insertCell(7);
+                                    event_id.innerHTML = evtname;
+                                    let actions = row.insertCell(8);
+                                    actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/tournament/read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin/tournament/update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin/tournament/delete?id=${data.id}">Supprimer</a>`;
+                                });
+                        });
+                });
         }
 
         filterTable();

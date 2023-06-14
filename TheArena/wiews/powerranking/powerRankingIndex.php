@@ -1,5 +1,4 @@
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ;
-    session_start(); 
 
 ?>
     <div class="row border">

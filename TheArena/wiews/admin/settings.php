@@ -3,6 +3,7 @@
 <h1>Paramètres</h1>
 <a href="https://iredadmin.thearena.litecloud.fr/iredadmin" class="btn btn-primary">Modifier les paramètres mail</a>
 <a href="https://sogo.thearena.litecloud.fr/sogo" class="btn btn-primary">Accéder aux mails de The Arena</a>
+//TODO Ajouter un input pour savoir à partir de quelle date on envoir le mail de rappel
 </div>
 <div class="my-3">
 <h2> Ajouter une image</h2>

@@ -85,8 +85,6 @@
             }
         }
     }
-    <?php if (isset($_SESSION['message'])) {
-    } ?>
 
     function disappear() {
         var x = document.getElementById("alert");

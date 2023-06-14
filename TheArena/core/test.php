@@ -5,7 +5,7 @@ use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
 
-// TODO: PDF Ok
+// TODO  FAIRE LE PDF
 
 $image= file_get_contents('bullet.gif');
 

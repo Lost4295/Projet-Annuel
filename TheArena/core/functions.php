@@ -158,3 +158,16 @@ function unsetSessionErrors()
         }
     }
 }
+
+
+
+$db = connectToDB();
+$queryPrepared = $db->query("SELECT id, email, last_access_date FROM " . PREFIX . "users");
+$users = $queryPrepared->fetchAll();
+
+foreach ($users as $user) {
+if (strtotime($user['last_access_date']) < strtotime('-1 year')) {
+
+    sendEmail($user['email'], 'Vous ne jouez plus ?', 232, '');//TODO ecrire le mail
+}
+}

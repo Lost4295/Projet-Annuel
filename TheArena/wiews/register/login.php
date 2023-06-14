@@ -28,16 +28,21 @@ if (isset($email)) {
                     'email'=>$email
                 ]);
             }
-            session_regenerate_id($delete_old_session=true);
+            session_regenerate_id();
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
+            $queryPrepared = $db->prepare("UPDATE " . PREFIX . "users SET last_access_date=:last_access_date WHERE email=:email");
+            $queryPrepared->execute([
+                "last_access_date" => date("Y-m-d H:i:s", strtotime($user["last_access_date"])),
+                "email" => $email
+            ]);
             $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
             $queryPrepared->execute([
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
-            unset($_SESSION['error']);
-            $_SESSION['message']= "Bonjour à vous !";
+            unsetSessionErrors();
+            $_SESSION['message'] = "Bonjour à vous !";
             switch ($scope["scope"]) {
                 case SUPADMIN : //super-admin
                     header("Location:/admin");

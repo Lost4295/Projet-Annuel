@@ -1,5 +1,6 @@
 <?php
 
+include_once 'functions.php';
 function formatUsers($user)
 {
     $db = connectToDB();
@@ -73,14 +74,6 @@ function formatType($type)
     return $return;
 }
 
-function findUserById($id)
-{
-    $db = connectToDB();
-    $query = $db->prepare("SELECT username as u FROM ".PREFIX."users WHERE id=:id");
-    $query->execute(['id'=>$id]);
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    return $result['u'];
-}
 
 function formatStatusForums($status)
 {
