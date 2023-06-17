@@ -598,4 +598,8 @@ padding: 0
     .bg-secondary {
         background-color: #3B3259 !important;
     }
+    #loading {
+        background-color: #000;
+        opacity: 0.4;
+    }
 }
