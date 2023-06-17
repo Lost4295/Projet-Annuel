@@ -17,9 +17,9 @@
 </head>
 
 <body onload="timeoutmod()" class="h-100">
-
-
-
+<div id="loading">
+  <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
+</div>
     <nav class="navbar p-0 header">
         <div class="container-fluid d-flex justify-content-around">
             <div class="mr-auto">

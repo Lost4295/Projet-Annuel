@@ -165,9 +165,14 @@ $db = connectToDB();
 $queryPrepared = $db->query("SELECT id, email, last_access_date FROM " . PREFIX . "users");
 $users = $queryPrepared->fetchAll();
 
-foreach ($users as $user) {
-if (strtotime($user['last_access_date']) < strtotime('-1 year')) {
+include $_SERVER["DOCUMENT_ROOT"]."\\core\\number.php";
 
-    sendEmail($user['email'], 'Vous ne jouez plus ?', 232, '');//TODO ecrire le mail
+foreach ($users as $user) {
+if ($user['last_access_date'] < time() +$number) {
+
+    sendEmail($user['email'], 'Vous ne jouez plus ?', 232, '');//TODO ecrire le mail 
+    //'Bonjour, cela fait un moment que vous ne vous êtes pas connecté. Avez-vous abandonné The Arena ?
+    // Ce serait dommage, car de nouveaux joueurs vous attendent ! Revenez vite auprès de nous, pour vosu confronter à eux ! De nouveaux joueurs vous attendent ! Organisez de nouveaux événements,, et grimpez au sommet de la RankingList ! 
+    //Nous vous attendons de tout coeur sur The Arena !'
 }
 }

@@ -32,6 +32,14 @@
 </body>
 
 <script>
+    window.onload = (event) => {
+        setTimeout(function() {
+            document.getElementById("loading").classList.add('hideev');
+            setTimeout(function() {
+                document.getElementById("loading").classList.add('d-none');
+            }, 600)
+        }, 1000);
+    }
     var theme = window.localStorage.getItem('data-bs-theme');
     const switchBox = document.querySelector(".sun-moon");
     if (theme) document.documentElement.setAttribute('data-bs-theme', theme);
@@ -68,6 +76,7 @@
             }
         }
     <?php } ?>
+
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
         dropdown.classList.toggle("show");

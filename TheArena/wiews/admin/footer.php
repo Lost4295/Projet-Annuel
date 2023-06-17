@@ -35,7 +35,7 @@
                     } else {
                         document.getElementById("tournaments").classList.add('link-dark');
                     }
-                    if (toto.pathname.includes("/admin/shops")|| toto.pathname.includes("/admin/shop")|| toto.pathname.includes("admin/item")) {
+                    if (toto.pathname.includes("/admin/shops") || toto.pathname.includes("/admin/shop") || toto.pathname.includes("admin/item")) {
                         document.getElementById("shops").classList.remove('link-dark');
                     } else {
                         document.getElementById("shops").classList.add('link-dark');
@@ -47,23 +47,14 @@
                     }
 
 
-                    let sidebar = document.getElementsByClassName("sidebare")[0];
-                    let sidebar_content = document.getElementsByClassName("contented")[0];
-
-                    window.onscroll = () => {
-                        let scrollTop = window.scrollY;
-                        let viewportHeight = window.innerHeight;
-                        let sidebarTop = sidebar.getBoundingClientRect().top + window.pageYOffset;
-                        let contentHeight = sidebar_content.getBoundingClientRect().height;
-
-                        if (scrollTop >= contentHeight - viewportHeight + sidebarTop) {
-                            sidebar_content.style.transform = `translateY(-${(contentHeight - viewportHeight + sidebarTop)}px)`;
-                            sidebar_content.style.position = "fixed";
-                        } else {
-                            sidebar_content.style.transform = "";
-                            sidebar_content.style.position = "";
-                        }
-                    };
+                    window.onload = (event) => {
+                        setTimeout(function() {
+                            document.getElementById("loading").classList.add('hideev');
+                            setTimeout(function() {
+                                document.getElementById("loading").classList.add('d-none');
+                            }, 600)
+                        }, 1000);
+                    }
 
                     function disappear() {
                         var x = document.getElementById("alert");

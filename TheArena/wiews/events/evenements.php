@@ -22,7 +22,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         </div> -->
         <?php foreach ($result as $key => $event) { ?>
             <div class="col-lg-4">
-                    <a href="/event?name=<?php echo $event['name']; ?>">
+                    <a href="/event?id=<?php echo $event['id']; ?>">
                         <img style="position: relative; width: 250px; height:250px;" class="eventimg border" src="<?php echo $event['image']; ?>">
                     </a>
             </div>

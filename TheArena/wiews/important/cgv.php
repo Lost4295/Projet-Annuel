@@ -199,7 +199,7 @@
 
 <p>Pour toute réclamation merci de contacter le service clientèle à l'adresse postale ou mail du Vendeur indiquée à l'ARTICLE 1 des présentes CGV.</p>
 <p>Le Client est informé qu'il peut en tout état de cause recourir à une médiation conventionnelle, auprès des instances de médiation sectorielles existantes ou à tout mode alternatif de règlement des différends (conciliation, par exemple) en cas de contestation, sur le site, dans la rubrique de contact.</p>
-<p>Le Client est également informé qu'il peut, également recourir à la plateforme de Règlement en Ligne des Litige (RLL) :<a>https://webgate.ec.europa.eu/odr/main/index.cfm?event=main.home.show</a></p>
+<p>Le Client est également informé qu'il peut, également recourir à la plateforme de Règlement en Ligne des Litige (RLL) :<a href="https://webgate.ec.europa.eu/odr/main/index.cfm?event=main.home.show">https://webgate.ec.europa.eu/odr/main/index.cfm?event=main.home.show</a></p>
 <p>Tous les litiges auxquels les opérations d'achat et de vente conclues en application des présentes CGV et qui n'auraient pas fait l'objet d'un règlement amiable entre le vendeur ou par médiation, seront soumis aux tribunaux compétents dans les conditions de droit commun.</p>
 <br/>
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

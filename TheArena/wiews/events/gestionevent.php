@@ -4,7 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (isConnected()) {
@@ -32,12 +32,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btn btn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
-        <a class="btn btn-warning" href="/event/participants?name=<?php echo $event['name'] ?>">Participants</a>
-        <a class="btn btn-warning" href="/event/dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
-        <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
+        <a class="btn btn-warning" href="/event?id=<?php echo $event['id']; ?>">Accueil</a>
+        <a class="btn btn-warning" href="/event/participants?id=<?php echo $event['id'] ?>">Participants</a>
+        <a class="btn btn-warning" href="/event/dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
+        <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning active" href="/event/management?name=<?php echo $event['name'] ?>">Gestion</a>
+            <a class="btn btn-warning active" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>
@@ -49,7 +49,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <h3>Paramètres de l'événement</h3>
     </div>
     <div>
-        <form action="/wiews/events/verifycreateevent.php" method="post" class="mb-5 row-cols-lg-auto" enctype="multipart/form-data">
+        <form action="/wiews/events/verifyupdateevent.php" method="post" class="mb-5 row-cols-lg-auto" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="eventname" class="form-label">Nom de l'événement</label>
                 <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Tournoi" required>
@@ -114,9 +114,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                     };
                 </script>
             </div>
+            <input type="hidden" value="<?php echo $_GET['id']?>">
             <div class="row d-flex justify-content-center">
                 <div class="col-2">
-                    <button class="btn-primary btn btn-lg" type="submit">Créer l'événement</button>
+                    <button class="btn-primary btn btn-lg" type="submit">Mettre à jour l'événement</button>
                 </div>
             </div>
         </form>
@@ -136,10 +137,9 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </div>
 
 
-
-    // TODO Faire une modal pour modifier les users et les teams qui se sont enreigstrées
+    // TODO ajouter accordéon
+    // TODO Faire une modal pour modifier les users qui se sont enreigstrées
     // TODO Faire une modal pour modifier les matchs
     // TODO Faire une modal pour modifier les scores
-    // TODO Faire une modal pour modifier les paramètres de l'évent
 </div>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

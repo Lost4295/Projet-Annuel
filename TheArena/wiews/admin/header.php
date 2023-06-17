@@ -20,6 +20,9 @@ redirectIfNotAdmin();
 </head>
 
 <body onload="timeoutmod()">
+<div id="loading">
+  <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
+</div>
 
     <div class="container-fluid">
         <div class="row">

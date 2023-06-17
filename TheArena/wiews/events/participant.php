@@ -4,7 +4,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
-    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (isConnected()) {
@@ -27,12 +27,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btn btn-warning" href="/event?name=<?php echo $event['name'] ?>">Accueil</a>
-        <a class="btn btn-warning active" href="/event/participants?name=<?php echo $event['name'] ?>">Participants</a>
-        <a class="btn btn-warning" href="/event/dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
-        <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
+        <a class="btn btn-warning" href="/event?id=<?php echo $event['id']; ?>">Accueil</a>
+        <a class="btn btn-warning active" href="/event/participants?id=<?php echo $event['id'] ?>">Participants</a>
+        <a class="btn btn-warning" href="/event/dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
+        <a class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning" href="/event/management?name=<?php echo $event['name'] ?>">Gestion</a>
+            <a class="btn btn-warning" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>
