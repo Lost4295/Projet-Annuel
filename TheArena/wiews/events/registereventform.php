@@ -2,9 +2,9 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
-if (isset($_GET['name']) && !empty($_GET['name'])) {
-    $name = strip_tags($_GET['name']);
-    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $name = strip_tags($_GET['id']);
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (!$event) {

@@ -97,7 +97,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                 description.innerHTML = data.description;
 
                 let actions = row.insertCell(3);
-                actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/shops/read?id=${data.id}">Voir</a><a class="btn btn-primary m-1" href="/admin/shops/edit?id=${data.id}">Modifier</a>`;
+                actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/shops/read?id=${data.id}">Voir</a><a class="btn btn-primary m-1 my-5" href="/admin/shops/edit?id=${data.id}">Modifier</a>`;
             
                 let advancedActions = row.insertCell(4);
                 advancedActions.innerHTML = `<a href="/admin/shops/delete?id=${data.id}" class="btn btn-primary m-5"> Supprimer la boutique (attention, cela supprime tous les items qui y sont liés !)</a>`;

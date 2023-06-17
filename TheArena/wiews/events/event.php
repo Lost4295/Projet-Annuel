@@ -2,9 +2,9 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
-if (isset($_GET['name']) && !empty($_GET['name'])) {
-    $name = strip_tags($_GET['name']);
-    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $name = strip_tags($_GET['id']);
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (isConnected()) {
@@ -34,12 +34,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btn  btn-warning active" href="event?name=<?php echo $event['name'] ?>">Accueil</a>
-        <a class="btn btn-warning" href="event_participants?name=<?php echo $event['name'] ?>">Participants</a>
-        <a class="btn btn-warning" href="event_dashboard?name=<?php echo $event['name'] ?>">Tableau de bord</a>
-        <a class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&name=<?php echo $event['name'] ?>">Shop</a>
+        <a class="btn  btn-warning active" href="event?id=<?php echo $event['id']; ?>">Accueil</a>
+        <a class="btn btn-warning" href="event_participants?id=<?php echo $event['id'] ?>">Participants</a>
+        <a class="btn btn-warning" href="event_dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
+        <a class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning" href="event_management?name=<?php echo $event['name'] ?>">Gestion</a>
+            <a class="btn btn-warning" href="event_management?id=<?php echo $event['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>
@@ -57,12 +57,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 </div>
 <div class="col-12 d-flex justify-content-around flex-wrap">
     <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-        <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
-        <a href="event_tournament_create?name=<?php echo $event['name'] ?>" class="btn btn-warning">Créer un tournoi</a>
+        <a class="btn btn-warning" href="event_register?id=<?php echo $event['id'] ?>">S'inscrire</a>
+        <a href="event_tournament_create?id=<?php echo $event['id'] ?>" class="btn btn-warning">Créer un tournoi</a>
     <?php } elseif (isConnected() && !$participation) { ?>
-        <a class="btn btn-warning" href="event_register?name=<?php echo $event['name'] ?>">S'inscrire</a>
+        <a class="btn btn-warning" href="event_register?id=<?php echo $event['id'] ?>">S'inscrire</a>
     <?php } elseif (isConnected() && $participation) { ?>
-    <a class="btn btn-warning" href="event_unregister?name=<?php echo $event['name'] ?>">Se désinscrire</a>
+    <a class="btn btn-warning" href="event_unregister?id=<?php echo $event['id'] ?>">Se désinscrire</a>
     <?php } ?>
 </div>
 

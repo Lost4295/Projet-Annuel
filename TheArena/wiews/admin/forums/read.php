@@ -22,7 +22,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <p>Description : <?php echo $forum['description'] ?></p>
     <p>Date de création : <?php echo $forum['date_creation'] ?></p>
     <p>Statut : <?php echo formatStatusForums($forum['status']) ?></p>
-    <p>Auteur : <?php echo findUserById($forum['author']) ?></p>
+    <p>Auteur : <?php echo formatUsers($forum['author']) ?></p>
     <div>
     <a class="btn btn-primary m-2" href="admin_forum_update?id=<?php echo $forum['id']?>">Modifier</a>
     <a class="btn btn-primary m-2" href="admin_forum_status?id=<?php echo $forum['id']?>">Changer le statut</a>

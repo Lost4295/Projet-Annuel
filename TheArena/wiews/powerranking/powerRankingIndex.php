@@ -1,4 +1,6 @@
-<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT']."/core/header.php" ;
+
+?>
     <div class="row border">
         <h2>Classement Counter Strike : Global Offensive par équipes</h2>
     </div>

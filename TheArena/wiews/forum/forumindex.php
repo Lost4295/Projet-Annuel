@@ -24,14 +24,14 @@ print_r($last_messages);
 <div class="w-100">
     <div class="list-group">
         <?php foreach ($result as $key => $forum) {?>
-        <a href="forum?id=<?php echo $forum['id']?>" class="list-group-item list-group-item-action">
+        <a href="forum?id=<?php echo $forum['id']?>" class="list-group-item list-group-item-action" style="z-index: auto;">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><?php echo $forum['name']?></h5>
                 <small class="text-body-secondary"><?php echo $forum['date_last_message']?></small>
             </div>
             <p class="mb-1"><?php echo $forum["description"]?></p>
             <?php if (isset($last_messages[$key]['message'])) { ?>
-            <small class="text-body-secondary">Dernier message :<?php echo $last_messages[$key]['message']?></small>
+            <small class="text-body-secondary">Dernier message : <?php echo $last_messages[$key]['message']?></small>
             <?php ;}?>
         </a>
         <?php ; }?>

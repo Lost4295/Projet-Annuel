@@ -17,9 +17,9 @@
 </head>
 
 <body onload="timeoutmod()" class="h-100">
-
-
-
+<div id="loading">
+  <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
+</div>
     <nav class="navbar p-0 header">
         <div class="container-fluid d-flex justify-content-around">
             <div class="mr-auto">
@@ -71,12 +71,12 @@
         </div>
 
     </nav>
-    <div class="alert alert-<?php if (isset($_SESSION['message_type'])) {
-                                echo $_SESSION['message_type'];
-                            } else {
-                                echo 'info';
-                            } ?>" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
-                                                                echo "block";
+    <div class="alert w-100 alert-<?php if (isset($_SESSION['message_type'])) {
+                                        echo $_SESSION['message_type'];
+                                    } else {
+                                        echo 'info';
+                                    } ?>" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
+                                                                echo "block; position:absolute; top:70px; right:0;";
                                                             } else {
                                                                 echo "none";
                                                             } ?>">
@@ -86,22 +86,40 @@
             unset($_SESSION['message']);
             unset($_SESSION['message_type']);
         } ?>
-    </div><!--notre sidebar-->
-    <div class="container-fluid pl-0" id="minheight">
-        <div class="row" id="maxer">
-            <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
-                <div class="w-100 d-flex flex-column justify-content-between">
-                    <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
-                    <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
-                    <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
-                    <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
-                </div>
-                <p>Pages récentes:</p><?php //tableau here 
-                                        ?>
-                <div class="w-75 justify-content-center d-flex">
-                    <ul id="lastPages">
-                    </ul>
-                    <!-- <script>
+        
+    </div>
+        <div class="alert alert-<?php if (isset($_SESSION['notification_type'])) {
+                                    echo $_SESSION['notification_type'];
+                                } else {
+                                    echo 'info';
+                                } ?>" id="alert" style="display:<?php if (isset($_SESSION['notification'])) {
+                                                                echo "block; position:absolute; top:70px; right:0;";
+                                                            } else {
+                                                                echo "none";
+                                                            } ?>">
+            <span class="closebtn" onclick="disappear();">&times;</span>
+            <?php if (isset($_SESSION['notification'])) {
+                echo $_SESSION['notification'];
+                unset($_SESSION['notification']);
+                unset($_SESSION['notification_type']);
+            } ?>
+        </div>
+        </div><!--notre sidebar-->
+        <div class="container-fluid pl-0" id="minheight">
+            <div class="row" id="maxer">
+                <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
+                    <div class="w-100 d-flex flex-column justify-content-between">
+                        <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
+                        <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
+                        <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                        <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
+                    </div>
+                    <p>Pages récentes:</p><?php //tableau here 
+                                            ?>
+                    <div class="w-75 justify-content-center d-flex">
+                        <ul id="lastPages">
+                        </ul>
+                        <!-- <script>
                         let lastPages = document.getElementById("lastPages");
                         let one = document.createElement("li");
                         let a1 = document.createElement("a");
@@ -125,8 +143,6 @@
                         lastPages.appendChild(two);
                         lastPages.appendChild(three);
                     </script> -->
+                    </div>
                 </div>
-            </div>
-            <div class=" content col-10 d-flex align-content-center flex-column flex-wrap">
-                <div class="w-100 mb-5">
-        </div>
+                <div class=" content col-10 d-flex align-content-center flex-column flex-wrap">

@@ -20,14 +20,20 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         <?php
         // foreach ($result as $event) {
         ?>
-            <!-- <tr>
-                <td><?php// echo $event['id'] ?></td>
-                <td><?php// echo $event['name'] ?></td>
-                <td><?php// echo findUserById($event['manager_id']) ?></td>
-                <td><?php// echo ($event['shop_id']) ?? "NULL" ?></td>
-                <td><?php// echo $event['game'] ?></td>
-                <td><?php// echo formatType($event['type']) ?></td>
-                <td><a class="btn btn-primary m-1" href="admin_events_read?id=<?php echo $event['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="admin_events_update?id=<?php echo $event['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="admin_events_delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
+        <!-- <tr>
+                <td><?php // echo $event['id'] 
+                    ?></td>
+                <td><?php // echo $event['name'] 
+                    ?></td>
+                <td><?php // echo formatUsers($event['manager_id']) 
+                    ?></td>
+                <td><?php // echo ($event['shop_id']) ?? "NULL" 
+                    ?></td>
+                <td><?php // echo $event['game'] 
+                    ?></td>
+                <td><?php // echo formatType($event['type']) 
+                    ?></td>
+                <td><a class="btn btn-primary m-1" href="admin_events_read?id=<?php //echo $event['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="admin_events_update?id=<?php echo $event['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="admin_events_delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
             </tr> -->
         <?php
         // }
@@ -94,24 +100,45 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     function populateTable() {
         table.innerHTML = '';
         for (let data of tableData) {
-            let row = table.insertRow(-1);
-            let id = row.insertCell(0);
-            id.innerHTML = data.id;
+            let form = new FormData();
+            form.append('data', data.manager_id);
+            form.append('action', 'formatUsers');
+            fetch('/core/fetchformatter.php', {
+                    method: 'POST',
+                    body: form
+                })
+                .then(response => response.text())
+                .then(result => {
+                    let form2 = new FormData();
+                    form2.append('data', data.type);
+                    form2.append('action', 'formatTypeEvents');
+                    fetch('/core/fetchformatter.php', {
+                            method: 'POST',
+                            body: form2
+                        })
+                        .then(response => response.text())
+                        .then(typevent => {
 
-            let name = row.insertCell(1);
-            name.innerHTML = data.name;
+                            let row = table.insertRow(-1);
+                            let id = row.insertCell(0);
+                            id.innerHTML = data.id;
 
-            let manager_id = row.insertCell(2);
-            manager_id.innerHTML = data.manager_id;
+                            let name = row.insertCell(1);
+                            name.innerHTML = data.name;
 
-            let shop_id = row.insertCell(3);
-            shop_id.innerHTML = data.shop_id;
-            let game = row.insertCell(4);
-            game.innerHTML = data.game;
-            let type = row.insertCell(5);
-            type.innerHTML = data.type;
-            let actions = row.insertCell(6);
-            actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/events/read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin/events/update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin/events/delete?id=${data.id}">Supprimer</a>`;
+                            let manager_id = row.insertCell(2);
+                            manager_id.innerHTML = result;
+
+                            let shop_id = row.insertCell(3);
+                            shop_id.innerHTML = data.shop_id??'NULL';
+                            let game = row.insertCell(4);
+                            game.innerHTML = data.game;
+                            let type = row.insertCell(5);
+                            type.innerHTML = typevent;
+                            let actions = row.insertCell(6);
+                            actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/events/read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin/events/update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin/events/delete?id=${data.id}">Supprimer</a>`;
+                        });
+                });
         }
 
         filterTable();

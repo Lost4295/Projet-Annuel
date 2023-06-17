@@ -54,14 +54,15 @@ window.onload = function ()
         var ctx = canvas.getContext("2d");
         canvas.width = 200;
         canvas.height = 200;
+        ctx.globalAlpha= 0.1;
 
-        ctx.drawImage(head,((200-head.width)/2),25);
+        ctx.globalAlpha.drawImage(head,((200-head.width)/2),25);
 
-        ctx.drawImage(eyes,((100-eyes.width)/2),50);
+        ctx.globalAlpha.drawImage(eyes,((200-eyes.width)/2),50);
 
-        ctx.drawImage(mouth,((100-mouth.width)/2),75);
+        ctx.globalAlpha.drawImage(mouth,((200-mouth.width)/2),75);
 
-        ctx.drawImage(accessory,((100-accessory.width)/2),25);
+        ctx.globalAlpha.drawImage(accessory,((200-accessory.width)/2),50);
 
 
         

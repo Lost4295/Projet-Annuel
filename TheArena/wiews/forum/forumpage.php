@@ -3,17 +3,18 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
+    $id= intval($id);
     $db = connectToDB();
-    try {
-        $query = $db->query("Select * from " . PREFIX . "forum_reponses WHERE id_forum = $id");
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        $query = $db->query("Select name from " . PREFIX . "forums WHERE id = $id");
-        $forumName = $query->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
+    $query = $db->query("Select * from " . PREFIX . "forum_reponses WHERE id_forum = $id");
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    if (empty($result)) {
         $_SESSION["message"] = "Le forum n'existe pas.";
         $_SESSION["message_type"] = "danger";
         header('Location: /forums');
         exit();
+    } else {
+        $query = $db->query("Select name from " . PREFIX . "forums WHERE id = $id");
+        $forumName = $query->fetch(PDO::FETCH_ASSOC);
     }
 } else {
     $_SESSION["message"] = "Le forum n'existe pas.";
@@ -32,7 +33,7 @@ if (isConnected()) {
 
 require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
 
-<h1><?php echo $forumName['name']?></h1>
+<h1><?php echo $forumName['name'] ?></h1>
 
 
 
@@ -68,8 +69,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
             <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
             <input type="hidden" name="user" value="<?php echo $user['id']; ?>">
             <textarea type="textarea" id="message" name="message" placeholder="Entrez un message ici.." rows="5" class="form-control mb-5 pb-5"></textarea>
-        </form><div class="form-text"> Utilisez la combinaison de touches Ctrl et Entrée pour envoyer votre message.</div>
-        
+        </form>
+        <div class="form-text"> Utilisez la combinaison de touches Ctrl et Entrée pour envoyer votre message.</div>
+
         <script>
             let keysPressed = {};
 

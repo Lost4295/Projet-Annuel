@@ -24,7 +24,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 <p>ID : <?php echo $event['id'] ?></p>
 <p>Nom : <?php echo $event['name'] ?></p>
 <p>Description : <?php echo $event['description'] ?></p>
-<p> Pseudo de l'organisateur : <?php echo findUserById($event['manager_id']) ?></p>
+<p> Pseudo de l'organisateur : <?php echo formatUsers($event['manager_id']) ?></p>
 <p> Id du shop : <?php echo ($event['shop_id']) ?? "NULL" ?></p>
 <p>Jeu : <?php echo $event['game'] ?></p>
 <p>Type : <?php echo formatTypeEvents($event['type']) ?></p>
