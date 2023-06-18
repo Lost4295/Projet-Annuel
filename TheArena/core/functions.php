@@ -165,7 +165,7 @@ $db = connectToDB();
 $queryPrepared = $db->query("SELECT id, email, last_access_date FROM " . PREFIX . "users");
 $users = $queryPrepared->fetchAll();
 
-$number = file_get_contents('number.php');
+$number = file_get_contents( $_SERVER['DOCUMENT_ROOT'].'/core/number.php');
 $number = (int) $number;
 
 foreach ($users as $user) {
