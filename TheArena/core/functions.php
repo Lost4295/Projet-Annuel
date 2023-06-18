@@ -165,11 +165,14 @@ $db = connectToDB();
 $queryPrepared = $db->query("SELECT id, email, last_access_date FROM " . PREFIX . "users");
 $users = $queryPrepared->fetchAll();
 
-$number = file_get_contents('number.php');
+
+$number = file_get_contents( $_SERVER['DOCUMENT_ROOT'].'/core/number.php');
 $number = (int) $number;
 
 foreach ($users as $user) {
 if ($user['last_access_date'] < time() +$number) {
+
+    include_once $_SERVER['DOCUMENT_ROOT'].'/core/sendmail.php';
 
     sendEmail($user['email'], 'Vous ne jouez plus ?', 232, '');//TODO ecrire le mail 
     //'Bonjour, cela fait un moment que vous ne vous êtes pas connecté. Avez-vous abandonné The Arena ?
