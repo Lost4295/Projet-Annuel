@@ -1,6 +1,8 @@
 <?php if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include_once 'functions.php';
+include 'formatter.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="" style="height:100%">
@@ -44,8 +46,6 @@
                     <span class="circle small"></span>
                 </div>
                 <?php
-                include_once 'functions.php';
-                include 'formatter.php';
                 if (isConnected()) {
                     $attr = whoIsConnected();
                 ?>
