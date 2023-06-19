@@ -34,14 +34,17 @@
                         header('Location: /admin/settings');
                         exit();
                     } else {
-                        if ($time === "jours") {
-                            $number = $number * 60 * 60 * 24;
+                        if ($time== "jours"){
+                            $number = $number * 86400;
                         } else {
-                            $number = $number * 60 * 60 * 24 * 30;
+                            $number = $number * 2592000;
                         }
-                        if (!file_put_contents($_SERVER["DOCUMENT_ROOT"]."\\core\\number.php",'<?php $number='.$number.';')){
-                                echo "erreur rjifdercuedhdehujhfjhzferjhfzs";
-                            };
+                        $db = connectToDB();
+                        $query = $db->prepare("UPDATE ".PREFIX."users SET `timeout_date` = timeout_date+:value;");
+                        $query->execute([
+                            ':value' => $number
+                            ]
+                        )
                     }
                 }
             }
@@ -50,6 +53,7 @@
         }
     } ?>
     <form method="post">
+        <label for="number" class="form-label">Changer l'intervalle avant de relancer les joueurs inactifs</label>
         <input type="number" name="number" class="form-control">
         <div class="form-check">
             <input class="form-check-input" type="radio" name="time" value="day" id="day">
@@ -63,8 +67,14 @@
                 Moi(s)
             </label>
         </div>
+        <div id="helpBlock" class="form-text">Le temps avant de relancer les joueurs inactifs. Cela veut dire que l'on ajoute ce nombre au temps déjà présent d'inactivité du joueur. Passé ce temps, un mail lui sera envoyé.</div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>
+
+    <div class="my-3">
+        <a href="/relaunch" class="btn btn-primary">Relancer les joueurs inactifs manuellement</a>
+        </a>
+    </div>
 
 </div>
 <div class="my-3">

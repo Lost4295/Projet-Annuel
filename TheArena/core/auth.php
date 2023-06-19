@@ -1,7 +1,7 @@
 <?php
 
 require 'loginfuncts.php';
-session_start();
+include 'sendmail.php';
 echo "Activation de votre compte en cours...";
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 

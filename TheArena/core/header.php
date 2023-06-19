@@ -20,7 +20,7 @@
 <div id="loading">
   <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
 </div>
-    <nav class="navbar p-0 header">
+    <nav class="header navbar p-0 ">
         <div class="container-fluid d-flex justify-content-around">
             <div class="mr-auto">
                 <a class="navbar-brand" href="/">

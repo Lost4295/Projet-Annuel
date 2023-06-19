@@ -11,17 +11,18 @@
                 <a href="/cgv" class="m-4 p-3">Conditions générales de vente</a>
                 <a href="/legal" class="m-4 p-3">Mentions légales</a>
                 <a href="/contact" class="m-4 p-3">Nous contacter</a>
-                <?php if (isConnected()) { ?>
+                <?php// if (isConnected()) { ?>
                     <div>
                         <button class="btn btn-warning messages" id="messages">Messagerie</button>
                         <div id="myModal" class="modal">
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <p>Some text in the Modal..</p>
+                                <iframe src="/core/chat" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0">
+                                </iframe>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php // } ?>
             </div>
             <p class="text-center text-muted">
                 &copy; <?php echo date("Y"); ?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger
@@ -60,7 +61,7 @@
             switchBox.classList.remove("move");
         }
     };
-    <?php if (isConnected()) { ?>
+    //< ?php// if (isConnected()) { ?>
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("messages");
         var span = document.getElementsByClassName("close")[0];
@@ -75,7 +76,7 @@
                 modal.style.display = "none";
             }
         }
-    <?php } ?>
+    //< ?php //} ?>
 
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
