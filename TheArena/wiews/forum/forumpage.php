@@ -5,10 +5,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
     $id = intval($id);
     $db = connectToDB();
-    $query = $db->query("Select * from " . PREFIX . "forums WHERE id = $id");
+    $query = $db->prepare("Select * from " . PREFIX . "forums WHERE id =:id");
+    $query->execute([
+        ':id' => $id
+    ]);
     $forum = $query->fetchAll(PDO::FETCH_ASSOC);
     if ($forum) {
-        $query = $db->query("Select * from " . PREFIX . "forum_reponses WHERE id_forum = $id");
+        $query = $db->query("Select * from " . PREFIX . "forum_reponses WHERE id_forum =:id");
+        $query->execute([
+            ':id' => $id
+        ]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         if (empty($result)) {
             $_SESSION["message"] = "Le forum n'existe pas.";
