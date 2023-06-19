@@ -10,6 +10,7 @@ $routes = [
     "/route_ecrite_dans_le_fichier_php" => $_SERVER['DOCUMENT_ROOT']."localisation/du/fichier",
     "" => $_SERVER['DOCUMENT_ROOT']."/wiews/index",
     "search" => $_SERVER['DOCUMENT_ROOT']."/core/search",
+    "relaunch" => $_SERVER['DOCUMENT_ROOT']."/wiews/admin/relaunch",
     "404" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/errorpage",
     "resetPassword" => $_SERVER['DOCUMENT_ROOT']."/core/resetPassword",
     "hiddengame" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/hiddengame",

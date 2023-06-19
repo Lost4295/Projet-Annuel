@@ -131,7 +131,7 @@ if (!$error) {
     header("Location: /me_modify");
 } else {
     unsetSessionErrors();
-    $queryPrepared = $db->prepare("UPDATE ".PREFIX."users SET avatar=:avatar, username=:username, email=:email, password=:password, about=:about, visibility=:visibility WHERE id=:id");
+    $queryPrepared = $db->prepare("UPDATE ".PREFIX."users SET avatar=:avatar, username=:username, email=:email, password=:password, about=:about, visibility=:visibility, update_at=:update_at WHERE id=:id");
     $queryPrepared->execute([
         "avatar"=>$avatar,
         "username"=>$pseudo,
@@ -139,6 +139,7 @@ if (!$error) {
         "password"=>password_hash($pwd, PASSWORD_DEFAULT),
         "about"=>$about,
         "visibility"=>$visibility,
+        "udpate_at"=>time(),
         "id"=>$id
     ]);
     $_SESSION['message'] = "Votre profil a bien été modifié.";
