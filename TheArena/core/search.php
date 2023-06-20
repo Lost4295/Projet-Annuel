@@ -8,6 +8,7 @@ if (isset($_GET['q']) && (strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50) && 
     $query->execute([':search' => '%' . $search . '%']);
     $results['events'] = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    var_dump($query);
 
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `username` LIKE :search AND visibility=2');
     $query->execute([':search' => '%' . $search . '%']);

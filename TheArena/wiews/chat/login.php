@@ -1,11 +1,11 @@
 <?php 
   session_start();
-  if(isset($_SESSION['unique_id'])){
+  if(isset($_SESSION['id'])){
     header("location: users.php");
   }
 ?>
 
-<?php include_once "header.php"; ?>
+<?php include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php"; ?>
 <body>
   <div class="wrapper">
     <section class="form login">

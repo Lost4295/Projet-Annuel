@@ -3,28 +3,29 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);
-    $id = intval($id);
     $db = connectToDB();
-    $query = $db->prepare("Select * from " . PREFIX . "forums WHERE id =:id");
+    $query = $db->prepare("SELECT * FROM " . PREFIX . "forums WHERE id =:id");
     $query->execute([
         ':id' => $id
     ]);
-    $forum = $query->fetchAll(PDO::FETCH_ASSOC);
+    $forum = $query->fetch(PDO::FETCH_ASSOC);
+    print_r($forum);
     if ($forum) {
-        $query = $db->query("Select * from " . PREFIX . "forum_reponses WHERE id_forum =:id");
+        $query = $db->prepare("SELECT * FROM " . PREFIX . "forum_reponses WHERE id_forum =:id");
         $query->execute([
-            ':id' => $id
+            ':id' => $forum['id']
         ]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        if (empty($result)) {
-            $_SESSION["message"] = "Le forum n'existe pas.";
-            $_SESSION["message_type"] = "danger";
-            header('Location: /forums');
-            exit();
-        } else {
-            $query = $db->query("Select name from " . PREFIX . "forums WHERE id = $id");
+            $query = $db->prepare("Select name from " . PREFIX . "forums WHERE id = :id");
+            $query->execute([
+                ':id' => $id
+            ]);
             $forumName = $query->fetch(PDO::FETCH_ASSOC);
-        }
+    } else {
+        $_SESSION["message"] = "Le forum n'existe pas.";
+        $_SESSION["message_type"] = "danger";
+        header('Location: /forums');
+        exit();
     }
 } else {
     $_SESSION["message"] = "Le forum n'existe pas.";

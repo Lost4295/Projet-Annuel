@@ -11,9 +11,9 @@
             $enc_pass = $row['password'];
             if($user_pass === $enc_pass){
                 $status = "Active now";
-                $sql2 = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id = {$row['unique_id']}");
+                $sql2 = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE id = {$row['id']}");
                 if($sql2){
-                    $_SESSION['unique_id'] = $row['unique_id'];
+                    $_SESSION['id'] = $row['id'];
                     echo "success";
                 }else{
                     echo "Something went wrong. Please try again!";

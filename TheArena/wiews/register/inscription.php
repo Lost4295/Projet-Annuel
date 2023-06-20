@@ -124,7 +124,7 @@ noReconnection(); ?>
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
-                                        <label for="adresse" class="form-label">Adresses</label>
+                                        <label for="adresse" class="form-label">Adresse</label>
                                         <input type="text" class="form-control" id="adresse" name="fulladdress" required placeholder="1 Rue de Paris">
                                         <div id="selection" style="display: none;" class="dropdown-menu">
                                         </div>
