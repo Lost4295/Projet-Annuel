@@ -1,7 +1,6 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
 
 <h1>Création d'un nouveau blog</h1>
-<?php print_r($_SESSION) ?>
 <form action="/wiews/forum/verifyblog.php" method="post">
     <div class="mb-3">
         <label for="blogname" class="form-label">Nom du blog</label>

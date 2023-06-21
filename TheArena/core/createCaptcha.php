@@ -62,12 +62,16 @@ $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
 <img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '', $active) ?>" alt="initial_image">
 
 <div class="drop-zone" id="resetZone">
+    
+    
+    
     <?php foreach ($images as $key => $image) {
         $url = str_replace($_SERVER['DOCUMENT_ROOT'], '', $image);
         $name = str_replace('\uploads\captcha\parts/image', '', $url);
         $name = str_replace('.jpg', '', $name);
         echo '<img class="draggable with-margin" id="part' . $name . '" draggable="true" src="' . $url . '" width="100%" data-value="' . $name . '"/>';
-    } ?><script>
+    } ?>
+    <script>
         function shuffleCaptcha() {
             var parent = document.getElementById("resetZone");
             var divs = parent.children;

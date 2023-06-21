@@ -1,33 +1,38 @@
 <?php 
     session_start();
     if(isset($_SESSION['id'])){
-        include_once "config.php";
+        include_once $_SERVER["DOCUMENT_ROOT"]."/core/functions.php";
         $outgoing_id = $_SESSION['id'];
-        $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
+        $incoming_id = $_POST['incoming_id'];
         $output = "";
-        $sql = "SELECT * FROM messages LEFT JOIN users ON users.id = messages.outgoing_msg_id
-                WHERE (outgoing_msg_id = {$outgoing_id} AND incoming_msg_id = {$incoming_id})
-                OR (outgoing_msg_id = {$incoming_id} AND incoming_msg_id = {$outgoing_id}) ORDER BY msg_id";
-        $query = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($query) > 0){
-            while($row = mysqli_fetch_assoc($query)){
-                if($row['outgoing_msg_id'] === $outgoing_id){
+        $db = connectToDB();
+        $messages = $db->prepare("SELECT * FROM ".PREFIX."messages LEFT JOIN ".PREFIX."users ON ".PREFIX."users.id = ".PREFIX."messages.user_id
+                WHERE (user_id = :oid AND reciever_id = :iid)
+                OR (user_id = :iid AND reciever_id = :oid) ORDER BY ".PREFIX."messages.id");
+        $messages->execute([
+            'oid'=> $outgoing_id,
+            'iid'=> $incoming_id
+        ]);
+        $result = $messages->fetchAll(PDO::FETCH_ASSOC);
+        if(count($result) > 0){
+            foreach($result as $key =>$row){
+                if($row['user_id'] === $outgoing_id){
                     $output .= '<div class="chat outgoing">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p>'. $row['content'] .'</p>
                                 </div>
                                 </div>';
                 }else{
                     $output .= '<div class="chat incoming">
-                                <img src="php/images/'.$row['img'].'" alt="">
+                                <img src="'.$row['avatar'].'" alt="">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p>'. $row['content'] .'</p>
                                 </div>
                                 </div>';
                 }
             }
         }else{
-            $output .= '<div class="text">No messages are available. Once you send message they will appear here.</div>';
+            $output .= '<div class="text">Aucun message envoyé. Quand vous en enverrez un, il apparaîtra ici.</div>';
         }
         echo $output;
     }else{

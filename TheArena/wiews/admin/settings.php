@@ -44,7 +44,7 @@
                         $query->execute([
                             ':value' => $number
                             ]
-                        )
+                        );
                     }
                 }
             }

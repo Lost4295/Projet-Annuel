@@ -7,11 +7,8 @@ $dompdf = new Dompdf();
 
 // TODO  FAIRE LE PDF
 
-$image= file_get_contents('bullet.gif');
 
-$imageData = base64_encode($image);
-
-$html = '<html><body><h1>Contenu du PDF</h1><img src="'.$imageData.'"></body></html>'; // Le contenu HTML à convertir en PDF
+$html = '<html><body><h1>Contenu du PDF</h1><p><img src="/img/placeholder_item.jpg"/></p></body></html>'; // Le contenu HTML à convertir en PDF
 
 
 $dompdf->loadHtml($html);

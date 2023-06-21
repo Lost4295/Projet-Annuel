@@ -1,16 +1,17 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
-    $outgoing_id = $_SESSION['id'];
+    redirectIfNotConnected();
+    $userid = $_SESSION['id'];
     $db = connectToDB();
-    $sql = $db->prepare("SELECT * FROM ".PREFIX."users WHERE NOT id = :id ORDER BY id DESC");
+    $sql = $db->prepare("SELECT * FROM ".PREFIX."users WHERE NOT id = :id AND visibility = 2 ORDER BY id DESC"); //TODO ajouter la même requête, mais seulement pour trouver aussi les amis
     $sql->execute([
-        "id" => $outgoing_id
+        "id" => $userid
     ]);
     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     $output = "";
     if(count($result) == 0){
-        $output .= "No users are available to chat";
+        $output .= "Il n'y a pas d'utilisateurs existants pour discuter.";
     }elseif(count($result) > 0){
         include_once $_SERVER["DOCUMENT_ROOT"]."/wiews/chat/php/data.php";
     }

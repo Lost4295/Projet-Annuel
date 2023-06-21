@@ -1,11 +1,14 @@
 
 <?php 
-  session_start();
-include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php"; 
-redirectIfNotConnected(); ?>
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/functions.php";
+
+  redirectIfNotConnected();
+
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
+?>
   <!-- <link rel="stylesheet" href="/core/css/stylei.css"> -->
-<body>
-  <div class="wrapper">
+<div class="col d-flex align-items-center justify-content-center">
+  <div class="row">
     <section class="users">
       <header>
         <div class="content">
@@ -20,20 +23,21 @@ redirectIfNotConnected(); ?>
           ?>
           <img src="<?php echo $row['avatar']; ?>" alt="">
           <div class="details">
-            <span><?php echo $row['first_name']. " " . $row['last_name'] ?></span>
-            <p><?php echo $row['status']; ?></p>
+            <h3><?php echo $row['username'] ?></h3>
+            <p><?php echo formatActivity($row['activeonsite']); ?></p>
           </div>
         </div>
       </header>
-      <div class="search">
+      <div class="search col-auto">
         <span class="text">Select an user to start chat</span>
-        <input type="text" placeholder="Enter name to search...">
-        <button><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="Entrez un nom pour rechercher un utilisateur...">
+        <button><i class="bi bi-search"></i></button>
       </div>
       <div class="users-list">
   
       </div>
     </section>
+  </div>
   </div>
 
   <script src="/wiews/chat/javascript/users.js"></script>

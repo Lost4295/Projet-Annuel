@@ -11,18 +11,11 @@
                 <a href="/cgv" class="m-4 p-3">Conditions générales de vente</a>
                 <a href="/legal" class="m-4 p-3">Mentions légales</a>
                 <a href="/contact" class="m-4 p-3">Nous contacter</a>
-                <?php// if (isConnected()) { ?>
+                <?php if (isConnected()) { ?>
                     <div>
-                        <button class="btn btn-warning messages" id="messages">Messagerie</button>
-                        <div id="myModal" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <iframe src="/core/chat" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0">
-                                </iframe>
-                            </div>
-                        </div>
+                        <a class="btn btn-warning messages" href="/chat" id="messages">Messagerie</a>
                     </div>
-                <?php // } ?>
+                <?php  } ?>
             </div>
             <p class="text-center text-muted">
                 &copy; <?php echo date("Y"); ?> - Ylan Turin--Kondi, Esteban Bonnard, Zacharie Roger
@@ -39,8 +32,9 @@
             setTimeout(function() {
                 document.getElementById("loading").classList.add('d-none');
             }, 600)
-        }, 1000);
+        }, 900);
     }
+
     var theme = window.localStorage.getItem('data-bs-theme');
     const switchBox = document.querySelector(".sun-moon");
     if (theme) document.documentElement.setAttribute('data-bs-theme', theme);
@@ -61,22 +55,17 @@
             switchBox.classList.remove("move");
         }
     };
-    //< ?php// if (isConnected()) { ?>
-        var modal = document.getElementById("myModal");
+    <?php if (isConnected()) { ?>
         var btn = document.getElementById("messages");
-        var span = document.getElementsByClassName("close")[0];
         btn.onclick = function() {
             modal.style.display = "block";
-        }
-        span.onclick = function() {
-            modal.style.display = "none";
         }
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-    //< ?php //} ?>
+    <?php } ?>
 
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
@@ -94,6 +83,44 @@
                 }
             }
         }
+    }
+
+
+    var as = document.getElementsByTagName('a');
+    let link1 = document.getElementById('link1');
+    let link2 = document.getElementById('link2');
+    let link3 = document.getElementById('link3');
+    for (var i = 0; i < as.length; i++) {
+        as[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            let tableau = {};
+            var url = this.getAttribute('href');
+            var title = this.innerHTML;
+            link3.innerHTML = link2.innerHTML;
+            link3.href = link2.href;
+            link2.innerHTML = link1.innerHTML;
+            
+            
+            link2.href = link1.href;
+            link1.innerHTML = title;
+            link1.href = url;
+            let forms = new FormData();
+            tableau.link3 = {title: link3.innerHTML, url: link3.href};
+            tableau.link2 = {title: link2.innerHTML, url: link2.href};
+            tableau.link1 = {title: title, url: url};
+            
+            
+            forms.append("data", JSON.stringify(tableau));
+            fetch('/core/savevalue.php',{
+                method: 'POST',
+                body: forms
+                })
+                .then(response => response.json())
+                .then(data => {
+                })
+
+            // window.location.href = url;
+        });
     }
 
     function disappear() {

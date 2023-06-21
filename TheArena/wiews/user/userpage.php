@@ -3,7 +3,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
     $connection = connectToDB();
-    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE username=:name");
+    $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users WHERE id=:name");
     $queryPrepared->execute([
         "name" => $name
     ]);
@@ -18,7 +18,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $nquery =  $connection->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
             $nquery->execute([':email' => $_SESSION['email']]);
             $user = $nquery->fetch(PDO::FETCH_ASSOC);
-            $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "user_likes WHERE user_id=:user_id AND liked_id=:liked_id");
+            $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_likes WHERE user_id=:user_id AND liked_id=:liked_id");
             $queryPrepared->execute([
                 ":user_id" => $user["id"],
                 ":liked_id" => $result["id"]
@@ -40,7 +40,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             exit();
         }
 
-        $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) AS nbr_like FROM " . PREFIX . "user_likes WHERE liked_id=:liked_id");
+        $queryPrepared = $connection->prepare("SELECT COUNT(liked_id) AS nbr_like FROM " . PREFIX . "users_likes WHERE liked_id=:liked_id");
         $queryPrepared->execute([
             ":liked_id" => $result["id"]
         ]);
@@ -52,18 +52,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             ":friend_id" => $result["id"]
         ]);
         $nbrfriend = $queryPrepared->fetch(PDO::FETCH_ASSOC);
-
     } else {
         $_SESSION["message"] = "Une erreur est survenue.";
         $_SESSION["message_type"] = "danger";
         header("Location: /");
-    exit(); 
+        exit();
     }
 } else {
     $_SESSION["message"] = "Une erreur est survenue.";
     $_SESSION["message_type"] = "danger";
     header("Location: /");
-    exit(); 
+    exit();
 }
 require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
@@ -73,18 +72,19 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <h1> Page utilisateur de <?php echo $username; ?> </h1>
         <div><a class="more" href="#">···</a>&emsp;&emsp;&emsp;</div>
     </div>
-    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar?>" width="200" height="200" /></div>
+    <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar ?>" width="200" height="200" /></div>
     <h3>À propos de moi</h3>
     <div class="my-5">
         <p>
             <?php echo $about ?>
         </p>
         <div class="text-center"><?= $nbrlike["nbr_like"] ?> J'aime <?= $nbrfriend["nbr_friend"] ?> amis</div>
-        </div>
+    </div>
+    <?php if (isConnected()) { ?>
         <div class="d-flex justify-content-around">
-           <?php if ($liked) { ?>
+            <?php if ($liked) { ?>
                 <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> J'aime</div>
-           <?php } elseif (!$liked) { ?>
+            <?php } elseif (!$liked) { ?>
                 <div class="btn-secondary btn"><i class="bi bi-heart-fill"></i> J'aime</div>
             <?php } ?>
             <?php if ($isFriend) { ?>
@@ -93,7 +93,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 <div class="btn-secondary btn"><i class="bi bi-person-add"></i> Demander en ami</div>
             <?php } ?>
         </div>
-    </div>
+    <?php } ?>
+</div>
 
 
-    <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

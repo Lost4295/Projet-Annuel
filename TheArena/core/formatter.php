@@ -153,3 +153,12 @@ function formatStateTournaments($state) {
         return $return;
 
 }
+
+function formatActivity($activity){
+    if ($activity==0){
+        $return ="Hors ligne";
+    } elseif ($activity==1) {
+        $return ="En ligne";
+    }
+    return $return;
+}
