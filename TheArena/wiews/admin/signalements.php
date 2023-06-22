@@ -10,34 +10,171 @@
     print_r($users);
 ?>
 <h1>Signalements</h1>
+
+<input type="text" id="myinput" class="form-control" placeholder="Search..." title="Type in something">
 <table class="table table-hover table-bordered w-100" aria-describedby="reports-table">
     <thead>
-        <th>Nom</th>
-        <th>Type</th>
-        <th>Contenu</th>
+        <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
+        <th><span id="user_id" class="w3-button table-column">ID du signaleur<i class="caret"></i></span></th>
+        <th><span id="content" class="w3-button table-column">Contenu<i class="caret"></i></span></th>
+        <th><span id="reported_id" class="w3-button table-column">ID de l'objet signalé <i class="caret"></i></span></th>
+        <th><span id="discr" class="w3-button table-column">Type de signalament <i class="caret"></i></span></th>
         <th>Actions</th>
     </thead>
-    
-    <tbody>
-        <tr>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="btn btn-primary placeholder col-10"></span></td>
-        </tr>
-        <tr>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class=" btn btn-primary placeholder col-10"></span></td>
-        </tr>
-        <tr>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="placeholder col-10"></span></td>
-            <td><span class="btn btn-primary placeholder col-10"></span></td>
-        </tr>
+    <tbody id="mytable">
     </tbody>
 </table>
 
+<th></th>
+<tbody id="mytable">
+
+    <script>
+        var table = document.getElementById('mytable');
+        var input = document.getElementById('myinput');
+        var tableData = <?php echo json_encode($reports); ?>;
+        var caretUpClassName = 'bi bi-caret-up-fill';
+        var caretDownClassName = 'bi bi-caret-down-fill';
+        console.log(tableData)
+        const sort_by = (field, reverse, primer) => {
+
+            const key = primer ?
+                function(x) {
+                    return primer(x[field]);
+                } :
+                function(x) {
+                    return x[field];
+                };
+
+            reverse = !reverse ? 1 : -1;
+
+            return function(a, b) {
+                return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+            };
+        };
+
+        function clearArrow() {
+            let carets = document.getElementsByClassName('caret');
+            for (let caret of carets) {
+                caret.className = "caret";
+            }
+        }
+
+        function toggleArrow(event) {
+            let element = event.target;
+            let caret, field, reverse;
+            if (element.tagName === 'SPAN') {
+                caret = element.getElementsByClassName('caret')[0];
+                field = element.id
+            } else {
+                caret = element;
+                field = element.parentElement.id
+            }
+
+            let iconClassName = caret.className;
+            clearArrow();
+            if (iconClassName.includes(caretUpClassName)) {
+                caret.className = `caret ${caretDownClassName}`;
+                reverse = false;
+            } else {
+                reverse = true;
+                caret.className = `caret ${caretUpClassName}`;
+            }
+
+            tableData.sort(sort_by(field, reverse));
+            populateTable();
+        }
+
+        function populateTable() {
+            table.innerHTML = '';
+            for (let data of tableData) {
+                let form = new FormData();
+                form.append('data', data.scope);
+                form.append('action', 'formatScope');
+                fetch('/core/fetchformatter.php', {
+                        method: 'POST',
+                        body: form
+                    })
+                    .then(response => response.text())
+                    .then(scoper => {
+                        let form = new FormData();
+                        form.append('data', data.visibility);
+                        form.append('action', 'formatVisibility');
+                        fetch('/core/fetchformatter.php', {
+                                method: 'POST',
+                                body: form
+                            })
+                            .then(response => response.text())
+                            .then(visi => {
+                                let form = new FormData();
+                                form.append('data', data.status);
+                                form.append('action', 'formatStatusUsers');
+                                fetch('/core/fetchformatter.php', {
+                                        method: 'POST',
+                                        body: form
+                                    })
+                                    .then(response => response.text())
+                                    .then(result => {
+                                        let row = table.insertRow(-1);
+                                        let id = row.insertCell(0);
+                                        id.innerHTML = data.id;
+
+                                        let scope = row.insertCell(1);
+                                        scope.innerHTML = scoper;
+
+                                        let username = row.insertCell(2);
+                                        username.innerHTML = data.username;
+
+                                        let email = row.insertCell(3);
+                                        email.innerHTML = data.email;
+                                        let visibility = row.insertCell(4);
+                                        visibility.innerHTML = visi;
+                                        let status = row.insertCell(5);
+                                        status.innerHTML = result;
+                                        let actions = row.insertCell(6);
+                                        actions.innerHTML = `<a href='/admin/users/read?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
+                                    });
+                            });
+                    });
+            }
+            filterTable();
+        }
+
+        function filterTable() {
+            let filter = input.value.toUpperCase();
+            rows = table.getElementsByTagName("TR");
+            let flag = false;
+
+            for (let row of rows) {
+                let cells = row.getElementsByTagName("TD");
+                for (let cell of cells) {
+                    if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+
+                flag = false;
+            }
+        }
+        populateTable();
+
+        let tableColumns = document.getElementsByClassName('table-column');
+
+        for (let column of tableColumns) {
+            column.addEventListener('click', function(event) {
+                toggleArrow(event);
+            });
+        }
+
+
+        input.addEventListener('keyup', function(event) {
+            filterTable();
+        });
+    </script>
 <?php include 'footer.php'?>
