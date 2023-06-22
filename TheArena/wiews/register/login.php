@@ -31,7 +31,7 @@ if (isset($email)) {
             session_regenerate_id();
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
-            $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "users SET last_access_date=:last_access_date WHERE email=:email");
+            $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "users SET last_access_date=:last_access_date, activeonsite=1 WHERE email=:email");
             $queryPrepared->execute([
                 "last_access_date" => date("Y-m-d H:i:s", strtotime($user["last_access_date"])),
                 "email" => $email

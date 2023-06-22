@@ -1,8 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
-print_r($_GET);
-
 if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) && (!empty($_GET['visibility'])||$_GET['visibility']==0))) {
     $id = strip_tags($_GET['id']);
     $visibility = strip_tags($_GET['visibility']);
@@ -10,6 +8,10 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) &
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
     $query->execute([':id' => $id, ':visibility'=>$visibility]);
+    if ($visibility == -1) {
+        $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:status WHERE `id`=:id;");
+        $query->execute([':id' => $id, ':status'=>-1]);
+    }
     header("Location: /admin_users");
     }
 }
@@ -20,6 +22,10 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && 
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
     $query->execute([':id' => $id, ':activity'=>$activity]);
+    if ($activity == -1) {
+        $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
+        $query->execute([':id' => $id, ':visibility'=>-1]);
+    }
     header("Location: /admin_users");
     }
 }

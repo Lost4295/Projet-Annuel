@@ -46,6 +46,9 @@ include 'formatter.php';
                     <span class="circle small"></span>
                 </div>
                 <?php
+                include_once 'functions.php';
+                include 'formatter.php';
+                include 'queries.php';
                 if (isConnected()) {
                     $attr = whoIsConnected();
                 ?>
@@ -118,31 +121,11 @@ include 'formatter.php';
                                             ?>
                     <div class="w-75 justify-content-center d-flex">
                         <ul id="lastPages">
+                        
+                        <?php if (isset($_SESSION['link1'])){ ?><li><a id="link1" href="<?php echo $_SESSION['link1']['url']?>"><?php echo $_SESSION['link1']['title']?></a></li><?php ;}?>
+                        <?php if (isset($_SESSION['link2'])){ ?><li><a id="link2" href="<?php echo $_SESSION['link2']['url']?>"><?php echo $_SESSION['link2']['title']?></a></li><?php ;}?>
+                        <?php if (isset($_SESSION['link3'])){ ?><li><a id="link3" href="<?php echo $_SESSION['link3']['url']?>"><?php echo $_SESSION['link3']['title']?></a></li><?php ;}?>
                         </ul>
-                        <!-- <script>
-                        let lastPages = document.getElementById("lastPages");
-                        let one = document.createElement("li");
-                        let a1 = document.createElement("a");
-                        a1.setAttribute("onclick", "history.go(-1)");
-                        a1.setAttribute("href", "#");
-                        let two = document.createElement("li");
-                        let a2 = document.createElement("a");
-                        a2.setAttribute("onclick", "history.go(-2)");
-                        a2.setAttribute("href", "#");
-                        let three = document.createElement("li");
-                        let a3 = document.createElement("a");
-                        a3.setAttribute("onclick", "history.go(-3)");
-                        a3.setAttribute("href", "#");
-                        a1.innerHTML = "Page 1";
-                        a2.innerHTML = "Page 2";
-                        a3.innerHTML = "Page 3";
-                        one.appendChild(a1);
-                        two.appendChild(a2);
-                        three.appendChild(a3);
-                        lastPages.appendChild(one);
-                        lastPages.appendChild(two);
-                        lastPages.appendChild(three);
-                    </script> -->
                     </div>
                 </div>
                 <div class=" content col-10 d-flex align-content-center flex-column flex-wrap">

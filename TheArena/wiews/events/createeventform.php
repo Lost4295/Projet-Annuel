@@ -43,7 +43,7 @@
                                     echo $_SESSION['errortype'];
                                 }
                                 ?></div>
-    </div>x
+    </div>
     <label for="game" class="form-label">Jeu utilisé</label>
     <input class="form-control mb-5" list="datalistOptions" id="game" name="game" placeholder="Entrez le nom du jeu..." required>
     <datalist id="datalistOptions">

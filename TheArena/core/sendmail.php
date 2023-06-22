@@ -52,9 +52,15 @@ $bodyla = "<h2 style='width:50%;height:40px;padding-left:120px;text-align:right;
     
     <a style='padding-left:325px; color:orange;' href=" . $urlla . ">Activer votre compte</a>";
 
+    $a = connectToDB();
+    $sql = $a->prepare("SELECT username FROM ".PREFIX."users WHERE email = '$email'");
+    $sql->execute();
+    $result = $sql->fetch(PDO::FETCH_ASSOC);
+    $pseudo = $result["username"];
+
 
 $bodyw = "<h2 style='width:50%;height:40px;padding-left:130px;text-align:right;margin:0px;color:#B24909;'>Bienvenue sur The Arena !</h2>
-<p>Bienvenue pseudo,<br>Nous sommes ravis de vous présenter notre site dédié aux tournois et événements de jeux vidéo.
+<p>Bienvenue $pseudo,<br>Nous sommes ravis de vous présenter notre site dédié aux tournois et événements de jeux vidéo.
 Que vous soyez un joueur professionnel ou un amateur passionné, The Arena est l'endroit idéal pour vous inscrire à des tournois,<br>
 participer à des événements et être classé en fonction de vos performances. </p>
     <p>Notre site est facile à utiliser et vous permet de trouver rapidement des événements et des tournois qui correspondent à<br>

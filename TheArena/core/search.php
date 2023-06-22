@@ -8,9 +8,13 @@ if (isset($_GET['q']) && (strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50) && 
     $query->execute([':search' => '%' . $search . '%']);
     $results['events'] = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
-    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `username` LIKE :search AND visibility=2');
-    $query->execute([':search' => '%' . $search . '%']);
+    if (isConnected()){
+    $query = $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `username` LIKE :search AND visibility=2 AND email != :email');
+    $query->execute([':search' => '%' . $search . '%', ':email' => $_SESSION['email']]);
+    } else{
+        $query = $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `username` LIKE :search AND visibility=2');
+        $query->execute([':search' => '%' . $search . '%']);
+    }
     $results['users'] = $query->fetchAll(PDO::FETCH_ASSOC);
     foreach ($results['users'] as $key => $user) {
         $query = $db->prepare('SELECT count(*) as c FROM ' . PREFIX . 'users_likes WHERE `liked_id`=:id');
@@ -108,7 +112,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['users'])) {
                         foreach ($results['users'] as $item) { ?>
-                            <a href="/user?name=<?php echo $item['username'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a href="/user?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['username'] ?></h5>
                                 </div>
