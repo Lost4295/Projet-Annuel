@@ -17,9 +17,9 @@
 </head>
 
 <body onload="timeoutmod()" class="h-100">
-<div id="loading">
-  <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
-</div>
+    <div id="loading">
+        <img id="loading-image" src="/img/loading-loading-forever.gif" alt="Loading..." />
+    </div>
     <nav class="header navbar p-0 ">
         <div class="container-fluid d-flex justify-content-around">
             <div class="mr-auto">
@@ -44,8 +44,6 @@
                     <span class="circle small"></span>
                 </div>
                 <?php
-                include_once 'functions.php';
-                include 'formatter.php';
                 include 'queries.php';
                 if (isConnected()) {
                     $attr = whoIsConnected();
@@ -77,54 +75,64 @@
                                     } else {
                                         echo 'info';
                                     } ?>" id="alert" style="display:<?php if (isset($_SESSION['message'])) {
-                                                                echo "block; position:absolute; top:70px; right:0;";
-                                                            } else {
-                                                                echo "none";
-                                                            } ?>">
+                                                                        echo "block; position:absolute; top:70px; right:0;";
+                                                                    } else {
+                                                                        echo "none";
+                                                                    } ?>">
         <span class="closebtn" onclick="disappear();">&times;</span>
         <?php if (isset($_SESSION['message'])) {
             echo $_SESSION['message'];
             unset($_SESSION['message']);
             unset($_SESSION['message_type']);
         } ?>
-        
+
     </div>
-        <div class="alert alert-<?php if (isset($_SESSION['notification_type'])) {
-                                    echo $_SESSION['notification_type'];
-                                } else {
-                                    echo 'info';
-                                } ?>" id="alert" style="display:<?php if (isset($_SESSION['notification'])) {
-                                                                echo "block; position:absolute; top:70px; right:0;";
-                                                            } else {
-                                                                echo "none";
-                                                            } ?>">
-            <span class="closebtn" onclick="disappear();">&times;</span>
-            <?php if (isset($_SESSION['notification'])) {
-                echo $_SESSION['notification'];
-                unset($_SESSION['notification']);
-                unset($_SESSION['notification_type']);
-            } ?>
-        </div>
-        </div><!--notre sidebar-->
-        <div class="container-fluid pl-0" id="minheight">
-            <div class="row" id="maxer">
-                <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-content-center bg-secondary">
-                    <div class="w-100 d-flex flex-column justify-content-between">
-                        <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
-                        <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
-                        <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
-                        <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
-                    </div>
-                    <p>Pages récentes:</p><?php //tableau here 
-                                            ?>
-                    <div class="w-75 justify-content-center d-flex">
-                        <ul id="lastPages">
-                        
-                        <?php if (isset($_SESSION['link1'])){ ?><li><a id="link1" href="<?php echo $_SESSION['link1']['url']?>"><?php echo $_SESSION['link1']['title']?></a></li><?php ;}?>
-                        <?php if (isset($_SESSION['link2'])){ ?><li><a id="link2" href="<?php echo $_SESSION['link2']['url']?>"><?php echo $_SESSION['link2']['title']?></a></li><?php ;}?>
-                        <?php if (isset($_SESSION['link3'])){ ?><li><a id="link3" href="<?php echo $_SESSION['link3']['url']?>"><?php echo $_SESSION['link3']['title']?></a></li><?php ;}?>
-                        </ul>
-                    </div>
+    <div class="alert alert-<?php if (isset($_SESSION['notification_type'])) {
+                                echo $_SESSION['notification_type'];
+                            } else {
+                                echo 'info';
+                            } ?>" id="alert" style="display:<?php if (isset($_SESSION['notification'])) {
+                                                                    echo "block; position:absolute; top:70px; right:0;";
+                                                                } else {
+                                                                    echo "none";
+                                                                } ?>">
+        <span class="closebtn" onclick="disappear();">&times;</span>
+        <?php if (isset($_SESSION['notification'])) {
+            echo $_SESSION['notification'];
+            unset($_SESSION['notification']);
+            unset($_SESSION['notification_type']);
+        } ?>
+    </div>
+    </div><!--notre sidebar-->
+    <div class="container-fluid pl-0" id="minheight">
+        <div class="row" id="maxer">
+            <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-items-center bg-secondary">
+                <div class="w-100 d-flex flex-column justify-content-between">
+                    <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
+                    <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
+                    <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                    <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
                 </div>
-                <div class=" content col-10 d-flex align-content-center flex-column flex-wrap">
-                    <div class="w-100 mb-5">
+                <div>
+                    <p>Pages récentes:</p>
+                    <ul id="lastPages" class="align-items-center d-flex flex-column">
+                        <li><a id="link1" class="link-dark" href="<?php if (isset($_SESSION['link1'])) {
+                                                                        echo $_SESSION['link1']['url'];
+                                                                    } ?>"><?php if (isset($_SESSION['link1'])) {
+                                                                                                                                                echo $_SESSION['link1']['title'];
+                                                                                                                                            } ?></a></li>
+                        <li><a id="link2" class="link-dark" href="<?php if (isset($_SESSION['link2'])) {
+                                                                        echo $_SESSION['link2']['url'];
+                                                                    } ?>"><?php if (isset($_SESSION['link2'])) {
+                                                                                                                                                echo $_SESSION['link2']['title'];
+                                                                                                                                            } ?></a></li>
+                        <li><a id="link3" class="link-dark" href="<?php if (isset($_SESSION['link3'])) {
+                                                                        echo $_SESSION['link3']['url'];
+                                                                    } ?>"><?php if (isset($_SESSION['link3'])) {
+                                                                                                                                                echo $_SESSION['link3']['title'];
+                                                                                                                                            } ?></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class=" content col-10 d-flex align-items-center flex-column flex-wrap">
+                <div class="w-100 mb-5">

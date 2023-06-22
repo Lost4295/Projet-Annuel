@@ -3,9 +3,6 @@
 
 
 <?php 
-
-
-
 require $_SERVER['DOCUMENT_ROOT'].'/core/header.php'; ?>
 //TODO continue this
 <style>
@@ -13,8 +10,6 @@ require $_SERVER['DOCUMENT_ROOT'].'/core/header.php'; ?>
     --vh: 1vh;
     --BORDER_GAP: 6px;
     --BORDER_RADIUS: 3px;
-    --MOBILE_CHAT_MAXHEIGHT: 200px;
-    --PLAYERS_PER_PAGE: -1;
     --COLOR_TEXT_CANVAS_TRANSPARENT: #404040;
     --COLOR_PANEL_BG: rgba(12, 44, 150, 0.75);
     --COLOR_PANEL_LO: rgba(7, 36, 131, 0.75);
@@ -28,44 +23,6 @@ require $_SERVER['DOCUMENT_ROOT'].'/core/header.php'; ?>
     --COLOR_PANEL_BUTTON: #2a51d1;
     --COLOR_PANEL_BUTTON_HOVER: #1e44be;
     --COLOR_PANEL_BUTTON_ACTIVE: #1d40b4;
-    --COLOR_TOOL_BASE: white;
-    --COLOR_TOOL_HOVER: #c5c5c5;
-    --COLOR_TOOL_ACTIVE: #ab66eb;
-    --COLOR_TOOL_TEXT: #000;
-    --COLOR_TOOL_SIZE_BASE: white;
-    --COLOR_TOOL_SIZE_HOVER: #c5c5c5;
-    --COLOR_TOOL_SIZE_ACTIVE: #ab66eb;
-    --COLOR_INPUT_BG: #ffffff;
-    --COLOR_INPUT_HOVER: white;
-    --COLOR_INPUT_TEXT: #2c2c2c;
-    --COLOR_INPUT_BORDER: #707070;
-    --COLOR_INPUT_BORDER_FOCUS: #56b2fd;
-    --COLOR_TOOL_TIP_BG: #4571ff;
-    --COLOR_GAMEBAR_TEXT: #000;
-    --COLOR_GAMEBAR_ROUND_TEXT: #000;
-    --COLOR_GAMEBAR_WORD_DESCRIPTION: #363636;
-    --COLOR_CHAT_TEXT_BASE: #000;
-    --COLOR_CHAT_TEXT_GUESSED: #56CE27;
-    --COLOR_CHAT_TEXT_CLOSE: #e2cb00;
-    --COLOR_CHAT_TEXT_DRAWING: #3975CE;
-    --COLOR_CHAT_TEXT_JOIN: #56CE27;
-    --COLOR_CHAT_TEXT_LEAVE: #CE4F0A;
-    --COLOR_CHAT_TEXT_OWNER: #ffa844;
-    --COLOR_CHAT_TEXT_GUESSCHAT: #7dad3f;
-    --COLOR_CHAT_BG_BASE: #fff;
-    --COLOR_CHAT_BG_ALT: #ececec;
-    --COLOR_CHAT_SCROLLBAR: #7e7e7e;
-    --COLOR_CHAT_SCROLLBAR_THUMB: #c7c7c7;
-    --COLOR_CHAT_BG_GUESSED_BASE: #e7ffdf;
-    --COLOR_CHAT_BG_GUESSED_ALT: #cfffbd;
-    --COLOR_CHAT_INPUT_COUNT: #000;
-    --COLOR_PLAYER_TEXT_BASE: #000;
-    --COLOR_PLAYER_ME: #4998ff;
-    --COLOR_PLAYER_ME_GUESSED: #0048b5;
-    --COLOR_PLAYER_BG_BASE: #fff;
-    --COLOR_PLAYER_BG_ALT: #ececec;
-    --COLOR_PLAYER_BG_GUESSED_BASE: #5bdd4a;
-    --COLOR_PLAYER_BG_GUESSED_ALT: #48c737
 }
 .avatar {
     pointer-events: none;
@@ -302,10 +259,37 @@ function changeAttr(id){
     var owner = document.getElementsByClassName("owner")[0]
     switch (index){
         case 0:
+            if (eyes.classList.contains("avatar-clicked")){
+                eyes.classList.remove("avatar-clicked")
+            }
+            if (mouth.classList.contains("avatar-clicked")){
+                mouth.classList.remove("avatar-clicked")
+            }
+            if (special.classList.contains("avatar-clicked")){
+                special.classList.remove("avatar-clicked")
+            }
+            if (owner.classList.contains("avatar-clicked")){
+                owner.classList.remove("avatar-clicked")
+            }
+            color.classList.add("avatar-clicked")
             color.style.backgroundPositionX.replace('%','')
             color.style.backgroundPositionX += 100 +"%"
         case 1:
-        
+            if (color.classList.contains("avatar-clicked")){
+                color.classList.remove("avatar-clicked")
+            }
+            if (mouth.classList.contains("avatar-clicked")){
+                mouth.classList.remove("avatar-clicked")
+            }
+            if (special.classList.contains("avatar-clicked")){
+                special.classList.remove("avatar-clicked")
+            }
+            if (owner.classList.contains("avatar-clicked")){
+                owner.classList.remove("avatar-clicked")
+            }
+            eyes.classList.add("avatar-clicked")
+            eyes.style.backgroundPositionX.replace('%','')
+            eyes.style.backgroundPositionX += 100 +"%"
         case 2:
 
         default:

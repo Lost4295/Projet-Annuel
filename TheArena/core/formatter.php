@@ -162,3 +162,25 @@ function formatActivity($activity){
     }
     return $return;
 }
+
+function formatTypeSignalement($signalement)
+{
+    switch ($signalement){
+        
+        case "forumpost" :
+            $return="Message de forum";
+            break;
+        case "comment" :
+            $return="Commentaire";
+            break;
+        case "user" :
+            $return= "Utilisateur";
+            break;
+        case "event" :
+            $return= "Evènement";
+        break;
+        default:
+            $return=$signalement." : Format étrange et non connu en base";
+    }
+    return $return;
+}

@@ -80,18 +80,22 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </p>
         <div class="text-center"><?= $nbrlike["nbr_like"] ?> J'aime <?= $nbrfriend["nbr_friend"] ?> amis</div>
     </div>
+    <?php if ($isFriend){?>
+        <p>Vous êtes amis :D</p>
+    <?php } ?>
     <?php if (isConnected()) { ?>
         <div class="d-flex justify-content-around">
             <?php if ($liked) { ?>
-                <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> J'aime</div>
+                <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> Je n'aime plus</div>
             <?php } elseif (!$liked) { ?>
                 <div class="btn-secondary btn"><i class="bi bi-heart-fill"></i> J'aime</div>
             <?php } ?>
             <?php if ($isFriend) { ?>
-                <div class="btn-success btn"><i class="bi bi-person-add"></i> Demander en ami</div>
+                <div class="btn-danger btn"><i class="bi bi-person-add"></i> Retirer en ami</div>
             <?php } elseif (!$isFriend) { ?>
-                <div class="btn-secondary btn"><i class="bi bi-person-add"></i> Demander en ami</div>
+                <div class="btn-success btn"><i class="bi bi-person-add"></i> Demander en ami</div>
             <?php } ?>
+            <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username?></a>
         </div>
     <?php } ?>
 </div>

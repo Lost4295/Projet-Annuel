@@ -1,4 +1,5 @@
 <?php 
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/formatter.php";
 
 include_once $_SERVER ['DOCUMENT_ROOT']."/core/functions.php";
 redirectIfNotConnected();
@@ -24,7 +25,8 @@ include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
             $_SESSION['message_type']= "danger";
             header("location: /chat");
             exit();
-          }
+          } 
+
         ?>
         <a href="/chat" class="back-icon"><i class="bi bi-arrow-left"></i></a>
         <img src="<?php echo $result['avatar']; ?>" alt="">

@@ -2,6 +2,13 @@
 </div>
 </div>
 </div>
+<div id="cb-cookie-banner" class="alert alert-dark text-center mb-0 position-absolute w-100"  style="bottom:15px" role="alert">
+  &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
+  <a href="https://www.cookiesandyou.com/" target="blank">Plus d'information</a>
+  <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
+    Accepter
+  </button>
+</div>
 <div class="row footer">
     <div class="col px-0">
         <footer class="footer pt-4 pb-2">
@@ -13,7 +20,20 @@
                 <a href="/contact" class="m-4 p-3">Nous contacter</a>
                 <?php if (isConnected()) { ?>
                     <div>
-                        <a class="btn btn-warning messages" href="/chat" id="messages">Messagerie</a>
+                        <a class="btn btn-warning messages" href="/chat" id="messages">
+                            Messagerie
+                            <?php
+                            $db = connectToDB();
+                            $sql = $db->prepare("SELECT * FROM " . PREFIX . "messages WHERE reciever_id = :id AND isread = 0");
+                            $sql->execute([
+                                "id" => $_SESSION['id']
+                            ]);
+                            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                            if (count($result) > 0) {
+                                echo '<span class=" top-0 start-100 p-2 bg-danger border border-light rounded-circle">' . count($result) . '<span class="visually-hidden">New alerts</span></span>';
+                            }
+                            ?>
+                        </a>
                     </div>
                 <?php  } ?>
             </div>
@@ -33,6 +53,7 @@
                 document.getElementById("loading").classList.add('d-none');
             }, 600)
         }, 900);
+        initializeCookieBanner();
     }
 
     var theme = window.localStorage.getItem('data-bs-theme');
@@ -55,17 +76,6 @@
             switchBox.classList.remove("move");
         }
     };
-    <?php if (isConnected()) { ?>
-        var btn = document.getElementById("messages");
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    <?php } ?>
 
     function myFunction() {
         var dropdown = document.getElementById("thedropdown");
@@ -96,12 +106,15 @@
             let tableau = {};
             var url = this.getAttribute('href');
             var title = this.innerHTML;
-            link3.innerHTML = link2.innerHTML;
-            link3.href = link2.href;
-            link2.innerHTML = link1.innerHTML;
+            console.log(link1);
+            console.log(link2);
+            console.log(link3);
+            if (link2.innerHTML != ''){link3.innerHTML = link2.innerHTML;}
+            if (link2.href != ''){link3.href = link2.href;}
+            if (link1.innerHTML != ''){link2.innerHTML = link1.innerHTML;}
             
             
-            link2.href = link1.href;
+            if (link1.href != ''){link2.href = link1.href;}
             link1.innerHTML = title;
             link1.href = url;
             let forms = new FormData();
@@ -119,7 +132,7 @@
                 .then(data => {
                 })
 
-            // window.location.href = url;
+            window.location.href = url;
         });
     }
 
@@ -137,7 +150,8 @@
             modal.style.display = "none";
         }, 10000);
     }
-</script>
 
+</script>
+<script src="/core/cookie-banner.js"></script>
 
 </html>

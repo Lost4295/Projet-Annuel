@@ -1,4 +1,5 @@
 <?php
+
 foreach ($result as $key => $user) {
     $queryPrepared = $db->prepare("SELECT * FROM " . PREFIX . "messages WHERE (reciever_id = :id1 OR user_id = :id1) AND (reciever_id = :id2 OR user_id = :id2) ORDER BY id DESC LIMIT 1");
     $queryPrepared->execute([
