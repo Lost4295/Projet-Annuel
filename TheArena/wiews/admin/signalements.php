@@ -15,7 +15,7 @@
 <table class="table table-hover table-bordered w-100" aria-describedby="reports-table">
     <thead>
         <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
-        <th><span id="user_id" class="w3-button table-column">ID du signaleur<i class="caret"></i></span></th>
+        <th><span id="user_id" class="w3-button table-column">Signaleur<i class="caret"></i></span></th>
         <th><span id="content" class="w3-button table-column">Contenu<i class="caret"></i></span></th>
         <th><span id="reported_id" class="w3-button table-column">ID de l'objet signalé <i class="caret"></i></span></th>
         <th><span id="discr" class="w3-button table-column">Type de signalament <i class="caret"></i></span></th>
@@ -88,14 +88,14 @@
             table.innerHTML = '';
             for (let data of tableData) {
                 let form = new FormData();
-                form.append('data', data.scope);
-                form.append('action', 'formatScope');
+                form.append('data', data.user_id);
+                form.append('action', 'formatUsers');
                 fetch('/core/fetchformatter.php', {
                         method: 'POST',
                         body: form
                     })
                     .then(response => response.text())
-                    .then(scoper => {
+                    .then(peros => {
                         let form = new FormData();
                         form.append('data', data.visibility);
                         form.append('action', 'formatVisibility');
@@ -114,23 +114,22 @@
                                     })
                                     .then(response => response.text())
                                     .then(result => {
+
                                         let row = table.insertRow(-1);
                                         let id = row.insertCell(0);
                                         id.innerHTML = data.id;
 
-                                        let scope = row.insertCell(1);
-                                        scope.innerHTML = scoper;
+                                        let user_id = row.insertCell(1);
+                                        user_id.innerHTML = peros??'INCONNU';
 
-                                        let username = row.insertCell(2);
-                                        username.innerHTML = data.username;
+                                        let content = row.insertCell(2);
+                                        content.innerHTML = "\""+data.content+"\"";
 
-                                        let email = row.insertCell(3);
-                                        email.innerHTML = data.email;
-                                        let visibility = row.insertCell(4);
-                                        visibility.innerHTML = visi;
-                                        let status = row.insertCell(5);
-                                        status.innerHTML = result;
-                                        let actions = row.insertCell(6);
+                                        let reported_id = row.insertCell(3);
+                                        reported_id.innerHTML =  data.reported_id ;
+                                        let discr = row.insertCell(4);
+                                        discr.innerHTML = data.discr;
+                                        let actions = row.insertCell(5);
                                         actions.innerHTML = `<a href='/admin/users/read?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
                                     });
                             });
