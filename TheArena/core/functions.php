@@ -174,10 +174,7 @@ function launchComeBack() {
 
             include_once $_SERVER['DOCUMENT_ROOT'] . '/core/sendmail.php';
 
-            sendEmail($user['email'], 'Vous ne jouez plus ?', 232, ''); //TODO ecrire le mail 
-            //'Bonjour, cela fait un moment que vous ne vous êtes pas connecté. Avez-vous abandonné The Arena ?
-            // Ce serait dommage, car de nouveaux joueurs vous attendent ! Revenez vite auprès de nous, pour vosu confronter à eux ! De nouveaux joueurs vous attendent ! Organisez de nouveaux événements,, et grimpez au sommet de la RankingList ! 
-            //Nous vous attendons de tout coeur sur The Arena !'
+            sendEmail($user['email'], 'Vous ne jouez plus ?', 232, "<h2 style='width:50%;height:40px;padding-left:190px;text-align:right;margin:0px;color:#B24909;'>Vous ne revenez plus ?</h2><p>Bonjour, cela fait un moment que vous ne vous êtes pas connecté. Avez-vous abandonné The Arena ? <br>Ce serait dommage, car de nouveaux joueurs vous attendent ! Revenez vite auprès de nous, pour vous confronter à eux ! De nouveaux joueurs vous attendent ! <br> Organisez de nouveaux événements, et grimpez au sommet de la RankingList ! Nous vous attendons de tout coeur sur The Arena !</p>"); 
         }
     }
 }

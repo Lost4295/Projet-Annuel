@@ -11,7 +11,6 @@ $queryPrepared->execute([
 
 $result = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 if (!empty($result)) {
-    print_r($result);
     $firstname = $result["first_name"];
     $lastname = $result["last_name"];
     $username = $result["username"];
@@ -25,11 +24,6 @@ if (!empty($result)) {
     $avatar = $result["avatar"];
     $about = $result["about"];
 }
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-print_r($_SESSION)
 
 ?>
 
@@ -87,7 +81,7 @@ print_r($_SESSION)
         <div class="col-7 my-4">
             <label for="pwd" class="form-label">Mot de passe</label>
             <div class="input-group mb-3">
-                <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                <input type="password" name="pwd" class="form-control" id="pwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" autocomplete="new-password">
                 <button type="button" class="input-group-text" id="pwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
             </div>
             <div class="invalid">
@@ -99,7 +93,7 @@ print_r($_SESSION)
         <div class="col-7 my-4">
             <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
             <div class="input-group mb-3">
-                <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
+                <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" autocomplete="new-password">
                 <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
             </div>
             <div class="invalid">
@@ -124,9 +118,251 @@ print_r($_SESSION)
                     <input type="file" id="image" accept="image/png, image/jpeg, image/jpg" name="avatar" onchange="loadFile(event)">
                 </div>
                 <div id="customavatar" style="display:none">
-                    <canvas id="canvas" style="border:5px solid #000000;"></canvas>
-                    <button onClick="window.location.reload()" name='avatar' type="button" class="btn btn-primary" href="/wiews/user/Javatar/saveAvatar.php"> générer et sauvegarder les modifications</button>
+
+                    <div class="panels">
+                        <div class="panel-left"></div>
+                        <div class="panel">
+                            <div class="avatar-customizer">
+                                <div class="arrows left">
+                                    <div class="arrow left" onclick="changeAttr(id)" id="0" data-avatar-index="1"></div>
+                                    <div class="arrow left" onclick="changeAttr(id)" id="1" data-avatar-index="2"></div>
+                                    <div class="arrow left" onclick="changeAttr(id)" id="2" data-avatar-index="0"></div>
+                                </div>
+                                <div class="container">
+                                    <div class="avatar fit">
+                                        <div class="color" style="background-position: 0% 0%;"></div>
+                                        <div class="eyes" style="background-position: 0% 0%;"></div>
+                                        <div class="mouth" style="background-position: 0% 0%;"></div>
+                                        <div class="special" style="display: none;"></div>
+                                        <div class="owner" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="arrows right">
+                                    <div class="arrow right" onclick="changeAttr(id)" id="3" data-avatar-index="1"></div>
+                                    <div class="arrow right" onclick="changeAttr(id)" id="4" data-avatar-index="2"></div>
+                                    <div class="arrow right" onclick="changeAttr(id)" id="5" data-avatar-index="0"></div>
+                                </div>
+                                <div class="randomize" data-tooltip="Randomize your Avatar!" data-tooltipdir="N"></div>
+                            </div>
+                        </div>
+                        <div class="panel-right">
+                            <button type="button" id="crowned">Toogle crown</button>
+                            <button type="button" id="specialed">Toogle special</button>
+                            <div class="d-flex align-items-center justify-content-around invisible" id="buttons">
+                                <div class="arrows left">
+                                    <div class="arrow left" onclick="changeSpec(id)" id="6" style="filter: drop-shadow(0 0 3px rgba(0, 0, 0, .15));flex: 0 0 auto;cursor: pointer;width: 34px;height: 34px;background-image: url(https://skribbl.io/img/arrow.gif);background-size: 200%;background-repeat: no-repeat;background-position: 0% 0%;"></div>
+                                </div>
+                                <div class="arrows right">
+                                    <div class="arrow right" onclick="changeSpec(id)" id="7" style="filter: drop-shadow(0 0 3px rgba(0, 0, 0, .15));flex: 0 0 auto;cursor: pointer;width: 34px;height: 34px;background-image: url(https://skribbl.io/img/arrow.gif);background-size: 200%;background-repeat: no-repeat;background-position: 0% 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        var larrows = document.querySelectorAll('.arrows .left');
+                        var rarrows = document.querySelectorAll('.arrows .right');
+                        let posie = 0;
+                        let posmo = 0;
+                        let poscol = 0;
+                        let minie = 0;
+                        let maxie = 58;
+                        let minmo = 0;
+                        let maxmo = 52;
+                        let mincol = 0;
+                        let maxcol = 28;
+                        let crowned = document.getElementById("crowned");
+                        let crown = document.getElementsByClassName("owner")[0];
+                        let posspe = 0;
+
+                        crowned.addEventListener('click', function() {
+                            if (crown.style.display == "none") {
+                                crown.style.display = "block";
+                                valuesToSave.owner = 'true';
+                            } else {
+                                crown.style.display = "none";
+                                valuesToSave.owner = 'false';
+                            }
+                            document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
+                        })
+                        let specialed = document.getElementById("specialed");
+                        let special = document.getElementsByClassName("special")[0];
+                        let specialBtns = document.getElementById("buttons");
+
+                        specialed.addEventListener('click', function() {
+                            if (special.style.display == "none") {
+                                special.style.display = "block";
+                                specialBtns.classList.remove("invisible");
+                                valuesToSave.special = '0';
+                            } else {
+                                special.style.display = "none";
+                                specialBtns.classList.add("invisible");
+                                valuesToSave.special = 'false';
+                            }
+                            document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
+                        })
+                        function changeSpec(id) {
+                            var elem = document.getElementById(id)
+                            if (id == 7) {
+                                if (posspe < specialPositions.length - 1) {
+                                    posspe++
+                                } else {
+                                    posspe = 0
+                                }
+                            } else if (id == 6) {
+                                if (posspe > 0) {
+                                    posspe--
+                                } else {
+                                    posspe = specialPositions.length - 1
+                                }
+                            }
+                            special.style.backgroundPosition = specialPositions[posspe]
+                            valuesToSave.special = posspe
+                            document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
+                        }
+
+                        let randomize = document.getElementsByClassName("randomize")[0]
+                        randomize.addEventListener('click', function() {
+                            posie = Math.floor(Math.random() * (maxie - minie)) + minie;
+                            posmo = Math.floor(Math.random() * (maxmo - minmo)) + minmo;
+                            poscol = Math.floor(Math.random() * (maxcol - mincol)) + mincol;
+                            changeAttr(0)
+                            changeAttr(1)
+                            changeAttr(2)
+                        })
+
+                        let valuesToSave = {
+                            color: 0,
+                            eyes: 0,
+                            mouth: 0,
+                            special: 0,
+                            owner: false
+                        }
+
+                        function changeAttr(id) {
+                            var elem = document.getElementById(id)
+                            var index = elem.dataset.avatarIndex
+                            var color = document.getElementsByClassName("color")[0]
+                            var eyes = document.getElementsByClassName("eyes")[0]
+                            var mouth = document.getElementsByClassName("mouth")[0]
+                            switch (index) {
+                                case '0':
+                                    if (eyes.classList.contains("avatar-clicked")) {
+                                        eyes.classList.remove("avatar-clicked")
+                                    }
+                                    if (mouth.classList.contains("avatar-clicked")) {
+                                        mouth.classList.remove("avatar-clicked")
+                                    }
+                                    if (special.classList.contains("avatar-clicked")) {
+                                        special.classList.remove("avatar-clicked")
+                                    }
+                                    color.classList.add("avatar-clicked")
+                                    if (id == 5) {
+                                        if (poscol < colorPositions.length - 1) {
+                                            poscol++
+                                        } else {
+                                            poscol = 0
+                                        }
+                                    } else if (id == 2) {
+                                        if (poscol > 0) {
+                                            poscol--
+                                        } else {
+                                            poscol = colorPositions.length - 1
+                                        }
+                                    }
+                                    color.style.backgroundPosition = colorPositions[poscol]
+                                    break;
+                                case '1':
+                                    if (color.classList.contains("avatar-clicked")) {
+                                        color.classList.remove("avatar-clicked")
+                                    }
+                                    if (mouth.classList.contains("avatar-clicked")) {
+                                        mouth.classList.remove("avatar-clicked")
+                                    }
+                                    if (special.classList.contains("avatar-clicked")) {
+                                        special.classList.remove("avatar-clicked")
+                                    }
+                                    eyes.classList.add("avatar-clicked")
+                                    if (id == 3) {
+                                        if (posie < eyesPositions.length - 1) {
+                                            posie++
+                                        } else {
+                                            posie = 0
+                                        }
+                                    } else if (id == 0) {
+                                        if (posie > 0) {
+                                            posie--
+                                        } else {
+                                            posie = eyesPositions.length - 1
+                                        }
+                                    }
+                                    eyes.style.backgroundPosition = eyesPositions[posie]
+                                    break;
+                                case '2':
+                                    if (color.classList.contains("avatar-clicked")) {
+                                        color.classList.remove("avatar-clicked")
+                                    }
+                                    if (eyes.classList.contains("avatar-clicked")) {
+                                        eyes.classList.remove("avatar-clicked")
+                                    }
+                                    if (special.classList.contains("avatar-clicked")) {
+                                        special.classList.remove("avatar-clicked")
+                                    }
+                                    mouth.classList.add("avatar-clicked")
+
+                                    if (id == 4) {
+                                        if (posmo < mouthPositions.length - 1) {
+                                            posmo++
+                                        } else {
+                                            posmo = 0
+                                        }
+                                    } else if (id == 1) {
+                                        if (posmo > 0) {
+                                            posmo--
+                                        } else {
+                                            posmo = mouthPositions.length - 1
+                                        }
+                                    }
+                                    mouth.style.backgroundPosition = mouthPositions[posmo]
+                                    break;
+                                default:
+                                    break;
+                            }
+                            valuesToSave.color = poscol
+                            valuesToSave.eyes = posie
+                            valuesToSave.mouth = posmo
+                            document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
+                        }
+// TODO trouver toutes les valeurs en px
+                        let eyesPositions = ["0px 0px", "100% 0%", "200% 0%", "300% 0%", "400% 0%", "500% 0%", '600% 0%', '700% 0%', '800% 0%', '900% 0%',
+                            "0% -100%", "-100% -100%", "-200% -100%", "-300% -100%", "-400% -100%", "-500% -100%", '-600% -100%', '-700% -100%', '-800% -100%', '-900% -100%',
+                            "-0% -200%", "-100% -200%", "-200% -200%", "-300% -200%", "-400% -200%", "-500% -200%", '-600% -200%', '-700% -200%', '-800% -200%', '-900% -200%',
+                            "-0% -300%", "-100% -300%", "-200% -300%", "-300% -300%", "-400% -300%", "-500% -300%", '-600% -300%', '-700% -300%', '-800% -300%', '-900% -300%',
+                            "-0% -400%", "-100% -400%", "-200% -400%", "-300% -400%", "-400% -400%", "-500% -400%", '-600% -400%', '-700% -400%', '-800% -400%', '-900% -400%',
+                            "-0% -500%", "-100% -500%", "-200% -500%", "-300% -500%", "-400% -500%", "-500% -500%", '-600% -500%'
+                        ]
+
+                        let specialPositions = ["0px 0px", "100% 0%", "200% 0%", "300% 0%", "400% 0%", "500% 0%", '600% 0%', '700% 0%', '800% 0%', '900% 0%',
+                            "0% -100%", "-100% -100%", "-200% -100%", "-300% -100%", "-400% -100%", "-500% -100%", '-600% -100%', '-700% -100%', '-800% -100%', '-900% -100%',
+                            "-300% -200%", "-400% -200%", '-500% -200%', '-600% -200%', "-900% 100%", "-800% 100%", "-700% 100% ", "-600% 100% "
+                        ]
+
+                        let mouthPositions = ["0px 0px", "100% 0%", "200% 0%", "100% 0%", "400% 0%", "500% 0%", '600% 0%', '700% 0%', '800% 0%', '900% 0%',
+                            "0% -100%", "-100% -100%", "-200% -100%", "-300% -100%", "-400% -100%", "-500% -100%", '-600% -100%', '-700% -100%', '-800% -100%', '-900% -100%',
+                            "-0% -200%", "-100% -200%", "-200% -200%", "-300% -200%", "-400% -200%", "-500% -200%", '-600% -200%', '-700% -200%', '-800% -200%', '-900% -200%',
+                            "-0% -300%", "-100% -300%", "-200% -300%", "-300% -300%", "-400% -300%", "-500% -300%", '-600% -300%', '-700% -300%', '-800% -300%', '-900% -300%',
+                            "-0% -400%", "-100% -400%", "-200% -400%", "-300% -400%", "-400% -400%", "-500% -400%", '-600% -400%', '-700% -400%', '-800% -400%', '-900% -400%',
+                            "-0% -500%"
+                        ]
+
+                        let colorPositions = ["0px 0px", "100% 0%", "200% 0%", "300% 0%", "400% 0%", "500% 0%", '600% 0%', '700% 0%', '800% 0%', '900% 0%',
+                            "-0% -100%", "-100% -100%", "-200% -100%", "-300% -100%", "-400% -100%", "-500% -100%", '-600% -100%', '-700% -100%', '-800% -100%', '-900% -100%',
+                            "-0% -200%", "-100% -200%", "-200% -200%", "-300% -200%", "-400% -200%", "-500% -200%", "-0% -300%"
+                        ]
+                    </script>
+                    <input type="hidden" name="avatarvals" id="avatarvals" value="undefined">
                 </div>
+
                 <style>
                     .images img {
                         border-radius: 50%;
@@ -247,69 +483,6 @@ print_r($_SESSION)
                 </div>
     </form>
 </div>
-<script>
-    window.onload = function() {
-        // head
-        var head = new Image();
-        var headNum = Math.floor(Math.random() * 3) + 1;
-        var headName = "head" + headNum + ".png";
-        head.src = "/wiews/user/Javatar/avatarsAtributes/head/" + headName;
-
-        // eye
-        var eyes = new Image();
-        var eyesNum = Math.floor(Math.random() * 3) + 1;
-        var eyesName = "eyes" + eyesNum + ".png";
-        eyes.src = "/wiews/user/Javatar/avatarsAtributes/eye/" + eyesName;
-
-
-        // accessory
-        var accessory = new Image();
-        var accessoryNum = Math.floor(Math.random() * 3) + 1;
-        var accessoryName = "accessory" + accessoryNum + ".png";
-        accessory.src = "/wiews/user/Javatar/avatarsAtributes/accessory/" + accessoryName;
-
-        // mouth
-        var mouth = new Image();
-        var mouthNum = Math.floor(Math.random() * 3) + 1;
-        var mouthName = "mouth" + mouthNum + ".png";
-        mouth.src = "/wiews/user/Javatar/avatarsAtributes/mouth/" + mouthName;
-
-
-        head.onload = function() {
-            buildAvatar();
-        }
-
-        eyes.onload = function() {
-            buildAvatar();
-        }
-
-
-        accessory.onload = function() {
-            buildAvatar();
-        }
-
-        mouth.onload = function() {
-            buildAvatar();
-        }
-
-        function buildAvatar() {
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
-            canvas.width = 200;
-            canvas.height = 200;
-
-            ctx.drawImage(head, ((200 - head.width) / 2), 25);
-
-            ctx.drawImage(eyes, ((100 - eyes.width) / 2), 50);
-
-            ctx.drawImage(mouth, ((100 - mouth.width) / 2), 75);
-
-            ctx.drawImage(accessory, ((100 - accessory.width) / 2), 25);
-
-
-        }
-    }
-</script>
 </div>
 </div>
 </div>

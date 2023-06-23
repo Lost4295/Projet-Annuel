@@ -70,8 +70,76 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 <div class="w-100">
     <div class="d-flex justify-content-between flex-wrap align-items-center">
         <h1> Page utilisateur de <?php echo $username; ?> </h1>
-        <div><a class="more" href="#">···</a>&emsp;&emsp;&emsp;</div>
+        <div class="dropdown">
+            <button onclick="openMod()" class="dropbtn more">...</button>
+            <div id="msgdrop" class="dropdown-content-msg">
+                <a href="#">Bloquer</a>
+                <a id="showDialog" href="#"> Signaler</a>
+                <a href="#">é</a>
+            </div>
+        </div>
+        <script>
+            function openMod() {
+                document.getElementById("msgdrop").classList.toggle("showmsg");
+            }
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('showmsg')) {
+                            openDropdown.classList.remove('showmsg');
+                        }
+                    }
+                }
+            }
+        </script>
     </div>
+    <dialog id="favDialog">
+        <form action="/core/signaler.php" class="p-5">
+        <h2 class="text-center">Signaler un profil</h2>
+            <label class="form-label">
+                Nous aimerions savoir pourquoi vous signalez ce profil. Merci de l'insérer ci-dessous.
+            </label>
+            <input type="text" name="content" id="reason" required class="form-control m-3">
+            <input type="hidden" name="id" value="<?php echo $result["id"]; ?>">
+            <input type="hidden" name="type" value="user">
+            <div>
+                <button value="cancel" class="btn btn-info" formmethod="dialog">Annuler</button>
+                <button id="confirmBtn" class="btn btn-info" value="default">Confirmer</button>
+            </div>
+        </form>
+    </dialog>
+    <p>
+    </p>
+    <script>
+        const showButton = document.getElementById("showDialog");
+        const favDialog = document.getElementById("favDialog");
+        const reason = document.getElementById("reason");
+        const confirmBtn = favDialog.querySelector("#confirmBtn");
+
+        // "Show the dialog" button opens the <dialog> modally
+        showButton.addEventListener("click", () => {
+            favDialog.showModal();
+        });
+
+        reason.addEventListener("change", (e) => {
+            confirmBtn.value = reason.value;
+        });
+
+        // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+        favDialog.addEventListener("close", (e) => {
+            favDialog.returnValue === "default" ?
+                "No return value." :
+                `ReturnValue: ${favDialog.returnValue}.`; // Have to check for "default" rather than empty string
+        });
+
+        // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+        confirmBtn.addEventListener("click", (event) => {   
+            favDialog.close(reason.value); // Have to send the select box value here.
+        });
+    </script>
     <div class="d-flex justify-content-center my-5"><img src="<?php echo $avatar ?>" width="200" height="200" /></div>
     <h3>À propos de moi</h3>
     <div class="my-5">
@@ -80,7 +148,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </p>
         <div class="text-center"><?= $nbrlike["nbr_like"] ?> J'aime <?= $nbrfriend["nbr_friend"] ?> amis</div>
     </div>
-    <?php if ($isFriend){?>
+    <?php if ($isFriend) { ?>
         <p>Vous êtes amis :D</p>
     <?php } ?>
     <?php if (isConnected()) { ?>
@@ -95,7 +163,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$isFriend) { ?>
                 <div class="btn-success btn"><i class="bi bi-person-add"></i> Demander en ami</div>
             <?php } ?>
-            <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username?></a>
+            <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
     <?php } ?>
 </div>

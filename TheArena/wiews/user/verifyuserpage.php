@@ -7,13 +7,13 @@ if (!isset($_POST['newsletter'])) {
     $_POST['newsletter']=1;
 }
 if (
-    count($_POST)!=8
+    (count($_POST) > 10 || count($_POST) < 7)
     ||empty($_POST["pseudo"])
     ||empty($_POST["email"])
-    ||empty($_POST["pwd"])
+    ||(empty($_POST["pwd"]) && (!empty($_POST["confirmpwd"])))
+    ||((!empty($_POST["pwd"])) && empty($_POST["confirmpwd"]))
     ||empty($_POST["id"])
-    ||empty($_POST["confirmpwd"])
-    ||empty($_POST["about"])
+    ||!isset($_POST["about"])
     ||empty($_POST["newsletter"])
     ||empty($_POST["visibility"])
 ) { print_r($_POST); print_r($_FILES);
@@ -35,6 +35,7 @@ $pwd=$_POST["pwd"];
 $id=$_POST["id"];
 $confirmpwd=$_POST["confirmpwd"];
 $about=$_POST["about"];
+$avatarvals= $_POST["avatarvals"];
 $visibility=$_POST["visibility"];
 $erroravatar="";
 $errorabout="";
@@ -74,7 +75,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erroremail="Vous n'avez pas renseigné le bon email. Si vous souhaitez changer d'email, merci de contacter un administrateur via la page de contact.";
     }
 }
-
+if (!empty($pwd) && !empty($confirmpwd)) {
 if (strlen($pwd)< 8 || !preg_match("#[a-z]#", $pwd)|| !preg_match("#[A-Z]#", $pwd) || !preg_match("#[\d]#", $pwd)) {
     $errorpwd="
         Votre mot de passe doit faire au minimum 8 caractères avec des minuscules,
@@ -84,10 +85,17 @@ if (strlen($pwd)< 8 || !preg_match("#[a-z]#", $pwd)|| !preg_match("#[A-Z]#", $pw
 if ($pwd != $confirmpwd) {
     $errorpwdconfirm="Le mot de passe n'est pas bien copié.";
 }
+} else {
+    $quez = $db->prepare("SELECT password FROM ".PREFIX."users WHERE id=:id");
+    $quez->execute([
+        "id"=>$id
+    ]);
+    $result=$quez->fetch(PDO::FETCH_ASSOC);
+    $pwd = $result['password'];
+}
 
 
-
-
+if($avatarvals =='undefined'){
 $dirname = $_SERVER['DOCUMENT_ROOT'] . '\uploads\\users\\';
 
 $queryPrepared = $db->prepare("SELECT avatar FROM ".PREFIX."users WHERE id=:id");
@@ -113,6 +121,15 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
         $avatar = $uploadedImage;
     }
 }
+} else{
+    $avatarvals = json_decode($avatarvals);
+    $finalavatar ="";
+    foreach ($avatarvals as $key => $value) {
+        $finalavatar.= $key.":".$value.';';
+    }
+    $avatar = $finalavatar;
+}
+
 
 if (!empty($erroravatar)||!empty($errorpseudo)||!empty($errorpwd)||!empty($errorpwdconfirm)||!empty($erroremail)||!empty($errorabout)||!empty($errorvisibility)) {
     $error=false;
@@ -137,10 +154,10 @@ if (!$error) {
         "avatar"=>$avatar,
         "username"=>$pseudo,
         "email"=>$email,
-        "password"=>password_hash($pwd, PASSWORD_DEFAULT),
-        "about"=>$about,
+        "password"=>$pwd,
+        "about"=>$about??'toto',
         "visibility"=>$visibility,
-        "udpate_at"=>time(),
+        "update_at"=>time(),
         "id"=>$id
     ]);
     $_SESSION['message'] = "Votre profil a bien été modifié.";
