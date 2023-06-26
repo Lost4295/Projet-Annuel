@@ -5,9 +5,6 @@
     $reports = $queryPrepared->fetchAll(PDO::FETCH_ASSOC);
     $queryPrepared = $db->query("SELECT * FROM " . PREFIX . "users");
     $users = $queryPrepared->fetchAll(PDO::FETCH_ASSOC);
-
-    print_r($reports);
-    print_r($users);
 ?>
 <h1>Signalements</h1>
 

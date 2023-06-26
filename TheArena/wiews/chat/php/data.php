@@ -7,7 +7,7 @@ foreach ($result as $key => $user) {
         "id2"=> $userid
     ]);
     $result2 = $queryPrepared->fetchAll(PDO::FETCH_ASSOC);
-    (count($result2) > 0) ? $message = $result2[$key]['content'] : $message = "Aucun message disponible.";
+    (count($result2) > 0) ? $message = $result2[0]['content'] : $message = "Aucun message disponible.";
     (strlen($message) > 28) ? $msg =  substr($message, 0, 28) . '...' : $msg = $message;
     if (isset($result2[$key]['user_id'])) {
         ($userid == $result2[$key]['user_id']) ? $you = "Vous: " : $you = "";

@@ -1,203 +1,203 @@
-<body onload="generate()">
+<body onload="captureScreenshot()">
 
 
 
 
 
-    <div class="panel">
+    <div class="panel" id="capture">
         <div class="container" style="max-width: 450px;max-height: 450px;">
-        <style>
-        .avatar {
-            pointer-events: none;
-            user-select: none;
-            position: relative;
-            flex: 0 0 auto;
-            height: 100%;
-            width: 100%;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-            -ms-interpolation-mode: nearest-neighbor;
-            image-rendering: pixelated;
-        }
+            <style>
+                .avatar {
+                    pointer-events: none;
+                    user-select: none;
+                    position: relative;
+                    flex: 0 0 auto;
+                    height: 60%;
+                    width: 60%;
+                    image-rendering: -moz-crisp-edges;
+                    image-rendering: crisp-edges;
+                    -ms-interpolation-mode: nearest-neighbor;
+                    image-rendering: pixelated;
+                }
 
-        .avatar.fit {
-            width: 100%;
-            height: 100%;
-        }
+                .avatar.fit {
+                    width: 60%;
+                    height: 60%;
+                }
 
-        .avatar.clicked {
-            animation: avatar_clicked 125ms ease-in-out 1
-        }
+                .avatar.clicked {
+                    animation: avatar_clicked 125ms ease-in-out 1
+                }
 
-        .avatar .eyes.bounce,
-        .avatar .mouth.bounce {
-            animation: avatar_bounce 125ms ease-in-out 1;
-        }
+                .avatar .eyes.bounce,
+                .avatar .mouth.bounce {
+                    animation: avatar_bounce 125ms ease-in-out 1;
+                }
 
-        .avatar .color {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://skribbl.io/img/avatar/color_atlas.gif');
-            background-size: 1000% 1000%
-        }
+                .avatar .color {
+                    position: absolute;
+                    width: 60%;
+                    height: 60%;
+                    background-image: url('https://skribbl.io/img/avatar/color_atlas.gif');
+                    background-size: 1000% 1000%
+                }
 
-        .avatar .eyes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://skribbl.io/img/avatar/eyes_atlas.gif');
-            background-size: 1000% 1000%
-        }
+                .avatar .eyes {
+                    position: absolute;
+                    width: 60%;
+                    height: 60%;
+                    background-image: url('https://skribbl.io/img/avatar/eyes_atlas.gif');
+                    background-size: 1000% 1000%
+                }
 
-        .avatar .mouth {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://skribbl.io/img/avatar/mouth_atlas.gif');
-            background-size: 1000% 1000%
-        }
+                .avatar .mouth {
+                    position: absolute;
+                    width: 60%;
+                    height: 60%;
+                    background-image: url('https://skribbl.io/img/avatar/mouth_atlas.gif');
+                    background-size: 1000% 1000%
+                }
 
-        .avatar .special {
-            position: absolute;
-            left: -33%;
-            top: -33%;
-            width: 166%;
-            height: 166%;
-            background-image: url('https://skribbl.io/img/avatar/special_atlas.gif');
-            background-size: 1000% 1000%
-        }
+                .avatar .special {
+                    position: absolute;
+                    left: -33%;
+                    top: -33%;
+                    width: 166%;
+                    height: 166%;
+                    background-image: url('https://skribbl.io/img/avatar/special_atlas.gif');
+                    background-size: 1000% 1000%
+                }
 
-        .avatar .owner {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            left: -5%;
-            top: -22%;
-            z-index: 2;
-            background-image: url('https://skribbl.io/img/crown.gif');
-            background-position: center;
-            background-size: contain
-        }
+                .avatar .owner {
+                    position: absolute;
+                    width: 50%;
+                    height: 50%;
+                    left: -5%;
+                    top: -22%;
+                    z-index: 2;
+                    background-image: url('https://skribbl.io/img/crown.gif');
+                    background-position: center;
+                    background-size: contain
+                }
 
-        .panels {
-            display: flex;
-            width: 100%
-        }
+                .panels {
+                    display: flex;
+                    width: 100%
+                }
 
-        .panel {
-            flex: 0 0 auto;
-            width: 400px;
-            border-radius: 3px;
-        }
+                .panel {
+                    flex: 0 0 auto;
+                    width: 400px;
+                    border-radius: 3px;
+                }
 
-        .panel-left {
-            margin-right: 8px;
-            flex: 1 1 50%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end
-        }
+                .panel-left {
+                    margin-right: 8px;
+                    flex: 1 1 50%;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: flex-end
+                }
 
-        .panel-right {
-            margin-left: 8px;
-            flex: 1 1 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between
-        }
+                .panel-right {
+                    margin-left: 8px;
+                    flex: 1 1 50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between
+                }
 
-        .avatar-customizer {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            background: rgba(0, 0, 0, .1);
-            padding: 8px;
-            border-radius: 3px;
-        }
+                .avatar-customizer {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                    background: rgba(0, 0, 0, .1);
+                    padding: 8px;
+                    border-radius: 3px;
+                }
 
-        .avatar-customizer .randomize {
-            cursor: pointer;
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            right: 4px;
-            top: 4px;
-            opacity: .6;
-            background-image: url('https://skribbl.io/img/randomize.gif');
-            transition: opacity .15s ease, transform .15s ease
-        }
+                .avatar-customizer .randomize {
+                    cursor: pointer;
+                    position: absolute;
+                    width: 32px;
+                    height: 32px;
+                    right: 4px;
+                    top: 4px;
+                    opacity: .6;
+                    background-image: url('https://skribbl.io/img/randomize.gif');
+                    transition: opacity .15s ease, transform .15s ease
+                }
 
-        .avatar-customizer .randomize:hover {
-            opacity: 1;
-            transform: scale(1.2)
-        }
+                .avatar-customizer .randomize:hover {
+                    opacity: 1;
+                    transform: scale(1.2)
+                }
 
-        .avatar-customizer .container {
-            width: 160px;
-            margin: unset;
-            height: 130px;
-        }
+                .avatar-customizer .container {
+                    width: 160px;
+                    margin: unset;
+                    height: 130px;
+                }
 
-        .avatar-customizer .arrows {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around
-        }
+                .avatar-customizer .arrows {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around
+                }
 
-        .avatar-customizer .arrows .arrow {
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, .15));
-            flex: 0 0 auto;
-            cursor: pointer;
-            width: 34px;
-            height: 34px;
-            background-image: url('https://skribbl.io/img/arrow.gif');
-            background-size: 200%;
-            background-repeat: no-repeat
-        }
+                .avatar-customizer .arrows .arrow {
+                    filter: drop-shadow(0 0 3px rgba(0, 0, 0, .15));
+                    flex: 0 0 auto;
+                    cursor: pointer;
+                    width: 34px;
+                    height: 34px;
+                    background-image: url('https://skribbl.io/img/arrow.gif');
+                    background-size: 200%;
+                    background-repeat: no-repeat
+                }
 
-        .avatar-customizer .arrows.left .arrow {
-            background-position: 0 0
-        }
+                .avatar-customizer .arrows.left .arrow {
+                    background-position: 0 0
+                }
 
-        .avatar-customizer .arrows.left .arrow:hover {
-            background-position: 100% 0
-        }
+                .avatar-customizer .arrows.left .arrow:hover {
+                    background-position: 100% 0
+                }
 
-        .avatar-customizer .arrows.right .arrow {
-            background-position: 0 100%
-        }
+                .avatar-customizer .arrows.right .arrow {
+                    background-position: 0 100%
+                }
 
-        .avatar-customizer .arrows.right .arrow:hover {
-            background-position: 100% 100%
-        }
+                .avatar-customizer .arrows.right .arrow:hover {
+                    background-position: 100% 100%
+                }
 
-        @keyframes avatar_bounce {
+                @keyframes avatar_bounce {
 
-            0%,
-            100% {
-                top: 0
-            }
+                    0%,
+                    100% {
+                        top: 0
+                    }
 
-            15% {
-                top: 6%
-            }
-        }
+                    15% {
+                        top: 6%
+                    }
+                }
 
-        @keyframes avatar_clicked {
+                @keyframes avatar_clicked {
 
-            0%,
-            100% {
-                transform: scale(1)
-            }
+                    0%,
+                    100% {
+                        transform: scale(1)
+                    }
 
-            15% {
-                transform: scale(1.2)
-            }
-        }
-    </style>
+                    15% {
+                        transform: scale(1.2)
+                    }
+                }
+            </style>
             <div class="avatar fit">
                 <div class="color" style="background-position: 0% 0%;"></div>
                 <div class="eyes" style="background-position: 0% 0%;"></div>
@@ -207,12 +207,11 @@
             </div>
         </div>
     </div>
-    </div>
     <script>
         function takeScreenshot() {
             const placeholder = document.createElement("div");
             placeholder.innerHTML = document.getElementsByClassName('panel')[0].innerHTML;
-             let test= document.getElementsByClassName('panel')[0];
+            let test= document.getElementsByClassName('panel')[0];
             const noded = placeholder.firstElementChild;
             var screenshot = noded
                 .cloneNode(true);
@@ -223,10 +222,10 @@
             screenshot.style.msUserSelect = 'none';
             screenshot.style.oUserSelect = 'none';
             screenshot.style.userSelect = 'none';
-            screenshot.dataset.scrollX = 500;
+            screenshot.dataset.scrollX = window.scrollX;
             screenshot.style.maxWidth = '500px';
             screenshot.style.maxHeight = '500px';
-            screenshot.dataset.scrollY = 500;
+            screenshot.dataset.scrollY = window.scrollY;
             var blob = new Blob([screenshot.outerHTML], {
                 type: 'text/html'
             });
@@ -240,4 +239,8 @@
             window.open(window.URL
                 .createObjectURL(takeScreenshot()));
         }
+
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+    document.body.appendChild(canvas)
+});
     </script>
