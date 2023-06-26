@@ -31,6 +31,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 ":friend_id" => $result["id"]
             ]);
             $isFriend = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+
+            $queryPrepared = $connection->prepare("SELECT accepted FROM " . PREFIX . "user_friends WHERE user_id=:user_id AND friend_id=:friend_id");
+            $queryPrepared->execute([
+                ":user_id" => $result["id"],
+                ":friend_id" => $user["id"]
+            ]);
+            $isFriendAccepted = $queryPrepared->fetch(PDO::FETCH_ASSOC);
         }
 
         if ($result['visibility'] <= 1) {
@@ -158,9 +165,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$liked) { ?>
                 <div class="btn-secondary btn"><i class="bi bi-heart-fill"></i> J'aime</div>
             <?php } ?>
-            <?php if ($isFriend && $isFriend['accepted']) { ?>
+            <?php if ($isFriend && $isFriendAccepted['accepted'] && $isFriend['accepted']) { ?>
                 <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
-            <?php } elseif ($isFriend&& !$isFriend['accepted']) { ?>
+            <?php } elseif ($isFriend && (!$isFriendAccepted['accepted'] || !$isFriend['accepted'])) { ?>
                 <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Annuler ma demande</a>
             <?php } elseif (!$isFriend) { ?>
                 <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Demander en ami</a>

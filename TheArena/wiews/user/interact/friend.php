@@ -39,11 +39,21 @@ if (isConnected()) {
             "user_id" => $user["id"],
             "friend_id" => $friend_id,
         ]);
+        $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "user_friends SET accepted=1 WHERE user_id=:user_id AND friend_id=:friend_id");
+        $queryPrepared->execute([
+            "user_id" => $friend_id,
+            "friend_id" => $user["id"],
+        ]);
     } else {
         $queryPrepared = $connection->prepare("DELETE FROM " . PREFIX . "user_friends WHERE user_id=:user_id AND friend_id=:friend_id");
         $queryPrepared->execute([
             "user_id" => $user["id"],
             "friend_id" => $friend_id,
+        ]);
+        $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "user_friends SET accepted=0 WHERE user_id=:user_id AND friend_id=:friend_id");
+        $queryPrepared->execute([
+            "user_id" => $friend_id,
+            "friend_id" => $user["id"],
         ]);
     }
 
