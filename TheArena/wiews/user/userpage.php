@@ -18,6 +18,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $nquery =  $connection->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
             $nquery->execute([':email' => $_SESSION['email']]);
             $user = $nquery->fetch(PDO::FETCH_ASSOC);
+
             $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_likes WHERE user_id=:user_id AND liked_id=:liked_id");
             $queryPrepared->execute([
                 ":user_id" => $user["id"],
@@ -161,9 +162,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <?php if (isConnected()) { ?>
         <div class="d-flex justify-content-around">
             <?php if ($liked) { ?>
-                <div class="btn-danger btn"><i class="bi bi-heart-fill"></i> Je n'aime plus</div>
+                <a class="btn-danger btn" href="user/interact/like?id=<?php echo $name ?>"><i class="bi bi-heart-fill"></i> Je n'aime plus</a>
             <?php } elseif (!$liked) { ?>
-                <div class="btn-secondary btn"><i class="bi bi-heart-fill"></i> J'aime</div>
+                <a class="btn-secondary btn" href="user/interact/like?id=<?php echo $name ?>"><i class="bi bi-heart-fill"></i> J'aime</a>
             <?php } ?>
             <?php if ($isFriend && $isFriendAccepted['accepted'] && $isFriend['accepted']) { ?>
                 <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
