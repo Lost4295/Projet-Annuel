@@ -75,6 +75,7 @@ $routes = [
     "/me" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/myuserpage",
     "/forums" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumindex",
     "/user" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/userpage",
+    "/user/interact/friend" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/interact/friend",
     "/me/modify" => $_SERVER['DOCUMENT_ROOT']."/wiews/user/modifyuserpage",
     "/cgu" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgu",
     "/cgv" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/cgv",

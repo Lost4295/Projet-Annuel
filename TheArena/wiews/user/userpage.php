@@ -47,7 +47,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $nbrlike = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 
 
-        $queryPrepared = $connection->prepare("SELECT COUNT(friend_id) AS nbr_friend FROM " . PREFIX . "user_friends WHERE friend_id=:friend_id");
+        $queryPrepared = $connection->prepare("SELECT COUNT(friend_id) AS nbr_friend FROM " . PREFIX . "user_friends WHERE friend_id=:friend_id AND accepted=1");
         $queryPrepared->execute([
             ":friend_id" => $result["id"]
         ]);
@@ -158,12 +158,14 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$liked) { ?>
                 <div class="btn-secondary btn"><i class="bi bi-heart-fill"></i> J'aime</div>
             <?php } ?>
-            <?php if ($isFriend) { ?>
-                <div class="btn-danger btn"><i class="bi bi-person-add"></i> Retirer en ami</div>
+            <?php if ($isFriend && $isFriend['accepted']) { ?>
+                <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
+            <?php } elseif ($isFriend&& !$isFriend['accepted']) { ?>
+                <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Annuler ma demande</a>
             <?php } elseif (!$isFriend) { ?>
-                <div class="btn-success btn"><i class="bi bi-person-add"></i> Demander en ami</div>
+                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Demander en ami</a>
             <?php } ?>
-            <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
+                <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
     <?php } ?>
 </div>
