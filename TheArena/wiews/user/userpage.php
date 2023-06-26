@@ -26,6 +26,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             ]);
             $liked = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 
+            $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_blocked WHERE user_id=:user_id AND blocked_id=:blocked_id");
+            $queryPrepared->execute([
+                ":user_id" => $user["id"],
+                ":blocked_id" => $result["id"]
+            ]);
+            $blocked = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+
             $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "user_friends WHERE user_id=:user_id AND friend_id=:friend_id");
             $queryPrepared->execute([
                 ":user_id" => $user["id"],
@@ -165,6 +172,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 <a class="btn-danger btn" href="user/interact/like?id=<?php echo $name ?>"><i class="bi bi-heart-fill"></i> Je n'aime plus</a>
             <?php } elseif (!$liked) { ?>
                 <a class="btn-secondary btn" href="user/interact/like?id=<?php echo $name ?>"><i class="bi bi-heart-fill"></i> J'aime</a>
+            <?php } ?>
+            <?php if ($blocked) { ?>
+                <a class="btn-danger btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Debloquer</a>
+            <?php } elseif (!$blocked) { ?>
+                <a class="btn-info btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Bloquer</a>
             <?php } ?>
             <?php if ($isFriend && $isFriendAccepted['accepted'] && $isFriend['accepted']) { ?>
                 <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
