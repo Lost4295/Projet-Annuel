@@ -19,6 +19,20 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $nquery->execute([':email' => $_SESSION['email']]);
             $user = $nquery->fetch(PDO::FETCH_ASSOC);
 
+            $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_blocked WHERE user_id=:user_id AND blocked_id=:blocked_id");
+            $queryPrepared->execute([
+                ":user_id" => $result["id"],
+                ":blocked_id" => $user["id"]
+            ]);
+            $isBlockMe = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+
+            if ($isBlockMe) {
+                $_SESSION["message"] = "Ce profil est privé";
+                $_SESSION["message_type"] = "danger";
+                header("Location: /");
+                exit();
+            }
+
             $queryPrepared = $connection->prepare("SELECT * FROM " . PREFIX . "users_likes WHERE user_id=:user_id AND liked_id=:liked_id");
             $queryPrepared->execute([
                 ":user_id" => $user["id"],
