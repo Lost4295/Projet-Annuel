@@ -198,3 +198,30 @@ function formatForumName ($forumid){
     }
     return $return;
 }
+
+    function formatProductsName ($productid) {
+        $db = connectToDB();
+        $query = $db->prepare("SELECT name as n FROM ".PREFIX."products WHERE id=:id");
+        $query->execute(['id'=>$productid]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $name = $result['n'];
+        if ($name) {
+            $return=$name;
+        } else {
+            $return=$name." : Format étrange et non connu en base";
+        }
+        return $return;
+    }
+    function findPriceByPID ($productid) {
+        $db = connectToDB();
+        $query = $db->prepare("SELECT price as p FROM ".PREFIX."products WHERE id=:id");
+        $query->execute(['id'=>$productid]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $price = $result['p'];
+        if ($price) {
+            $return=$price;
+        } else {
+            $return=$price." : Format étrange et non connu en base";
+        }
+        return $return;
+    }
