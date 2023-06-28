@@ -64,9 +64,14 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </ul>
     </nav>
 </div>
-<?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
+<?php if (isConnected() && ($user['id'] == $event['manager_id']) && isset( $event['shop_id'] ) ) { ?>
     <a href='/event/shop/create/item?shop=<?php echo $event['shop_id'] ?>'>Créer un article</a>
 <?php } ?>
+
+<?php if (count($items)==0 && !isset( $event['shop_id'] )){?>
+    <a href='/event/shop/create/shop?event=<?php echo $event['id']?>'>Créer un shop</a>
+<?php ;}
+?>
 </div>
 
 

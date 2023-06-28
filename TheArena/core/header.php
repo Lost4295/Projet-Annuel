@@ -3,7 +3,7 @@
 }
 ?>
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="" style="height:100%">
+<html lang="fr" data-theme="" style="height:100%">
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
     <nav class="header navbar p-0 ">
         <div class="container-fluid d-flex justify-content-around">
             <div class="mr-auto">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/" title="The Arena">
                     <img src="/img/logothearena-removebg.png" alt="Logo" class="d-inline-block align-text-center logo">
                     <img src="/img/thearenatext-removebg.png" alt="The Arena" class="d-inline-block align-text-center textlogo">
                 </a>
@@ -52,17 +52,17 @@
                         <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
                         <div id="thedropdown" class="dropdown-content dropcolor">
                             <?php echo "Connecté en tant que " . $attr['1']; ?>
-                            <a class="btn btn-warning" href="/me">Ma page</a>
+                            <a class="btn btn-warning"  title="Ma page" href="/me">Ma page</a>
                             <?php if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
-                                <a class="btn btn-warning " href="/admin">Index Admin</a>
+                                <a class="btn btn-warning " title="Index Admin" href="/admin">Index Admin</a>
                             <?php } ?>
-                            <a class="btn btn-danger " href="/logout"><i class="bi bi-box-arrow-right fs-4"></i> Se déconnecter </a>
+                            <a class="btn btn-danger" href="/logout"><i class="bi bi-box-arrow-right fs-4"></i> Se déconnecter </a>
                         </div>
                     </div>
                 <?php } else { ?>
                     <div class="d-flex align-items-center justify-content-between mx-4">
-                        <a class="btn btn-warning mx-3" href="/login">Connexion</a>
-                        <a class="btn btn-warning mx-3" href="/register">Inscription</a>
+                        <a class="btn btn-warning mx-3" title="Connexion" href="/login">Connexion</a>
+                        <a class="btn btn-warning mx-3" title="Inscription" href="/register">Inscription</a>
                     </div>
                 <?php } ?>
 
@@ -108,10 +108,10 @@
         <div class="row" id="maxer">
             <div class="col-3 sidebar d-flex flex-wrap flex-column justify-content-around align-items-center bg-secondary">
                 <div class="w-100 d-flex flex-column justify-content-between">
-                    <a href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
-                    <a href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
-                    <a href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
-                    <a href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
+                    <a title="Accueil" href="/" class="my-3 w-100 btn btn-warning">Accueil</a>
+                    <a title="Événements" href="/events" class="my-3 w-100 btn btn-warning">Événements</a>
+                    <a title="Power Ranking" href="/powerranking" class="my-3 w-100 btn btn-warning">Power Ranking</a>
+                    <a title="Forum" href="/forums" class="my-3 w-100 btn btn-warning">Forum</a>
                 </div>
                 <div>
                     <p>Pages récentes:</p>
@@ -134,5 +134,5 @@
                     </ul>
                 </div>
             </div>
-            <div class=" content col-10 d-flex align-items-center flex-column flex-wrap">
-                <div class="w-100 mb-5">
+            <div class=" content col-10 d-flex flex-column flex-wrap">
+                <div class="w-100 mb-5" id="m">

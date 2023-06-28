@@ -33,6 +33,11 @@ function isConnected()
     }
     return false;
 }
+
+/*
+ * @return array
+ * scope, username, avatar
+ */
 function whoIsConnected()
 {
     if (isConnected()) {

@@ -4,7 +4,7 @@
 </div>
 <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0 position-absolute w-100"  style="bottom:15px" role="alert">
   &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
-  <a href="https://www.cookiesandyou.com/" target="blank">Plus d'information</a>
+  <a href="https://www.cookiesandyou.com/" title="Plus d'informations" target="blank">Plus d'informations</a>
   <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
     Accepter
   </button>
@@ -14,8 +14,8 @@
         <footer class="footer pt-4 pb-2">
             <div class="d-flex justify-content-around align-items-center">
                 <img src="/img/logothearena-removebg.png" alt="Logo" class="d-inline-block logo">
-                <a href="/cgu" class="m-4 p-3">Conditions générales d'utilisation</a>
-                <a href="/cgv" class="m-4 p-3">Conditions générales de vente</a>
+                <a href="/cgu" title="Conditions générales d'utilisation" class="m-4 p-3">Conditions générales d'utilisation</a>
+                <a href="/cgv" title="Conditions générales de vente" class="m-4 p-3">Conditions générales de vente</a>
                 <a href="/legal" class="m-4 p-3">Mentions légales</a>
                 <a href="/contact" class="m-4 p-3">Nous contacter</a>
                 <?php if (isConnected()) { ?>
@@ -56,9 +56,9 @@
         initializeCookieBanner();
     }
 
-    var theme = window.localStorage.getItem('data-bs-theme');
+    var theme = window.localStorage.getItem('data-theme');
     const switchBox = document.querySelector(".sun-moon");
-    if (theme) document.documentElement.setAttribute('data-bs-theme', theme);
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
     if (theme == 'dark') {
         switchBox.classList.remove("move");
     } else {
@@ -66,13 +66,13 @@
     }
 
     document.getElementById('changeToDarkMode').onclick = function() {
-        if (window.localStorage.getItem('data-bs-theme') == 'dark') {
-            document.documentElement.setAttribute('data-bs-theme', 'light');
-            window.localStorage.setItem('data-bs-theme', 'light');
+        if (window.localStorage.getItem('data-theme') == 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            window.localStorage.setItem('data-theme', 'light');
             switchBox.classList.add("move");
         } else {
-            document.documentElement.setAttribute('data-bs-theme', 'dark');
-            window.localStorage.setItem('data-bs-theme', 'dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            window.localStorage.setItem('data-theme', 'dark');
             switchBox.classList.remove("move");
         }
     };
@@ -106,20 +106,21 @@
             let tableau = {};
             var url = this.getAttribute('href');
             var title = this.innerHTML;
-            console.log(link1);
+            console.log(title);
+            
             console.log(link2);
             console.log(link3);
-            if (link2.innerHTML != ''){link3.innerHTML = link2.innerHTML;}
+            if (link2.innerHTML != ''){link3.innerHTML = link2.innerHTML}
             if (link2.href != ''){link3.href = link2.href;}
-            if (link1.innerHTML != ''){link2.innerHTML = link1.innerHTML;}
+            if (link1.innerHTML != ''){link2.innerHTML = title}
             
             
             if (link1.href != ''){link2.href = link1.href;}
             link1.innerHTML = title;
-            link1.href = url;
+            link1.href = url;console.log(link1);
             let forms = new FormData();
-            tableau.link3 = {title: link3.innerHTML, url: link3.href};
-            tableau.link2 = {title: link2.innerHTML, url: link2.href};
+            tableau.link3 = {title: link3.title, url: link3.href};
+            tableau.link2 = {title: link2.title, url: link2.href};
             tableau.link1 = {title: title, url: url};
             
             
@@ -132,7 +133,7 @@
                 .then(data => {
                 })
 
-            window.location.href = url;
+            // window.location.href = url;
         });
     }
 

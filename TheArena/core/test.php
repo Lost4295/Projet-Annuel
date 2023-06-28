@@ -17,6 +17,23 @@ $queryPrepared->execute([
     "id" => $_SESSION['id']
 ]);
 $user = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+$queryPrepared2 = $db->prepare("SELECT * FROM ".PREFIX."messages WHERE user_id = :id or reciever_id = :id");
+$queryPrepared2->execute([
+    "id" => $_SESSION['id']
+]);
+$messages = $queryPrepared2->fetchAll(PDO::FETCH_ASSOC);
+
+$queryPrepared3 = $db->prepare("SELECT * FROM ".PREFIX."forums WHERE author = :id");
+$queryPrepared3->execute([
+    "id" => $_SESSION['id']
+]);
+$forums = $queryPrepared3->fetchAll(PDO::FETCH_ASSOC);
+
+$queryPrepared4 = $db->prepare("SELECT * FROM ".PREFIX."forum_reponses WHERE user_id = :id");
+$queryPrepared4->execute([
+    "id" => $_SESSION['id']
+]);
+$forum_reponses = $queryPrepared4->fetchAll(PDO::FETCH_ASSOC);
 
 $html.='<br>Suite à votre demande de téléchargement de vos données personnelles, veuillez trouver ci-dessous les informations vous concernant :<br><br>';
 $html.='<h2>Profil de '.$user['username'].'</h2>';
@@ -30,8 +47,22 @@ $html.='<p>Modifié la dernière fois le : '. $user['update_at'].'</p>';
 $html.='<p>Statut : '.formatStatusUsers($user['status']).'</p>';
 $html.='<p>Visibilité : '.formatVisibility($user['visibility']).'</p>';
 $html.='<p>Scope : '.formatScope($user['scope']).'</p>';
-//Ajo
-    
+
+$html.='<h2>Messages de '.$user['username'].'</h2>';
+foreach ($messages as $message){
+    $html.='<p>Message de '.formatUsers($message['user_id']).' : " '.$message['content'].' " pour '.formatUsers($message['reciever_id']).'</p>';
+}
+
+$html.='<h2>Forums de '.$user['username'].'</h2>';
+foreach ($forums as $forum){
+    $html.='<p>Forum : '.$forum['title'].' créé le '.$forum['creation_date'].' par '.formatUsers($forum['author']).'</p>';
+}
+
+$html.='<h2>Messages de '.$user['username'].' envoyés sur les forums</h2>';
+foreach ($forum_reponses as $forum_reponse){
+    $html.='<p>Réponse : '.$forum_reponse['content'].' créé le '.$forum_reponse['creation_date'].' sur '.formatForumName($forum_reponse['forum_id']).'</p>';
+}
+
 
 $html.='</body></html>'; // Le contenu HTML à convertir en PDF
 $dompdf = new Dompdf();

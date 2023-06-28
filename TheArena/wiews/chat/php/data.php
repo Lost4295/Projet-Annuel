@@ -17,7 +17,7 @@ foreach ($result as $key => $user) {
     ($user['activeonsite'] == "0") ? $offline = "offline" : $offline = "";
     ($userid == $user['id']) ? $hid_me = "hide" : $hid_me = "";
 
-    $output .= '<a href="/chat/chat?user_id=' . $user['id'] . '">
+    $output .= '<a title="'.$user['username'].'" href="/chat/chat?user_id=' . $user['id'] . '">
                     <div class="content">
                     <img src="' . $user['avatar'] . '" alt="">
                     <div class="details">

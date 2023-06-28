@@ -17,27 +17,6 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         <th>Actions</th>
     </thead>
     <tbody id="mytable">
-        <?php
-        // foreach ($result as $event) {
-        ?>
-        <!-- <tr>
-                <td><?php // echo $event['id'] 
-                    ?></td>
-                <td><?php // echo $event['name'] 
-                    ?></td>
-                <td><?php // echo formatUsers($event['manager_id']) 
-                    ?></td>
-                <td><?php // echo ($event['shop_id']) ?? "NULL" 
-                    ?></td>
-                <td><?php // echo $event['game'] 
-                    ?></td>
-                <td><?php // echo formatType($event['type']) 
-                    ?></td>
-                <td><a class="btn btn-primary m-1" href="/admin/events/read?id=<?php echo $event['id'] ?>">Voir</a> <a class="btn btn-primary m-1" href="/admin/events/update?id=<?php echo $event['id'] ?>">Modifier</a> <a class="btn btn-primary m-1" href="/admin/events/delete?id=<?php echo $event['id'] ?>">Supprimer</a></td>
-            </tr> -->
-        <?php
-        // }
-        ?>
     </tbody>
 </table>
 

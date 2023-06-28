@@ -60,7 +60,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <form  class="d-flex justify-content-center" action="/core/buy.php" method="post">
             <input type="hidden" name="id" value="<?php echo $item['id']?>">
             <input type="hidden" name="shop" value="<?php echo $shop['id']?>">
-            <input type="hidden" name="event" value="<?php echo $event['name']?>">
+            <input type="hidden" name="event" value="<?php echo $event['id']?>">
             <input type="hidden" name="user" value="<?php echo $user['id']?>">
             <input type="submit" class="btn btn-warning justify-self-center btn-lg" value="Acheter">
         </form>

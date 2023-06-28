@@ -8,6 +8,20 @@ if (isset($_GET['id']) && !empty($_GET['id']) && empty($_POST)) {
     $query = $db->prepare("SELECT * FROM " . PREFIX . "shops WHERE `id`=:id;");
     $query->execute([':id' => $id]);
     $result = $query->fetch(PDO::FETCH_ASSOC);
+    $query = $db->prepare("SELECT * FROM ".PREFIX."events WHERE `shop_id`=:id;");
+    $query->execute([':id'=> $result['id']]);
+    $resultv = $query->fetch(PDO::FETCH_ASSOC);
+    $user =$db->prepare("SELECT scope FROM ".PREFIX."users WHERE id=:id");
+    $user->execute([':id'=> $resultv['manager_id']]);
+    $result3 = $user->fetch(PDO::FETCH_ASSOC);
+    $scope = $result3['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0]==SUPADMIN || $scope != SUPADMIN){
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
+        header("Location: /admin/shops");
+    }
 } elseif (isset($_POST)) {
     if (
         count($_POST) != 3
@@ -38,18 +52,6 @@ if (isset($_GET['id']) && !empty($_GET['id']) && empty($_POST)) {
 require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-
-<body>
     <h1>Modifier un shop</h1>
     <form method="post">
         <p>
@@ -65,6 +67,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
         </p>
         <input type="hidden" name="id" value="<?= $result['id'] ?>">
     </form>
-</body>
 
-</html>
+<?php
+    require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/footer.php';

@@ -7,9 +7,23 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query = $db->prepare("SELECT * FROM " . PREFIX . "tournaments WHERE `id`=:id;");
     $query->execute([':id' => $id]);
     $result = $query->fetch(PDO::FETCH_ASSOC);
-    print_r($result);
+    $query = $db->prepare("SELECT * FROM ".PREFIX."events WHERE `id`=:id;");
+    $query->execute([':id'=> $result['event_id']]);
+    $resultv = $query->fetch(PDO::FETCH_ASSOC);
+    $user =$db->prepare("SELECT scope FROM ".PREFIX."users WHERE id=:id");
+    $user->execute([':id'=> $resultv['manager_id']]);
+    $result3 = $user->fetch(PDO::FETCH_ASSOC);
+    $scope = $result3['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0]==SUPADMIN || $scope != SUPADMIN){
     $query = $db->query("SELECT * FROM " . PREFIX . "events");
     $result2 = $query->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
+        header("Location: /admin/tournaments");
+    }
+
 }
 
 ?>

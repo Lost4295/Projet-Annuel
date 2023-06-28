@@ -4,16 +4,15 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$name = strip_tags($_GET['id']);
-	$query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `name`=:name');
-	$query->execute([':name' => $name]);
+	$query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:id');
+	$query->execute([':id' => $id]);
 	$event = $query->fetch(PDO::FETCH_ASSOC);
 	if (!$event) {
 		$_SESSION['message'] = "Cet évènement n'existe pas.";
 		$_SESSION['message_type'] = "danger";
-		print_r($_SESSION);
-		// header('Location: /');
+		header('Location: /');
 	}
-	if (isConnected() && ($name == $event['name'])) {
+	if (isConnected() && ($id == $event['id'])) {
 		$nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
 		$nquery->execute([':email' => $_SESSION['email']]);
 		$user = $nquery->fetch(PDO::FETCH_ASSOC);
