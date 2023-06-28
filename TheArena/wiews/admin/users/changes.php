@@ -1,10 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 
-if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) && (!empty($_GET['visibility'])||$_GET['visibility']==0))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) && (!empty($_GET['visibility']) || $_GET['visibility'] == 0))) {
     $id = strip_tags($_GET['id']);
     $visibility = strip_tags($_GET['visibility']);
-    if ($visibility == -1||$visibility == 0||$visibility == 1||$visibility == 2) {
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
     $query->execute([':id' => $id, ':visibility'=>$visibility]);
@@ -12,13 +11,13 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) &
         $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:status WHERE `id`=:id;");
         $query->execute([':id' => $id, ':status'=>-1]);
     }
-    header("Location: /admin_users");
+    header("Location:/admin_users");
     }
+    header("Location: /admin_users");
 }
-if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && (!empty($_GET['activity'])||$_GET['activity']==0))) {
+if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && (!empty($_GET['activity']) || $_GET['activity'] == 0))) {
     $id = strip_tags($_GET['id']);
     $activity = strip_tags($_GET['activity']);
-    if ($activity == -1||$activity == 0||$activity == 1) {
     $db = connectToDB();
         $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
     $query->execute([':id' => $id, ':activity'=>$activity]);
@@ -26,7 +25,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && 
         $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
         $query->execute([':id' => $id, ':visibility'=>-1]);
     }
-    header("Location: /admin_users");
+    header("Location:/admin_users");
     }
 }
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
@@ -38,7 +37,18 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && !(isset($_GET['activity']) &&
     $id = strip_tags($_GET['id']);
     $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
     $query->execute([':id' => $id]);
-    $user = $query->fetch();
+    $resultv = $query->fetch(PDO::FETCH_ASSOC);
+    $scope = $resultv['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0] == SUPADMIN || $scope != SUPADMIN) {
+        $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
+        $query->execute([':id' => $id]);
+        $user = $query->fetch();
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
+        header("Location:/admin/users");
+    }
 }
 
 ?>

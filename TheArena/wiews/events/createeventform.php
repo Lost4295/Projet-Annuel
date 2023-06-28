@@ -28,13 +28,13 @@
     </div>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="type" id="online" onclick='checker()' value="0">
+        <input class="form-check-input" type="radio" name="type" id="online" value="0">
         <label class="form-check-label" for="online">
             En ligne
         </label>
     </div>
     <div class="form-check mb-4">
-        <input class="form-check-input" type="radio" name="type" id="local" onclick='checker()' value="1" checked>
+        <input class="form-check-input" type="radio" name="type" id="local" value="1" checked>
         <label class="form-check-label" for="local">
             En local
         </label>
@@ -70,7 +70,7 @@
                 var border = document.getElementById('imgborder');
                 output.src = URL.createObjectURL(event.target.files[0]);
                 border.style = "none";
-            x
+            };
         </script>
     </div>
     <div class="row d-flex justify-content-center">
@@ -80,5 +80,4 @@
     </div>
 </form>
 </div>
-
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

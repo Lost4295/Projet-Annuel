@@ -4,6 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 include $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 redirectIfNotAdmin();
+$who = whoIsConnected();
 ?>
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="">
@@ -114,20 +115,9 @@ redirectIfNotAdmin();
                             </li>
                         </ul>
                         <hr>
-                        <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                <strong>mdo</strong>
-                            </a>
-                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Sign out</a></li>
-                            </ul>
+                        <div>
+                            <img src="<?php echo $who[2] ?>" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <strong><?php echo $who[1]?></strong>
                         </div>
                     </div>
                 </div>

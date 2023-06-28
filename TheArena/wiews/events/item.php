@@ -36,12 +36,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 ?>
 <div class="row">
     <nav class="navbar bar px-3">
-        <a class="btn btn-warning" href="/event?id=<?php echo $event['id']; ?>">Accueil</a>
-        <a class="btn btn-warning" href="/event/participants?id=<?php echo $event['id'] ?>">Participants</a>
-        <a class="btn btn-warning" href="/event/dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
-        <a class="btn btn-warning active" href="/event/shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
+        <a title="Accueil" class="btn btn-warning" href="/event?id=<?php echo $event['id']; ?>">Accueil</a>
+        <a title="Participants" class="btn btn-warning" href="/event/participants?id=<?php echo $event['id'] ?>">Participants</a>
+        <a title="Tableau de bord" class="btn btn-warning" href="/event/dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
+        <a title="Shop" class="btn btn-warning active" href="/event/shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
+            <a title="Gestion" class="btn btn-warning" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>
@@ -60,7 +60,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         <form  class="d-flex justify-content-center" action="/core/buy.php" method="post">
             <input type="hidden" name="id" value="<?php echo $item['id']?>">
             <input type="hidden" name="shop" value="<?php echo $shop['id']?>">
-            <input type="hidden" name="event" value="<?php echo $event['name']?>">
+            <input type="hidden" name="event" value="<?php echo $event['id']?>">
             <input type="hidden" name="user" value="<?php echo $user['id']?>">
             <input type="submit" class="btn btn-warning justify-self-center btn-lg" value="Acheter">
         </form>

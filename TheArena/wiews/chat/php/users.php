@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
+
     redirectIfNotConnected();
     $userid = $_SESSION['id'];
     $db = connectToDB();

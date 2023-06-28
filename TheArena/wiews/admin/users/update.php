@@ -9,6 +9,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
     $query->execute([':id' => $id]);
     $user = $query->fetch();
+    $scope = $user['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0] == SUPADMIN || $scope != SUPADMIN) {
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
+        header("Location: /admin/users");
+    }
 }
 $db = connectToDB();
 $query = $db->prepare("SELECT scope FROM " . PREFIX . "users WHERE email = :email");
@@ -40,7 +48,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/wiews/admin/header.php";
                     </label>
                 </div>
                 <div class="form-check-inline form-check">
-                    <input class="form-check-input" type="radio" name="type" value="4" id="supadmin" <?php if ($admin['scope'] != 4) echo "disabled" ?>>
+                    <input class="form-check-input" type="radio" name="type" value="4" id="supadmin" <?php if ($admin['scope'] != SUPADMIN) echo "disabled" ?>>
                     <label class="form-check-label" for="organizer">
                         Super Administrateur
                     </label>

@@ -5,9 +5,6 @@
     $reports = $queryPrepared->fetchAll(PDO::FETCH_ASSOC);
     $queryPrepared = $db->query("SELECT * FROM " . PREFIX . "users");
     $users = $queryPrepared->fetchAll(PDO::FETCH_ASSOC);
-
-    print_r($reports);
-    print_r($users);
 ?>
 <h1>Signalements</h1>
 
@@ -97,24 +94,14 @@
                     .then(response => response.text())
                     .then(peros => {
                         let form = new FormData();
-                        form.append('data', data.visibility);
-                        form.append('action', 'formatVisibility');
+                        form.append('data', data.discr);
+                        form.append('action', 'formatTypeSignalement');
                         fetch('/core/fetchformatter.php', {
                                 method: 'POST',
                                 body: form
                             })
                             .then(response => response.text())
-                            .then(visi => {
-                                let form = new FormData();
-                                form.append('data', data.status);
-                                form.append('action', 'formatStatusUsers');
-                                fetch('/core/fetchformatter.php', {
-                                        method: 'POST',
-                                        body: form
-                                    })
-                                    .then(response => response.text())
-                                    .then(result => {
-
+                            .then(signal => {
                                         let row = table.insertRow(-1);
                                         let id = row.insertCell(0);
                                         id.innerHTML = data.id;
@@ -128,12 +115,11 @@
                                         let reported_id = row.insertCell(3);
                                         reported_id.innerHTML =  data.reported_id ;
                                         let discr = row.insertCell(4);
-                                        discr.innerHTML = data.discr;
+                                        discr.innerHTML = signal;
                                         let actions = row.insertCell(5);
-                                        actions.innerHTML = `<a href='/admin/users/read?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
+                                        actions.innerHTML = `<a href='/admin/signalement?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
                                     });
-                            });
-                    });
+                            });;
             }
             filterTable();
         }

@@ -2,6 +2,7 @@
                 </div>
                 </div>
                 </div>
+                
                 <script>
                     let toto = new URL(window.location.href);
                     console.log(toto);

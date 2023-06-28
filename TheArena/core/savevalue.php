@@ -9,3 +9,5 @@ $_SESSION['link2']['title'] = $data->link2->title;
 $_SESSION['link2']['url'] = $data->link2->url;
 $_SESSION['link3']['title'] = $data->link3->title;
 $_SESSION['link3']['url'] = $data->link3->url;
+
+echo json_encode(true);

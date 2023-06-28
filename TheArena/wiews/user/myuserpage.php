@@ -37,7 +37,8 @@ if (!empty($result)) {
     <h3>À propos de moi</h3>
     <h3><?php echo $username ?></h3>
     <div class="my-3"><p><?php echo $about ?></p></div>
-    <div class="d-flex justify-content-center"><a href="me_modify" class="btn btn-primary">Modifier les informations</a></div>
+    <div class="d-flex justify-content-center"><a title="Modifier les informations" href="me_modify" class="btn btn-primary mb-5">Modifier les informations</a></div>
+    <div class="d-flex justify-content-center"><a title="Obtenir mes informations (PDF)" href="/core/exporteddata.php" class="btn btn-primary mb-5">Obtenir mes informations en PDF</a></div>
 </div>
 
 

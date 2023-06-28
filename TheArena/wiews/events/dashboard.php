@@ -27,12 +27,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a class="btn btn-warning" href="event?id=<?php echo $event['id']; ?>">Accueil</a>
-        <a class="btn btn-warning" href="event_participants?id=<?php echo $event['id'] ?>">Participants</a>
-        <a class="btn btn-warning active" href="event_dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
-        <a class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
+        <a title="Accueil" class="btn btn-warning" href="event?id=<?php echo $event['id']; ?>">Accueil</a>
+        <a title="Participants" class="btn btn-warning" href="event_participants?id=<?php echo $event['id'] ?>">Participants</a>
+        <a title="Tableau de bord" class="btn btn-warning active" href="event_dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
+        <a title="Shop" class="btn btn-warning " href="event_shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
         <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a class="btn btn-warning" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
+            <a title="Gestion de l'évènement" class="btn btn-warning" href="/event_management?id=<?php echo $event['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>

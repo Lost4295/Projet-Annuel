@@ -1,4 +1,5 @@
 <?php 
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/formatter.php";
 
 include_once $_SERVER ['DOCUMENT_ROOT']."/core/functions.php";
 redirectIfNotConnected();
@@ -24,9 +25,10 @@ include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
             $_SESSION['message_type']= "danger";
             header("location: /chat");
             exit();
-          }
+          } 
+
         ?>
-        <a href="/chat" class="back-icon"><i class="bi bi-arrow-left"></i></a>
+        <a href="/chat" class="back-icon" title="Retour au chat"><i class="bi bi-arrow-left"></i></a>
         <img src="<?php echo $result['avatar']; ?>" alt="">
         <div class="details">
           <span><?php echo $result['username'] ?></span>
@@ -45,5 +47,10 @@ include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
   </div>
 
   <script src="/wiews/chat/javascript/chat.js"></script>
-
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    document.getElementById("m").classList.add("d-flex");
+    document.getElementById("m").classList.add("justify-content-center");
+  });
+</script>
 <?php include $_SERVER['DOCUMENT_ROOT']."/core/footer.php";

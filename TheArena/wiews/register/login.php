@@ -18,7 +18,7 @@ if (isset($email)) {
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password']) && $result["status"] >= 1) {
-            $query = $connection->prepare("SELECT avatar FROM ".PREFIX."users WHERE email=:email");
+            $query = $connection->prepare("SELECT avatar, id FROM ".PREFIX."users WHERE email=:email");
             $query->execute(['email'=>$email]);
             $avatar=$query->fetch();
             if (empty($avatar["avatar"])) {
@@ -31,6 +31,7 @@ if (isset($email)) {
             session_regenerate_id();
             $_SESSION['email']=$email;
             $_SESSION['logged']=true;
+            $_SESSION['id']=$avatar['id'];
             $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "users SET last_access_date=:last_access_date, activeonsite=1 WHERE email=:email");
             $queryPrepared->execute([
                 "last_access_date" => date("Y-m-d H:i:s", strtotime($user["last_access_date"])),
@@ -68,13 +69,15 @@ if (isset($email)) {
         $_SESSION["error"]="Erreur : mot de passe incorrect.";
     }
 }
+
+    require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 if (isset($_SESSION['error'])) {
     echo "<div class='alert alert-danger' role='alert'><ul>";
     //On peut tout mettre à la suite, mais je trouve ça plus compréhensible
     echo "<li>". $_SESSION['error'] . "</li>";
     echo "</ul></div>";
+    unsetSessionErrors();
     }
-    require $_SERVER['DOCUMENT_ROOT']."/core/header.php";
 ?>
 <form method="post" class="m-5">
     <div class="mb-4">

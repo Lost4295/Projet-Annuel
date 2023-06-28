@@ -22,7 +22,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
         </div> -->
         <?php foreach ($result as $key => $event) { ?>
             <div class="col-lg-4">
-                    <a href="event?id=<?php echo $event['id']; ?>">
+                    <a title="<?php echo $event['name']?>"href="event?id=<?php echo $event['id']; ?>">
                         <img style="position: relative; width: 250px; height:250px;" class="eventimg border" src="<?php echo $event['image']; ?>">
                     </a>
             </div>
@@ -44,7 +44,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php if ((isConnected()) && (whoIsConnected()[0] == ORGANIZER || whoIsConnected()[0] == ADMIN || whoIsConnected()[0] == SUPADMIN)) { ?>
         <div class="row my-3">
             <div>
-                <a href="event_create">Créer un événement</a>
+                <a title="Créer un événement" href="event_create">Créer un événement</a>
             </div>
         </div>
     <?php

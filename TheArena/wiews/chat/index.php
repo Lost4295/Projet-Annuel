@@ -1,7 +1,7 @@
 
 <?php 
 include_once $_SERVER ['DOCUMENT_ROOT']."/core/functions.php";
-
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/formatter.php";
   redirectIfNotConnected();
 
 include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
@@ -28,9 +28,9 @@ include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
           </div>
         </div>
       </header>
-      <div class="search col-auto">
-        <span class="text">Select an user to start chat</span>
-        <input type="text" placeholder="Entrez un nom pour rechercher un utilisateur...">
+      <div class="search col">
+        <span class="text">Sélectionnez un utilisateur pour discuter avec lui. Pour rechercher un utilisateur, cliquez sur la loupe</span>
+        <input type="text" placeholder="Entrez un nom pour rechercher un utilisateur..." class="col-7">
         <button><i class="bi bi-search"></i></button>
       </div>
       <div class="users-list">

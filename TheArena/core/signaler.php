@@ -31,4 +31,6 @@ if (isConnected()){
     $_SESSION['message_type']="success";
     header("Location: /");
     exit();
+} else {
+    die("Une erreur est survenue.");
 }

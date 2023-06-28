@@ -56,12 +56,7 @@ if (isset($_GET['q']) && (strlen($_GET['q']) > 2 && strlen($_GET['q']) < 50) && 
     header("Location: /");
     exit();
 }
-
-
 include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
-echo "<pre>";
-print_r($results);
-echo "</pre>";
 ?>
 
 <div class="row">
@@ -96,7 +91,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['events'])) {
                         foreach ($results['events'] as $item) { ?>
-                            <a href="/event?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a  title="<?php echo $item['name']?>"href="/event?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['name'] ?></h5>
                                 </div>
@@ -112,7 +107,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['users'])) {
                         foreach ($results['users'] as $item) { ?>
-                            <a href="/user?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a title="<?php echo $item['username']?>" href="/user?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['username'] ?></h5>
                                 </div>
@@ -128,7 +123,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['items'])) {
                         foreach ($results['items'] as $item) { ?>
-                            <a href="/item?id=<?php echo $item['id'] ?>&shop=<?php echo $item['shop_id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a  title="<?php echo $item['name']?>"href="/item?id=<?php echo $item['id'] ?>&shop=<?php echo $item['shop_id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['nom'] ?></h5>
                                 </div>
@@ -144,7 +139,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['forums'])) {
                         foreach ($results['forums'] as $item) { ?>
-                            <a href="/forum?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a  title="<?php echo $item['name']?>"href="/forum?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['name'] ?></h5>
                                     <small><?php echo "Créé le " . $fmt->format(strtotime($item['date_creation'])); ?></small>
@@ -157,7 +152,7 @@ echo "</pre>";
                     <?php } ?>
                     <?php if (!empty($results['forum_reponses'])) {
                         foreach ($results['forum_reponses'] as $item) { ?>
-                            <a href="/forum?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a  title="<?php echo $item['name']?>"href="/forum?id=<?php echo $item['id'] ?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">Message dans <?php echo $item['forum']['name'] ?></h5>
                                     <small><?php echo "Envoyé le " . $fmt->format(strtotime($item['date_reponse'])); ?></small>
@@ -174,7 +169,7 @@ echo "</pre>";
                 <div class="list-group">
                     <?php if (!empty($results['tournaments'])) {
                         foreach ($results['tournaments'] as $item) { ?>
-                            <a href="/event?id=<?php echo $item['event_id']?>" class="list-group-item list-group-item-action" aria-current="true">
+                            <a  title="<?php echo $item['name']?>"href="/event?id=<?php echo $item['event_id']?>" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1"><?php echo $item['name'] ?></h5>
                                     <small>Type d'événement : <?php echo formatTypeEvents($item['event_type']) ?> </small>
@@ -231,7 +226,6 @@ echo "</pre>";
             element.style.filter = 'alpha(opacity=' + op * 100 + ")";
             op -= op * 0.1;
         }, 10);
-        console.log("done")
 
     }
 

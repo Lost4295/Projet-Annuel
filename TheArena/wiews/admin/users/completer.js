@@ -1,4 +1,3 @@
-
 let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
 let select = document.getElementById("selection");
 window.onload = function () {

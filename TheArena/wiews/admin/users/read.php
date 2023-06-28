@@ -23,7 +23,6 @@ require $_SERVER['DOCUMENT_ROOT']."/wiews/admin/header.php";
 			<p>Email : <?php echo $user["email"] ?></p>
 			<p>Téléphone : <?php echo $user["phone"] ?></p>
 			<p>Adresse : <?php echo $user["address"] ?></p>
-			<p>Département : <?php echo $user["department"] ?></p>
 			<p>Date de création : <?php echo $user["creation_date"] ?></p>
 			<p>Date de dernière connexion <?php echo $user["last_access_date"] ?></p>
 			<p> Date de dernière modification <?php echo $user["update_at"] ?></p>

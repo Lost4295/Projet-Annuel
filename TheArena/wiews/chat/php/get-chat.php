@@ -6,6 +6,23 @@
         $incoming_id = $_POST['incoming_id'];
         $output = "";
         $db = connectToDB();
+        $sql2 = $db->prepare("SELECT * FROM ".PREFIX."messages WHERE (reciever_id =:incoming_id AND user_id =:outgoing_id) OR (reciever_id =:outgoing_id AND user_id =:incoming_id) ORDER BY id ASC");
+        $sql2->execute(
+              [
+            'incoming_id'=>$incoming_id,
+            'outgoing_id'=>$_SESSION['id']
+          ]);
+          $result2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($result2 as $key => $message){
+            if ($message['isread']==0 && $outgoing_id == $message['reciever_id']){
+        $sql3 = $db->prepare("UPDATE ".PREFIX."messages SET isread= 1 WHERE id =:id ");
+          $sql3->execute(
+              [
+              'id'=>$message['id']
+              ]
+              );
+            }
+          }
         $messages = $db->prepare("SELECT * FROM ".PREFIX."messages LEFT JOIN ".PREFIX."users ON ".PREFIX."users.id = ".PREFIX."messages.user_id
                 WHERE (user_id = :oid AND reciever_id = :iid)
                 OR (user_id = :iid AND reciever_id = :oid) ORDER BY ".PREFIX."messages.id");
@@ -38,5 +55,3 @@
     }else{
         header("location: ../login.php");
     }
-
-?>

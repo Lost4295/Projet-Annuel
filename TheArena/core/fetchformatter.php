@@ -52,6 +52,10 @@ switch ($_POST['action']) {
         $result = formatStateTournaments($_POST['data']);
         echo $result;
         break;
+    case 'formatTypeSignalement':
+        $result = formatTypeSignalement($_POST['data']);
+        echo $result;
+        break;
 }
 
 
