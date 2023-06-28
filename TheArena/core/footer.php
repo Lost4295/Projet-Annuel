@@ -105,22 +105,21 @@
             e.preventDefault();
             let tableau = {};
             var url = this.getAttribute('href');
-            var title = this.innerHTML;
+            var title = this.getAttribute('title');
             console.log(title);
-            
             console.log(link2);
             console.log(link3);
             if (link2.innerHTML != ''){link3.innerHTML = link2.innerHTML}
             if (link2.href != ''){link3.href = link2.href;}
-            if (link1.innerHTML != ''){link2.innerHTML = title}
+            if (link1.innerHTML != ''){link2.innerHTML = link1.innerHTML}
             
             
             if (link1.href != ''){link2.href = link1.href;}
             link1.innerHTML = title;
             link1.href = url;console.log(link1);
             let forms = new FormData();
-            tableau.link3 = {title: link3.title, url: link3.href};
-            tableau.link2 = {title: link2.title, url: link2.href};
+            tableau.link3 = {title: link3.innerHTML, url: link3.href};
+            tableau.link2 = {title: link2.innerHTML, url: link2.href};
             tableau.link1 = {title: title, url: url};
             
             
@@ -133,7 +132,7 @@
                 .then(data => {
                 })
 
-            // window.location.href = url;
+            window.location.href = url;
         });
     }
 
