@@ -57,9 +57,9 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
                         <div class="dropdown">
                             <button onclick="open<?php echo $element['id'] ?>()" class="dropbtn more">...</button>
                             <div id="msgdrop<?php echo $element["id"] ?>" class="dropdown-content-msg">
-                                <a href="/chat/chat?user_id=<?php echo $element['user_id'] ?>">Parler à <?php echo formatUsers($element['user_id']) ?> en privé</a>
-                                <a href="/core/signaler.php?id=<?php echo $element['id'] ?>&type=forumpost&content=<?php echo $element['message'];?>">Signaler le message</a>
-                                <a href="/user?id=<?php echo $element['user_id'] ?>">Accéder à la page de <?php echo formatUsers($element['user_id']) ?></a>
+                                <a title="Parler à <?php echo formatUsers($element['user_id']) ?> en privé" href="/chat/chat?user_id=<?php echo $element['user_id'] ?>">Parler à <?php echo formatUsers($element['user_id']) ?> en privé</a>
+                                <a  href="/core/signaler.php?id=<?php echo $element['id'] ?>&type=forumpost&content=<?php echo $element['message'];?>">Signaler le message</a>
+                                <a title="Accéder à la page de <?php echo formatUsers($element['user_id']) ?>" href="/user?id=<?php echo $element['user_id'] ?>">Accéder à la page de <?php echo formatUsers($element['user_id']) ?></a>
                             </div>
                         </div>
                     </div>

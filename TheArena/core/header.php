@@ -52,7 +52,7 @@
                         <button onclick="myFunction()" class="btn btn-warning dropper"><img alt="Image de profil" id="avatar" src="<?php echo $attr[2] ?>" width="50px">&nbsp;<i id="triangle" class="bi bi-caret-down-fill"></i></button>
                         <div id="thedropdown" class="dropdown-content dropcolor">
                             <?php echo "Connecté en tant que " . $attr['1']; ?>
-                            <a class="btn btn-warning"  title="Ma page" href="/me">Ma page</a>
+                            <a class="btn btn-warning" title="Ma page" href="/me">Ma page</a>
                             <?php if ($attr[0] == SUPADMIN || $attr[0] == ADMIN) { ?>
                                 <a class="btn btn-warning " title="Index Admin" href="/admin">Index Admin</a>
                             <?php } ?>
@@ -92,10 +92,10 @@
                             } else {
                                 echo 'info';
                             } ?>" id="alert" style="display:<?php if (isset($_SESSION['notification'])) {
-                                                                    echo "block; position:absolute; top:70px; right:0;";
-                                                                } else {
-                                                                    echo "none";
-                                                                } ?>">
+                                                                echo "block; position:absolute; top:70px; right:0;";
+                                                            } else {
+                                                                echo "none";
+                                                            } ?>">
         <span class="closebtn" onclick="disappear();">&times;</span>
         <?php if (isset($_SESSION['notification'])) {
             echo $_SESSION['notification'];
@@ -116,21 +116,27 @@
                 <div>
                     <p>Pages récentes:</p>
                     <ul id="lastPages" class="align-items-center d-flex flex-column">
-                        <li><a id="link1" class="link-dark" href="<?php if (isset($_SESSION['link1'])) {
-                                                                        echo $_SESSION['link1']['url'];
-                                                                    } ?>"><?php if (isset($_SESSION['link1'])) {
-                                                                                                                                                echo $_SESSION['link1']['title'];
-                                                                                                                                            } ?></a></li>
-                        <li><a id="link2" class="link-dark" href="<?php if (isset($_SESSION['link2'])) {
-                                                                        echo $_SESSION['link2']['url'];
-                                                                    } ?>"><?php if (isset($_SESSION['link2'])) {
-                                                                                                                                                echo $_SESSION['link2']['title'];
-                                                                                                                                            } ?></a></li>
-                        <li><a id="link3" class="link-dark" href="<?php if (isset($_SESSION['link3'])) {
-                                                                        echo $_SESSION['link3']['url'];
-                                                                    } ?>"><?php if (isset($_SESSION['link3'])) {
-                                                                                                                                                echo $_SESSION['link3']['title'];
-                                                                                                                                            } ?></a></li>
+                        <li><a id="link1" title="<?php if (isset($_SESSION['link1'])) {
+                                                        echo $_SESSION['link1']['title'];
+                                                    } ?>" class="link-dark" href="<?php if (isset($_SESSION['link1'])) {
+                                                                                                                                                                                echo $_SESSION['link1']['url'];
+                                                                                                                                                                            } ?>"><?php if (isset($_SESSION['link1'])) {
+                                                                                echo $_SESSION['link1']['title'];
+                                                                            } ?></a></li>
+                        <li><a id="link2" title="<?php if (isset($_SESSION['link2'])) {
+                                                        echo $_SESSION['link2']['title'];
+                                                    } ?>" class="link-dark" href="<?php if (isset($_SESSION['link2'])) {
+                                                                                                                                                                                echo $_SESSION['link2']['url'];
+                                                                                                                                                                            } ?>"><?php if (isset($_SESSION['link2'])) {
+                                                                                echo $_SESSION['link2']['title'];
+                                                                            } ?></a></li>
+                        <li><a id="link3" title="<?php if (isset($_SESSION['link3'])) {
+                                                        echo $_SESSION['link3']['title'];
+                                                    } ?>" class="link-dark" href="<?php if (isset($_SESSION['link3'])) {
+                                                                                                                                                                                echo $_SESSION['link3']['url'];
+                                                                                                                                                                            } ?>"><?php if (isset($_SESSION['link3'])) {
+                                                                                echo $_SESSION['link3']['title'];
+                                                                            } ?></a></li>
                     </ul>
                 </div>
             </div>

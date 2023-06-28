@@ -16,11 +16,11 @@
                 <img src="/img/logothearena-removebg.png" alt="Logo" class="d-inline-block logo">
                 <a href="/cgu" title="Conditions générales d'utilisation" class="m-4 p-3">Conditions générales d'utilisation</a>
                 <a href="/cgv" title="Conditions générales de vente" class="m-4 p-3">Conditions générales de vente</a>
-                <a href="/legal" class="m-4 p-3">Mentions légales</a>
-                <a href="/contact" class="m-4 p-3">Nous contacter</a>
+                <a href="/legal" title="Mentions légales" class="m-4 p-3">Mentions légales</a>
+                <a href="/contact" title="Nous contacter" class="m-4 p-3">Nous contacter</a>
                 <?php if (isConnected()) { ?>
                     <div>
-                        <a class="btn btn-warning messages" href="/chat" id="messages">
+                        <a class="btn btn-warning messages" href="/chat" title="Messagerie" id="messages">
                             Messagerie
                             <?php
                             $db = connectToDB();

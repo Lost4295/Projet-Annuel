@@ -104,7 +104,6 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <div id="msgdrop" class="dropdown-content-msg">
                 <a href="#">Bloquer</a>
                 <a id="showDialog" href="#"> Signaler</a>
-                <a href="#">é</a>
             </div>
         </div>
         <script>
@@ -188,7 +187,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 <a class="btn-secondary btn" href="user/interact/like?id=<?php echo $name ?>"><i class="bi bi-heart-fill"></i> J'aime</a>
             <?php } ?>
             <?php if ($blocked) { ?>
-                <a class="btn-danger btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Debloquer</a>
+                <a class="btn-danger btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Débloquer</a>
             <?php } elseif (!$blocked) { ?>
                 <a class="btn-info btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Bloquer</a>
             <?php } ?>
@@ -199,7 +198,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$isFriend) { ?>
                 <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Demander en ami</a>
             <?php } ?>
-                <a class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
+                <a title="Discuter avec <?php echo $username ?>" class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
     <?php } ?>
 </div>
