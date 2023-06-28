@@ -112,7 +112,7 @@ if (
         $_SESSION['errordate'] = $errordate;
         $_SESSION['errortype'] = $errortype;
         $_SESSION['errordescription'] = $errordescription;
-        header("Location: /event/tournament/create?name=" . $eventname);
+        header("Location: /event_tournament_create?name=" . $eventname);
     } else {
         $db = connectToDB();
         $queryPrepared = $db->prepare("SELECT id FROM " . PREFIX . "events WHERE name=:name");

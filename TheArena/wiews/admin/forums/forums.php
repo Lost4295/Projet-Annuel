@@ -116,7 +116,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                             let author = row.insertCell(5);
                             author.innerHTML = auther;
                             let actions = row.insertCell(6);
-                            actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin/forum/read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin/forum/update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin/forum/delete?id=${data.id}">Supprimer</a>`;
+                            actions.innerHTML = `<a class="btn btn-primary m-1" href="/admin_forum_read?id=${data.id}">Voir</a> <a class="btn btn-primary m-1" href="/admin_forum_update?id=${data.id}">Modifier</a> <a class="btn btn-primary m-1" href="/admin_forum_delete?id=${data.id}">Supprimer</a>`;
                         });
                 });
         }

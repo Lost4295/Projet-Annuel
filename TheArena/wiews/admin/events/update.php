@@ -18,7 +18,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     } else {
         $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet événement.";
         $_SESSION['message_type'] = "danger";
-        header("Location: /admin/events");
+        header("Location: /admin_events");
     }
 }
 

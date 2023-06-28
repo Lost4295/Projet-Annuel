@@ -16,7 +16,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     } else {
         $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
         $_SESSION['message_type'] = "danger";
-        header("Location: /admin/forums");
+        header("Location: /admin_forums");
     }
     $query = $db->prepare( "DELETE FROM ".PREFIX."forums WHERE `id`=:id;");
     $query->execute([':id'=>$id]);

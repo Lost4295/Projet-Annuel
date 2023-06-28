@@ -82,7 +82,7 @@ if (!isset($resulte)) {
 if ($error) {
     $_SESSION['errorpseudo'] = $errorpseudo;
     $_SESSION['errortournament'] = $errortournament;
-    header("Location:/event/register?name=" . $eventname . "");
+    header("Location:/event_register?name=" . $eventname . "");
 } else {
     $emailer =$email;
     $body = "<h2 style='width:50%;height:40px;padding-left:120px;text-align:right;margin:0px;color:#B24909;'>Confirmation d'inscription</h2>

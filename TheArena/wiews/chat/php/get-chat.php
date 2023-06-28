@@ -53,5 +53,5 @@
         }
         echo $output;
     }else{
-        header("location: ../login.php");
+        header("location: /chat");
     }

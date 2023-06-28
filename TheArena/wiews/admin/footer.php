@@ -6,7 +6,7 @@
                 <script>
                     let toto = new URL(window.location.href);
                     console.log(toto);
-                    if (toto.pathname == "/admin") {
+                    if (toto.pathname == "admin") {
                         document.getElementById("dashboard").classList.remove('link-dark');
                     } else {
                         document.getElementById("dashboard").classList.add('link-dark');

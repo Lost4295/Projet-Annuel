@@ -109,7 +109,7 @@ if (!$error) {
     $_SESSION['errorimage'] = $errorimage;
     $_SESSION['errordescription'] = $errordescription;
     $_SESSION['errortype'] = $errortype;
-    header("Location: /event/shop/create/item?shop=" . $shop_id);
+    header("Location: /event_shop_create_item?shop=" . $shop_id);
 } else {
     $_SESSION['name'] = $name;
     $_SESSION['price'] = $price;
@@ -127,5 +127,5 @@ if (!$error) {
     ]);
     $_SESSION['message'] = "L'item a bien été créé.";
     $_SESSION['message_type'] = "success";
-    header("Location: /event/shop?shop=" . $shop_id . "&name=". $eventname);
+    header("Location: /event_shop?shop=" . $shop_id . "&name=". $eventname);
 }

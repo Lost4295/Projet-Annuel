@@ -47,7 +47,7 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && !(isset($_GET['activity']) &&
     } else {
         $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
         $_SESSION['message_type'] = "danger";
-        header("Location:/admin/users");
+        header("Location:/admin_users");
     }
 }
 

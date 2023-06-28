@@ -29,7 +29,7 @@ if (isset($_GET['event']) && !empty($_GET['event'])) {
     }
     $_SESSION['message'] = "Le shop a bien été créé !";
     $_SESSION['message_type'] = "success";
-    header('Location: /event/shop?shop='.$event['shop_id'].'&id='.$event['id']);
+    header('Location: /event_shop?shop='.$event['shop_id'].'&id='.$event['id']);
 } else {
     $_SESSION['message'] = "Cet évènement n'existe pas.";
     $_SESSION['message_type'] = "danger";

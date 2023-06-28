@@ -7,10 +7,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $query->execute([':id'=>$id]);
     $report = $query->fetch();
     if (!$report) {
-        header('Location: /admin/users');
+        header('Location: /admin_users');
     }
 } else {
-    header('Location: /admin/users');
+    header('Location: /admin_users');
 }
 require 'header.php'
 ?>

@@ -20,7 +20,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     } else {
         $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
         $_SESSION['message_type'] = "danger";
-        header("Location: /admin/forums");
+        header("Location: /admin_forums");
     }
 }
 require $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';

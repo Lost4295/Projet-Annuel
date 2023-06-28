@@ -6,7 +6,6 @@ include_once $_SERVER ['DOCUMENT_ROOT']."/core/formatter.php";
 
 include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
 ?>
-  <!-- <link rel="stylesheet" href="/core/css/stylei.css"> -->
 <div class="col d-flex align-items-center justify-content-center">
   <div class="row">
     <section class="users">

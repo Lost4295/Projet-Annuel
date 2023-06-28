@@ -117,7 +117,7 @@
                                         let discr = row.insertCell(4);
                                         discr.innerHTML = signal;
                                         let actions = row.insertCell(5);
-                                        actions.innerHTML = `<a href='/admin/signalement?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
+                                        actions.innerHTML = `<a href='/admin_signalement?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
                                     });
                             });;
             }

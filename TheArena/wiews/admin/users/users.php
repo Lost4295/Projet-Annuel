@@ -128,7 +128,7 @@ $listOfUsers = $query->fetchAll(PDO::FETCH_ASSOC);
                                         let status = row.insertCell(5);
                                         status.innerHTML = result;
                                         let actions = row.insertCell(6);
-                                        actions.innerHTML = `<a href='/admin/users/read?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
+                                        actions.innerHTML = `<a href='/admin_users_read?id=${data.id}' class='btn btn-primary m-1'>Plus d'informations</a>`;
                                     });
                             });
                     });

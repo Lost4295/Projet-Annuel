@@ -15,7 +15,7 @@
             if (!in_array($time, $possibleTimes)) {
                 $_SESSION["message_type"] = "danger";
                 $_SESSION["message"] = "Le temps n'est pas valide !";
-                header('Location: /admin/settings');
+                header('Location: /admin_settings');
                 exit();
             } else {
                 $time = $time == "day" ? "jours" : "mois";
@@ -24,14 +24,14 @@
                 if (!is_numeric($number)) {
                     $_SESSION["message_type"] = "danger";
                     $_SESSION["message"] = "Le nombre n'est pas valide !";
-                    header('Location: /admin/settings');
+                    header('Location: /admin_settings');
                     exit();
                 } else {
                     $number = intval($number);
                     if ($number < 0) {
                         $_SESSION["message_type"] = "danger";
                         $_SESSION["message"] = "Le nombre n'est pas valide !";
-                        header('Location: /admin/settings');
+                        header('Location: /admin_settings');
                         exit();
                     } else {
                         if ($time== "jours"){
