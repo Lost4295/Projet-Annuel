@@ -2,12 +2,14 @@
 </div>
 </div>
 </div>
-<div id="cb-cookie-banner" class="alert alert-dark text-center mb-0 position-absolute w-100"  style="bottom:15px" role="alert">
-  &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
-  <a href="https://www.cookiesandyou.com/" title="Plus d'informations" target="blank">Plus d'informations</a>
-  <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
-    Accepter
-  </button>
+<div class=" d-flex justify-content-center">
+<div id="cb-cookie-banner" class=" alert alert-dark text-center mb-0 w-75" style=" position:fixed; bottom:15px" role="alert">
+    &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
+    <a href="https://www.cookiesandyou.com/" title="Plus d'informations" target="blank">Plus d'informations</a>
+    <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
+        Accepter
+    </button>
+</div>
 </div>
 <div class="row footer">
     <div class="col px-0">
@@ -55,14 +57,84 @@
         }, 900);
         initializeCookieBanner();
     }
+    
+    var as = document.getElementsByTagName('a');
+    let link1 = document.getElementById('link1');
+    let link2 = document.getElementById('link2');
+    let link3 = document.getElementById('link3');
+
+    for (var i = 0; i < as.length; i++) {
+        as[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            let tableau = {};
+            var url = this.getAttribute('href');
+            var title = this.getAttribute('title');
+            console.log(title);
+            console.log(link2);
+            console.log(link3);
+            if (link2.innerHTML != '') {
+                link3.innerHTML = link2.innerHTML
+            }
+            if (link2.href != '') {
+                link3.href = link2.href;
+            }
+            if (link1.innerHTML != '') {
+                link2.innerHTML = link1.innerHTML
+            }
+
+
+            if (link1.href != '') {
+                link2.href = link1.href;
+            }
+            link1.innerHTML = title;
+            link1.href = url;
+            console.log(link1);
+            let forms = new FormData();
+            tableau.link3 = {
+                title: link3.innerHTML,
+                url: link3.href
+            };
+            tableau.link2 = {
+                title: link2.innerHTML,
+                url: link2.href
+            };
+            tableau.link1 = {
+                title: title,
+                url: url
+            };
+
+
+            forms.append("data", JSON.stringify(tableau));
+            fetch('/core/savevalue.php', {
+                    method: 'POST',
+                    body: forms
+                })
+                .then(response => response.json())
+                .then(data => {})
+
+            window.location.href = url;
+        });
+    }
 
     var theme = window.localStorage.getItem('data-theme');
     const switchBox = document.querySelector(".sun-moon");
     if (theme) document.documentElement.setAttribute('data-theme', theme);
     if (theme == 'dark') {
         switchBox.classList.remove("move");
+        link1.classList.remove('link-dark')
+            link2.classList.remove('link-dark')
+            link3.classList.remove('link-dark')
+            link1.classList.add('link-light')
+            link2.classList.add('link-light')
+            link3.classList.add('link-light')
     } else {
         switchBox.classList.add("move");
+        link1.classList.remove('link-light')
+            link2.classList.remove('link-light')
+            link3.classList.remove('link-light')
+            link1.classList.add('link-dark')
+            link2.classList.add('link-dark')
+            link3.classList.add('link-dark')
     }
 
     document.getElementById('changeToDarkMode').onclick = function() {
@@ -70,10 +142,22 @@
             document.documentElement.setAttribute('data-theme', 'light');
             window.localStorage.setItem('data-theme', 'light');
             switchBox.classList.add("move");
+            link1.classList.remove('link-light')
+            link2.classList.remove('link-light')
+            link3.classList.remove('link-light')
+            link1.classList.add('link-dark')
+            link2.classList.add('link-dark')
+            link3.classList.add('link-dark')
         } else {
             document.documentElement.setAttribute('data-theme', 'dark');
             window.localStorage.setItem('data-theme', 'dark');
             switchBox.classList.remove("move");
+            link1.classList.remove('link-dark')
+            link2.classList.remove('link-dark')
+            link3.classList.remove('link-dark')
+            link1.classList.add('link-light')
+            link2.classList.add('link-light')
+            link3.classList.add('link-light')
         }
     };
 
@@ -96,51 +180,14 @@
     }
 
 
-    var as = document.getElementsByTagName('a');
-    let link1 = document.getElementById('link1');
-    let link2 = document.getElementById('link2');
-    let link3 = document.getElementById('link3');
-    for (var i = 0; i < as.length; i++) {
-        as[i].addEventListener('click', function(e) {
-            e.preventDefault();
-            let tableau = {};
-            var url = this.getAttribute('href');
-            var title = this.getAttribute('title');
-            console.log(title);
-            console.log(link2);
-            console.log(link3);
-            if (link2.innerHTML != ''){link3.innerHTML = link2.innerHTML}
-            if (link2.href != ''){link3.href = link2.href;}
-            if (link1.innerHTML != ''){link2.innerHTML = link1.innerHTML}
-            
-            
-            if (link1.href != ''){link2.href = link1.href;}
-            link1.innerHTML = title;
-            link1.href = url;console.log(link1);
-            let forms = new FormData();
-            tableau.link3 = {title: link3.innerHTML, url: link3.href};
-            tableau.link2 = {title: link2.innerHTML, url: link2.href};
-            tableau.link1 = {title: title, url: url};
-            
-            
-            forms.append("data", JSON.stringify(tableau));
-            fetch('/core/savevalue.php',{
-                method: 'POST',
-                body: forms
-                })
-                .then(response => response.json())
-                .then(data => {
-                })
 
-            window.location.href = url;
-        });
-    }
-
-    function disappear() {
+    function disappear(v = null) {
         var x = document.getElementById("alert");
         x.style.opacity = "0";
+        v.style.opacity = "0";
         setTimeout(function() {
             x.style.display = "none";
+            v.style.display = "none";
         }, 600);
     }
 
@@ -150,7 +197,6 @@
             modal.style.display = "none";
         }, 10000);
     }
-
 </script>
 <script src="/core/cookie-banner.js"></script>
 
