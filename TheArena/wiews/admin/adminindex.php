@@ -8,6 +8,8 @@ $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "forums");
 $resultf = $query->fetch(PDO::FETCH_ASSOC);
 $query = $db->query("SELECT count(*) as c FROM " . PREFIX . "tournaments");
 $resultt = $query->fetch(PDO::FETCH_ASSOC);
+$query = $db->query("SELECT count(*) as s FROM " . PREFIX . "user_reports");
+$results = $query->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <div class="row">
@@ -57,7 +59,7 @@ $resultt = $query->fetch(PDO::FETCH_ASSOC);
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title text-center link-dark">Signalements</h5>
-                    <p class="link-dark fs-1 text-center">Nombre de signalements</p>
+                    <p class="link-dark fs-1 text-center"><?php echo $results['s']?></p>
                 </div>
             </div>
         </a>

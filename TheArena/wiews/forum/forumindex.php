@@ -20,7 +20,9 @@ $last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
 
 <h1 class="text-center">Forums</h1>
 
-
+<?php if (empty($result)) {
+    echo "<h2 class='text-center'>Aucun forum n'a été créé pour le moment.</h2>";
+}?>
 <div class="w-100">
     <div class="list-group">
         <?php foreach ($result as $key => $forum) {?>

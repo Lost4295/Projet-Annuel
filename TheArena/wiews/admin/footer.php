@@ -55,6 +55,11 @@
                                 document.getElementById("loading").classList.add('d-none');
                             }, 600)
                         }, 1000);
+                        let url = new URL(window.location.href);
+                        if (url.pathname.includes("/admin/users/create")|| url.pathname.includes("/admin/users/update")) 
+                        {
+                            document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
+                        }
                     }
 
                     function disappear() {

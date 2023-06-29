@@ -163,7 +163,7 @@ $canvas = imagecreatetruecolor(48, 48);
 $icon1 = imagecreatefromgif($_SERVER['DOCUMENT_ROOT'] . '/img/avatar/color_atlas.gif');
 $icon2 = imagecreatefromgif($_SERVER['DOCUMENT_ROOT'] . '/img/avatar/eyes_atlas.gif');
 $icon3 = imagecreatefromgif($_SERVER['DOCUMENT_ROOT'] . '/img/avatar/mouth_atlas.gif');
-if ($avatarvals->owner == true) {
+if ($avatarvals->owner == 'true') {
     $icon4 = imagecreatefromgif($_SERVER['DOCUMENT_ROOT'] . '/img/avatar/crown.gif');
 }
 // ... add more source images as needed

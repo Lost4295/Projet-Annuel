@@ -334,7 +334,7 @@ if (!empty($result)) {
                             document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
                         }
 // TODO trouver toutes les valeurs en px ! 132 = 100
-                        let eyesPositions = ["0px 0px", "132px 0px", "272px 0px", "407px 0px", "543px 0px", "680px 0px", '817px 0px', '950px 0px', '1087px 0px', '1223px 0px',
+                        let eyesPositions = ["0px 0px", "-132px 0px", "-272px 0px", "-407px 0px", "-543px 0px", "-680px 0px", '-817px 0px', '-950px 0px', '-1087px 0px', '-1223px 0px',
                             "0px -132px", "-134px -134px", "-272px -132px", "-407px -132px", "-543px -132px", "-680px -132px", '-817px -132px', '-950px -132px', '-1087px -132px', '-1223px -132px',
                             "0px -260px", "-132px -260px", "-272px -260px", "-407px -260px", "-543px -260px", "-680px -260px", '-817px -260px', '-950px -260px', '-1087px -260px', '-1223px -260px',
                             "0px -386px", "-132px -386px", "-272px -386px", "-407px -386px", "-543px -386px", "-680px -386px", '-817px -386px', '-950px -386px', '-1087px -386px', '-1223px -386px',
@@ -347,7 +347,7 @@ if (!empty($result)) {
                             "-407px -264px", "-543px -264px", '-680px -264px', '-817px -264px', "-1223px 207px", "-1087px 207px", "-950px 207px ", "-817px 207px "
                         ]
 
-                        let mouthPositions = ["0px 0px", "132px 0px", "272px 0px", "407px 0px", "543px 0px", "680px 0px", '817px 0px', '950px 0px', '1087px 0px', '1223px 0px',
+                        let mouthPositions = ["0px 0px", "-132px 0px", "-272px 0px", "-407px 0px", "-543px 0px", "-680px 0px", '-817px 0px', '-950px 0px', '-1087px 0px', '-1223px 0px',
                             "0px -132px", "-132px -132px", "-272px -132px", "-407px -132px", "-543px -132px", "-680px -132px", '-817px -132px', '-950px -132px', '-1087px -132px', '-1223px -132px',
                             "0px -264px", "-132px -264px", "-264px -264px", "-407px -264px", "-543px -264px", "-680px -264px", '-817px -264px', '-950px -264px', '-1087px -264px', '-1223px -264px',
                             "0px -390px", "-136px -390px", "-272px -390px", "-407px -390px", "-543px -390px", "-680px -390px", '-817px -390px', '-950px -390px', '-1087px -390px', '-1223px -390px',
@@ -355,7 +355,7 @@ if (!empty($result)) {
                             "0px -650px"
                         ]
 
-                        let colorPositions = ["0px 0px", "135px 0px", "272px 0px", "407px 0px", "543px 0px", "680px 0px", '817px 0px', '950px 0px', '1087px 0px', '1223px 0px',
+                        let colorPositions = ["0px 0px", "-135px 0px", "-272px 0px", "-407px 0px", "-543px 0px", "-680px 0px", '-817px 0px', '-950px 0px', '-1087px 0px', '-1223px 0px',
                             "0px -130px", "-135px -130px", "-272px -130px", "-407px -130px", "-543px -130px", "-680px -130px", '-817px -130px', '-950px -130px', '-1087px -130px', '-1223px -130px',
                             "0px -260px", "-135px -260px", "-272px -260px", "-407px -260px", "-543px -260px", "-680px -260px", "0px -390px"
                         ]

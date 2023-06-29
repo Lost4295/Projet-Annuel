@@ -1,8 +1,6 @@
 let requestURL = 'https://api-adresse.data.gouv.fr/search/?q=';
 let select = document.getElementById("selection");
-window.onload = function () {
-    document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
-};
+
 function displaySelection(response) {
     if (Object.keys(response.features).length > 0) {
         select.style.display = "block";

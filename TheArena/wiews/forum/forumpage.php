@@ -1,5 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = strip_tags($_GET['id']);

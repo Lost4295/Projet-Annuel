@@ -9,6 +9,11 @@ function hideCookieBanner() {
     disappear(cookieBanner);
 }
 
+function noCookie() {
+    localStorage.setItem("cb_isCookieAccepted", "yes");
+    let cookieBanner = document.getElementById("cb-cookie-banner");
+    cookieBanner.style.display = "none";
+}
 function initializeCookieBanner() {
 
     let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
@@ -32,7 +37,7 @@ function initializeCookieBanner() {
     }
 
     if (isCookieAccepted === "yes") {
-        hideCookieBanner();
+        noCookie();
     }
 }
 

@@ -19,7 +19,8 @@
             ||empty($_POST["address"])
             ||empty($_POST["cp"])
             ||empty($_POST["city"])
-            ||empty($_POST["country"])
+            ||empty($_POST["fulladdress"])
+            ||empty($_POST["id"])
             ||!isset($_POST["newsletter"])
         ) { print_r($_POST);
             $val=0;
@@ -37,6 +38,7 @@
 
 
 
+
         $firstname= ucwords(strtoupper(trim($_POST["firstname"])));
         $lastname= strtoupper(trim($_POST["lastname"]));
         $birthdate=$_POST["birthdate"];
@@ -44,7 +46,6 @@
         $address=$_POST["address"];
         $cp=$_POST["cp"];
         $city=$_POST["city"];
-        $country=substr($_POST["country"], 0, 1);
         $type=$_POST["type"];
         $username=$_POST["username"];
         $email=strtolower(trim($_POST["email"]));
@@ -52,6 +53,7 @@
         $pwd=$_POST["pwd"];
         $confirmpwd=$_POST["confirmpwd"];
         $newsletterNotProcessed = $_POST["newsletter"];
+        $fulladdress=$_POST["fulladdress"];
         
         
         $errornewsletter="";
@@ -68,7 +70,7 @@
         $erroraddress="";
         $errorcp="";
         $errorcity="";
-        $errorcountry="";
+        $errorfulladdress="";
 
 
         $types=[0,1,2,3];
@@ -165,15 +167,28 @@
         }
 
         if (strlen($address) > 200) {
-                $erroraddress= '200 carctères maximum.';
-            } elseif (strlen($address) < 5) {
-                $erroraddress= 'Il faut au moins 5 carctères.';
-            } elseif (!preg_match("/^[A-z0-9' -]+$/", $address)) {
-                $erroraddress= 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace, \' et -';
+            $erroraddress = '200 carctères maximum.';
+        } elseif (strlen($address) < 5) {
+            $erroraddress = 'Il faut au moins 5 carctères.';
+        } elseif (!preg_match("/^[A-z0-9' -]+$/", $address)) {
+            $erroraddress = 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace, \' et -';
+        }
+    
+        $fulladdressExploded=explode(",", $fulladdress);
+        if (count($fulladdressExploded) != 3) {
+            $errorfulladdress= "L'adresse est invalide.";
+        } else {
+            if (trim($address) != trim($fulladdressExploded[0])){
+                $erroraddress= "L'adresse est invalide.";
             }
-
-        if (!preg_match("/^[\d]{5}$/", $cp)) {
-            $errorcp="Le code postal est invalide.";
+            if (trim($cp) != trim($fulladdressExploded[1])){
+                $errorcp= "Le code postal est invalide.";
+            } else {
+                $depart = substr($cp, 0, 2);
+            }
+            if (trim($city) != trim($fulladdressExploded[2])){
+                $errorcity= "La ville est invalide.";
+            }
         }
 
         if ($newsletterNotProcessed== 1) {
@@ -193,7 +208,7 @@
             ||!empty($errorbirthdate)
             ||!empty($errorphonenumber)
             ||!empty($erroremail)
-            ||!empty($errorcountry)
+            ||!empty($errorfulladdress)
             ||!empty($errorcity)
             ||!empty($errorcp)
             ||!empty($erroraddress)
@@ -209,28 +224,28 @@
             $error=false;
         }
 
-        $table =[];
         if ($error) {
-            $table['errorfirstname']= $errorfirstname;
-            $table['errorlastname']= $errorlastname;
-            $table['errorbirthdate']= $errorbirthdate;
-            $table['errorphonenumber']= $errorphonenumber;
-            $table['erroraddress']= $erroraddress;
-            $table['errorcp']= $errorcp;
-            $table['errorcity']= $errorcity;
-            $table['errorcountry']= $errorcountry;
-            $table['errortype']= $errortype;
-            $table['errorusername']= $errorusername;
-            $table['erroremail']= $erroremail;
-            $table['errorpwd']= $errorpwd;
-            $table['errorpwdconfirm']= $errorpwdconfirm;
-            $table['errornewsletter']= $errornewsletter;
+            $_SESSION['errorfirstname']= $errorfirstname;
+            $_SESSION['errorfulladdress']= $errorfulladdress;
+            $_SESSION['errorlastname']= $errorlastname;
+            $_SESSION['errorbirthdate']= $errorbirthdate;
+            $_SESSION['errorphonenumber']= $errorphonenumber;
+            $_SESSION['erroraddress']= $erroraddress;
+            $_SESSION['errorcp']= $errorcp;
+            $_SESSION['errorcity']= $errorcity;
+            $_SESSION['errortype']= $errortype;
+            $_SESSION['errorusername']= $errorusername;
+            $_SESSION['erroremail']= $erroremail;
+            $_SESSION['errorpwd']= $errorpwd;
+            $_SESSION['errorpwdconfirm']= $errorpwdconfirm;
+            $_SESSION['errornewsletter']= $errornewsletter;
+            header("Location: /admin/users/update?id=".$id);
         } else {
             $pwd=password_hash($pwd, PASSWORD_DEFAULT);
             $query=$db->prepare("UPDATE ".PREFIX."users
             SET scope=:scope,username=:username,email=:email,password=:password,
             first_name=:first_name,last_name=:last_name,birthdate=:birthdate,phone=:phone,
-            address=:address,postal_code=:postal_code,country=:country,newsletter=:newsletter
+            address=:address,newsletter=:newsletter, department=:department
             ,activation_timeout=:activation_timeout,activation_code=:activation_code WHERE id=:id");
             $query->execute([
                 "scope" =>$typefinal["scope"],
@@ -241,9 +256,8 @@
                 "last_name"=>$lastname,
                 "birthdate"=>$birthdate,
                 "phone"=>$phonenumber,
-                "address"=>$address . ", ". $city,
-                "postal_code"=>$cp,
-                "country"=>$country,
+                "address" => $address . ", ".$cp. " " . $city,
+                "department" => $depart,
                 "newsletter"=>$newsletter,
                 "activation_timeout"=> date("Y-m-d H:i:s", strtotime("+1 day")),
                 "id"=>$id,
@@ -251,7 +265,7 @@
             ]);
             header("Location:/admin/users");
         }
-        print_r($table);
+        print_r($_SESSION);
 
     } else {
         die('Pas de post.');
