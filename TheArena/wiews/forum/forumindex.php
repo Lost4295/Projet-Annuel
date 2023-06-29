@@ -4,7 +4,6 @@ $db= connectToDB();
 $query= $db->query("Select * from ".PREFIX."forums ORDER BY date_creation");
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($result);
 
 $last_messages = array();
 foreach ($result as $key => $forum) {
@@ -14,7 +13,7 @@ $query->execute([
 ]);
 $last_messages[] = $query->fetch(PDO::FETCH_ASSOC);
 }
-print_r($last_messages);
+
 
 ?>
 
