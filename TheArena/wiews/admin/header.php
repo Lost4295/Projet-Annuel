@@ -18,6 +18,7 @@ $who = whoIsConnected();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/core/css/bootstrap.css">
     <link rel="stylesheet" href="/core/css/style.css">
+    <link rel="stylesheet" href="/core/css/adminstyle.css">
 </head>
 
 <body onload="timeoutmod()">
@@ -27,7 +28,7 @@ $who = whoIsConnected();
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col px-0">
+            <div class="col px-0" id="header">
                 <nav class="navbar bar">
                     <div class="container-fluid d-flex">
                         <div class="mr-auto">
@@ -58,8 +59,8 @@ $who = whoIsConnected();
         </div>
         <div class="container-fluid px-0">
             <div class="row">
-                <div class="col-3 sidebare p-0">
-                    <div class="contented d-flex flex-column flex-shrink-0 p-3 bg-light">
+                <div class="col-3 sidebare p-0" id="sidebar">
+                    <div class="contented d-flex flex-column flex-shrink-0 p-3 bg-light" >
                         <a href="/admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                             <svg class="bi me-2" width="40" height="32">
                                 <use xlink:href="#bootstrap" />
@@ -121,5 +122,5 @@ $who = whoIsConnected();
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-9" id="pagecontent">
                     

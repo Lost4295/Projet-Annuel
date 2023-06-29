@@ -225,3 +225,17 @@ function formatForumName ($forumid){
         }
         return $return;
     }
+
+function formatTournamentName($tournamentid){
+    $db = connectToDB();
+    $query = $db->prepare("SELECT name as n FROM ".PREFIX."tournaments WHERE id=:id");
+    $query->execute(['id'=>$tournamentid]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $name = $result['n'];
+    if ($name) {
+        $return=$name;
+    } else {
+        $return=$name." : Format étrange et non connu en base";
+    }
+    return $return;
+}

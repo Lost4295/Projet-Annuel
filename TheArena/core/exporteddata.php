@@ -56,6 +56,19 @@ $queryPrepared8->execute([
 ]);
 $users_blocked = $queryPrepared8->fetchAll(PDO::FETCH_ASSOC);
 
+$queryPrepared9 = $db->prepare("SELECT * FROM ".PREFIX."events where manager_id = :id");
+$queryPrepared9->execute([
+    "id" => $_SESSION['id']
+]);
+$events = $queryPrepared9->fetchAll(PDO::FETCH_ASSOC);
+
+$queryPrepared10 = $db->prepare("SELECT * FROM ".PREFIX."events_users where user_id = :id");
+$queryPrepared10->execute([
+    "id" => $_SESSION['id']
+]);
+$events_users = $queryPrepared10->fetchAll(PDO::FETCH_ASSOC);
+
+
 $html.='<br>Suite à votre demande de téléchargement de vos données personnelles, veuillez trouver ci-dessous les informations vous concernant :<br><br>';
 $html.='<h2>Profil de '.$user['username'].'</h2>';
 $html.='<p>Adresse mail : '.$user['email'].'</p>';
@@ -134,6 +147,25 @@ if (empty($users_blocked)){
 foreach ($users_blocked as $user_blocked){
     $html.='<p>Utilisateur bloqué : '.formatUsers($user_blocked['blocked_id']).' le '.$user_blocked['date'].'</p>';
 }
+
+$html.='<h2>Evènements gérés par '.$user['username'].'</h2>';
+if (empty($events)){
+    $html.='<p>Aucun évènement géré par '.$user['username'].'.</p>';
+}
+foreach ($events as $event){
+    $html.='<p>Evènement : '.$event['name'].' créé pour le jeu '.$event['game'].' : '.$event['description'].'</p>';
+    $html.='<p>Image = <img src="'.$event['image'].'" style="margin-top:50px; width:100px; height:auto"/></p>';
+}
+
+$html.='<h2>Evènements auxquels '.$user['username'].' participe/ a participé</h2>';
+if (empty($events_users)){
+    $html.='<p>Aucun évènement auquel '.$user['username'].' participe/ a participé.</p>';
+}
+
+foreach ($events_users as $event_user){
+    $html.='<p>Evènement : '.formatEventName($event_user['event_id']).' le '.$event_user['date'].' pour le tournoi '.formatTournamentName($event['tournament_id']).'<br>Id du ticket : '.$event['ticket'].'</p>';
+}
+
 
 $html.='</body></html>'; // Le contenu HTML à convertir en PDF
 $dompdf = new Dompdf();
