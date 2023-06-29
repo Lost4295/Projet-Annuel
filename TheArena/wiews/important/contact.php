@@ -18,7 +18,9 @@ if (isset($_SESSION['email'])) {
             <label for="lastname" class="form-label">Nom</label>
             <input type="text" class="form-control" id="lastname" name="lastname" placeholder="John" value="<?php if (isset($result['last_name'])) {
                                                                                                                 echo cleanNames($result['last_name']);
-                                                                                                            } ?>" required>
+                                                                                                            } ?>" <?php if (isset($result['last_name'])) {
+                                                                                                                        echo "disabled";
+                                                                                                                    } ?> required>
             <div class="invalid">
                 <?php if (isset($_SESSION['errorlastname'])) {
                     echo $_SESSION['errorlastname'];
@@ -29,7 +31,9 @@ if (isset($_SESSION['email'])) {
             <label for="firstname" class="form-label">Prénom</label>
             <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Doe" value="<?php if (isset($result['first_name'])) {
                                                                                                                     echo cleanNames($result['first_name']);
-                                                                                                                } ?>" required>
+                                                                                                                } ?>" <?php if (isset($result['first_name'])) {
+                                                                                                                            echo "disabled";
+                                                                                                                        } ?> required>
             <div class="invalid">
                 <?php if (isset($_SESSION['errorfirstname'])) {
                     echo $_SESSION['errorfirstname'];
@@ -43,7 +47,9 @@ if (isset($_SESSION['email'])) {
             <label for="email" class="form-label">Adresse email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<?php if (isset($_SESSION['email'])) {
                                                                                                                         echo $_SESSION['email'];
-                                                                                                                    } ?>" required>
+                                                                                                                    } ?>" <?php if (isset($_SESSION['email'])) {
+                                                                                                                                echo "disabled";
+                                                                                                                            } ?> required>
             <div class="invalid">
                 <?php if (isset($_SESSION['erroremail'])) {
                     echo $_SESSION['erroremail'];

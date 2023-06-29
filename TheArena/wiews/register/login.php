@@ -18,7 +18,7 @@ if (isset($email)) {
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password']) && $result["status"] >= 1) {
-            $query = $connection->prepare("SELECT avatar, id FROM ".PREFIX."users WHERE email=:email");
+            $query = $connection->prepare("SELECT avatar, id,username FROM ".PREFIX."users WHERE email=:email");
             $query->execute(['email'=>$email]);
             $avatar=$query->fetch();
             if (empty($avatar["avatar"])) {
@@ -42,6 +42,7 @@ if (isset($email)) {
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
+            loginMail($email, $avatar['username']);
             unsetSessionErrors();
             $_SESSION['message'] = "Bonjour à vous !";
             switch ($scope["scope"]) {
