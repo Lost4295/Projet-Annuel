@@ -1,5 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT']."/core/functions.php";
+
 noReconnection();
 if ($_POST) {
     if (count($_POST) != 2 || empty($_POST["email"])|| empty($_POST["pwd"])) {
@@ -18,7 +19,7 @@ if (isset($email)) {
     $result=$queryPrepared->fetch();
     if (!empty($result)) { //users
         if (password_verify($password, $result['password']) && $result["status"] >= 1) {
-            $query = $connection->prepare("SELECT avatar, id,username FROM ".PREFIX."users WHERE email=:email");
+            $query = $connection->prepare("SELECT avatar, id,username,last_access_date FROM ".PREFIX."users WHERE email=:email");
             $query->execute(['email'=>$email]);
             $avatar=$query->fetch();
             if (empty($avatar["avatar"])) {
@@ -34,7 +35,7 @@ if (isset($email)) {
             $_SESSION['id']=$avatar['id'];
             $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "users SET last_access_date=:last_access_date, activeonsite=1 WHERE email=:email");
             $queryPrepared->execute([
-                "last_access_date" => date("Y-m-d H:i:s", strtotime($user["last_access_date"])),
+                "last_access_date" => date("Y-m-d H:i:s", time()),
                 "email" => $email
             ]);
             $queryPrepared = $connection->prepare(" SELECT scope FROM ".PREFIX."users WHERE email=:email");
@@ -42,7 +43,8 @@ if (isset($email)) {
                 "email"=>$email
             ]);
             $scope=$queryPrepared->fetch();
-            loginMail($email, $avatar['username']);
+            require $_SERVER['DOCUMENT_ROOT']."/core/sendmail.php";
+            loginMail($_SESSION['email'], $avatar['username']);
             unsetSessionErrors();
             $_SESSION['message'] = "Bonjour à vous !";
             switch ($scope["scope"]) {

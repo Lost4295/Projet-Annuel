@@ -292,8 +292,6 @@ function sendEmail(string $reciever, string $subject, int  $type, string $body =
     if (isset($_SESSION['emailtosend'])) {
         unset($_SESSION["emailtosend"]);
     }
-    echo $rbody;
-    die();
     if (!$mail->send()) {
         echo 'Erreur de Mailer : ' . $mail->ErrorInfo;
     } else {
