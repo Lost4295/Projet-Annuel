@@ -5,29 +5,52 @@ if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['visibility']) &
     $id = strip_tags($_GET['id']);
     $visibility = strip_tags($_GET['visibility']);
     $db = connectToDB();
-        $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
-    $query->execute([':id' => $id, ':visibility'=>$visibility]);
-    if ($visibility == -1) {
-        $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:status WHERE `id`=:id;");
-        $query->execute([':id' => $id, ':status'=>-1]);
+    $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
+    $query->execute([':id' => $id]);
+    $resultv = $query->fetch(PDO::FETCH_ASSOC);
+    $scope = $resultv['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0] == SUPADMIN || $scope != SUPADMIN) {
+        if ($visibility == -1 || $visibility == 0 || $visibility == 1 || $visibility == 2) {
+            $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
+            $query->execute([':id' => $id, ':visibility' => $visibility]);
+            if ($visibility == -1) {
+                $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:status WHERE `id`=:id;");
+                $query->execute([':id' => $id, ':status' => -1]);
+            }
+        }
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
     }
-    header("Location:/admin_users");
-    }
-    header("Location: /admin_users");
+    header("Location: /admin/users");
 }
 if ((isset($_GET['id']) && !empty($_GET['id'])) && (isset($_GET['activity']) && (!empty($_GET['activity']) || $_GET['activity'] == 0))) {
     $id = strip_tags($_GET['id']);
     $activity = strip_tags($_GET['activity']);
     $db = connectToDB();
-        $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
-    $query->execute([':id' => $id, ':activity'=>$activity]);
-    if ($activity == -1) {
-        $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
-        $query->execute([':id' => $id, ':visibility'=>-1]);
-    }
-    header("Location:/admin_users");
+    $query = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE `id`=:id;");
+    $query->execute([':id' => $id]);
+    $resultv = $query->fetch(PDO::FETCH_ASSOC);
+    $scope = $resultv['scope'];
+    $attr = whoIsConnected();
+    if ($attr[0] == SUPADMIN || $scope != SUPADMIN) {
+        if ($activity == -1 || $activity == 0 || $activity == 1) {
+
+            $query = $db->prepare("UPDATE " . PREFIX . "users SET status =:activity WHERE `id`=:id;");
+            $query->execute([':id' => $id, ':activity' => $activity]);
+            if ($activity == -1) {
+                $query = $db->prepare("UPDATE " . PREFIX . "users SET visibility =:visibility WHERE `id`=:id;");
+                $query->execute([':id' => $id, ':visibility' => -1]);
+            }
+        }
+    } else {
+        $_SESSION['message'] = "Vous n'êtes pas autorisé à modifier cet élément.";
+        $_SESSION['message_type'] = "danger";
+        header("Location:/admin/users");
     }
 }
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wiews/admin/header.php';
 
 
