@@ -169,7 +169,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </p>
         <div class="text-center"><?= $nbrlike["nbr_like"] ?> J'aime <?= $nbrfriend["nbr_friend"] ?> amis</div>
     </div>
-    <?php if ($isFriend) { ?>
+    <?php if ( $isFriend['accepted']==1||$isFriend['accepted']==2) { ?>
         <p>Vous êtes amis :D</p>
     <?php } ?>
     <?php if (isConnected()) { ?>
@@ -184,12 +184,12 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$blocked) { ?>
                 <a class="btn-info btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Bloquer</a>
             <?php } ?>
-            <?php if ($isFriend && $isFriend['accepted']==1||$isFriend['accepted']==2) { ?>
+            <?php if (!$isFriend) { ?>
+                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>&action=add"><i class="bi bi-person-add"></i> Demander en ami</a>
+            <?php } elseif ($isFriend && $isFriend['accepted']==1||$isFriend['accepted']==2) { ?>
                 <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>&action=remove"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
             <?php } elseif ($isFriend && $isFriend['accepted']==0) { ?>
                 <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>&action=cancel"><i class="bi bi-person-add"></i> Annuler ma demande</a>
-            <?php } elseif (!$isFriend) { ?>
-                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>&action=add"><i class="bi bi-person-add"></i> Demander en ami</a>
             <?php } ?>
                 <a title="Discuter avec <?php echo $username ?>" class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
