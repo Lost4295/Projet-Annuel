@@ -169,6 +169,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </p>
         <div class="text-center"><?= $nbrlike["nbr_like"] ?> J'aime <?= $nbrfriend["nbr_friend"] ?> amis</div>
     </div>
+
     <?php if (isset($isFriend)){ if ($isFriend['accepted']==1||$isFriend['accepted']==2) { ?>
         <p>Vous êtes amis :D</p>
     <?php } }?>

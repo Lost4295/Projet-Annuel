@@ -60,13 +60,13 @@ if (isConnected() && !empty($friend_id) && $friend_id != $_SESSION['id'] && isse
         case 'accept':
         $queryPrepared = $connection->prepare("UPDATE " . PREFIX . "user_friends SET accepted=1 WHERE user_id=:user_id AND friend_id=:friend_id");
         $queryPrepared->execute([
-            "user_id" =>$sender["id"], 
-            "friend_id" => $friend_id,
+            "user_id" =>$friend_id,
+            "friend_id" => $sender["id"],
         ]);
         $queryPrepared = $connection->prepare("INSERT INTO " . PREFIX . "user_friends (user_id, friend_id, accepted) VALUES (:user_id, :friend_id, :accepted)");
         $queryPrepared->execute([
-            "user_id" => $friend_id,
-            "friend_id" => $sender["id"],
+            "user_id" => $sender["id"],
+            "friend_id" => $friend_id,
             "accepted" => 2,
         ]);
         $_SESSION["message"] = "Demande d'ami acceptée.". formatUsers($friend_id) . " est maintenant votre ami.";

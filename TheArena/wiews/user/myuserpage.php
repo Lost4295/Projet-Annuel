@@ -67,9 +67,9 @@ if (!empty($result)) {
                 <?php foreach ($friendRequests as $friendRequest) { ?>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text"><?php formatUsers($friendRequest['user_id']) ?> veut être votre ami ! Acceptez vous cette demande en ami ?</p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>&action=accept" class="btn btn-success">Accepter</a>
-                            <a href="user/interact/friend?id=<?php echo $name ?>&action=refuse" class="btn btn-danger">Refuser</a>
+                            <p class="card-text"><?php echo formatUsers($friendRequest['user_id']) ?> veut être votre ami ! Acceptez vous cette demande en ami ?</p>
+                            <a href="user/interact/friend?id=<?php echo $friendRequest['user_id'] ?>&action=accept" class="btn btn-success">Accepter</a>
+                            <a href="user/interact/friend?id=<?php echo $friendRequest['user_id'] ?>&action=refuse" class="btn btn-danger">Refuser</a>
                         </div>
                     </div>
                 <?php } ?>
