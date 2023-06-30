@@ -53,13 +53,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                 ":friend_id" => $result["id"]
             ]);
             $isFriend = $queryPrepared->fetch(PDO::FETCH_ASSOC);
-
-            $queryPrepared = $connection->prepare("SELECT accepted FROM " . PREFIX . "user_friends WHERE user_id=:user_id AND friend_id=:friend_id");
-            $queryPrepared->execute([
-                ":user_id" => $result["id"],
-                ":friend_id" => $user["id"]
-            ]);
-            $isFriendAccepted = $queryPrepared->fetch(PDO::FETCH_ASSOC);
         }
 
         if ($result['visibility'] <= 1) {
@@ -191,12 +184,12 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <?php } elseif (!$blocked) { ?>
                 <a class="btn-info btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Bloquer</a>
             <?php } ?>
-            <?php if ($isFriend && $isFriendAccepted['accepted'] && $isFriend['accepted']) { ?>
-                <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>?action=remove"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
-            <?php } elseif ($isFriend && (!$isFriendAccepted['accepted'] || !$isFriend['accepted'])) { ?>
-                <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>?action=cancel"><i class="bi bi-person-add"></i> Annuler ma demande</a>
+            <?php if ($isFriend && $isFriend['accepted']==1||$isFriend['accepted']==2) { ?>
+                <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>&action=remove"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
+            <?php } elseif ($isFriend && $isFriend['accepted']==0) { ?>
+                <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>&action=cancel"><i class="bi bi-person-add"></i> Annuler ma demande</a>
             <?php } elseif (!$isFriend) { ?>
-                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>?action=add"><i class="bi bi-person-add"></i> Demander en ami</a>
+                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>&action=add"><i class="bi bi-person-add"></i> Demander en ami</a>
             <?php } ?>
                 <a title="Discuter avec <?php echo $username ?>" class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
