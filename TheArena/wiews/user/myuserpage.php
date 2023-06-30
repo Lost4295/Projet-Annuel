@@ -68,8 +68,8 @@ if (!empty($result)) {
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <p class="card-text"><?php formatUsers($friendRequest['user_id']) ?> veut être votre ami ! Acceptez vous cette demande en ami ?</p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>?action=accept" class="btn btn-success">Accepter</a>
-                            <a href="user/interact/friend?id=<?php echo $name ?>?action=refuse" class="btn btn-danger">Refuser</a>
+                            <a href="user/interact/friend?id=<?php echo $name ?>&action=accept" class="btn btn-success">Accepter</a>
+                            <a href="user/interact/friend?id=<?php echo $name ?>&action=refuse" class="btn btn-danger">Refuser</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -84,7 +84,7 @@ if (!empty($result)) {
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <p class="card-text"><?php formatUsers($newFriend['friend_id']) ?> est maintenant votre ami !</p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>?action=ok" class="btn btn-danger">Supprimer</a>
+                            <a href="user/interact/friend?id=<?php echo $name ?>&action=ok" class="btn btn-danger">Supprimer</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -99,7 +99,7 @@ if (!empty($result)) {
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <p class="card-text"><?php formatUsers($friend['friend_id']) ?></p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>?action=remove" class="btn btn-danger">Supprimer des amis</a>
+                            <a href="user/interact/friend?id=<?php echo $name ?>&action=remove" class="btn btn-danger">Supprimer des amis</a>
                             <a href="/chat/chat?user_id=<?php echo $name ?>" class="btn btn-secondary">Discuter avec <?php formatUsers($friend['friend_id']) ?></a>
                         </div>
                     </div>
