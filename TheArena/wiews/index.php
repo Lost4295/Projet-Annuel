@@ -40,7 +40,7 @@
             img.src = element.image;
             img.style = "position: relative; left:0; width:200px; height:200px; transition:0.5s";
             a.style.display = 'none';
-            a.href = `/event?name=${element.name}`;
+            a.href = `/event?id=${element.id}`;
             a.dataset.value = i;
 
             a.appendChild(img);
