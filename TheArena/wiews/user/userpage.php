@@ -192,11 +192,11 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 <a class="btn-info btn" href="user/interact/block?id=<?php echo $name ?>"><i class="bi bi-slash-circle-fill"></i> Bloquer</a>
             <?php } ?>
             <?php if ($isFriend && $isFriendAccepted['accepted'] && $isFriend['accepted']) { ?>
-                <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
+                <a class="btn-danger btn" href="user/interact/friend?id=<?php echo $name ?>?action=remove"><i class="bi bi-person-add"></i> Retirer de mes amis</a>
             <?php } elseif ($isFriend && (!$isFriendAccepted['accepted'] || !$isFriend['accepted'])) { ?>
-                <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Annuler ma demande</a>
+                <a class="btn-warning btn" href="user/interact/friend?id=<?php echo $name ?>?action=cancel"><i class="bi bi-person-add"></i> Annuler ma demande</a>
             <?php } elseif (!$isFriend) { ?>
-                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>"><i class="bi bi-person-add"></i> Demander en ami</a>
+                <a class="btn-success btn" href="user/interact/friend?id=<?php echo $name ?>?action=add"><i class="bi bi-person-add"></i> Demander en ami</a>
             <?php } ?>
                 <a title="Discuter avec <?php echo $username ?>" class="btn btn-secondary" href="/chat/chat?user_id=<?php echo $name ?>">Discuter avec <?php echo $username ?></a>
         </div>
