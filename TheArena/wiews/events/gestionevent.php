@@ -114,7 +114,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                     };
                 </script>
             </div>
-            <input type="hidden" value="<?php echo $_GET['id']?>">
+            <input type="hidden" name="event" value="<?php echo $_GET['id']?>">
             <div class="row d-flex justify-content-center">
                 <div class="col-2">
                     <button class="btn-primary btn btn-lg" type="submit">Mettre à jour l'événement</button>

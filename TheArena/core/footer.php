@@ -184,10 +184,14 @@
     function disappear(v = null) {
         var x = document.getElementById("alert");
         x.style.opacity = "0";
-        v.style.opacity = "0";
+        if (v != null) {
+            v.style.opacity = "0";
+        }
         setTimeout(function() {
             x.style.display = "none";
-            v.style.display = "none";
+            if (v != null) {
+                v.style.display = "none";
+            }
         }, 600);
     }
 

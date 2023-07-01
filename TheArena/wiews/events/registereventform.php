@@ -18,7 +18,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         if (!$tournaments) {
             $_SESSION['message'] = "Cet évènement n'a pas de tournoi.";
             $_SESSION['message_type'] = "danger";
-            header('Location: /event?name=' . $name);
+            header('Location: /event?id=' . $id);
+            exit();
         }
     }
 } else {

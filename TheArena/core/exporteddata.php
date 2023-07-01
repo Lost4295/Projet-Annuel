@@ -81,7 +81,7 @@ $html.='<p>Modifié la dernière fois le : '. $user['update_at'].'</p>';
 $html.='<p>Statut : '.formatStatusUsers($user['status']).'</p>';
 $html.='<p>Visibilité : '.formatVisibility($user['visibility']).'</p>';
 $html.='<p>Scope : '.formatScope($user['scope']).'</p>';
-$html.='<p>Rubrique à propos :' .$user['about'].'</p>';
+$html.='<p>Rubrique à propos : ' .$user['about'].'</p>';
 
 $html.='<h2>Statistiques de '.$user['username'].'</h2>';
 $html.='<p>Nombre de messages envoyés : '.count($messages).'</p>';
@@ -173,5 +173,5 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
-
+header('Content-Type : application/pdf');
 $dompdf->stream('fichier.pdf', ['Attachment' => false]);

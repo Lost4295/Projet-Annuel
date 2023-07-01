@@ -3,7 +3,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-	$name = strip_tags($_GET['id']);
+	$id = strip_tags($_GET['id']);
 	$query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:id');
 	$query->execute([':id' => $id]);
 	$event = $query->fetch(PDO::FETCH_ASSOC);
@@ -19,12 +19,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 		if ($user['id'] != $event['manager_id']) {
 			$_SESSION['message'] = "L'action a échoué.";
 			$_SESSION['message_type'] = "danger";
-			header('Location: /404');
+			header('Location: /error');
 		}
 	} else {
 		$_SESSION['message'] = "L'action a échoué.";
 		$_SESSION['message_type'] = "danger";
-		header('Location: /404');
+		header('Location: /error');
 	}
 } else {
 	$_SESSION['message'] = "Cet évènement n'existe pas.";

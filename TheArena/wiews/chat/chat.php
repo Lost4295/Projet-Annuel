@@ -31,8 +31,20 @@ if(!empty($result2)){
   header("location: /chat");
   exit();
 }
+if ($result['visibility'] <= 1) {
+  $_SESSION["message"] = "Ce profil est privé.";
+  $_SESSION["message_type"] = "danger";
+  header("location: /chat");
+  exit();
+}
+if ($_SESSION['id'] == $user_id) {
+  $_SESSION["message"] = "Vous ne pouvez pas vous envoyer de message à vous même.";
+  $_SESSION["message_type"] = "danger";
+  header("location: /chat");
+  exit();
+}
 
-include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php"; 
+include_once $_SERVER ['DOCUMENT_ROOT']."/core/header.php";
 
 ?>
 <body>

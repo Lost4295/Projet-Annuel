@@ -56,7 +56,7 @@ if (!empty($result)) {
         <p><?php echo $about ?></p>
     </div>
     <div class="d-flex justify-content-center"><a title="Modifier les informations" href="/me/modify" class="btn btn-primary mb-5">Modifier les informations</a></div>
-    <div class="d-flex justify-content-center"><a title="Obtenir mes informations (PDF)" href="/core/exporteddata.php" class="btn btn-primary mb-5">Obtenir mes informations en PDF</a></div>
+    <div class="d-flex justify-content-center"><a title="Obtenir mes informations (PDF)" href="/core/exporteddata.php" class="btn btn-primary mb-5" rel="noreferrer noopener">Obtenir mes informations en PDF</a></div>
     <br>
     <br>
     <br>

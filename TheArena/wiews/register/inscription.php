@@ -201,10 +201,11 @@ noReconnection(); ?>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <button type="button" id="continue" class="btn btn-primary">Continuer</button>
-                    </div>
+
                     </form>
+                </div>
+                <div class="col-12">
+                    <button type="button" id="continue" class="btn btn-primary">Continuer</button>
                 </div>
             </div>
         </div>
