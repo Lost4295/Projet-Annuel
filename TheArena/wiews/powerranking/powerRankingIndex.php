@@ -44,7 +44,45 @@
     <div class="row d-flex justify-content-center border col-12">
             <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
         <div class="row d-flex justify-content-center"> 
-            <h4>Falcons</h4>
+          <?php
+            echo('<h4>'.$_SESSION[$powerRankingClassement[0]].'</h4>')
+          ?>
+        </div>
+            
+    </div>
+    <div class="row d-flex justify-content-center border col-12">
+            <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
+        <div class="row d-flex justify-content-center"> 
+          <?php
+            echo('<h4>'.$_SESSION[$powerRankingClassement[1]].'</h4>')
+          ?>
+        </div>
+            
+    </div>
+    <div class="row d-flex justify-content-center border col-12">
+            <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
+        <div class="row d-flex justify-content-center"> 
+          <?php
+            echo('<h4>'.$_SESSION[$powerRankingClassement[2]].'</h4>')
+          ?>
+        </div>
+            
+    </div>
+    <div class="row d-flex justify-content-center border col-12">
+            <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
+        <div class="row d-flex justify-content-center"> 
+          <?php
+            echo('<h4>'.$_SESSION[$powerRankingClassement[3]].'</h4>')
+          ?>
+        </div>
+            
+    </div>
+    <div class="row d-flex justify-content-center border col-12">
+            <img style="position: relative; left:0; width: 15px; height:15px;" src="../img/evenement1.jpg">
+        <div class="row d-flex justify-content-center"> 
+          <?php
+            echo('<h4>'.$_SESSION[$powerRankingClassement[4]].'</h4>')
+          ?>
         </div>
             
     </div>

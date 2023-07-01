@@ -7,4 +7,5 @@ $query = $db->prepare("SELECT  t.id , t.score, t.country RANK() OVER (ORDER BY t
 
 $query->execute([
                 ]);
+$powerRankingClassement= $query->fetch();
 

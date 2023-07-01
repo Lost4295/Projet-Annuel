@@ -58,7 +58,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
     
     <div class="col-12 d-flex align-content-center flex-column flex-wrap">
-        <a class="btn btn-primary  btn-warning" href="#">Inscrire les scores</a>
+        <a class="btn btn-primary  btn-warning" href="/tournamentClassement.php">Inscrire les scores</a>
     </div>
     <div class="row">
         <div class="border col-6 d-flex align-content-center flex-column flex-wrap">
