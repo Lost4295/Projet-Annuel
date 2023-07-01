@@ -6,13 +6,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
-    $event = $query->fetch(PDO::FETCH_ASSOC);
+    $evenement = $query->fetch(PDO::FETCH_ASSOC);
     if (isConnected()) {
         $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
         $nquery->execute([':email' => $_SESSION['email']]);
         $user = $nquery->fetch(PDO::FETCH_ASSOC);
     }
-    if (!$event) {
+    if (!$evenement) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
@@ -27,12 +27,12 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 <div class="row">
     <nav class="navbar bar">
-        <a title="Accueil" class="btn btn-warning" href="/event?id=<?php echo $event['id']; ?>">Accueil</a>
-        <a title="Participants" class="btn btn-warning" href="/event/participants?id=<?php echo $event['id'] ?>">Participants</a>
-        <a title="Tableau de bord" class="btn btn-warning active" href="/event/dashboard?id=<?php echo $event['id'] ?>">Tableau de bord</a>
-        <a title="Shop" class="btn btn-warning " href="/event/shop?shop=<?php echo $event['shop_id'] ?>&id=<?php echo $event['id'] ?>">Shop</a>
-        <?php if (isConnected() && ($user['id'] == $event['manager_id'])) { ?>
-            <a title="Gestion de l'évènement" class="btn btn-warning" href="/event/management?id=<?php echo $event['id'] ?>">Gestion</a>
+        <a title="Accueil" class="btn btn-warning" href="/event?id=<?php echo $evenement['id']; ?>">Accueil</a>
+        <a title="Participants" class="btn btn-warning" href="/event/participants?id=<?php echo $evenement['id'] ?>">Participants</a>
+        <a title="Tableau de bord" class="btn btn-warning active" href="/event/dashboard?id=<?php echo $evenement['id'] ?>">Tableau de bord</a>
+        <a title="Shop" class="btn btn-warning " href="/event/shop?shop=<?php echo $evenement['shop_id'] ?>&id=<?php echo $evenement['id'] ?>">Shop</a>
+        <?php if (isConnected() && ($user['id'] == $evenement['manager_id'])) { ?>
+            <a title="Gestion de l'évènement" class="btn btn-warning" href="/event/management?id=<?php echo $evenement['id'] ?>">Gestion</a>
         <?php } ?>
     </nav>
 </div>

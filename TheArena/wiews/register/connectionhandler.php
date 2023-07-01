@@ -2,7 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 $activationCode = generateActivationCode();
-session_start();
 $_SESSION['codes'] = $activationCode;
 require $_SERVER['DOCUMENT_ROOT'] . '/core/sendmail.php';
 
@@ -18,6 +17,7 @@ function resetPassword()
     $user = $query->fetch(PDO::FETCH_ASSOC);
     if ($user) {
         $_SESSION['email'] = $email;
+        $_SESSION['emailtosend'] = $email;
         $query = $db->prepare("UPDATE " . PREFIX . "users SET activation_code=:activationCode WHERE email=:email");
         $query->execute(['activationCode' => $activationCode, 'email' => $email]);
         sendEmail($email, 'Rénitialisation du mot de passe', 1);
@@ -39,6 +39,7 @@ function enableAccount()
         $query2->execute(['email' => $email]);
         $result = $query2->fetch(PDO::FETCH_ASSOC);
         $_SESSION['email'] = $result['email'];
+        $_SESSION['emailtosend'] = $result['email'];
         print_r($_SESSION['email']);
         sendEmail($email, 'Activation du compte de ' . $user['username'] . ' The Arena', 0);
     }

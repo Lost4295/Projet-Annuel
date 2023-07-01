@@ -83,8 +83,8 @@ if (!empty($result)) {
                 <?php foreach ($newFriends as $newFriend) { ?>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text"><?php formatUsers($newFriend['friend_id']) ?> est maintenant votre ami !</p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>&action=ok" class="btn btn-danger">Supprimer</a>
+                            <p class="card-text"><?php echo formatUsers($newFriend['friend_id']) ?> est maintenant votre ami !</p>
+                            <a href="user/interact/friend?id=<?php echo $newFriend['friend_id'] ?>&action=ok" class="btn btn-danger">Supprimer</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -98,9 +98,9 @@ if (!empty($result)) {
                 <?php foreach ($friends as $friend) { ?>
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <p class="card-text"><?php formatUsers($friend['friend_id']) ?></p>
-                            <a href="user/interact/friend?id=<?php echo $name ?>&action=remove" class="btn btn-danger">Supprimer des amis</a>
-                            <a href="/chat/chat?user_id=<?php echo $name ?>" class="btn btn-secondary">Discuter avec <?php formatUsers($friend['friend_id']) ?></a>
+                            <p class="card-text"><?php echo formatUsers($friend['friend_id']) ?></p>
+                            <a href="user/interact/friend?id=<?php echo $friend['friend_id'] ?>&action=remove" class="btn btn-danger">Supprimer des amis</a>
+                            <a href="/chat/chat?user_id=<?php echo $friend['friend_id'] ?>" class="btn btn-secondary">Discuter avec <?php echo formatUsers($friend['friend_id']) ?></a>
                         </div>
                     </div>
                 <?php } ?>

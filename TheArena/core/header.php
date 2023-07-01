@@ -121,7 +121,10 @@
                                                     } ?>" class="link-dark" href="<?php if (isset($_SESSION['link1'])) {
                                                                                                                                                                                 echo $_SESSION['link1']['url'];
                                                                                                                                                                             } ?>"><?php if (isset($_SESSION['link1'])) {
-                                                                                echo $_SESSION['link1']['title'];
+                                                                                                                                                                                if (strlen( $_SESSION['link1']['title']) > 35 ){
+                                                                                                                                                                                    echo substr($_SESSION['link1']['title'], 0, 20)."...";
+                                                                                                                                                                                } else { echo $_SESSION['link1']['title']; 
+                                                                                                                                                                                }
                                                                             } ?></a></li>
                         <li><a id="link2" title="<?php if (isset($_SESSION['link2'])) {
                                                         echo $_SESSION['link2']['title'];

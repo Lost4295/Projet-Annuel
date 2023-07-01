@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/core/header.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/core/functions.php';
 define('LOGIN', 'Location: /login');
 
 if (isset($_GET['activationCode']) && isset($_GET['email'])) {
@@ -44,7 +44,7 @@ if (isset($_POST)) {
 
 
 
-
+require $_SERVER['DOCUMENT_ROOT'] . '/core/header.php';
 ?>
 <h1>Réinitialisation du mot de passe</h1>
 <?php

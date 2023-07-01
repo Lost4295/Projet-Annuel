@@ -174,7 +174,6 @@ noReconnection(); ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-5 mb-3 pr-5">
                                 <label class="form-check-label">
                                     Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
                                 </label>

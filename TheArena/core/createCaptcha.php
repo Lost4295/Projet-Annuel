@@ -59,7 +59,7 @@ foreach ($parties as $partie) {
 $images = glob($dirname . 'parts/' . "*.{jpg,gif,png}", GLOB_BRACE);
 ?>
 <div class="row">
-<div class="col-4">
+<div class="col-auto">
 <img src="<?php echo str_replace($_SERVER['DOCUMENT_ROOT'], '', $active) ?>" alt="initial_image">
 </div>
 <div class="col-4">

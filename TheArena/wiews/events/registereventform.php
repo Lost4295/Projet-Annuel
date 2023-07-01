@@ -6,14 +6,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
     $query->execute([':name' => $name]);
-    $event = $query->fetch(PDO::FETCH_ASSOC);
-    if (!$event) {
+    $evenement = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$evenement) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
     } else {
         $nquery = $db->prepare('SELECT * FROM ' . PREFIX . 'tournaments WHERE `event_id`=:event_id');
-        $nquery->execute([':event_id' => $event['id']]);
+        $nquery->execute([':event_id' => $evenement['id']]);
         $tournaments = $nquery->fetchAll(PDO::FETCH_ASSOC);
         if (!$tournaments) {
             $_SESSION['message'] = "Cet évènement n'a pas de tournoi.";
@@ -66,7 +66,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <div class="mb-3">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="1" name="cgu" id="cgu">
-                    <label class="form-check-label" for="cgu">J’ai lu et accepté les <a  title="Conditions générales d'utilisation" href="/cgu">Termes et Conditions</a> de The Arena</label>
+                    <label class="form-check-label" for="cgu">J’ai lu et accepté les <a title="Conditions générales d'utilisation" href="/cgu">Termes et Conditions</a> de The Arena</label>
                 </div>
             </div>
             <div class="mb-3">
@@ -75,6 +75,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                         Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
                     </label>
                 </div>
+                <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
                 <div class="row px-5">
                     <div class="col-auto p-0">
                         <div class="drop-zone" id="dropZone1"></div>
@@ -108,16 +109,17 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                         <div class="drop-zone" id="dropZone9"></div>
                     </div>
                 </div>
-                <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
+
             </div>
-            <input type="hidden" name="eventid" id="eventid" value="<?php echo $event['id'] ?>">
-            <input type="hidden" name="eventname" id="eventname" value="<?php echo $event['name'] ?>">
+            <input type="hidden" name="eventid" id="eventid" value="<?php echo $evenement['id'] ?>">
+            <input type="hidden" name="eventname" id="eventname" value="<?php echo $evenement['name'] ?>">
             <div class="m-5">
                 <button type="submit" class="btn btn-primary d-block mx-auto btn-lg" onclick="checkCaptcha(event)">Finaliser l'inscription</button>
             </div>
+        </form>
     </div>
 
-    </form>
+
     <script>
         const draggableElements = document.querySelectorAll('.draggable');
         const dropZoneElements = document.querySelectorAll('.drop-zone');
@@ -267,6 +269,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             }
         }
     </script>
+</div>
 </div>
 
 <div class="ms-5 col-6 float-end">

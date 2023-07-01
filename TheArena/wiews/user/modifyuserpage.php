@@ -160,8 +160,6 @@ if (!empty($result)) {
                     </div>
 
                     <script>
-                        var larrows = document.querySelectorAll('.arrows .left');
-                        var rarrows = document.querySelectorAll('.arrows .right');
                         let posie = 0;
                         let posmo = 0;
                         let poscol = 0;
@@ -333,7 +331,6 @@ if (!empty($result)) {
                             valuesToSave.mouth = posmo
                             document.getElementById("avatarvals").value = JSON.stringify(valuesToSave)
                         }
-// TODO trouver toutes les valeurs en px ! 132 = 100
                         let eyesPositions = ["0px 0px", "-132px 0px", "-272px 0px", "-407px 0px", "-543px 0px", "-680px 0px", '-817px 0px', '-950px 0px', '-1087px 0px', '-1223px 0px',
                             "0px -132px", "-134px -134px", "-272px -132px", "-407px -132px", "-543px -132px", "-680px -132px", '-817px -132px', '-950px -132px', '-1087px -132px', '-1223px -132px',
                             "0px -260px", "-132px -260px", "-272px -260px", "-407px -260px", "-543px -260px", "-680px -260px", '-817px -260px', '-950px -260px', '-1087px -260px', '-1223px -260px',

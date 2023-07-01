@@ -16,12 +16,13 @@ if (isset($_POST['id'])
         $shop = $_POST['shop'];
         $event = $_POST['event'];
         $user = $_POST['user'];
-        $query = $db->prepare("INSERT INTO ".PREFIX."payments (`product_id`, `shop`, `event`, `user`) VALUES (:id, :shop, :event, :user)");
+        $query = $db->prepare("INSERT INTO ".PREFIX."payments (`product_id`, `shop`, `event`, `user`, date) VALUES (:id, :shop, :event, :user, :date)");
         $query->execute([
             'id' => $id,
             'shop' => $shop,
             'event' => $event,
-            'user' => $user
+            'user' => $user,
+            'date' => date("Y-m-d H:i:s")
         ]);
         $_SESSION['message']= "Votre achat a bien été effectué.";
         $_SESSION['message_type']= "success";

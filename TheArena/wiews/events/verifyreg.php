@@ -85,6 +85,7 @@ if ($error) {
     header("Location:/event/register?name=" . $eventname . "");
 } else {
     $emailer =$email;
+    $pseudo = $resultp['username'];
     $body = "<h2 style='width:50%;height:40px;padding-left:120px;text-align:right;margin:0px;color:#B24909;'>Confirmation d'inscription</h2>
 <p>Bonjour " . $pseudo . ",<br><br>Nous vous confirmons votre inscription";
     if (count($keys) > 1) {

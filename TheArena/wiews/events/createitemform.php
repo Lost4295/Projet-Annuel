@@ -7,17 +7,17 @@ if (isset($_GET['shop']) && !empty($_GET['shop'])) {
     $shop = strip_tags($_GET['shop']);
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `shop_id`=:shop');
     $query->execute([':shop' => $shop]);
-    $event = $query->fetch(PDO::FETCH_ASSOC);
-    if (!$event) {
+    $evenement = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$evenement) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
         $_SESSION['message_type'] = "danger";
         header('Location: /');
     }
-    if (isConnected() && ($shop == $event['shop_id'])) {
+    if (isConnected() && ($shop == $evenement['shop_id'])) {
         $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
         $nquery->execute([':email' => $_SESSION['email']]);
         $user = $nquery->fetch(PDO::FETCH_ASSOC);
-        if ($user['id'] != $event['manager_id']) {
+        if ($user['id'] != $evenement['manager_id']) {
             $_SESSION['message'] = "L'action a échoué.";
             $_SESSION['message_type'] = "danger";
             header('Location: /404');
@@ -106,8 +106,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 } ?>
             </div>
         </div>
-        <input type="hidden" value="<?php echo $event['shop_id'] ?>" name="shop_id">
-        <input type="hidden" value="<?php echo $event['name'] ?>" name="eventname">
+        <input type="hidden" value="<?php echo $evenement['shop_id'] ?>" name="shop_id">
+        <input type="hidden" value="<?php echo $evenement['name'] ?>" name="eventname">
         <div class="row d-flex justify-content-center">
             <div class="col-2">
                 <button class="btn-primary btn btn-lg">Enregistrer l'article</button>

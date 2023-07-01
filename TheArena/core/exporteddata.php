@@ -38,6 +38,7 @@ $queryPrepared5->execute([
 ]);
 $payments = $queryPrepared5->fetchAll(PDO::FETCH_ASSOC);
 
+
 $queryPrepared6 = $db->prepare("SELECT * FROM ".PREFIX."users_likes where user_id = :id");
 $queryPrepared6->execute([
     "id" => $_SESSION['id']
@@ -105,7 +106,7 @@ if (empty($forums)){
     $html.='<p>Aucun forum créé par '.$user['username'].'.</p>';
 }
 foreach ($forums as $forum){
-    $html.='<p>Forum : '.$forum['title'].' créé le '.$forum['creation_date'].' par '.formatUsers($forum['author']).'</p>';
+    $html.='<p>Forum : '.$forum['name'].' créé le '.$forum['date_creation'].' par '.formatUsers($forum['author']).'</p>';
 }
 
 $html.='<h2>Messages de '.$user['username'].' envoyés sur les forums</h2>';
@@ -113,7 +114,7 @@ if (empty($forum_reponses)){
     $html.='<p>Aucun message envoyé par '.$user['username'].' sur les forums.</p>';
 }
 foreach ($forum_reponses as $forum_reponse){
-    $html.='<p>Réponse : '.$forum_reponse['content'].' créé le '.$forum_reponse['creation_date'].' sur '.formatForumName($forum_reponse['forum_id']).'</p>';
+    $html.='<p>Réponse : '.$forum_reponse['message'].' créé le '.$forum_reponse['date_reponse'].' sur '.formatForumName($forum_reponse['id_forum']).'</p>';
 }
 
 $html.='<h2>Paiements de '.$user['username'].'</h2>';
@@ -121,7 +122,7 @@ if (empty($payments)){
     $html.='<p>Aucun paiement effectué par '.$user['username'].'.</p>';
 }
 foreach ($payments as $payment){
-    $html.='<p>Paiement de '.formatProductsName($payment['product_id']).'coûtant '.findPriceByPID($payment['product_id']).' € effectué le '.$payment['date'].' pour </p>';
+    $html.='<p>Paiement de '.formatProductsName($payment['product_id']).' coûtant '.findPriceByPID($payment['product_id']).' € effectué le '.$payment['date'].'</p>';
 }
 
 $html.='<h2>Utilisateurs likés par '.$user['username'].'</h2>';
@@ -154,7 +155,7 @@ if (empty($events)){
 }
 foreach ($events as $event){
     $html.='<p>Evènement : '.$event['name'].' créé pour le jeu '.$event['game'].' : '.$event['description'].'</p>';
-    $html.='<p>Image = <img src="'.$event['image'].'" style="margin-top:50px; width:100px; height:auto"/></p>';
+    $html.='<p>Image : <img src="'.$event['image'].'" style="margin-top:50px; width:100px; height:auto"/></p>';
 }
 
 $html.='<h2>Evènements auxquels '.$user['username'].' participe/ a participé</h2>';

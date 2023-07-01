@@ -12,7 +12,7 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 
-$email = $_SESSION["emailtosend"];
+$email = $_SESSION["emailtosend"]??null;
 
 $header = "<!doctype html>
 <html>

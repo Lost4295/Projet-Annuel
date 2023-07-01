@@ -252,11 +252,11 @@ if (isset($_POST)) {
         $activationCode = password_hash(generateActivationCode(), PASSWORD_DEFAULT);
         $_SESSION['emailtosend'] = $email;
         $pwd = password_hash($pwd, PASSWORD_DEFAULT);
-        $query = $db->prepare("INSERT INTO " . PREFIX . "users (scope,username,email,password,first_name,last_name,birthdate,phone,address,department,newsletter,activation_timeout,activation_code)
+        $query = $db->prepare("INSERT INTO " . PREFIX . "users (scope,username,email,password,first_name,last_name,birthdate,phone,address,department,newsletter,activation_timeout,activation_code, inactive_date)
         VALUES (:scope,:username,:email,:password,
         :first_name,:last_name,:birthdate,:phone,
         :address,:department,:newsletter
-        ,:activation_timeout,:activation_code)");
+        ,:activation_timeout,:activation_code, :inactive_date)");
         $query->execute([
             "scope" => $typefinal["scope"],
             "username" => $username,
@@ -270,7 +270,8 @@ if (isset($_POST)) {
             "department" => $depart,
             "newsletter" => $newsletter,
             "activation_timeout" => date("Y-m-d H:i:s", strtotime("+1 day")),
-            "activation_code" => $activationCode
+            "activation_code" => $activationCode,
+            "inactive_date"=>date("Y-m-d H:i:s", strtotime("+1 month"))
         ]);
 
 

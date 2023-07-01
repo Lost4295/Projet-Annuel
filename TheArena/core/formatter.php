@@ -201,7 +201,7 @@ function formatForumName ($forumid){
 
     function formatProductsName ($productid) {
         $db = connectToDB();
-        $query = $db->prepare("SELECT name as n FROM ".PREFIX."products WHERE id=:id");
+        $query = $db->prepare("SELECT nom as n FROM ".PREFIX."products WHERE id=:id");
         $query->execute(['id'=>$productid]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         $name = $result['n'];
