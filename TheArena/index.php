@@ -93,6 +93,8 @@ $routes = [
     "/legal" => $_SERVER['DOCUMENT_ROOT']."/wiews/important/mentionslégales",
     "/forum" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/forumpage",
     "/forum/create" => $_SERVER['DOCUMENT_ROOT']."/wiews/forum/createblogform",
+    "/launchTournament"=> $_SERVER['DOCUMENT_ROOT']."/wiews/events/generatetable",
+    "/endTournament"=> $_SERVER['DOCUMENT_ROOT']."/wiews/events/finishevent",
 ];
 /*** Création de l'url de destination ***/
 $urls = explode('?', $origine);

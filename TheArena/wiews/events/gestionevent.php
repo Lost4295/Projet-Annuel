@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
@@ -11,7 +11,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
         $nquery->execute([':email' => $_SESSION['email']]);
         $user = $nquery->fetch(PDO::FETCH_ASSOC);
-        if ($user['id'] != $evenement['manager_id']){
+        if ($user['id'] != $evenement['manager_id']) {
             $_SESSION['message'] = "L'action a échoué.";
             $_SESSION['message_type'] = "danger";
             header('Location: /404');
@@ -44,10 +44,10 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 <div class="row">
     <h2>Gestion de l'événement</h2>
 </div>
-<div class="row">
-    <div class="col-12">
-        <h3>Paramètres de l'événement</h3>
-    </div>
+
+<button class="accordion">Paramètres de l'événement</button>
+<div class="panel">
+
     <div>
         <form action="/wiews/events/verifyupdateevent.php" method="post" class="mb-5 row-cols-lg-auto" enctype="multipart/form-data">
             <div class="mb-3">
@@ -114,7 +114,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                     };
                 </script>
             </div>
-            <input type="hidden" name="event" value="<?php echo $_GET['id']?>">
+            <input type="hidden" name="event" value="<?php echo $_GET['id'] ?>">
             <div class="row d-flex justify-content-center">
                 <div class="col-2">
                     <button class="btn-primary btn btn-lg" type="submit">Mettre à jour l'événement</button>
@@ -123,23 +123,142 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
         </form>
     </div>
 </div>
-<div class="row">
-    <div class="col-12">
-        <h3>Participants</h3>
-    </div>
-
-    <div class="col-12">
-        <h3>Matchs</h3>
-    </div>
-
-    <div class="col-12">
-        <h3>Scores</h3>
-    </div>
-
-
-    // TODO ajouter accordéon
-    // TODO Faire une modal pour modifier les users qui se sont enreigstrées
-    // TODO Faire une modal pour modifier les matchs
-    // TODO Faire une modal pour modifier les scores
 </div>
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>
+<?php
+
+$tou = $db->prepare("SELECT * FROM " . PREFIX . "tournaments WHERE event_id = :eid");
+$tou->execute(array(
+    'eid' => $_GET['id']
+));
+$tournaments = $tou->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+foreach ($tournaments as $tournament) {
+    $remMAtches = $db->prepare("SELECT * FROM " . PREFIX . "matches WHERE tournament_id = :tid and player1_score is null and player2_score is null");
+    $remMAtches->execute(array(
+        'tid' => $tournament['id']
+    ));
+    $remMatches = $remMAtches->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+    <button class="accordion">Tournoi <?php echo $tournament['name'] ?></button>
+    <div class="panel w-100">
+
+        <?php if ($remMAtches == null) { ?>
+            <a href="/endTournament?id=<?php echo $tournament['id'] ?>&eid=<?php echo $evenement['id']  ?>" class="btn btn-primary m-2">Terminer le tournoi</a>
+        <?php } ?>
+
+        <a href="/launchTournament?id=<?php echo $tournament['id'] ?>&eid=<?php echo $evenement['id']  ?>" class="btn btn-primary m-2">Générer les matches</a>
+
+
+
+        <div class="row">
+
+            <div class="col-12">
+                <h3>Matchs</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Round</th>
+                            <th>Joueur 1</th>
+                            <th>Joueur 2</th>
+                            <th>Score Joueur 1</th>
+                            <th>Score Joueur 2</th>
+                            <th>Modifier le résultat du match</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        $ql = $db->query("SELECT * FROM " . PREFIX . "matches");
+                        $matches = $ql->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($matches as $match) { ?>
+                            <tr>
+                                <td>Round <?php echo $match['round_number'] ?></td>
+                                <td><?php echo formatUsers($match['player1_id']) ?></td>
+                                <td><?php echo formatUsers($match['player2_id']) ?></td>
+                                <td><?php echo $match['player1_score'] ?></td>
+                                <td><?php echo $match['player2_score'] ?></td>
+                                <td><a href='#' id="showDialog<?php echo $match['match_id'] ?>" class='btn btn-primary'>Modifier le résultat du match</a></td>
+                                <dialog id="favDialog<?php echo $match['match_id'] ?>" class="p-5">
+                                    <form action="/wiews/events/resultssaver.php" class="">
+                                        <div>
+                                            <h2 class="text-center">Résultats</h2>
+                                            <div class="row">
+                                                <input type="number" name="player1_score<?php echo $match['match_id'] ?>" id="player1_score<?php echo $match['match_id'] ?>" placeholder="Score de <?php echo formatUsers($match['player1_id']) ?>" required class="form-control col-auto m-3">
+                                                <input type="number" name="player2_score<?php echo $match['match_id'] ?>" id="player2_score<?php echo $match['match_id'] ?>" placeholder="Score de <?php echo formatUsers($match['player2_id']) ?>" required class="form-control col-auto m-3">
+                                            </div>
+                                            <input type="hidden" name="match_id" value="<?php echo $match['match_id'] ?>">
+                                            <input type="hidden" name="player1id" value="<?php echo $match['player1_id'] ?>">
+                                            <input type="hidden" name="player2id" value="<?php echo $match['player2_id'] ?>">
+                                            <input type="hidden" name="eventid" value="<?php echo $evenement['id'] ?>">
+                                            <div>
+                                                <button value="cancel" class="btn btn-info" formmethod="dialog">Annuler</button>
+                                                <button id="confirmBtn<?php echo $match['match_id'] ?>" class="btn btn-info" value="default">Confirmer</button>
+                                            </div>
+                                    </form>
+                                </dialog>
+                                <script>
+                                    const showButton<?php echo $match['match_id'] ?> = document.getElementById("showDialog<?php echo $match['match_id'] ?>");
+                                    const favDialog<?php echo $match['match_id'] ?> = document.getElementById("favDialog<?php echo $match['match_id'] ?>");
+                                    const player1_score<?php echo $match['match_id'] ?> = document.getElementById("player1_score<?php echo $match['match_id'] ?>");
+                                    const player2_score<?php echo $match['match_id'] ?> = document.getElementById("player2_score<?php echo $match['match_id'] ?>");
+                                    const confirmBtn<?php echo $match['match_id'] ?> = favDialog<?php echo $match['match_id'] ?>.querySelector("#confirmBtn<?php echo $match['match_id'] ?>");
+                                    // "Show the dialog" button opens the <dialog> modally
+                                    showButton<?php echo $match['match_id'] ?>.addEventListener("click", () => {
+                                        favDialog<?php echo $match['match_id'] ?>.showModal();
+                                    });
+                                    player1_score<?php echo $match['match_id'] ?>.addEventListener("change", (e) => {
+                                        confirmBtn<?php echo $match['match_id'] ?>.value = player1_score<?php echo $match['match_id'] ?>.value + " - " + player2_score<?php echo $match['match_id'] ?>.value;
+                                    });
+                                    player2_score<?php echo $match['match_id'] ?>.addEventListener("change", (e) => {
+                                        confirmBtn<?php echo $match['match_id'] ?>.value = player1_score<?php echo $match['match_id'] ?>.value + " - " + player2_score<?php echo $match['match_id'] ?>.value;
+                                    });
+
+                                    // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+                                    favDialog<?php echo $match['match_id'] ?>.addEventListener("close", (e) => {
+                                        favDialog<?php echo $match['match_id'] ?>.returnValue === "default" ?
+                                            "No return value." :
+                                            `ReturnValue: ${favDialog<?php echo $match['match_id'] ?>.returnValue}.`; // Have to check for "default" rather than empty string
+                                    });
+
+                                    // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+                                    confirmBtn<?php echo $match['match_id'] ?>.addEventListener("click", (event) => {
+                                        favDialog<?php echo $match['match_id'] ?>.close(player1_score<?php echo $match['match_id'] ?>.value + player2_score<?php echo $match['match_id'] ?>.value); // Have to send the select box value here.
+                                    });
+                                </script>
+                            <?php }
+                            ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php } ?>
+    <style>
+
+    </style>
+
+    <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+    </script>
+
+    </div>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

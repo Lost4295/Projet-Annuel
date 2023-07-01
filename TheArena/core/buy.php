@@ -2,12 +2,12 @@
 
 require_once 'functions.php';
 
-if (isset($_POST['id']) 
-    && !empty($_POST['id']) 
+if (isset($_POST['id'])
+    && !empty($_POST['id'])
     && isset($_POST['shop'])
-    && !empty($_POST['shop']) 
+    && !empty($_POST['shop'])
     && isset($_POST['event'])
-    && !empty($_POST['event']) 
+    && !empty($_POST['event'])
     && isset($_POST['user'])
     && !empty($_POST['user'])){
 

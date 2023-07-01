@@ -1,6 +1,6 @@
 <?php 
 
-require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $name = strip_tags($_GET['id']);
@@ -37,9 +37,38 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     </nav>
 </div>
     <div class="row">
-        <h2>Participants</h2>
+        <h2>Participants à l'événement </h2>
     </div>
-    <div class="row ">
+    <div class="row">
+        <table class="table table-striped table-bordered w-75 m-5">
+            <thead>
+                <tr>
+                    <th>
+                        Pseudo
+                    </th>
+                    <th>
+                        Tournoi
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events_users WHERE `event_id`=:id');
+                $query->execute([':id' => $evenement['id']]);
+                $participants = $query->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($participants as $participant) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo formatUsers($participant['user_id']); ?>
+                        </td>
+                        <td>
+                            <?php echo formatTournamentName($participant['tournament_id']); ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
         <!-- <table class="d-flex align-content-center flex-column flex-wrap table table-striped">
             <tbody>
                 <tr>
@@ -76,34 +105,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                     </td>
                 </tr>
             </tbody>
-        </table>
-    </div> -->
+        </table>-->
+    </div> 
 
     <?php
 
-    $listOfMatches= [];
-    $numplayers = 4;
-    if ($numplayers % 2 != 0) $numplayers++; // Dummy
-    
-    for ($round = 0;$round < $numplayers - 1;$round++) {
-        echo 'Squad ' . ($round+1) . ":<br><br>";
-        
-        echo "1 contre ";
-        for ($i = 0;$i < $numplayers-1;$i++) {
-            if ($i % 2 == 0) {
-                $player = ($numplayers-2) - ($i/2) - $round;
-            } else {
-                $player = ((($i-1)/2) - $round);
-            }
-            
-            if ($player < 0) $player += $numplayers - 1;
-            echo $player+2;
-            echo ($i % 2 == 0) ? "\n" : ' contre ';
-        }
-        echo "<br><br>";
-    }
-    
-    
     ?>
 
 <?php require $_SERVER['DOCUMENT_ROOT']."/core/footer.php" ?>

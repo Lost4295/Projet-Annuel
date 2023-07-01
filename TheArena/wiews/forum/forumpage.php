@@ -59,7 +59,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
                             <button onclick="open<?php echo $element['id'] ?>()" class="dropbtn more">...</button>
                             <div id="msgdrop<?php echo $element["id"] ?>" class="dropdown-content-msg">
                                 <a title="Parler à <?php echo formatUsers($element['user_id']) ?> en privé" href="/chat/chat?user_id=<?php echo $element['user_id'] ?>">Parler à <?php echo formatUsers($element['user_id']) ?> en privé</a>
-                                <a  href="/core/signaler.php?id=<?php echo $element['id'] ?>&type=forumpost&content=<?php echo $element['message'];?>">Signaler le message</a>
+                                <a href="#" id="showDialog<?php echo $element["id"] ?>">Signaler le message</a>
                                 <a title="Accéder à la page de <?php echo formatUsers($element['user_id']) ?>" href="/user?id=<?php echo $element['user_id'] ?>">Accéder à la page de <?php echo formatUsers($element['user_id']) ?></a>
                             </div>
                         </div>
@@ -95,6 +95,50 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
         }
     }
 </script>
+<dialog id="favDialog<?php echo $element["id"] ?>">
+        <form action="/core/signaler.php" class="p-5">
+        <h2 class="text-center">Signaler un profil</h2>
+            <label class="form-label">
+                Nous aimerions savoir pourquoi vous signalez ce profil. Merci de l'insérer ci-dessous.
+            </label>
+            <input type="text" name="content" id="reason<?php echo $element["id"] ?>" required class="form-control m-3">
+            <input type="hidden" name="id" value="<?php echo $element["id"]; ?>">
+            <input type="hidden" name="type" value="forumpost">
+            <div>
+                <button value="cancel" class="btn btn-info" formmethod="dialog">Annuler</button>
+                <button id="confirmBtn<?php echo $element["id"] ?>" class="btn btn-info" value="default">Confirmer</button>
+            </div>
+        </form>
+    </dialog>
+    <p>
+    </p>
+    <script>
+        const showButton<?php echo $element["id"] ?> = document.getElementById("showDialog<?php echo $element["id"] ?>");
+        const favDialog<?php echo $element["id"] ?> = document.getElementById("favDialog<?php echo $element["id"] ?>");
+        const reason<?php echo $element["id"] ?> = document.getElementById("reason<?php echo $element["id"] ?>");
+        const confirmBtn<?php echo $element["id"] ?> = favDialog<?php echo $element["id"] ?>.querySelector("#confirmBtn<?php echo $element["id"] ?>");
+
+        // "Show the dialog" button opens the <dialog> modally
+        showButton<?php echo $element["id"] ?>.addEventListener("click", () => {
+            favDialog<?php echo $element["id"] ?>.showModal();
+        });
+
+        reason<?php echo $element["id"] ?>.addEventListener("change", (e) => {
+            confirmBtn<?php echo $element["id"] ?>.value = reason<?php echo $element["id"] ?>.value;
+        });
+
+        // "Cancel" button closes the dialog without submitting because of [formmethod="dialog"], triggering a close event.
+        favDialog<?php echo $element["id"] ?>.addEventListener("close", (e) => {
+            favDialog<?php echo $element["id"] ?>.returnValue === "default" ?
+                "No return value." :
+                `ReturnValue: ${favDialog<?php echo $element["id"] ?>.returnValue}.`; // Have to check for "default" rather than empty string
+        });
+
+        // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+        confirmBtn<?php echo $element["id"] ?>.addEventListener("click", (event) => {   
+            favDialog<?php echo $element["id"] ?>.close(reason<?php echo $element["id"] ?>.value); // Have to send the select box value here.
+        });
+    </script>
         <?php };
                     }
         ?>
@@ -124,8 +168,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" ?>
             document.addEventListener('keyup', (event) => {
                 delete keysPressed[event.key];
             });
-            sendBtn = document.querySelector("#maxer > div.content.col-10.d-flex.align-content-center.flex-column.flex-wrap > div > div > form > button");
-            sendBtn.onclick =()=>{ document.forms[1].submit();}
+            sendBtn = document.querySelector("#m > div > form > button");
+            sendBtn.onclick =function () { document.forms[1].submit();}
         </script>
 
 

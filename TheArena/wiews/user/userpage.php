@@ -128,7 +128,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
             <input type="hidden" name="type" value="user">
             <div>
                 <button value="cancel" class="btn btn-info" formmethod="dialog">Annuler</button>
-                <button id="confirmBtn" class="btn btn-info" value="default">Confirmer</button>
+                <button id="confirmBtn" class="btn btn-danger" value="default">Confirmer</button>
             </div>
         </form>
     </dialog>
