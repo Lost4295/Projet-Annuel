@@ -5,7 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $id = $_SESSION['id'];
 $searchTerm = $_POST['searchTerm'];
 $db = connectToDB();
-$lequerie = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE NOT id =:id AND username LIKE :search");
+$lequerie = $db->prepare("SELECT * FROM " . PREFIX . "users WHERE NOT id =:id AND visibility = 2 AND username LIKE :search");
 $lequerie->execute([
     ":search" => $searchTerm,
     ":id" => $id,
