@@ -3,53 +3,62 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 session_start();
 $db = connectToDB();
 $classement = $_SESSION["classement"];
-$lenClassement =  count($classement)-1;
+$lenClassement =  count($ranking)-1;
 
 for($x=0; $x <= $lenClassement; $x++){
     
-    if($classement[$x]['rank']== 1){
+    if($classement[$x]== 1){
         $score = 5;
-        $query = $db->prepare("UPDATE ".PREFIX."users SET score = :score WHERE id = :id");
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
 
     $query->execute([
             "score"=> $score,
+            "email"=> $_SESSION["email"]
+            "jeu"=> $_SESSION["jeu"]
             "id"=> $_SESSION["id"]
                     ]);
     }
-    elseif($classement[$x]['rank']== 2){
+    else if($classement[$x]== 2){
         $score = 4;
-        $query = $db->prepare("UPDATE ".PREFIX."users SET score = :score WHERE id = :id");
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
 
-    $query->execute([
+        $query->execute([
             "score"=> $score,
+            "email"=> $_SESSION["email"]
+            "jeu"=> $_SESSION["jeu"]
             "id"=> $_SESSION["id"]
                     ]);
-    }
-    elseif($classement[$x]['rank']== 3){
+    }else if($classement[$x]== 3){
         $score = 3;
-        $query = $db->prepare("UPDATE ".PREFIX."users SET score = :score WHERE id = :id");
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
 
-    $query->execute([
-            "score"=> $score,
-            "id"=> $_SESSION["id"]
-                    ]);
-    }
-    elseif($classement[$x]['rank']== 4){
+        $query->execute([
+                "score"=> $score,
+                "email"=> $_SESSION["email"]
+                "jeu"=> $_SESSION["jeu"]
+                "id"=> $_SESSION["id"]
+                        ]);
+    else if($classement[$x]== 4){
         $score = 2;
-        $query = $db->prepare("UPDATE ".PREFIX."users SET score = :score WHERE id = :id");
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
 
     $query->execute([
             "score"=> $score,
+            "email"=> $_SESSION["email"]
+            "jeu"=> $_SESSION["jeu"]
             "id"=> $_SESSION["id"]
                     ]);
     }
-    elseif($classement[$x]['rank']== 5){
+    else if($classement[$x]== 5){
         $score = 1;
-        $query = $db->prepare("UPDATE ".PREFIX."users SET score = :score WHERE id = :id");
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
 
-    $query->execute([
-            "score"=> $score,
-            "id"=> $_SESSION["id"]
-                    ]);
+        $query->execute([
+                "score"=> $score,
+                "email"=> $_SESSION["email"]
+                "jeu"=> $_SESSION["jeu"]
+                "id"=> $_SESSION["id"]
+                        ]);
+        }
     }
 }
