@@ -12,6 +12,15 @@ if (isConnected()) {
     $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'event_rooms WHERE `owner_id`=:user_id');
     $nquery->execute([':user_id' => $_SESSION['id']]);
     $rooms = $nquery->fetchAll(PDO::FETCH_ASSOC);
+    $prooms = [];
+    $orooms = [];
+    foreach ($rooms as $key => $room) {
+        if ($room['type'] == 0) {
+            $orooms[] = $room;
+        } else {
+            $prooms[] = $room;
+        }
+    }
 } else {
     $_SESSION['message'] = "L'action a échoué.";
     $_SESSION['message_type'] = "danger";
@@ -62,13 +71,27 @@ if (isConnected()) {
                                 }
                                 ?></div>
     </div>
-    <div class="form-check mb-4">
-        <?php if (!empty($rooms)) {
-            foreach ($rooms as $key=>$room) { ?>
-                <input class="form-check-input" type="radio" name="type" id="room" value="<?php echo $room['id'] ?>">
-                <label class="form-check-label" for="room"><?php echo $room['address'] ?></label>
-            <?php } ?>
-        <?php } ?>
+    <div class="form-check mb-4" id="prooms">
+        <?php if (!empty($prooms)) { ?>
+            <select class="form-select" name="roomname" id="room">
+                <?php foreach ($prooms as $key => $room) { ?>
+                    <option value="<?php echo $room['id'] ?>"><?php echo $room['address'] ?></option>
+                <?php } ?>
+            </select>
+        <?php } else {
+            echo '<p>Il n\'y a pas de salle. Merci d\'en créer une.</p>';
+        } ?>
+    </div>
+    <div class="form-check mb-4" id="orooms" style="display:none">
+        <?php if (!empty($orooms)) { ?>
+            <select class="form-select" name="roomname" id="room">
+                <?php foreach ($orooms as $key => $room) { ?>
+                    <option value="<?php echo $room['id'] ?>"><?php echo $room['address'] ?></option>
+                <?php } ?>
+            </select>
+        <?php } else {
+            echo '<p>Il n\'y a pas de salle. Merci d\'en créer une.</p>';
+        } ?>
     </div>
     <label for="game" class="form-label">Jeu utilisé</label>
     <input class="form-control mb-5" list="datalistOptions" id="game" name="game" placeholder="Entrez le nom du jeu..." required>
@@ -99,13 +122,15 @@ if (isConnected()) {
             };
 
             function checker() {
-                let ola = document.getElementById('online')
-                let phy = document.getElementById('local')
+                let ola = document.getElementById('orooms')
+                let phy = document.getElementById('prooms')
 
                 if (phy.checked === true) {
-                    ola.style.display = 'block'
-                } else {
+                    phy.style.display = 'block'
                     ola.style.display = 'none'
+                } else {
+                    phy.style.display = 'none'
+                    ola.style.display = 'block'
                 }
             }
         </script>
