@@ -56,4 +56,57 @@ foreach ($rankings as $ranking) {
 
 
 //Mettre ici les inserts du PR
+$lenRanking = count($rankings) - 1 
+foreach($ranking as $ranking){
+    
+    if($ranking['rank']== 1){
+        $score = 5;
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
+
+    $query->execute([
+            "score"=> $score,
+            "jeu"=> $ranking['event_game']
+            "id"=> $ranking['player_id']
+                    ]);
+    }
+    else if($ranking['rank']== 2){
+        $score = 4;
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
+
+        $query->execute([
+            "score"=> $score
+            "jeu"=> $ranking['event_game']
+            "id"=> $ranking['player_id']
+                    ]);
+    }else if($ranking['rank']== 3){
+        $score = 3;
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
+
+        $query->execute([
+                "score"=> $score,
+                "jeu"=> $ranking['event_game']
+                "id"=> $ranking['player_id']
+                        ]);
+    else if($ranking['rank']== 4){
+        $score = 2;
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
+
+    $query->execute([
+            "score"=> $score,
+            "jeu"=> $ranking['event_game']
+            "id"=> $ranking['player_id']
+                    ]);
+    }
+    else if($ranking['rank']== 5){
+        $score = 1;
+        $query = $db->prepare("UPDATE ".PREFIX."powerranking SET score + :score = :score WHERE jeu = :jeu and uid = :id");
+
+        $query->execute([
+                "score"=> $score,
+                "jeu"=> $ranking['event_game']
+                "id"=> $ranking['player_id']
+                        ]);
+        }
+    }
+}
 
