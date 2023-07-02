@@ -69,12 +69,29 @@ foreach ($rankings as $ranking) {
             $score = 1;
             break;
     }
-    $query = $db->prepare("UPDATE " . PREFIX . "powerranking SET score = score+ :score WHERE jeu = :jeu and uid = :id");
+    $query = $db->prepare("SELECT * FROM " . PREFIX . "poweranking where uid = :id and jeu = :jeu");
     $query->execute([
-        "score" => $score,
-        "jeu" => $game,
-        "id" => $player_id
+        "id" => $player_id,
+        "jeu" => $game
     ]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        $query = $db->prepare("INSERT INTO " . PREFIX . "poweranking (uid, jeu, score) VALUES (:id, :jeu, :score)");
+        $query->execute([
+            "id" => $player_id,
+            "jeu" => $game,
+            "score" => $score
+        ]);
+    } else {
+        $query = $db->prepare("UPDATE " . PREFIX . "poweranking SET score = score+ :score WHERE jeu = :jeu and uid = :id");
+        $query->execute([
+            "score" => $score,
+            "jeu" => $game,
+            "id" => $player_id
+        ]);
+    }
 }
-
+$_SESSION['message'] = "Le tournoi a bien été terminé !";
+$_SESSION['message_type'] = "success";
+header("Location: /event?id=" . $_GET["eid"]);
 //TODO : voir pour le ranking

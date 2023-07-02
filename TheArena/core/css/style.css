@@ -1313,7 +1313,7 @@ ul {
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.panel {
+.accpanel {
     padding: 0 18px;
     background-color: white;
     display: none;

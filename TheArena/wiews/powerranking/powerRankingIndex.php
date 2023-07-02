@@ -1,9 +1,9 @@
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
-
+include $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 $db = connectToDB();
 
-$qir = $db->query("SELECT * FROM " . PREFIX . "poweranking");
+$qir = $db->query("SELECT * FROM " . PREFIX . "poweranking ORDER BY score DESC");
 $powerRankingClassement =  $qir->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -49,7 +49,7 @@ $powerRankingClassement =  $qir->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach ($powerRankingClassement as $ranking) { ?>
   <div class="row d-flex justify-content-center border col-12">
     <div class="row d-flex justify-content-center">
-      <h4><?php echo ($ranking['uid'] . $ranking['score']) ?> </h4>
+      <h4><?php echo formatUsers($ranking['uid']) ."    -    ". $ranking['score'] ?> points </h4>
     </div>
   </div>
 <?php } if (empty($powerRankingClassement)) { ?>

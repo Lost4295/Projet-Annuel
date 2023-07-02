@@ -143,8 +143,9 @@ foreach ($tournaments as $tournament) {
 
 ?>
     <button class="accordion">Tournoi <?php echo $tournament['name'] ?></button>
-    <div class="panel w-100">
-        <?php if ($remMAtches == null) { ?>
+    <div class="accpanel w-100">
+        <p> Matches restants : <?php echo count($remMatches) ?></p>
+        <?php if (count($remMatches) == 0) { ?>
             <a href="/endTournament?id=<?php echo $tournament['id'] ?>&eid=<?php echo $evenement['id']  ?>" class="btn btn-primary m-2">Terminer le tournoi</a>
         <?php } ?>
         <a href="/launchTournament?id=<?php echo $tournament['id'] ?>&eid=<?php echo $evenement['id']  ?>" class="btn btn-primary m-2">Générer les matches</a>
@@ -173,11 +174,11 @@ foreach ($tournaments as $tournament) {
                                 <td>Round <?php echo $match['round_number'] ?></td>
                                 <td><?php echo formatUsers($match['player1_id']) ?></td>
                                 <td><?php echo formatUsers($match['player2_id']) ?></td>
-                                <td><?php echo $match['player1_score'] ?></td>
-                                <td><?php echo $match['player2_score'] ?></td>
+                                <td id="score1"><?php echo $match['player1_score'] ?></td>
+                                <td id="score2"><?php echo $match['player2_score'] ?></td>
                                 <td><a href='#' id="showDialog<?php echo $match['match_id'] ?>" class='btn btn-primary'>Modifier le résultat du match</a></td>
                                 <dialog id="favDialog<?php echo $match['match_id'] ?>" class="p-5">
-                                    <form action="/wiews/events/resultssaver.php" class="">
+                                    <form action="/wiews/events/resultssaver.php" class="" method="post">
                                         <div>
                                             <h2 class="text-center">Résultats</h2>
                                             <div class="row">
@@ -256,6 +257,24 @@ foreach ($tournaments as $tournament) {
             }
         });
     }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('form').forEach(item => {
+            item.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                let form = e.target;
+
+                fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json())
+                    .then(json => console.log(json));
+
+                return false;
+            });
+        });
+    });
 </script>
 </div>
 </div>
