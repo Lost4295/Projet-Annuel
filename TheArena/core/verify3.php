@@ -179,7 +179,7 @@ if (isset($_POST)) {
         $erroraddress = '200 carctères maximum.';
     } elseif (strlen($address) < 5) {
         $erroraddress = 'Il faut au moins 5 carctères.';
-    } elseif (!preg_match("/^[A-z0-9' -]+$/", $address)) {
+    } elseif (!preg_match("/^[A-Za-z0-9' \-éèàù]+$/", $address)) {
         $erroraddress = 'Carctères invalides. Caractères autorisés : A-z, 0-9, espace, \' et -';
     }
 
