@@ -4,8 +4,12 @@
 <h1>Créer une salle</h1>
 <form action="/wiews/events/verifyrooms.php" method="post">
 	<div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label">Nom de la salle</label>
-		<input type="text" class="form-control" required name="name" id="exampleFormControlInput1">
+		<label for="nameofroom" class="form-label">Nom de la salle</label>
+		<input type="text" class="form-control" required name="name" id="nameofroom">
+	</div>
+	<div class="mb-3">
+		<label for="maxplayers" class="form-label">Nombre maximal de joueurs</label>
+		<input type="number" class="form-control" required name="max_users" id="maxplayers">
 	</div>
 	<div class="row row-cols-lg-auto">
 		<div class="col-12">
