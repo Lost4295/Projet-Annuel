@@ -1,7 +1,22 @@
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php" 
+<?php
 
+require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
-//TODO faire les queries pour les rooms
+$db = connectToDB();
+
+if (isConnected()) {
+    $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
+    $nquery->execute([':email' => $_SESSION['email']]);
+    $user = $nquery->fetch(PDO::FETCH_ASSOC);
+
+    $nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'event_rooms WHERE `owner_id`=:user_id');
+    $nquery->execute([':user_id' => $_SESSION['id']]);
+    $rooms = $nquery->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $_SESSION['message'] = "L'action a échoué.";
+    $_SESSION['message_type'] = "danger";
+    header('Location: /error');
+}
 
 
 
@@ -31,13 +46,13 @@
     </div>
     </div>
     <div class="form-check">
-        <input class="form-check-input" type="radio" name="type" id="online" value="0">
+        <input class="form-check-input" type="radio" name="type" id="online" onclick='checker()' value="0">
         <label class="form-check-label" for="online">
             En ligne
         </label>
     </div>
     <div class="form-check mb-4">
-        <input class="form-check-input" type="radio" name="type" id="local" value="1" checked>
+        <input class="form-check-input" type="radio" name="type" id="local" onclick='checker()' value="1" checked>
         <label class="form-check-label" for="local">
             En local
         </label>
@@ -46,6 +61,14 @@
                                     echo $_SESSION['errortype'];
                                 }
                                 ?></div>
+    </div>
+    <div class="form-check mb-4">
+        <?php if (!empty($rooms)) {
+            foreach ($rooms as $key=>$room) { ?>
+                <input class="form-check-input" type="radio" name="type" id="room" value="<?php echo $room['id'] ?>">
+                <label class="form-check-label" for="room"><?php echo $room['address'] ?></label>
+            <?php } ?>
+        <?php } ?>
     </div>
     <label for="game" class="form-label">Jeu utilisé</label>
     <input class="form-control mb-5" list="datalistOptions" id="game" name="game" placeholder="Entrez le nom du jeu..." required>
@@ -74,6 +97,17 @@
                 output.src = URL.createObjectURL(event.target.files[0]);
                 border.style = "none";
             };
+
+            function checker() {
+                let ola = document.getElementById('online')
+                let phy = document.getElementById('local')
+
+                if (phy.checked === true) {
+                    ola.style.display = 'block'
+                } else {
+                    ola.style.display = 'none'
+                }
+            }
         </script>
     </div>
     <div class="row d-flex justify-content-center">
