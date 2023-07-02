@@ -3,13 +3,13 @@
 </div>
 </div>
 <div class=" d-flex justify-content-center">
-<div id="cb-cookie-banner" class=" alert alert-dark text-center mb-0 w-75" style=" position:fixed; bottom:15px" role="alert">
-    &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
-    <a href="https://www.cookiesandyou.com/" title="Plus d'informations" target="blank">Plus d'informations</a>
-    <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
-        Accepter
-    </button>
-</div>
+    <div id="cb-cookie-banner" class=" alert alert-dark text-center mb-0 w-75" style=" position:fixed; bottom:15px" role="alert">
+        &#x1F36A; Notre site utilise des cookies pour vous assurer la meilleure expérience possible.
+        <a href="https://www.cookiesandyou.com/" title="Plus d'informations" target="blank">Plus d'informations</a>
+        <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
+            Accepter
+        </button>
+    </div>
 </div>
 <div class="row footer">
     <div class="col px-0">
@@ -56,8 +56,12 @@
             }, 600)
         }, 900);
         initializeCookieBanner();
+        let url = new URL(window.location.href);
+        if (url.pathname.includes("/event/room/create") ) {
+            document.getElementById("adresse").addEventListener("input", autocompleteAdresse, false);
+        }
     }
-    
+
     var as = document.getElementsByTagName('a');
     let link1 = document.getElementById('link1');
     let link2 = document.getElementById('link2');
@@ -122,19 +126,19 @@
     if (theme == 'dark') {
         switchBox.classList.remove("move");
         link1.classList.remove('link-dark')
-            link2.classList.remove('link-dark')
-            link3.classList.remove('link-dark')
-            link1.classList.add('link-light')
-            link2.classList.add('link-light')
-            link3.classList.add('link-light')
+        link2.classList.remove('link-dark')
+        link3.classList.remove('link-dark')
+        link1.classList.add('link-light')
+        link2.classList.add('link-light')
+        link3.classList.add('link-light')
     } else {
         switchBox.classList.add("move");
         link1.classList.remove('link-light')
-            link2.classList.remove('link-light')
-            link3.classList.remove('link-light')
-            link1.classList.add('link-dark')
-            link2.classList.add('link-dark')
-            link3.classList.add('link-dark')
+        link2.classList.remove('link-light')
+        link3.classList.remove('link-light')
+        link1.classList.add('link-dark')
+        link2.classList.add('link-dark')
+        link3.classList.add('link-dark')
     }
 
     document.getElementById('changeToDarkMode').onclick = function() {

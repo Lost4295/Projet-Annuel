@@ -41,14 +41,19 @@ foreach ($scores as $player_id => $score) {
 }
 
 
-$gfr = $db->prepare("SELECT a FROM " . PREFIX . "events WHERE `id`=:event_id");
+$gfr = $db->prepare("SELECT game FROM " . PREFIX . "events WHERE `id`=:event_id");
+$gfr->execute([':event_id' => $_GET["eid"]]);
+$event = $gfr->fetch(PDO::FETCH_ASSOC);
+$event_game = $event['game'];
 
 // Affichage des classements des joueurs
 foreach ($rankings as $ranking) {
     $player_id = $ranking['player_id'];
     $rank = $ranking['rank'];
     $score = $ranking['score'];
-
+    $game  = $event_game;
 }
 
+
+//Mettre ici les inserts du PR
 

@@ -5,7 +5,7 @@
 <form action="/wiews/events/verifyrooms.php" method="post">
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">Nom de la salle</label>
-		<input type="text" class="form-control" id="exampleFormControlInput1">
+		<input type="text" class="form-control" required name="name" id="exampleFormControlInput1">
 	</div>
 	<div class="row row-cols-lg-auto">
 		<div class="col-12">
@@ -27,16 +27,58 @@
 	</div>
 
 	<div class="mb-3" id="onlyphysical">
-		<div class="row">
-			<div class="col-md-6">
-				<label for="exampleFormControlInput1" class="form-label">Adresse de la salle</label>
-				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="15 Rue de Paris">
-			</div>
-			<div class="col-md-2">
-				<label for="exampleFormControlInput1" class="form-label">Code postal</label>
-				<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="75010">
-			</div>
-		</div>
+	<div class=" row mt-5 mb-3 pr-5">
+                <div class="col">
+                    <label for="adresse" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="fulladdress" placeholder="1 Rue de Paris">
+                    <div id="selection" style="display: none;" class="dropdown-menu">
+                    </div>
+                    <div class="invalid">
+                        <?php if (isset($_SESSION['errorfulladdress'])) {
+                            echo $_SESSION['errorfulladdress'];
+                            unset($_SESSION['errorfulladdress']);
+                        }
+                        ?> <div class="invalid">
+                            <?php if (isset($_SESSION['erroraddress'])) {
+                                echo $_SESSION['erroraddress'];
+                                unset($_SESSION['erroraddress']);
+                            }
+                            ?>
+                        </div>
+                        <div class="invalid">
+                            <?php if (isset($_SESSION['errorcity'])) {
+                                echo $_SESSION['errorcity'];
+                                unset($_SESSION['errorcity']);
+                            }
+                            ?>
+                        </div>
+                        <div class="invalid">
+                            <?php if (isset($_SESSION['errorcp'])) {
+                                echo $_SESSION['errorcp'];
+                                unset($_SESSION['errorcp']);
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 mb-3 pr-5">
+                <div class="col">
+                    <label for="resAdresse" hidden class="form-label">Adresse</label>
+                    <input type="text" hidden class="form-control" id="resAdresse" name="address" placeholder="France">
+
+                </div>
+                <div class="col">
+                    <label for="CP" hidden class="form-label">Code postal</label>
+                    <input type="text" hidden class="form-control" id="CP" name="cp" placeholder="75012">
+
+                    <div class="col">
+                        <label for="Ville" hidden class="form-label">Ville</label>
+                        <input type="text" hidden class="form-control" id="Ville" name="city" placeholder="Paris">
+
+                    </div>
+                </div>
+	</div>
 	</div>
 	<script>
 		function checker() {
@@ -50,6 +92,7 @@
 			}
 		}
 	</script>
+	<script type="text/javascript" src="/wiews/admin/users/completer.js"></script>
 	<input type="hidden" value="<?php echo $user['id'] ?>">
 	<div class="row d-flex justify-content-center">
 		<div class="col-2">
