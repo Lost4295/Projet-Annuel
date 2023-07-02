@@ -16,7 +16,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 ?>
 
 <body>
-    <h1>Détails du tournament <?php echo $tournament['name'] ?></h1>
+    <h1>Détails du tournoi <?php echo $tournament['name'] ?></h1>
     <p>ID : <?php echo $tournament['id'] ?></p>
     <p>Nom : <?php echo $tournament['name'] ?></p>
     <p>Description : <?php echo $tournament['description'] ?></p>
@@ -27,16 +27,18 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <p>Événement : <?php echo formatEventName($tournament['event_id']) ?></p>
 
     <p> Personnes inscrites : </p>
-    <ul>
+    <table class='table w-50'>
     <?php
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events_users WHERE `tournament_id`=:id');
     $query->execute([':id' => $id]);
     $users = $query->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($users as $key => $user) {
-        echo '<li>' . formatUsers($user['user_id']) . '</li>';
-    }
+    foreach ($users as $key => $user) { ?>
+    <tr>
+        <td><a class="link-dark text-decoration-none" href="/admin/users/read?id=<?php echo $user['user_id'] ?>"><?php echo formatUsers($user['user_id'])?></a></td><td><a href="/admin/tournament/unregister?id=<?php echo $user['user_id'] ?>&tid=<?php echo $tournament['id'] ?>" class="btn btn-primary">Désinscrire <?php echo formatUsers($user['user_id'])?></a></td>
+    </tr>
+    <?php }
     ?>
-    </ul>
+    </table>
 
     <div>
         <a class="btn btn-primary m-2" href="update?id=<?php echo $tournament['id'] ?>">Modifier</a>

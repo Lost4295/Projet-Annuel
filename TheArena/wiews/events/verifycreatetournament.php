@@ -112,7 +112,7 @@ if (
         $_SESSION['errordate'] = $errordate;
         $_SESSION['errortype'] = $errortype;
         $_SESSION['errordescription'] = $errordescription;
-        header("Location: /event/tournament/create?name=" . $eventname);
+        header("Location: /event/tournament/create?id=" . $eventid);
     } else {
         $db = connectToDB();
         $queryPrepared = $db->prepare("SELECT id FROM " . PREFIX . "events WHERE name=:name");
@@ -131,5 +131,5 @@ if (
         ]);
         $_SESSION['message'] = "Le tournoi a bien été créé.";
         $_SESSION['message_type'] = "success";
-        header("Location: /event?name=" . $eventname);
+        header("Location: /event?id=" . $eventid);
     }

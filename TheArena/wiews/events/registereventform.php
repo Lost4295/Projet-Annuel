@@ -3,9 +3,9 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/core/functions.php";
 $db = connectToDB();
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $name = strip_tags($_GET['id']);
+    $id = strip_tags($_GET['id']);
     $query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:name');
-    $query->execute([':name' => $name]);
+    $query->execute([':name' => $id]);
     $evenement = $query->fetch(PDO::FETCH_ASSOC);
     if (!$evenement) {
         $_SESSION['message'] = "Cet évènement n'existe pas.";
@@ -21,6 +21,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             header('Location: /event?id=' . $id);
             exit();
         }
+        $siur = $db->prepare('SELECT * FROM ' . PREFIX . 'events_users WHERE `user_id`=:id AND `event_id`=:event_id');
+        $siur->execute([':id' => $_SESSION['id'], ':event_id' => $evenement['id']]);
+        $siur = $siur->fetchAll(PDO::FETCH_ASSOC);
     }
 } else {
     $_SESSION['message'] = "Cet évènement n'existe pas.";
@@ -31,17 +34,20 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
 
 ?>
 
-<h1>Inscription à <?php echo "\"" . $name . "\"" ?></h1>
+
+<h1>Inscription à <?php echo "\"" . $evenement['name'] . "\"" ?></h1>
 <div class="row ps-2">
     <div class="col-5">
         <form id="form" action="/wiews/events/verifyreg.php" method="post">
             <div class="mb-3">
-                <h4>Inscription aux événements</h4>
+                <h4>Inscription aux tournois</h4>
                 <div class="mb-3">
                     <?php
                     foreach ($tournaments as $key => $tournament) { ?>
                         <div class="form-check">
-                            <input class="form-check-input check" type="checkbox" name="tournament[<?php echo $tournament['id'] ?>]" value="checked" id="<?php echo $tournament['id'] ?>">
+                            <input class="form-check-input check" type="checkbox" name="tournament[<?php echo $tournament['id'] ?>]" value="checked" id="<?php echo $tournament['id'] ?>" <?php foreach ($siur as $key2=>$inscription) { if ($inscription['tournament_id'] == $tournament['id']) {
+                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                            } }?>>
                             <label class="form-check-label" for="<?php echo $tournament['id'] ?>"><?php echo $tournament['name'] ?></label>
                         </div>
                     <?php } ?>
@@ -49,9 +55,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                         <div class="invalid">
                             <?php echo $_SESSION['errortournament']; ?>
                         </div>
-                </div>
-            <?php } ?>
-            <div class="invalid" id="invalidt" style="display:none">Veuillez choisir au moins 1 événement.</div>
+                    <?php } ?>
+                    <div class="form-text">Vous pouvez vous inscrire à plusieurs tournois. Si vous souhaitez vous désisncrire de cet événement, merci de contacter un administrateur.</div>
+                    <div class="invalid" id="invalidt" style="display:none">Veuillez choisir au moins 1 événement.</div>
+
+                
             </div>
             <h4>Paiement</h4>
             <div class="mb-3">

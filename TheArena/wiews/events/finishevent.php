@@ -1,7 +1,7 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/core/formatter.php";
 $db = connectToDB();
-$ql = $db->query("SELECT * FROM " . PREFIX . "matches WHERE `tournament_id`=:event_id");
+$ql = $db->prepare("SELECT * FROM " . PREFIX . "matches WHERE `tournament_id`=:event_id");
 $ql->execute([':event_id' => $_GET["id"]]);
 $matches = $ql->fetchAll(PDO::FETCH_ASSOC);
 // Récupération des résultats des matches et calcul des scores des joueurs
@@ -39,6 +39,8 @@ foreach ($scores as $player_id => $score) {
     );
     $rank++;
 }
+
+
 
 // Affichage des classements des joueurs
 foreach ($rankings as $ranking) {

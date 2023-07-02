@@ -69,43 +69,6 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
                 <?php } ?>
             </tbody>
         </table>
-        <!-- <table class="d-flex align-content-center flex-column flex-wrap table table-striped">
-            <tbody>
-                <tr>
-                    <td>
-                        participant 1
-                    </td>
-                    <td>
-                        contre
-                    </td>
-                    <td>
-                        participant 2
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        participant 3
-                    </td>
-                    <td>
-                        contre
-                    </td>
-                    <td>
-                        participant 4
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        participant 5
-                    </td>
-                    <td>
-                        contre
-                    </td>
-                    <td>
-                        participant 6
-                    </td>
-                </tr>
-            </tbody>
-        </table>-->
     </div> 
 
     <?php

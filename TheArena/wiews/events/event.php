@@ -53,14 +53,13 @@ include $_SERVER['DOCUMENT_ROOT'] . "/core/header.php";
     <p><?php echo $evenement['description'] ?></p>
 </div>
 <div class="col-12 d-flex justify-content-around flex-wrap">
-    <?php if (isConnected() && ($user['id'] == $evenement['manager_id'])) { ?>
-        <a title="S'inscrire" class="btn btn-warning" href="/event/register?id=<?php echo $evenement['id'] ?>">S'inscrire</a>
+    <?php if (isConnected()){ if ($user['id'] == $evenement['manager_id']) { ?>
         <a title="Créer un tournoi" href="/event/tournament/create?id=<?php echo $evenement['id'] ?>" class="btn btn-warning">Créer un tournoi</a>
-    <?php } elseif (isConnected() && !$participation) { ?>
+    <?php } if (!$participation) { ?>
         <a title="S'inscrire" class="btn btn-warning" href="/event/register?id=<?php echo $evenement['id'] ?>">S'inscrire</a>
-    <?php } elseif (isConnected() && $participation) { ?>
-        <a title="Gérer mon inscription" class="btn btn-warning" href="/event/unregister?id=<?php echo $evenement['id'] ?>">Gérer mon inscription</a>
-    <?php } ?>
+    <?php } else { ?>
+        <a title="Gérer mon inscription" class="btn btn-warning" href="/event/register?id=<?php echo $evenement['id'] ?>">Gérer mon inscription</a>
+    <?php }} ?>
 </div>
 
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/core/footer.php" ?>

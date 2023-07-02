@@ -6,17 +6,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$id = strip_tags($_GET['id']);
 	$query = $db->prepare('SELECT * FROM ' . PREFIX . 'events WHERE `id`=:id');
 	$query->execute([':id' => $id]);
-	$event = $query->fetch(PDO::FETCH_ASSOC);
-	if (!$event) {
+	$evenement = $query->fetch(PDO::FETCH_ASSOC);
+	if (!$evenement) {
 		$_SESSION['message'] = "Cet évènement n'existe pas.";
 		$_SESSION['message_type'] = "danger";
 		header('Location: /');
 	}
-	if (isConnected() && ($id == $event['id'])) {
+	if (isConnected() && ($id == $evenement['id'])) {
 		$nquery =  $db->prepare('SELECT * FROM ' . PREFIX . 'users WHERE `email`=:email');
 		$nquery->execute([':email' => $_SESSION['email']]);
 		$user = $nquery->fetch(PDO::FETCH_ASSOC);
-		if ($user['id'] != $event['manager_id']) {
+		if ($user['id'] != $evenement['manager_id']) {
 			$_SESSION['message'] = "L'action a échoué.";
 			$_SESSION['message_type'] = "danger";
 			header('Location: /error');
@@ -119,7 +119,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/core/header.php"; ?>
 				?>
 			</div>
 		</div>
-		<input type="hidden" name="event" value="<?php echo $event['name']; ?>">
+		<input type="hidden" name="event" value="<?php echo $evenement['name']; ?>">
 		<div class="mb-3">
 			<button type="submit" class="btn btn-primary">Créer le tournoi</button>
 		</div>

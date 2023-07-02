@@ -71,6 +71,10 @@ if (!isset($resulte)) {
             $keys[] = $key;
         }
     }
+    foreach ($keys as $key) {
+        unset($possibletournaments[$key]);
+        $possibletournaments = array_flip($possibletournaments);
+    }
 
 
     if (/*empty($errorpseudo) &&*/ empty($errortournament)) {
@@ -94,6 +98,20 @@ if ($error) {
         $body .= 'au tournoi : ';
     }
     $body .= "<br><br><ul>";
+    foreach ($possibletournaments as $removed) {
+        $queryPrepared = $connection->prepare("SELECT id,name FROM " . PREFIX . "tournaments WHERE id=:id");
+        $queryPrepared->execute([
+            'id' => $removed
+        ]);
+        $tournamentname = $queryPrepared->fetch(PDO::FETCH_ASSOC);
+
+        $queryPrepared = $connection->prepare("DELETE FROM " . PREFIX . "events_users WHERE user_id=:user_id AND tournament_id=:tournament_id");
+        $queryPrepared->execute([
+            'user_id' => $resultp['id'],
+            'tournament_id' => $removed
+        ]);
+    }
+
     foreach ($keys as $key) {
         $queryPrepared = $connection->prepare("SELECT id,name FROM " . PREFIX . "tournaments WHERE id=:id");
         $queryPrepared->execute([
@@ -102,6 +120,14 @@ if ($error) {
         $tournamentname = $queryPrepared->fetch(PDO::FETCH_ASSOC);
 
         $ticket = generateActivationCode();
+        $verif = $connection->prepare("SELECT * FROM " . PREFIX . "events_users WHERE user_id=:user_id AND tournament_id=:tournament_id AND event_id=:event_id");
+        $verif->execute([
+            'user_id' => $resultp['id'],
+            'tournament_id' => $key,
+            'event_id' => $eventid
+        ]);
+        $ress = $verif->fetch(PDO::FETCH_ASSOC);
+        if (!$ress) {
         $queryPrepared = $connection->prepare("INSERT INTO " . PREFIX . "events_users (user_id, tournament_id, event_id, ticket) VALUES (:user_id, :tournament_id, :event_id,:ticket)");
         $queryPrepared->execute([
             'user_id' => $resultp['id'],
@@ -109,6 +135,7 @@ if ($error) {
             'event_id' => $eventid,
             'ticket' => $ticket
         ]);
+    }
 
         $body .= "<li>" . $tournamentname['name'] . " de l'évènement " . $resulte['name'] . ". Votre code de ticket est le suivant : " . $ticket . "</li>";
     }

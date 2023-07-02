@@ -1319,3 +1319,15 @@ ul {
     display: none;
     overflow: hidden;
 }
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .activee:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }
