@@ -41,11 +41,14 @@ foreach ($scores as $player_id => $score) {
 }
 
 
+$gfr = $db->prepare("SELECT a FROM " . PREFIX . "events WHERE `id`=:event_id");
 
 // Affichage des classements des joueurs
 foreach ($rankings as $ranking) {
     $player_id = $ranking['player_id'];
     $rank = $ranking['rank'];
     $score = $ranking['score'];
-    echo "Joueur : " . formatUsers($player_id) . " | Classement : " . $rank . " | Score : " . $score . "<br>";
+
 }
+
+

@@ -2,7 +2,7 @@
 
 
 <h1>Créer une salle</h1>
-<form action="" method="post">
+<form action="/wiews/events/verifyrooms.php" method="post">
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">Nom de la salle</label>
 		<input type="text" class="form-control" id="exampleFormControlInput1">
