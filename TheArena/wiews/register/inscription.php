@@ -88,14 +88,12 @@ noReconnection(); ?>
                                             <button type="button" class="input-group-text" id="pwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class=" row mt-5 mb-3 pr-5">
                                     <div class="col">
                                         <label for="confirmpwd" class="form-label">Confirmation du mot de passe</label>
                                         <div class="input-group mb-3">
                                             <input type="password" name="confirmpwd" class="form-control" id="confirmpwd" placeholder="Choisissez un mot de passe sécurisé. (8 caractères, dont majuscules, minuscules et chiffres)" required autocomplete="new-password">
-
                                             <button type="button" class="input-group-text" id="confpwd-eye"><i class="bi bi-eye-slash-fill"></i></button>
                                         </div>
                                     </div>

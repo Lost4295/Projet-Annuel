@@ -165,7 +165,6 @@ foreach ($tournaments as $tournament) {
                         </tr>
                     </thead>
                     <tbody>
-
                         <?php
                         $ql = $db->query("SELECT * FROM " . PREFIX . "matches");
                         $matches = $ql->fetchAll(PDO::FETCH_ASSOC);

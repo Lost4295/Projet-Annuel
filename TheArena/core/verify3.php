@@ -276,13 +276,10 @@ if (isset($_POST)) {
 
 
         include 'sendmail.php';
-        sendEmail($email, 'Activation du compte de ' . $username . ' sur The Arena', 0);
+        sendEmail($email, 'Activation du compte de ' . $username . ' sur The Arena', 0); $_SESSION['type']= Null;
         $_SESSION["message"] = "Votre compte a bien été créé. Vous allez recevoir un mail de confirmation. Si vous ne le voyez pas, merci de vérifier vos spams.";
         header("Location:/");
     }
-    print_r($table);
-    die();
-    header("Location:/register");
 } else {
     die('Pas de post.');
 }
