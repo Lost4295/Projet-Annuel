@@ -174,13 +174,14 @@ noReconnection(); ?>
                                     </div>
                                 </div>
                             </div>
-                                <label class="form-check-label">
-                                    Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
-                                </label>
-                                <div class="col">
-                                    <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
-                                </div>
+                            <label class="form-check-label">
+                                Vérifiez que vous n'êtes pas un robot, en reconstituant l'image ci-dessous.
+                            </label>
+                            <div class="col">
+                                <?php require $_SERVER['DOCUMENT_ROOT'] . '/core/createCaptcha.php' ?>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
                                 <div class="row">
                                     <div class="drop-zone" id="dropZone1"></div>
@@ -200,14 +201,15 @@ noReconnection(); ?>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    </form>
-                </div>
-                <div class="col-12">
-                    <button type="button" id="continue" class="btn btn-primary">Continuer</button>
-                </div>
+                </form>
+            </div>
+            <div class="col-12">
+                <button type="button" id="continue" class="btn btn-primary">Continuer</button>
             </div>
         </div>
+    </div>
     </div>
     <script src="/wiews/register/inscription.js"></script>
 </body>
