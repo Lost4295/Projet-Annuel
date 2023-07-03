@@ -122,5 +122,5 @@ $who = whoIsConnected();
                         </div>
                     </div>
                 </div>
-                <div class="col-9" id="pagecontent">
+                <div class="col-7" id="pagecontent">
                     

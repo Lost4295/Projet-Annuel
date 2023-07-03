@@ -9,7 +9,7 @@
 <h1>Signalements</h1>
 
 <input type="text" id="myinput" class="form-control" placeholder="Search..." title="Type in something">
-<table class="table table-hover table-bordered w-100" aria-describedby="reports-table">
+<table class="table table-hover table-bordered" aria-describedby="reports-table">
     <thead>
         <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
         <th><span id="user_id" class="w3-button table-column">Signaleur<i class="caret"></i></span></th>
@@ -111,6 +111,7 @@
 
                                         let content = row.insertCell(2);
                                         content.innerHTML = "\""+data.content+"\"";
+                                        content.className = "text-break";
 
                                         let reported_id = row.insertCell(3);
                                         reported_id.innerHTML =  data.reported_id ;

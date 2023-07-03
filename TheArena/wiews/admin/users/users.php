@@ -11,7 +11,7 @@ $listOfUsers = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <input type="text" id="myinput" class="form-control" placeholder="Search..." title="Type in something">
-<table class="table table-hover table-bordered w-100" aria-describedby="users-list">
+<table class="table table-hover table-bordered" aria-describedby="users-list">
     <thead>
         <th><span id="id" class="w3-button table-column">ID <i class="caret"></i></span></th>
         <th><span id="scope" class="w3-button table-column">Scope<i class="caret"></i></span></th>
