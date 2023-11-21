@@ -1,0 +1,19 @@
+
+#header{
+position: fixed;
+top: 0;
+left: 0;
+}
+
+#sidebar{
+position: fixed;
+top: 116px;
+left: 0;
+}
+
+#pagecontent{
+display: block;
+    margin-top: 116px;
+
+margin-left: 452px;
+}

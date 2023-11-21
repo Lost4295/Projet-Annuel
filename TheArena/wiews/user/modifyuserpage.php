@@ -25,7 +25,7 @@ if (!empty($result)) {
     $about = $result["about"];
 }
 
-?>
+?>  
 
 <div class="w-100">
     <h1> Modifier ma page </h1>
@@ -35,7 +35,7 @@ if (!empty($result)) {
     <div class=" row mt-5 mb-3 pr-5 -flex justify-content-between">
         <div class="col-4">
             <label for="firstname" class="form-label">Prénom</label>
-            <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNames($firstname) ?>">
+            <input type="text" class="form-control" id="firstname" disabled value="<?php echo cleanNnhnames($firstname) ?>">
         </div>
         <div class="col-4">
             <label for="lastname" class="form-label">Nom</label>
